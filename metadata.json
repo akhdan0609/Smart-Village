@@ -1,0 +1,6 @@
+{
+  "name": "Website Resmi Desa Warung Menteng",
+  "description": "Portal Informasi, Potensi, Pelayanan Surat Administrasi, Aspirasi & Pengaduan, serta Kontak Darurat Desa Warung Menteng.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base;
+
+/* Prevent any component from pushing the page into horizontal scroll on mobile */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure paddings/margins stay inside the element bounds */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

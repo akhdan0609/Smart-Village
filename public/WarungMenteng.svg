@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1128" height="1128" viewBox="0 0 1128 1128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean White Background -->
+  <rect width="1128" height="1128" fill="#ffffff" />
+  
+  <!-- QR Code Modules (Dots) -->
+  <circle cx="276" cy="84" r="10.56" fill="#000000" />
+<circle cx="324" cy="84" r="10.56" fill="#000000" />
+<circle cx="348" cy="84" r="10.56" fill="#000000" />
+<circle cx="396" cy="84" r="10.56" fill="#000000" />
+<circle cx="420" cy="84" r="10.56" fill="#000000" />
+<circle cx="444" cy="84" r="10.56" fill="#000000" />
+<circle cx="492" cy="84" r="10.56" fill="#000000" />
+<circle cx="540" cy="84" r="10.56" fill="#000000" />
+<circle cx="588" cy="84" r="10.56" fill="#000000" />
+<circle cx="612" cy="84" r="10.56" fill="#000000" />
+<circle cx="636" cy="84" r="10.56" fill="#000000" />
+<circle cx="660" cy="84" r="10.56" fill="#000000" />
+<circle cx="708" cy="84" r="10.56" fill="#000000" />
+<circle cx="780" cy="84" r="10.56" fill="#000000" />
+<circle cx="804" cy="84" r="10.56" fill="#000000" />
+<circle cx="300" cy="108" r="10.56" fill="#000000" />
+<circle cx="372" cy="108" r="10.56" fill="#000000" />
+<circle cx="444" cy="108" r="10.56" fill="#000000" />
+<circle cx="516" cy="108" r="10.56" fill="#000000" />
+<circle cx="540" cy="108" r="10.56" fill="#000000" />
+<circle cx="588" cy="108" r="10.56" fill="#000000" />
+<circle cx="684" cy="108" r="10.56" fill="#000000" />
+<circle cx="708" cy="108" r="10.56" fill="#000000" />
+<circle cx="756" cy="108" r="10.56" fill="#000000" />
+<circle cx="780" cy="108" r="10.56" fill="#000000" />
+<circle cx="276" cy="132" r="10.56" fill="#000000" />
+<circle cx="300" cy="132" r="10.56" fill="#000000" />
+<circle cx="348" cy="132" r="10.56" fill="#000000" />
+<circle cx="372" cy="132" r="10.56" fill="#000000" />
+<circle cx="396" cy="132" r="10.56" fill="#000000" />
+<circle cx="468" cy="132" r="10.56" fill="#000000" />
+<circle cx="516" cy="132" r="10.56" fill="#000000" />
+<circle cx="636" cy="132" r="10.56" fill="#000000" />
+<circle cx="660" cy="132" r="10.56" fill="#000000" />
+<circle cx="684" cy="132" r="10.56" fill="#000000" />
+<circle cx="852" cy="132" r="10.56" fill="#000000" />
+<circle cx="324" cy="156" r="10.56" fill="#000000" />
+<circle cx="372" cy="156" r="10.56" fill="#000000" />
+<circle cx="420" cy="156" r="10.56" fill="#000000" />
+<circle cx="444" cy="156" r="10.56" fill="#000000" />
+<circle cx="468" cy="156" r="10.56" fill="#000000" />
+<circle cx="540" cy="156" r="10.56" fill="#000000" />
+<circle cx="612" cy="156" r="10.56" fill="#000000" />
+<circle cx="660" cy="156" r="10.56" fill="#000000" />
+<circle cx="756" cy="156" r="10.56" fill="#000000" />
+<circle cx="780" cy="156" r="10.56" fill="#000000" />
+<circle cx="852" cy="156" r="10.56" fill="#000000" />
+<circle cx="276" cy="180" r="10.56" fill="#000000" />
+<circle cx="396" cy="180" r="10.56" fill="#000000" />
+<circle cx="420" cy="180" r="10.56" fill="#000000" />
+<circle cx="468" cy="180" r="10.56" fill="#000000" />
+<circle cx="516" cy="180" r="10.56" fill="#000000" />
+<circle cx="540" cy="180" r="10.56" fill="#000000" />
+<circle cx="684" cy="180" r="10.56" fill="#000000" />
+<circle cx="756" cy="180" r="10.56" fill="#000000" />
+<circle cx="780" cy="180" r="10.56" fill="#000000" />
+<circle cx="804" cy="180" r="10.56" fill="#000000" />
+<circle cx="828" cy="180" r="10.56" fill="#000000" />
+<circle cx="444" cy="204" r="10.56" fill="#000000" />
+<circle cx="564" cy="204" r="10.56" fill="#000000" />
+<circle cx="588" cy="204" r="10.56" fill="#000000" />
+<circle cx="612" cy="204" r="10.56" fill="#000000" />
+<circle cx="636" cy="204" r="10.56" fill="#000000" />
+<circle cx="660" cy="204" r="10.56" fill="#000000" />
+<circle cx="684" cy="204" r="10.56" fill="#000000" />
+<circle cx="756" cy="204" r="10.56" fill="#000000" />
+<circle cx="852" cy="204" r="10.56" fill="#000000" />
+<circle cx="276" cy="228" r="10.56" fill="#000000" />
+<circle cx="324" cy="228" r="10.56" fill="#000000" />
+<circle cx="372" cy="228" r="10.56" fill="#000000" />
+<circle cx="420" cy="228" r="10.56" fill="#000000" />
+<circle cx="468" cy="228" r="10.56" fill="#000000" />
+<circle cx="516" cy="228" r="10.56" fill="#000000" />
+<circle cx="564" cy="228" r="10.56" fill="#000000" />
+<circle cx="612" cy="228" r="10.56" fill="#000000" />
+<circle cx="660" cy="228" r="10.56" fill="#000000" />
+<circle cx="708" cy="228" r="10.56" fill="#000000" />
+<circle cx="756" cy="228" r="10.56" fill="#000000" />
+<circle cx="804" cy="228" r="10.56" fill="#000000" />
+<circle cx="852" cy="228" r="10.56" fill="#000000" />
+<circle cx="276" cy="252" r="10.56" fill="#000000" />
+<circle cx="348" cy="252" r="10.56" fill="#000000" />
+<circle cx="444" cy="252" r="10.56" fill="#000000" />
+<circle cx="468" cy="252" r="10.56" fill="#000000" />
+<circle cx="492" cy="252" r="10.56" fill="#000000" />
+<circle cx="516" cy="252" r="10.56" fill="#000000" />
+<circle cx="540" cy="252" r="10.56" fill="#000000" />
+<circle cx="636" cy="252" r="10.56" fill="#000000" />
+<circle cx="660" cy="252" r="10.56" fill="#000000" />
+<circle cx="684" cy="252" r="10.56" fill="#000000" />
+<circle cx="708" cy="252" r="10.56" fill="#000000" />
+<circle cx="732" cy="252" r="10.56" fill="#000000" />
+<circle cx="756" cy="252" r="10.56" fill="#000000" />
+<circle cx="852" cy="252" r="10.56" fill="#000000" />
+<circle cx="204" cy="276" r="10.56" fill="#000000" />
+<circle cx="228" cy="276" r="10.56" fill="#000000" />
+<circle cx="324" cy="276" r="10.56" fill="#000000" />
+<circle cx="372" cy="276" r="10.56" fill="#000000" />
+<circle cx="396" cy="276" r="10.56" fill="#000000" />
+<circle cx="444" cy="276" r="10.56" fill="#000000" />
+<circle cx="492" cy="276" r="10.56" fill="#000000" />
+<circle cx="540" cy="276" r="10.56" fill="#000000" />
+<circle cx="564" cy="276" r="10.56" fill="#000000" />
+<circle cx="588" cy="276" r="10.56" fill="#000000" />
+<circle cx="612" cy="276" r="10.56" fill="#000000" />
+<circle cx="684" cy="276" r="10.56" fill="#000000" />
+<circle cx="732" cy="276" r="10.56" fill="#000000" />
+<circle cx="780" cy="276" r="10.56" fill="#000000" />
+<circle cx="828" cy="276" r="10.56" fill="#000000" />
+<circle cx="900" cy="276" r="10.56" fill="#000000" />
+<circle cx="948" cy="276" r="10.56" fill="#000000" />
+<circle cx="996" cy="276" r="10.56" fill="#000000" />
+<circle cx="1044" cy="276" r="10.56" fill="#000000" />
+<circle cx="108" cy="300" r="10.56" fill="#000000" />
+<circle cx="132" cy="300" r="10.56" fill="#000000" />
+<circle cx="180" cy="300" r="10.56" fill="#000000" />
+<circle cx="204" cy="300" r="10.56" fill="#000000" />
+<circle cx="252" cy="300" r="10.56" fill="#000000" />
+<circle cx="276" cy="300" r="10.56" fill="#000000" />
+<circle cx="300" cy="300" r="10.56" fill="#000000" />
+<circle cx="324" cy="300" r="10.56" fill="#000000" />
+<circle cx="348" cy="300" r="10.56" fill="#000000" />
+<circle cx="396" cy="300" r="10.56" fill="#000000" />
+<circle cx="420" cy="300" r="10.56" fill="#000000" />
+<circle cx="516" cy="300" r="10.56" fill="#000000" />
+<circle cx="540" cy="300" r="10.56" fill="#000000" />
+<circle cx="564" cy="300" r="10.56" fill="#000000" />
+<circle cx="588" cy="300" r="10.56" fill="#000000" />
+<circle cx="612" cy="300" r="10.56" fill="#000000" />
+<circle cx="636" cy="300" r="10.56" fill="#000000" />
+<circle cx="684" cy="300" r="10.56" fill="#000000" />
+<circle cx="708" cy="300" r="10.56" fill="#000000" />
+<circle cx="732" cy="300" r="10.56" fill="#000000" />
+<circle cx="780" cy="300" r="10.56" fill="#000000" />
+<circle cx="804" cy="300" r="10.56" fill="#000000" />
+<circle cx="828" cy="300" r="10.56" fill="#000000" />
+<circle cx="900" cy="300" r="10.56" fill="#000000" />
+<circle cx="924" cy="300" r="10.56" fill="#000000" />
+<circle cx="948" cy="300" r="10.56" fill="#000000" />
+<circle cx="84" cy="324" r="10.56" fill="#000000" />
+<circle cx="156" cy="324" r="10.56" fill="#000000" />
+<circle cx="228" cy="324" r="10.56" fill="#000000" />
+<circle cx="252" cy="324" r="10.56" fill="#000000" />
+<circle cx="300" cy="324" r="10.56" fill="#000000" />
+<circle cx="444" cy="324" r="10.56" fill="#000000" />
+<circle cx="468" cy="324" r="10.56" fill="#000000" />
+<circle cx="516" cy="324" r="10.56" fill="#000000" />
+<circle cx="540" cy="324" r="10.56" fill="#000000" />
+<circle cx="564" cy="324" r="10.56" fill="#000000" />
+<circle cx="588" cy="324" r="10.56" fill="#000000" />
+<circle cx="612" cy="324" r="10.56" fill="#000000" />
+<circle cx="660" cy="324" r="10.56" fill="#000000" />
+<circle cx="684" cy="324" r="10.56" fill="#000000" />
+<circle cx="708" cy="324" r="10.56" fill="#000000" />
+<circle cx="732" cy="324" r="10.56" fill="#000000" />
+<circle cx="780" cy="324" r="10.56" fill="#000000" />
+<circle cx="852" cy="324" r="10.56" fill="#000000" />
+<circle cx="876" cy="324" r="10.56" fill="#000000" />
+<circle cx="900" cy="324" r="10.56" fill="#000000" />
+<circle cx="924" cy="324" r="10.56" fill="#000000" />
+<circle cx="84" cy="348" r="10.56" fill="#000000" />
+<circle cx="108" cy="348" r="10.56" fill="#000000" />
+<circle cx="180" cy="348" r="10.56" fill="#000000" />
+<circle cx="348" cy="348" r="10.56" fill="#000000" />
+<circle cx="396" cy="348" r="10.56" fill="#000000" />
+<circle cx="468" cy="348" r="10.56" fill="#000000" />
+<circle cx="516" cy="348" r="10.56" fill="#000000" />
+<circle cx="564" cy="348" r="10.56" fill="#000000" />
+<circle cx="588" cy="348" r="10.56" fill="#000000" />
+<circle cx="612" cy="348" r="10.56" fill="#000000" />
+<circle cx="660" cy="348" r="10.56" fill="#000000" />
+<circle cx="708" cy="348" r="10.56" fill="#000000" />
+<circle cx="732" cy="348" r="10.56" fill="#000000" />
+<circle cx="756" cy="348" r="10.56" fill="#000000" />
+<circle cx="828" cy="348" r="10.56" fill="#000000" />
+<circle cx="852" cy="348" r="10.56" fill="#000000" />
+<circle cx="876" cy="348" r="10.56" fill="#000000" />
+<circle cx="900" cy="348" r="10.56" fill="#000000" />
+<circle cx="972" cy="348" r="10.56" fill="#000000" />
+<circle cx="1044" cy="348" r="10.56" fill="#000000" />
+<circle cx="84" cy="372" r="10.56" fill="#000000" />
+<circle cx="132" cy="372" r="10.56" fill="#000000" />
+<circle cx="180" cy="372" r="10.56" fill="#000000" />
+<circle cx="228" cy="372" r="10.56" fill="#000000" />
+<circle cx="252" cy="372" r="10.56" fill="#000000" />
+<circle cx="276" cy="372" r="10.56" fill="#000000" />
+<circle cx="300" cy="372" r="10.56" fill="#000000" />
+<circle cx="348" cy="372" r="10.56" fill="#000000" />
+<circle cx="372" cy="372" r="10.56" fill="#000000" />
+<circle cx="492" cy="372" r="10.56" fill="#000000" />
+<circle cx="516" cy="372" r="10.56" fill="#000000" />
+<circle cx="588" cy="372" r="10.56" fill="#000000" />
+<circle cx="636" cy="372" r="10.56" fill="#000000" />
+<circle cx="660" cy="372" r="10.56" fill="#000000" />
+<circle cx="804" cy="372" r="10.56" fill="#000000" />
+<circle cx="852" cy="372" r="10.56" fill="#000000" />
+<circle cx="876" cy="372" r="10.56" fill="#000000" />
+<circle cx="900" cy="372" r="10.56" fill="#000000" />
+<circle cx="924" cy="372" r="10.56" fill="#000000" />
+<circle cx="1020" cy="372" r="10.56" fill="#000000" />
+<circle cx="156" cy="396" r="10.56" fill="#000000" />
+<circle cx="180" cy="396" r="10.56" fill="#000000" />
+<circle cx="276" cy="396" r="10.56" fill="#000000" />
+<circle cx="300" cy="396" r="10.56" fill="#000000" />
+<circle cx="324" cy="396" r="10.56" fill="#000000" />
+<circle cx="372" cy="396" r="10.56" fill="#000000" />
+<circle cx="420" cy="396" r="10.56" fill="#000000" />
+<circle cx="444" cy="396" r="10.56" fill="#000000" />
+<circle cx="660" cy="396" r="10.56" fill="#000000" />
+<circle cx="684" cy="396" r="10.56" fill="#000000" />
+<circle cx="828" cy="396" r="10.56" fill="#000000" />
+<circle cx="852" cy="396" r="10.56" fill="#000000" />
+<circle cx="900" cy="396" r="10.56" fill="#000000" />
+<circle cx="948" cy="396" r="10.56" fill="#000000" />
+<circle cx="972" cy="396" r="10.56" fill="#000000" />
+<circle cx="996" cy="396" r="10.56" fill="#000000" />
+<circle cx="1020" cy="396" r="10.56" fill="#000000" />
+<circle cx="1044" cy="396" r="10.56" fill="#000000" />
+<circle cx="84" cy="420" r="10.56" fill="#000000" />
+<circle cx="108" cy="420" r="10.56" fill="#000000" />
+<circle cx="132" cy="420" r="10.56" fill="#000000" />
+<circle cx="156" cy="420" r="10.56" fill="#000000" />
+<circle cx="228" cy="420" r="10.56" fill="#000000" />
+<circle cx="252" cy="420" r="10.56" fill="#000000" />
+<circle cx="372" cy="420" r="10.56" fill="#000000" />
+<circle cx="444" cy="420" r="10.56" fill="#000000" />
+<circle cx="684" cy="420" r="10.56" fill="#000000" />
+<circle cx="708" cy="420" r="10.56" fill="#000000" />
+<circle cx="732" cy="420" r="10.56" fill="#000000" />
+<circle cx="756" cy="420" r="10.56" fill="#000000" />
+<circle cx="852" cy="420" r="10.56" fill="#000000" />
+<circle cx="876" cy="420" r="10.56" fill="#000000" />
+<circle cx="924" cy="420" r="10.56" fill="#000000" />
+<circle cx="948" cy="420" r="10.56" fill="#000000" />
+<circle cx="972" cy="420" r="10.56" fill="#000000" />
+<circle cx="996" cy="420" r="10.56" fill="#000000" />
+<circle cx="156" cy="444" r="10.56" fill="#000000" />
+<circle cx="276" cy="444" r="10.56" fill="#000000" />
+<circle cx="300" cy="444" r="10.56" fill="#000000" />
+<circle cx="348" cy="444" r="10.56" fill="#000000" />
+<circle cx="372" cy="444" r="10.56" fill="#000000" />
+<circle cx="396" cy="444" r="10.56" fill="#000000" />
+<circle cx="420" cy="444" r="10.56" fill="#000000" />
+<circle cx="708" cy="444" r="10.56" fill="#000000" />
+<circle cx="756" cy="444" r="10.56" fill="#000000" />
+<circle cx="828" cy="444" r="10.56" fill="#000000" />
+<circle cx="876" cy="444" r="10.56" fill="#000000" />
+<circle cx="924" cy="444" r="10.56" fill="#000000" />
+<circle cx="948" cy="444" r="10.56" fill="#000000" />
+<circle cx="972" cy="444" r="10.56" fill="#000000" />
+<circle cx="996" cy="444" r="10.56" fill="#000000" />
+<circle cx="84" cy="468" r="10.56" fill="#000000" />
+<circle cx="108" cy="468" r="10.56" fill="#000000" />
+<circle cx="132" cy="468" r="10.56" fill="#000000" />
+<circle cx="204" cy="468" r="10.56" fill="#000000" />
+<circle cx="228" cy="468" r="10.56" fill="#000000" />
+<circle cx="252" cy="468" r="10.56" fill="#000000" />
+<circle cx="276" cy="468" r="10.56" fill="#000000" />
+<circle cx="372" cy="468" r="10.56" fill="#000000" />
+<circle cx="396" cy="468" r="10.56" fill="#000000" />
+<circle cx="732" cy="468" r="10.56" fill="#000000" />
+<circle cx="780" cy="468" r="10.56" fill="#000000" />
+<circle cx="828" cy="468" r="10.56" fill="#000000" />
+<circle cx="852" cy="468" r="10.56" fill="#000000" />
+<circle cx="876" cy="468" r="10.56" fill="#000000" />
+<circle cx="924" cy="468" r="10.56" fill="#000000" />
+<circle cx="996" cy="468" r="10.56" fill="#000000" />
+<circle cx="1020" cy="468" r="10.56" fill="#000000" />
+<circle cx="84" cy="492" r="10.56" fill="#000000" />
+<circle cx="108" cy="492" r="10.56" fill="#000000" />
+<circle cx="132" cy="492" r="10.56" fill="#000000" />
+<circle cx="252" cy="492" r="10.56" fill="#000000" />
+<circle cx="276" cy="492" r="10.56" fill="#000000" />
+<circle cx="300" cy="492" r="10.56" fill="#000000" />
+<circle cx="324" cy="492" r="10.56" fill="#000000" />
+<circle cx="348" cy="492" r="10.56" fill="#000000" />
+<circle cx="396" cy="492" r="10.56" fill="#000000" />
+<circle cx="756" cy="492" r="10.56" fill="#000000" />
+<circle cx="780" cy="492" r="10.56" fill="#000000" />
+<circle cx="804" cy="492" r="10.56" fill="#000000" />
+<circle cx="828" cy="492" r="10.56" fill="#000000" />
+<circle cx="852" cy="492" r="10.56" fill="#000000" />
+<circle cx="876" cy="492" r="10.56" fill="#000000" />
+<circle cx="900" cy="492" r="10.56" fill="#000000" />
+<circle cx="924" cy="492" r="10.56" fill="#000000" />
+<circle cx="948" cy="492" r="10.56" fill="#000000" />
+<circle cx="972" cy="492" r="10.56" fill="#000000" />
+<circle cx="1044" cy="492" r="10.56" fill="#000000" />
+<circle cx="84" cy="516" r="10.56" fill="#000000" />
+<circle cx="156" cy="516" r="10.56" fill="#000000" />
+<circle cx="228" cy="516" r="10.56" fill="#000000" />
+<circle cx="300" cy="516" r="10.56" fill="#000000" />
+<circle cx="324" cy="516" r="10.56" fill="#000000" />
+<circle cx="732" cy="516" r="10.56" fill="#000000" />
+<circle cx="828" cy="516" r="10.56" fill="#000000" />
+<circle cx="852" cy="516" r="10.56" fill="#000000" />
+<circle cx="924" cy="516" r="10.56" fill="#000000" />
+<circle cx="948" cy="516" r="10.56" fill="#000000" />
+<circle cx="996" cy="516" r="10.56" fill="#000000" />
+<circle cx="1044" cy="516" r="10.56" fill="#000000" />
+<circle cx="108" cy="540" r="10.56" fill="#000000" />
+<circle cx="204" cy="540" r="10.56" fill="#000000" />
+<circle cx="276" cy="540" r="10.56" fill="#000000" />
+<circle cx="324" cy="540" r="10.56" fill="#000000" />
+<circle cx="348" cy="540" r="10.56" fill="#000000" />
+<circle cx="828" cy="540" r="10.56" fill="#000000" />
+<circle cx="852" cy="540" r="10.56" fill="#000000" />
+<circle cx="900" cy="540" r="10.56" fill="#000000" />
+<circle cx="948" cy="540" r="10.56" fill="#000000" />
+<circle cx="972" cy="540" r="10.56" fill="#000000" />
+<circle cx="1020" cy="540" r="10.56" fill="#000000" />
+<circle cx="1044" cy="540" r="10.56" fill="#000000" />
+<circle cx="108" cy="564" r="10.56" fill="#000000" />
+<circle cx="180" cy="564" r="10.56" fill="#000000" />
+<circle cx="228" cy="564" r="10.56" fill="#000000" />
+<circle cx="324" cy="564" r="10.56" fill="#000000" />
+<circle cx="348" cy="564" r="10.56" fill="#000000" />
+<circle cx="756" cy="564" r="10.56" fill="#000000" />
+<circle cx="780" cy="564" r="10.56" fill="#000000" />
+<circle cx="828" cy="564" r="10.56" fill="#000000" />
+<circle cx="996" cy="564" r="10.56" fill="#000000" />
+<circle cx="1044" cy="564" r="10.56" fill="#000000" />
+<circle cx="84" cy="588" r="10.56" fill="#000000" />
+<circle cx="108" cy="588" r="10.56" fill="#000000" />
+<circle cx="156" cy="588" r="10.56" fill="#000000" />
+<circle cx="180" cy="588" r="10.56" fill="#000000" />
+<circle cx="204" cy="588" r="10.56" fill="#000000" />
+<circle cx="276" cy="588" r="10.56" fill="#000000" />
+<circle cx="300" cy="588" r="10.56" fill="#000000" />
+<circle cx="324" cy="588" r="10.56" fill="#000000" />
+<circle cx="828" cy="588" r="10.56" fill="#000000" />
+<circle cx="924" cy="588" r="10.56" fill="#000000" />
+<circle cx="948" cy="588" r="10.56" fill="#000000" />
+<circle cx="972" cy="588" r="10.56" fill="#000000" />
+<circle cx="996" cy="588" r="10.56" fill="#000000" />
+<circle cx="84" cy="612" r="10.56" fill="#000000" />
+<circle cx="132" cy="612" r="10.56" fill="#000000" />
+<circle cx="156" cy="612" r="10.56" fill="#000000" />
+<circle cx="180" cy="612" r="10.56" fill="#000000" />
+<circle cx="228" cy="612" r="10.56" fill="#000000" />
+<circle cx="324" cy="612" r="10.56" fill="#000000" />
+<circle cx="348" cy="612" r="10.56" fill="#000000" />
+<circle cx="372" cy="612" r="10.56" fill="#000000" />
+<circle cx="396" cy="612" r="10.56" fill="#000000" />
+<circle cx="732" cy="612" r="10.56" fill="#000000" />
+<circle cx="756" cy="612" r="10.56" fill="#000000" />
+<circle cx="804" cy="612" r="10.56" fill="#000000" />
+<circle cx="852" cy="612" r="10.56" fill="#000000" />
+<circle cx="900" cy="612" r="10.56" fill="#000000" />
+<circle cx="924" cy="612" r="10.56" fill="#000000" />
+<circle cx="948" cy="612" r="10.56" fill="#000000" />
+<circle cx="972" cy="612" r="10.56" fill="#000000" />
+<circle cx="156" cy="636" r="10.56" fill="#000000" />
+<circle cx="204" cy="636" r="10.56" fill="#000000" />
+<circle cx="252" cy="636" r="10.56" fill="#000000" />
+<circle cx="276" cy="636" r="10.56" fill="#000000" />
+<circle cx="324" cy="636" r="10.56" fill="#000000" />
+<circle cx="348" cy="636" r="10.56" fill="#000000" />
+<circle cx="756" cy="636" r="10.56" fill="#000000" />
+<circle cx="828" cy="636" r="10.56" fill="#000000" />
+<circle cx="852" cy="636" r="10.56" fill="#000000" />
+<circle cx="876" cy="636" r="10.56" fill="#000000" />
+<circle cx="924" cy="636" r="10.56" fill="#000000" />
+<circle cx="948" cy="636" r="10.56" fill="#000000" />
+<circle cx="972" cy="636" r="10.56" fill="#000000" />
+<circle cx="1020" cy="636" r="10.56" fill="#000000" />
+<circle cx="1044" cy="636" r="10.56" fill="#000000" />
+<circle cx="84" cy="660" r="10.56" fill="#000000" />
+<circle cx="108" cy="660" r="10.56" fill="#000000" />
+<circle cx="228" cy="660" r="10.56" fill="#000000" />
+<circle cx="252" cy="660" r="10.56" fill="#000000" />
+<circle cx="276" cy="660" r="10.56" fill="#000000" />
+<circle cx="324" cy="660" r="10.56" fill="#000000" />
+<circle cx="348" cy="660" r="10.56" fill="#000000" />
+<circle cx="372" cy="660" r="10.56" fill="#000000" />
+<circle cx="756" cy="660" r="10.56" fill="#000000" />
+<circle cx="852" cy="660" r="10.56" fill="#000000" />
+<circle cx="900" cy="660" r="10.56" fill="#000000" />
+<circle cx="924" cy="660" r="10.56" fill="#000000" />
+<circle cx="1044" cy="660" r="10.56" fill="#000000" />
+<circle cx="108" cy="684" r="10.56" fill="#000000" />
+<circle cx="156" cy="684" r="10.56" fill="#000000" />
+<circle cx="204" cy="684" r="10.56" fill="#000000" />
+<circle cx="276" cy="684" r="10.56" fill="#000000" />
+<circle cx="300" cy="684" r="10.56" fill="#000000" />
+<circle cx="396" cy="684" r="10.56" fill="#000000" />
+<circle cx="420" cy="684" r="10.56" fill="#000000" />
+<circle cx="708" cy="684" r="10.56" fill="#000000" />
+<circle cx="732" cy="684" r="10.56" fill="#000000" />
+<circle cx="780" cy="684" r="10.56" fill="#000000" />
+<circle cx="828" cy="684" r="10.56" fill="#000000" />
+<circle cx="900" cy="684" r="10.56" fill="#000000" />
+<circle cx="948" cy="684" r="10.56" fill="#000000" />
+<circle cx="972" cy="684" r="10.56" fill="#000000" />
+<circle cx="1044" cy="684" r="10.56" fill="#000000" />
+<circle cx="108" cy="708" r="10.56" fill="#000000" />
+<circle cx="132" cy="708" r="10.56" fill="#000000" />
+<circle cx="228" cy="708" r="10.56" fill="#000000" />
+<circle cx="396" cy="708" r="10.56" fill="#000000" />
+<circle cx="420" cy="708" r="10.56" fill="#000000" />
+<circle cx="684" cy="708" r="10.56" fill="#000000" />
+<circle cx="732" cy="708" r="10.56" fill="#000000" />
+<circle cx="756" cy="708" r="10.56" fill="#000000" />
+<circle cx="780" cy="708" r="10.56" fill="#000000" />
+<circle cx="852" cy="708" r="10.56" fill="#000000" />
+<circle cx="876" cy="708" r="10.56" fill="#000000" />
+<circle cx="900" cy="708" r="10.56" fill="#000000" />
+<circle cx="924" cy="708" r="10.56" fill="#000000" />
+<circle cx="108" cy="732" r="10.56" fill="#000000" />
+<circle cx="180" cy="732" r="10.56" fill="#000000" />
+<circle cx="204" cy="732" r="10.56" fill="#000000" />
+<circle cx="276" cy="732" r="10.56" fill="#000000" />
+<circle cx="300" cy="732" r="10.56" fill="#000000" />
+<circle cx="396" cy="732" r="10.56" fill="#000000" />
+<circle cx="468" cy="732" r="10.56" fill="#000000" />
+<circle cx="516" cy="732" r="10.56" fill="#000000" />
+<circle cx="636" cy="732" r="10.56" fill="#000000" />
+<circle cx="684" cy="732" r="10.56" fill="#000000" />
+<circle cx="732" cy="732" r="10.56" fill="#000000" />
+<circle cx="756" cy="732" r="10.56" fill="#000000" />
+<circle cx="828" cy="732" r="10.56" fill="#000000" />
+<circle cx="876" cy="732" r="10.56" fill="#000000" />
+<circle cx="924" cy="732" r="10.56" fill="#000000" />
+<circle cx="948" cy="732" r="10.56" fill="#000000" />
+<circle cx="972" cy="732" r="10.56" fill="#000000" />
+<circle cx="996" cy="732" r="10.56" fill="#000000" />
+<circle cx="1020" cy="732" r="10.56" fill="#000000" />
+<circle cx="1044" cy="732" r="10.56" fill="#000000" />
+<circle cx="156" cy="756" r="10.56" fill="#000000" />
+<circle cx="228" cy="756" r="10.56" fill="#000000" />
+<circle cx="276" cy="756" r="10.56" fill="#000000" />
+<circle cx="348" cy="756" r="10.56" fill="#000000" />
+<circle cx="420" cy="756" r="10.56" fill="#000000" />
+<circle cx="516" cy="756" r="10.56" fill="#000000" />
+<circle cx="588" cy="756" r="10.56" fill="#000000" />
+<circle cx="636" cy="756" r="10.56" fill="#000000" />
+<circle cx="708" cy="756" r="10.56" fill="#000000" />
+<circle cx="732" cy="756" r="10.56" fill="#000000" />
+<circle cx="780" cy="756" r="10.56" fill="#000000" />
+<circle cx="828" cy="756" r="10.56" fill="#000000" />
+<circle cx="972" cy="756" r="10.56" fill="#000000" />
+<circle cx="996" cy="756" r="10.56" fill="#000000" />
+<circle cx="1020" cy="756" r="10.56" fill="#000000" />
+<circle cx="1044" cy="756" r="10.56" fill="#000000" />
+<circle cx="84" cy="780" r="10.56" fill="#000000" />
+<circle cx="108" cy="780" r="10.56" fill="#000000" />
+<circle cx="156" cy="780" r="10.56" fill="#000000" />
+<circle cx="180" cy="780" r="10.56" fill="#000000" />
+<circle cx="204" cy="780" r="10.56" fill="#000000" />
+<circle cx="252" cy="780" r="10.56" fill="#000000" />
+<circle cx="300" cy="780" r="10.56" fill="#000000" />
+<circle cx="324" cy="780" r="10.56" fill="#000000" />
+<circle cx="396" cy="780" r="10.56" fill="#000000" />
+<circle cx="420" cy="780" r="10.56" fill="#000000" />
+<circle cx="444" cy="780" r="10.56" fill="#000000" />
+<circle cx="492" cy="780" r="10.56" fill="#000000" />
+<circle cx="516" cy="780" r="10.56" fill="#000000" />
+<circle cx="540" cy="780" r="10.56" fill="#000000" />
+<circle cx="564" cy="780" r="10.56" fill="#000000" />
+<circle cx="588" cy="780" r="10.56" fill="#000000" />
+<circle cx="612" cy="780" r="10.56" fill="#000000" />
+<circle cx="684" cy="780" r="10.56" fill="#000000" />
+<circle cx="756" cy="780" r="10.56" fill="#000000" />
+<circle cx="780" cy="780" r="10.56" fill="#000000" />
+<circle cx="828" cy="780" r="10.56" fill="#000000" />
+<circle cx="852" cy="780" r="10.56" fill="#000000" />
+<circle cx="924" cy="780" r="10.56" fill="#000000" />
+<circle cx="948" cy="780" r="10.56" fill="#000000" />
+<circle cx="972" cy="780" r="10.56" fill="#000000" />
+<circle cx="1020" cy="780" r="10.56" fill="#000000" />
+<circle cx="1044" cy="780" r="10.56" fill="#000000" />
+<circle cx="84" cy="804" r="10.56" fill="#000000" />
+<circle cx="108" cy="804" r="10.56" fill="#000000" />
+<circle cx="156" cy="804" r="10.56" fill="#000000" />
+<circle cx="180" cy="804" r="10.56" fill="#000000" />
+<circle cx="228" cy="804" r="10.56" fill="#000000" />
+<circle cx="276" cy="804" r="10.56" fill="#000000" />
+<circle cx="324" cy="804" r="10.56" fill="#000000" />
+<circle cx="348" cy="804" r="10.56" fill="#000000" />
+<circle cx="420" cy="804" r="10.56" fill="#000000" />
+<circle cx="444" cy="804" r="10.56" fill="#000000" />
+<circle cx="468" cy="804" r="10.56" fill="#000000" />
+<circle cx="516" cy="804" r="10.56" fill="#000000" />
+<circle cx="540" cy="804" r="10.56" fill="#000000" />
+<circle cx="564" cy="804" r="10.56" fill="#000000" />
+<circle cx="588" cy="804" r="10.56" fill="#000000" />
+<circle cx="612" cy="804" r="10.56" fill="#000000" />
+<circle cx="660" cy="804" r="10.56" fill="#000000" />
+<circle cx="708" cy="804" r="10.56" fill="#000000" />
+<circle cx="756" cy="804" r="10.56" fill="#000000" />
+<circle cx="828" cy="804" r="10.56" fill="#000000" />
+<circle cx="852" cy="804" r="10.56" fill="#000000" />
+<circle cx="876" cy="804" r="10.56" fill="#000000" />
+<circle cx="924" cy="804" r="10.56" fill="#000000" />
+<circle cx="948" cy="804" r="10.56" fill="#000000" />
+<circle cx="1044" cy="804" r="10.56" fill="#000000" />
+<circle cx="84" cy="828" r="10.56" fill="#000000" />
+<circle cx="132" cy="828" r="10.56" fill="#000000" />
+<circle cx="204" cy="828" r="10.56" fill="#000000" />
+<circle cx="276" cy="828" r="10.56" fill="#000000" />
+<circle cx="300" cy="828" r="10.56" fill="#000000" />
+<circle cx="324" cy="828" r="10.56" fill="#000000" />
+<circle cx="372" cy="828" r="10.56" fill="#000000" />
+<circle cx="396" cy="828" r="10.56" fill="#000000" />
+<circle cx="420" cy="828" r="10.56" fill="#000000" />
+<circle cx="468" cy="828" r="10.56" fill="#000000" />
+<circle cx="492" cy="828" r="10.56" fill="#000000" />
+<circle cx="516" cy="828" r="10.56" fill="#000000" />
+<circle cx="564" cy="828" r="10.56" fill="#000000" />
+<circle cx="588" cy="828" r="10.56" fill="#000000" />
+<circle cx="660" cy="828" r="10.56" fill="#000000" />
+<circle cx="732" cy="828" r="10.56" fill="#000000" />
+<circle cx="756" cy="828" r="10.56" fill="#000000" />
+<circle cx="804" cy="828" r="10.56" fill="#000000" />
+<circle cx="828" cy="828" r="10.56" fill="#000000" />
+<circle cx="900" cy="828" r="10.56" fill="#000000" />
+<circle cx="924" cy="828" r="10.56" fill="#000000" />
+<circle cx="972" cy="828" r="10.56" fill="#000000" />
+<circle cx="1020" cy="828" r="10.56" fill="#000000" />
+<circle cx="84" cy="852" r="10.56" fill="#000000" />
+<circle cx="156" cy="852" r="10.56" fill="#000000" />
+<circle cx="180" cy="852" r="10.56" fill="#000000" />
+<circle cx="204" cy="852" r="10.56" fill="#000000" />
+<circle cx="228" cy="852" r="10.56" fill="#000000" />
+<circle cx="372" cy="852" r="10.56" fill="#000000" />
+<circle cx="396" cy="852" r="10.56" fill="#000000" />
+<circle cx="444" cy="852" r="10.56" fill="#000000" />
+<circle cx="468" cy="852" r="10.56" fill="#000000" />
+<circle cx="492" cy="852" r="10.56" fill="#000000" />
+<circle cx="564" cy="852" r="10.56" fill="#000000" />
+<circle cx="588" cy="852" r="10.56" fill="#000000" />
+<circle cx="612" cy="852" r="10.56" fill="#000000" />
+<circle cx="660" cy="852" r="10.56" fill="#000000" />
+<circle cx="684" cy="852" r="10.56" fill="#000000" />
+<circle cx="708" cy="852" r="10.56" fill="#000000" />
+<circle cx="780" cy="852" r="10.56" fill="#000000" />
+<circle cx="852" cy="852" r="10.56" fill="#000000" />
+<circle cx="876" cy="852" r="10.56" fill="#000000" />
+<circle cx="900" cy="852" r="10.56" fill="#000000" />
+<circle cx="924" cy="852" r="10.56" fill="#000000" />
+<circle cx="948" cy="852" r="10.56" fill="#000000" />
+<circle cx="996" cy="852" r="10.56" fill="#000000" />
+<circle cx="1020" cy="852" r="10.56" fill="#000000" />
+<circle cx="276" cy="876" r="10.56" fill="#000000" />
+<circle cx="324" cy="876" r="10.56" fill="#000000" />
+<circle cx="348" cy="876" r="10.56" fill="#000000" />
+<circle cx="396" cy="876" r="10.56" fill="#000000" />
+<circle cx="444" cy="876" r="10.56" fill="#000000" />
+<circle cx="468" cy="876" r="10.56" fill="#000000" />
+<circle cx="540" cy="876" r="10.56" fill="#000000" />
+<circle cx="564" cy="876" r="10.56" fill="#000000" />
+<circle cx="588" cy="876" r="10.56" fill="#000000" />
+<circle cx="660" cy="876" r="10.56" fill="#000000" />
+<circle cx="684" cy="876" r="10.56" fill="#000000" />
+<circle cx="708" cy="876" r="10.56" fill="#000000" />
+<circle cx="732" cy="876" r="10.56" fill="#000000" />
+<circle cx="756" cy="876" r="10.56" fill="#000000" />
+<circle cx="804" cy="876" r="10.56" fill="#000000" />
+<circle cx="852" cy="876" r="10.56" fill="#000000" />
+<circle cx="948" cy="876" r="10.56" fill="#000000" />
+<circle cx="972" cy="876" r="10.56" fill="#000000" />
+<circle cx="324" cy="900" r="10.56" fill="#000000" />
+<circle cx="444" cy="900" r="10.56" fill="#000000" />
+<circle cx="492" cy="900" r="10.56" fill="#000000" />
+<circle cx="516" cy="900" r="10.56" fill="#000000" />
+<circle cx="564" cy="900" r="10.56" fill="#000000" />
+<circle cx="612" cy="900" r="10.56" fill="#000000" />
+<circle cx="684" cy="900" r="10.56" fill="#000000" />
+<circle cx="708" cy="900" r="10.56" fill="#000000" />
+<circle cx="732" cy="900" r="10.56" fill="#000000" />
+<circle cx="756" cy="900" r="10.56" fill="#000000" />
+<circle cx="780" cy="900" r="10.56" fill="#000000" />
+<circle cx="804" cy="900" r="10.56" fill="#000000" />
+<circle cx="828" cy="900" r="10.56" fill="#000000" />
+<circle cx="852" cy="900" r="10.56" fill="#000000" />
+<circle cx="900" cy="900" r="10.56" fill="#000000" />
+<circle cx="948" cy="900" r="10.56" fill="#000000" />
+<circle cx="996" cy="900" r="10.56" fill="#000000" />
+<circle cx="276" cy="924" r="10.56" fill="#000000" />
+<circle cx="348" cy="924" r="10.56" fill="#000000" />
+<circle cx="420" cy="924" r="10.56" fill="#000000" />
+<circle cx="468" cy="924" r="10.56" fill="#000000" />
+<circle cx="516" cy="924" r="10.56" fill="#000000" />
+<circle cx="540" cy="924" r="10.56" fill="#000000" />
+<circle cx="564" cy="924" r="10.56" fill="#000000" />
+<circle cx="588" cy="924" r="10.56" fill="#000000" />
+<circle cx="612" cy="924" r="10.56" fill="#000000" />
+<circle cx="732" cy="924" r="10.56" fill="#000000" />
+<circle cx="756" cy="924" r="10.56" fill="#000000" />
+<circle cx="804" cy="924" r="10.56" fill="#000000" />
+<circle cx="828" cy="924" r="10.56" fill="#000000" />
+<circle cx="852" cy="924" r="10.56" fill="#000000" />
+<circle cx="948" cy="924" r="10.56" fill="#000000" />
+<circle cx="972" cy="924" r="10.56" fill="#000000" />
+<circle cx="1020" cy="924" r="10.56" fill="#000000" />
+<circle cx="1044" cy="924" r="10.56" fill="#000000" />
+<circle cx="300" cy="948" r="10.56" fill="#000000" />
+<circle cx="324" cy="948" r="10.56" fill="#000000" />
+<circle cx="348" cy="948" r="10.56" fill="#000000" />
+<circle cx="420" cy="948" r="10.56" fill="#000000" />
+<circle cx="492" cy="948" r="10.56" fill="#000000" />
+<circle cx="540" cy="948" r="10.56" fill="#000000" />
+<circle cx="612" cy="948" r="10.56" fill="#000000" />
+<circle cx="732" cy="948" r="10.56" fill="#000000" />
+<circle cx="780" cy="948" r="10.56" fill="#000000" />
+<circle cx="804" cy="948" r="10.56" fill="#000000" />
+<circle cx="828" cy="948" r="10.56" fill="#000000" />
+<circle cx="852" cy="948" r="10.56" fill="#000000" />
+<circle cx="876" cy="948" r="10.56" fill="#000000" />
+<circle cx="900" cy="948" r="10.56" fill="#000000" />
+<circle cx="924" cy="948" r="10.56" fill="#000000" />
+<circle cx="948" cy="948" r="10.56" fill="#000000" />
+<circle cx="972" cy="948" r="10.56" fill="#000000" />
+<circle cx="1044" cy="948" r="10.56" fill="#000000" />
+<circle cx="300" cy="972" r="10.56" fill="#000000" />
+<circle cx="324" cy="972" r="10.56" fill="#000000" />
+<circle cx="348" cy="972" r="10.56" fill="#000000" />
+<circle cx="372" cy="972" r="10.56" fill="#000000" />
+<circle cx="444" cy="972" r="10.56" fill="#000000" />
+<circle cx="468" cy="972" r="10.56" fill="#000000" />
+<circle cx="492" cy="972" r="10.56" fill="#000000" />
+<circle cx="540" cy="972" r="10.56" fill="#000000" />
+<circle cx="564" cy="972" r="10.56" fill="#000000" />
+<circle cx="588" cy="972" r="10.56" fill="#000000" />
+<circle cx="660" cy="972" r="10.56" fill="#000000" />
+<circle cx="684" cy="972" r="10.56" fill="#000000" />
+<circle cx="732" cy="972" r="10.56" fill="#000000" />
+<circle cx="804" cy="972" r="10.56" fill="#000000" />
+<circle cx="828" cy="972" r="10.56" fill="#000000" />
+<circle cx="924" cy="972" r="10.56" fill="#000000" />
+<circle cx="1020" cy="972" r="10.56" fill="#000000" />
+<circle cx="1044" cy="972" r="10.56" fill="#000000" />
+<circle cx="300" cy="996" r="10.56" fill="#000000" />
+<circle cx="324" cy="996" r="10.56" fill="#000000" />
+<circle cx="396" cy="996" r="10.56" fill="#000000" />
+<circle cx="420" cy="996" r="10.56" fill="#000000" />
+<circle cx="492" cy="996" r="10.56" fill="#000000" />
+<circle cx="612" cy="996" r="10.56" fill="#000000" />
+<circle cx="636" cy="996" r="10.56" fill="#000000" />
+<circle cx="660" cy="996" r="10.56" fill="#000000" />
+<circle cx="732" cy="996" r="10.56" fill="#000000" />
+<circle cx="756" cy="996" r="10.56" fill="#000000" />
+<circle cx="804" cy="996" r="10.56" fill="#000000" />
+<circle cx="828" cy="996" r="10.56" fill="#000000" />
+<circle cx="876" cy="996" r="10.56" fill="#000000" />
+<circle cx="900" cy="996" r="10.56" fill="#000000" />
+<circle cx="924" cy="996" r="10.56" fill="#000000" />
+<circle cx="948" cy="996" r="10.56" fill="#000000" />
+<circle cx="996" cy="996" r="10.56" fill="#000000" />
+<circle cx="1020" cy="996" r="10.56" fill="#000000" />
+<circle cx="300" cy="1020" r="10.56" fill="#000000" />
+<circle cx="324" cy="1020" r="10.56" fill="#000000" />
+<circle cx="348" cy="1020" r="10.56" fill="#000000" />
+<circle cx="396" cy="1020" r="10.56" fill="#000000" />
+<circle cx="420" cy="1020" r="10.56" fill="#000000" />
+<circle cx="444" cy="1020" r="10.56" fill="#000000" />
+<circle cx="516" cy="1020" r="10.56" fill="#000000" />
+<circle cx="540" cy="1020" r="10.56" fill="#000000" />
+<circle cx="564" cy="1020" r="10.56" fill="#000000" />
+<circle cx="636" cy="1020" r="10.56" fill="#000000" />
+<circle cx="660" cy="1020" r="10.56" fill="#000000" />
+<circle cx="708" cy="1020" r="10.56" fill="#000000" />
+<circle cx="756" cy="1020" r="10.56" fill="#000000" />
+<circle cx="804" cy="1020" r="10.56" fill="#000000" />
+<circle cx="900" cy="1020" r="10.56" fill="#000000" />
+<circle cx="948" cy="1020" r="10.56" fill="#000000" />
+<circle cx="972" cy="1020" r="10.56" fill="#000000" />
+<circle cx="996" cy="1020" r="10.56" fill="#000000" />
+<circle cx="1044" cy="1020" r="10.56" fill="#000000" />
+<circle cx="300" cy="1044" r="10.56" fill="#000000" />
+<circle cx="348" cy="1044" r="10.56" fill="#000000" />
+<circle cx="444" cy="1044" r="10.56" fill="#000000" />
+<circle cx="468" cy="1044" r="10.56" fill="#000000" />
+<circle cx="588" cy="1044" r="10.56" fill="#000000" />
+<circle cx="612" cy="1044" r="10.56" fill="#000000" />
+<circle cx="636" cy="1044" r="10.56" fill="#000000" />
+<circle cx="684" cy="1044" r="10.56" fill="#000000" />
+<circle cx="708" cy="1044" r="10.56" fill="#000000" />
+<circle cx="732" cy="1044" r="10.56" fill="#000000" />
+<circle cx="756" cy="1044" r="10.56" fill="#000000" />
+<circle cx="780" cy="1044" r="10.56" fill="#000000" />
+<circle cx="828" cy="1044" r="10.56" fill="#000000" />
+<circle cx="900" cy="1044" r="10.56" fill="#000000" />
+<circle cx="924" cy="1044" r="10.56" fill="#000000" />
+<circle cx="948" cy="1044" r="10.56" fill="#000000" />
+<circle cx="972" cy="1044" r="10.56" fill="#000000" />
+<circle cx="996" cy="1044" r="10.56" fill="#000000" />
+
+  
+  <!-- Finder Patterns -->
+  
+    
+      <!-- Finder Pattern at (0, 0) -->
+      <rect x="72" y="72" width="168" height="168" rx="19.200000000000003" ry="19.200000000000003" fill="#000000" />
+      <rect x="96" y="96" width="120" height="120" rx="12" ry="12" fill="#ffffff" />
+      <rect x="120" y="120" width="72" height="72" rx="7.199999999999999" ry="7.199999999999999" fill="#000000" />
+    
+    
+      <!-- Finder Pattern at (0, 34) -->
+      <rect x="888" y="72" width="168" height="168" rx="19.200000000000003" ry="19.200000000000003" fill="#000000" />
+      <rect x="912" y="96" width="120" height="120" rx="12" ry="12" fill="#ffffff" />
+      <rect x="936" y="120" width="72" height="72" rx="7.199999999999999" ry="7.199999999999999" fill="#000000" />
+    
+    
+      <!-- Finder Pattern at (34, 0) -->
+      <rect x="72" y="888" width="168" height="168" rx="19.200000000000003" ry="19.200000000000003" fill="#000000" />
+      <rect x="96" y="912" width="120" height="120" rx="12" ry="12" fill="#ffffff" />
+      <rect x="120" y="936" width="72" height="72" rx="7.199999999999999" ry="7.199999999999999" fill="#000000" />
+    
+  
+  
+  <!-- Center Village Logo -->
+  
+    <!-- Center Emblem Group -->
+    <g transform="translate(564, 564)">
+      <!-- White Backdrop Circle with subtle border -->
+      <circle cx="0" cy="0" r="173.28000000000003" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+      
+      <!-- Outer Ring of Logo -->
+      <circle cx="0" cy="0" r="167.28000000000003" fill="#0e3e2f" stroke="#c59b27" stroke-width="4" />
+      <circle cx="0" cy="0" r="162.28000000000003" fill="#f8faf9" stroke="#b48c20" stroke-width="1.5" />
+      
+      <!-- Inner Background: Sky & Salak Mountain -->
+      <defs>
+        <clipPath id="emblem-clip">
+          <circle cx="0" cy="0" r="160.28000000000003" />
+        </clipPath>
+      </defs>
+      
+      <g clip-path="url(#emblem-clip)">
+        <!-- Sky gradient -->
+        <rect x="-150" y="-150" width="300" height="300" fill="#e0f2fe" />
+        
+        <!-- Mountains (Gunung Salak) -->
+        <polygon points="-120,40 -40,-45 40,20 120,-30 150,50 -150,50" fill="#14532d" />
+        <polygon points="-80,40 10,-35 80,30" fill="#166534" opacity="0.85" />
+        <polygon points="-30,30 30,-25 90,40" fill="#15803d" opacity="0.7" />
+
+        <!-- Green Terraced Rice Fields -->
+        <ellipse cx="0" cy="50" rx="110" ry="35" fill="#22c55e" />
+        <ellipse cx="0" cy="65" rx="120" ry="30" fill="#16a34a" />
+        <ellipse cx="0" cy="80" rx="130" ry="25" fill="#15803d" />
+        
+        <!-- Traditional Sundanese Pavilion on Left -->
+        <g transform="translate(-48, 15) scale(0.65)">
+          <polygon points="0,-18 24,0 -24,0" fill="#78350f" />
+          <rect x="-18" y="0" width="36" height="18" fill="#d97706" />
+          <rect x="-12" y="5" width="8" height="13" fill="#451a03" />
+          <rect x="4" y="5" width="8" height="13" fill="#451a03" />
+          <line x1="-20" y1="18" x2="20" y2="18" stroke="#451a03" stroke-width="2" />
+        </g>
+        
+        <!-- Golden Bird / Tugu Symbol in Center -->
+        <g transform="translate(0, -2) scale(0.85)">
+          <!-- Golden Wings / Flame -->
+          <path d="M0,-32 C-14,-20 -18,-5 0,18 C18,-5 14,-20 0,-32 Z" fill="#eab308" stroke="#ca8a04" stroke-width="1.5" />
+          <path d="M0,-24 C-8,-14 -10,-4 0,12 C10,-4 8,-14 0,-24 Z" fill="#facc15" />
+          <circle cx="0" cy="-28" r="3.5" fill="#ca8a04" />
+        </g>
+
+        <!-- Lush Green Tea Leaves on Right -->
+        <g transform="translate(45, 16) scale(0.7)">
+          <path d="M0,15 C-15,5 -20,-15 0,-25 C20,-15 15,5 0,15 Z" fill="#15803d" />
+          <path d="M0,15 L0,-25" stroke="#86efac" stroke-width="1.5" />
+          <path d="M-12,8 C-25,2 -25,-12 -10,-20 C5,-12 0,2 -12,8 Z" fill="#22c55e" opacity="0.9" />
+        </g>
+
+        <!-- White Ribbon Banner for "WARUNG MENTENG" -->
+        <rect x="-85" y="24" width="170" height="24" rx="5" fill="#ffffff" stroke="#0e3e2f" stroke-width="1.5" />
+        <text x="0" y="40" text-anchor="middle" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="12" fill="#0e3e2f" letter-spacing="1.2">WARUNG MENTENG</text>
+        
+        <!-- Subtext -->
+        <text x="0" y="58" text-anchor="middle" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="8" fill="#ffffff" letter-spacing="1">KEC. CIJERUK - BOGOR</text>
+      </g>
+    </g>
+  
+</svg>
