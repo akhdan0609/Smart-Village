@@ -5,8 +5,8 @@ export interface PotensiCardItem {
   id: string;
   nama: string;
   deskripsi: string;
-  detailLengkap: string;
-  fotoUrl: string;
+  detailLengkap?: string;
+  fotoUrl?: string;
   lokasi?: string;
   kategori?: string;
   jamOperasional?: string;
@@ -528,168 +528,84 @@ export const BUDIDAYA_LIST: PotensiCardItem[] = [
   }
 ];
 
-// 4. UMKM (18 Cards, 6 Kolom Grid)
+// 4. UMKM (13 Produsen Lokal - Daftar Resmi)
 export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
   {
     id: 'umkm-1',
-    nama: 'Kopi Arabika Warung Menteng',
-    deskripsi: 'Kopi arabika pilihan dengan cita rasa khas pegunungan dan aroma yang kuat.',
-    detailLengkap: 'Biji kopi arabika single origin dipetik merah di ketinggian lereng Salak, diproses full wash dan roasted medium-dark menghasilkan notes karamel dan acidity seimbang.',
-    fotoUrl: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 35.000 / 200 gr',
-    kontak: '081299887711'
+    nama: 'Mamy Popcorn',
+    deskripsi: 'Aneka popcorn renyah dengan pilihan rasa manis dan gurih.',
+    kontak: '08992022422'
   },
   {
     id: 'umkm-2',
-    nama: 'Keripik Pisang',
-    deskripsi: 'Camilan renyah dan gurih dari pisang lokal pilihan.',
-    detailLengkap: 'Keripik dari pisang kepok desa yang diiris tipis, digoreng dengan minyak kelapa higienis tanpa pengawet dengan taburan bumbu cokelat, keju, dan original asin.',
-    fotoUrl: 'https://images.unsplash.com/photo-1621447504864-d8686e12698c?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 15.000 / bungkus',
-    kontak: '085711224455'
+    nama: 'Keripik Singkong Ibu Iya',
+    deskripsi: 'Keripik singkong renyah khas buatan rumahan.',
+    kontak: '085814244479'
   },
   {
     id: 'umkm-3',
-    nama: 'Madu Hutan',
-    deskripsi: 'Madu murni dari lebah hutan sekitar desa, kaya manfaat dan alami.',
-    detailLengkap: 'Madu liar murni dipanen langsung dari sarang lebah pohon sialang di kawasan penyangga hutan lindung, tanpa campuran gula maupun pemanasan.',
-    fotoUrl: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 75.000 / botol 350ml',
-    kontak: '081388776655'
+    nama: 'Kripik Pisang Bu Oom',
+    deskripsi: 'Kripik pisang renyah dari pisang lokal pilihan.',
+    kontak: '0895617703274'
   },
   {
     id: 'umkm-4',
-    nama: 'Kerajinan Anyaman Bambu',
-    deskripsi: 'Produk kerajinan tangan dengan sentuhan tradisional khas desa.',
-    detailLengkap: 'Aneka keranjang parcel, kap lampu gantung estetik, dan tas anyaman bambu tahan lama yang ramah lingkungan karya para pengrajin wanita desa.',
-    fotoUrl: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 25.000 - Rp 150.000',
-    kontak: '087844556677'
+    nama: 'Kripik Pisang Bu Nyai Mintarsih',
+    deskripsi: 'Kripik pisang gurih dengan cita rasa khas desa.',
+    kontak: '0895328969653'
   },
   {
     id: 'umkm-5',
-    nama: 'Sayuran Organik',
-    deskripsi: 'Sayuran segar dan sehat, tanpa pestisida kimia.',
-    detailLengkap: 'Paket sayur mayur segar petik langsung dari kebun: wortel manis, tomat cherry, bayam merah, dan mentimun renyah dengan sertifikasi pertanian ramah lingkungan.',
-    fotoUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 20.000 / paket sayur',
-    kontak: '081233221100'
+    nama: 'Abel Layangan',
+    deskripsi: 'Layangan dan mainan tradisional karya warga desa.',
+    kontak: '085817390993'
   },
   {
     id: 'umkm-6',
-    nama: 'Kue Tradisional',
-    deskripsi: 'Aneka kue khas desa dengan rasa otentik dan alami.',
-    detailLengkap: 'Koleksi jajanan pasar otentik Pasundan: awug beras pandan, ali agrem gula aren, bugis mandi, dan lapis ketan legit menggunakan santan kelapa murni.',
-    fotoUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 2.500 - Rp 5.000 / pcs',
-    kontak: '085677882233'
+    nama: 'Tahu Bapak Mukti',
+    deskripsi: 'Tahu putih dan tahu goreng segar produksi rumahan.',
+    kontak: '085776080746'
   },
   {
     id: 'umkm-7',
-    nama: 'Gula Aren',
-    deskripsi: 'Gula aren murni dengan kualitas terbaik dari kebun warga.',
-    detailLengkap: 'Gula aren cetak batok dan gula semut bubuk asli dari nira pohon aren liar desa, dimasak secara tradisional dengan kayu bakar beraroma wangi khas.',
-    fotoUrl: 'https://images.unsplash.com/photo-1601039641847-7857b994d704?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 28.000 / kg',
-    kontak: '081900112233'
+    nama: 'Benih Lele Pak Ujangko',
+    deskripsi: 'Benih/bibit lele berkualitas siap tebar.',
+    kontak: '085716601611'
   },
   {
     id: 'umkm-8',
-    nama: 'Keripik Singkong',
-    deskripsi: 'Camilan gurih dan renyah dengan rasa yang khas.',
-    detailLengkap: 'Singkong mentega pilihan dipotong tipis dan dibumbui rempah bawang putih ketumbar asli, renyah gurih tidak keras di gigi.',
-    fotoUrl: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 12.000 / bungkus',
-    kontak: '085211447788'
+    nama: 'Peternakan Ikan Nila Bapak Abdul Qodir',
+    deskripsi: 'Ikan nila segar dari kolam air deras peternakan desa.',
+    kontak: '085770586298'
   },
   {
     id: 'umkm-9',
-    nama: 'Jamu Tradisional',
-    deskripsi: 'Minuman herbal alami untuk menjaga kesehatan tubuh.',
-    detailLengkap: 'Racikan jamu kunyit asam, beras kencur, dan wedang temulawak segar tanpa bahan kimia buatan, berkhasiat menjaga stamina dan daya tahan tubuh.',
-    fotoUrl: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 10.000 / botol 300ml',
-    kontak: '081355667788'
+    nama: 'Ikan Cue Tongkol & Anyaman Bambu Pak Ujang Bobo',
+    deskripsi: 'Ikan cue tongkol dan kerajinan anyaman bambu buatan tangan.',
+    kontak: '08568857478'
   },
   {
     id: 'umkm-10',
-    nama: 'Kain Batik Desa',
-    deskripsi: 'Kain batik dengan motif khas Warung Menteng.',
-    detailLengkap: 'Batik tulis dan cap bermotif ikonik daun salak, bunga menteng, dan aliran curug, menggunakan pewarna alami indigo dan kulit mahoni.',
-    fotoUrl: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 120.000 - Rp 350.000 / kain',
-    kontak: '081277889900'
+    nama: 'Manisan Pala Juandi',
+    deskripsi: 'Manisan pala manis segar olahan buah khas desa.',
+    kontak: '085697137675'
   },
   {
     id: 'umkm-11',
-    nama: 'Produk Olahan Ayam',
-    deskripsi: 'Ayam kampung dan olahan daging berkualitas tinggi.',
-    detailLengkap: 'Ayam kampung ungkep bumbu kuning siap goreng, abon ayam renyah, dan nugget ayam sehat tanpa MSG untuk menu keluarga praktis dan bergizi.',
-    fotoUrl: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 65.000 / pack siap saji',
-    kontak: '085744332211'
+    nama: 'Ikan Nila Bapak Iteung Fram',
+    deskripsi: 'Ikan nila segar hasil budidaya kolam warga.',
+    kontak: '085770586298'
   },
   {
     id: 'umkm-12',
-    nama: 'Gula Kelapa',
-    deskripsi: 'Gula kelapa alami dengan rasa manis yang khas.',
-    detailLengkap: 'Nira kelapa segar yang dimasak perlahan hingga mengental dan dicetak dalam tempurung kelapa bersih, berindeks glikemik lebih rendah dan legit.',
-    fotoUrl: 'https://images.unsplash.com/photo-1543083477-4f785aeafaa9?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 24.000 / kg',
-    kontak: '081322114455'
+    nama: 'Kerupuk Lembayung Warung Menteng',
+    deskripsi: 'Kerupuk lembayung renyah berwarna alami.',
+    kontak: '0895385253202'
   },
   {
     id: 'umkm-13',
-    nama: 'Air Kelapa Muda',
-    deskripsi: 'Segar, alami, dan menyehatkan tubuh.',
-    detailLengkap: 'Kelapa muda hijau segar petik dari kebun, kaya elektrolit alami untuk hidrasi optimal dan penawar dahaga yang menyegarkan.',
-    fotoUrl: 'https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 12.000 / butir atau botol',
-    kontak: '081266554433'
-  },
-  {
-    id: 'umkm-14',
-    nama: 'Sambal & Bumbu Dapur',
-    deskripsi: 'Sambal dan bumbu khas dengan rasa pedas yang menggugah selera.',
-    detailLengkap: 'Sambal terasi mentah botolan, sambal ijo teri, dan pasta bumbu kuning siap masak dari rempah segar petani desa tanpa pengawet buatan.',
-    fotoUrl: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 25.000 / jar 200gr',
-    kontak: '085899887766'
-  },
-  {
-    id: 'umkm-15',
-    nama: 'Peralatan Rumah Tangga Bambu',
-    deskripsi: 'Peralatan rumah tangga dari bambu yang kuat dan ramah lingkungan.',
-    detailLengkap: 'Sumpit, sendok kayu-bambu, talenan bambu padat, nampan saji, dan saringan tradisional yang halus dan aman untuk makanan (food grade).',
-    fotoUrl: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 10.000 - Rp 60.000',
-    kontak: '081311993344'
-  },
-  {
-    id: 'umkm-16',
-    nama: 'Olahan Ikan',
-    deskripsi: 'Aneka olahan ikan segar dengan rasa gurih dan berkualitas.',
-    detailLengkap: 'Baby fish nila krispi renyah tahan lama, abon ikan lele gurih tinggi protein, dan dendeng ikan patin bumbu rempah ketumbar.',
-    fotoUrl: 'https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 20.000 / pack',
-    kontak: '081288771122'
-  },
-  {
-    id: 'umkm-17',
-    nama: 'Kerajinan Daur Ulang',
-    deskripsi: 'Produk kreatif dari bahan daur ulang yang unik dan ramah lingkungan.',
-    detailLengkap: 'Tas belanja modis dari bungkus kopi sachet, dompet dari limbah plastik kresek terpadatkan, dan pot bunga dari ban bekas karya Bank Sampah Desa.',
-    fotoUrl: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 15.000 - Rp 75.000',
-    kontak: '087733221144'
-  },
-  {
-    id: 'umkm-18',
-    nama: 'Kerajinan Kayu',
-    deskripsi: 'Kerajinan kayu dengan desain khas dan penuh nilai seni.',
-    detailLengkap: 'Plakat ukir kayu mahoni, asbak artistik, patung miniatur khas Sunda, dan gantungan kunci suvenir kayu jati belanda berukir nama desa.',
-    fotoUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
-    harga: 'Rp 15.000 - Rp 250.000',
-    kontak: '081399885522'
+    nama: 'Eli Toys',
+    deskripsi: 'Mainan dan perlengkapan anak produksi warga desa.',
+    kontak: '085714769758'
   }
 ];
