@@ -309,7 +309,7 @@ export const HomeBentoGrid: React.FC<HomeBentoGridProps> = ({ onNavigate }) => {
       {/* Interactive Map & Barcode Modal */}
       {mapModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3.5 sm:p-4 animate-in fade-in duration-150">
-          <div className="bg-white rounded-3xl w-full max-w-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="bg-white rounded-3xl w-full max-w-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[calc(100dvh-1.75rem)]">
             {/* Modal Header */}
             <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -357,7 +357,7 @@ export const HomeBentoGrid: React.FC<HomeBentoGridProps> = ({ onNavigate }) => {
             </div>
 
             {/* Modal Body */}
-            <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
+            <div ref={modalContentRef} className="p-4 sm:p-6 overflow-y-auto space-y-4">
               {activeModalTab === 'barcode' ? (
                 <div className="space-y-4">
                   {/* High-res Barcode Card */}

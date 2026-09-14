@@ -652,7 +652,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         onClick={() => setKontakDaruratOpen(false)}
                       >
                         <div 
-                          className="max-h-[82vh] w-[94vw] max-w-md bg-white rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150"
+                          className="max-h-[calc(100dvh-1.75rem)] w-[94vw] max-w-md bg-white rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150"
                           onClick={e => e.stopPropagation()}
                         >
                           {/* Header */}
