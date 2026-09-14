@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Truck, 
   CheckCircle2, 
@@ -11,10 +11,29 @@ import {
   FileText
 } from 'lucide-react';
 import { saveSuratRequest } from '../../utils/storage';
+import { PageRoute } from '../../types';
 
-export const PindahDatangView: React.FC = () => {
-  const [activeJenis, setActiveJenis] = useState<'pindah-keluar' | 'pindah-datang'>('pindah-keluar');
+type PindahJenis = 'pindah-keluar' | 'pindah-datang';
+
+const JENIS_VALID: PindahJenis[] = ['pindah-keluar', 'pindah-datang'];
+
+interface PindahDatangProps {
+  defaultJenis?: string;
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
+
+export const PindahDatangView: React.FC<PindahDatangProps> = ({ defaultJenis }) => {
+  const [activeJenis, setActiveJenis] = useState<PindahJenis>(
+    JENIS_VALID.includes(defaultJenis as PindahJenis) ? (defaultJenis as PindahJenis) : 'pindah-keluar'
+  );
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (defaultJenis && JENIS_VALID.includes(defaultJenis as PindahJenis)) {
+      setActiveJenis(defaultJenis as PindahJenis);
+      setSubmittedCode(null);
+    }
+  }, [defaultJenis]);
 
   const [formData, setFormData] = useState({
     namaKepalaKeluarga: '',

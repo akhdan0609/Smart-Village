@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   FileText, 
   CheckCircle2, 
@@ -12,10 +12,29 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { saveSuratRequest } from '../../utils/storage';
+import { PageRoute } from '../../types';
 
-export const SuratKeteranganView: React.FC = () => {
-  const [activeJenis, setActiveJenis] = useState<'domisili-warga' | 'domisili-usaha' | 'sktm' | 'kematian'>('domisili-warga');
+type SuratJenis = 'domisili-warga' | 'domisili-usaha' | 'sktm' | 'kematian';
+
+const JENIS_VALID: SuratJenis[] = ['domisili-warga', 'domisili-usaha', 'sktm', 'kematian'];
+
+interface SuratKeteranganProps {
+  defaultJenis?: string;
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
+
+export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJenis }) => {
+  const [activeJenis, setActiveJenis] = useState<SuratJenis>(
+    JENIS_VALID.includes(defaultJenis as SuratJenis) ? (defaultJenis as SuratJenis) : 'domisili-warga'
+  );
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (defaultJenis && JENIS_VALID.includes(defaultJenis as SuratJenis)) {
+      setActiveJenis(defaultJenis as SuratJenis);
+      setSubmittedCode(null);
+    }
+  }, [defaultJenis]);
 
   const [formData, setFormData] = useState({
     namaLengkap: '',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Heart, 
   CheckCircle2, 
@@ -8,10 +8,29 @@ import {
   Users
 } from 'lucide-react';
 import { saveSuratRequest } from '../../utils/storage';
+import { PageRoute } from '../../types';
 
-export const LayananPernikahanView: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'formulir-n1-n4' | 'belum-nikah' | 'sk-na'>('formulir-n1-n4');
+type PernikahanTab = 'formulir-n1-n4' | 'belum-nikah' | 'sk-na';
+
+const TABS_VALID: PernikahanTab[] = ['formulir-n1-n4', 'belum-nikah', 'sk-na'];
+
+interface LayananPernikahanProps {
+  defaultTab?: string;
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
+
+export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaultTab }) => {
+  const [activeTab, setActiveTab] = useState<PernikahanTab>(
+    TABS_VALID.includes(defaultTab as PernikahanTab) ? (defaultTab as PernikahanTab) : 'formulir-n1-n4'
+  );
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (defaultTab && TABS_VALID.includes(defaultTab as PernikahanTab)) {
+      setActiveTab(defaultTab as PernikahanTab);
+      setSubmittedCode(null);
+    }
+  }, [defaultTab]);
 
   const [formData, setFormData] = useState({
     namaCalonSuami: '',
