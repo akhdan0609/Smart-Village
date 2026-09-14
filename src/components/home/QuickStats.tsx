@@ -2,21 +2,21 @@ import React from 'react';
 import { BookOpen, Users, Mountain, Home } from 'lucide-react';
 
 export const QuickStats: React.FC = () => {
-  const stats = [
+  const stats: { icon: typeof BookOpen; title: string; value: React.ReactNode }[] = [
     {
       icon: BookOpen,
       title: 'Luas Wilayah',
-      value: '1.250 Ha'
+      value: <>2,86 km<sup>2</sup></>
     },
     {
       icon: Users,
       title: 'Jumlah Penduduk',
-      value: '4.350 Jiwa'
+      value: '8.997 Jiwa'
     },
     {
       icon: Mountain,
       title: 'Ketinggian',
-      value: '600 – 900 mdpl'
+      value: '250 - 500 mdpl'
     },
     {
       icon: Home,

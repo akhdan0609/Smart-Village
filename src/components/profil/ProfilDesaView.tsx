@@ -145,7 +145,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               </div>
               <div className="min-w-0">
                 <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Luas Wilayah</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">1.250 Ha</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">2,86 km<sup>2</sup></span>
               </div>
             </div>
 
@@ -156,7 +156,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               </div>
               <div className="min-w-0">
                 <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Jumlah Penduduk</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">4.350 Jiwa</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">8.997 Jiwa</span>
               </div>
             </div>
 
@@ -178,7 +178,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               </div>
               <div className="min-w-0">
                 <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Ketinggian</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">600 – 900 mdpl</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">250 - 500 mdpl</span>
               </div>
             </div>
 

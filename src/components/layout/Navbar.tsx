@@ -178,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Tentang Desa', desc: 'Infografis visual 9 kartu: profil, sejarah, peta, visi misi, dan demografi', page: 'profil-tentang' as PageRoute, tag: 'Profil' },
     { title: 'Sejarah Desa', desc: 'Asal usul nama Desa Warung Menteng dan garis waktu sejarah', page: 'profil-sejarah' as PageRoute, tag: 'Profil' },
     { title: 'Situs Sejarah & Cagar Budaya', desc: 'Makam leluhur, batu menhir megalitikum, rumah adat Sunda kuno', page: 'potensi-situs-sejarah' as PageRoute, tag: 'Profil' },
-    { title: 'Perangkat Desa', desc: 'Struktur organisasi dan profil perangkat desa', page: 'profil-pemerintahan' as PageRoute, tag: 'Profil' },
+    { title: 'Pemerintahan Desa', desc: 'Struktur organisasi dan profil pemerintahan desa', page: 'profil-pemerintahan' as PageRoute, tag: 'Profil' },
     { title: 'Demografi Kependudukan', desc: 'Data penduduk, rasio gender, kelompok usia, dan KK', page: 'profil-demografi' as PageRoute, tag: 'Profil' },
     { title: 'Lembaga Kemasyarakatan', desc: 'BPD, LPMD, PKK, Karang Taruna, dan Linmas', page: 'profil-lembaga' as PageRoute, tag: 'Profil' },
     { title: 'Anggaran Desa (APBDes)', desc: 'Transparansi pendapatan, belanja desa, dan pembiayaan', page: 'profil-anggaran' as PageRoute, tag: 'Transparansi' },
@@ -329,7 +329,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
                     }`}
                   >
-                    <span>Perangkat Desa</span>
+                    <span>Pemerintahan Desa</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </button>
                   <button
@@ -1086,7 +1086,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         : 'text-slate-600 hover:bg-slate-50 font-medium'
                     }`}
                   >
-                    Perangkat Desa
+                    Pemerintahan Desa
                   </button>
                   <button
                     onClick={() => handleNavClick('profil-anggaran')}

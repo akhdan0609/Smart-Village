@@ -152,16 +152,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('profil-lembaga')} className="hover:text-white transition cursor-pointer">
-                  Lembaga Desa
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('profil-demografi')} className="hover:text-white transition cursor-pointer">
-                  Data Desa
-                </button>
-              </li>
-              <li>
                 <button onClick={() => handleNav('pelayanan-download')} className="hover:text-white transition cursor-pointer">
                   Peraturan Desa
                 </button>
