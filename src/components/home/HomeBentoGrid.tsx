@@ -19,6 +19,7 @@ import {
   X
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { WARUNG_MENTENG_MAPS_URL } from '../../data/mapLinks';
 import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
 
 interface HomeBentoGridProps {
@@ -245,7 +246,7 @@ export const HomeBentoGrid: React.FC<HomeBentoGridProps> = ({ onNavigate }) => {
               <span>Lihat Barcode</span>
             </button>
             <a
-              href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
+              href={WARUNG_MENTENG_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="min-h-[40px] py-2 px-3.5 bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white rounded-xl text-xs font-semibold transition text-center shadow-xs flex items-center justify-center gap-1 cursor-pointer active:scale-95"
@@ -397,7 +398,7 @@ export const HomeBentoGrid: React.FC<HomeBentoGridProps> = ({ onNavigate }) => {
                         <span>Unduh Barcode</span>
                       </a>
                       <a
-                        href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
+                        href={WARUNG_MENTENG_MAPS_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 py-3 px-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-xs"

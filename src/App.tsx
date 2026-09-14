@@ -67,7 +67,7 @@ import { isAdminLoggedIn } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<PageRoute>('profil-desa');
+  const [activePage, setActivePage] = useState<PageRoute>('beranda');
   const [navParams, setNavParams] = useState<any>({});
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 

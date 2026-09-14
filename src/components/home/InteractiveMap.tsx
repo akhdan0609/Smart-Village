@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Navigation, Compass, Layers, Phone, Mail, Clock, QrCode, Download, X } from 'lucide-react';
 import { PROFIL_DESA_DATA } from '../../data/mockData';
+import { WARUNG_MENTENG_MAPS_URL } from '../../data/mapLinks';
 import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
 
 export const InteractiveMap: React.FC = () => {
@@ -63,7 +64,7 @@ export const InteractiveMap: React.FC = () => {
                   <span>Barcode Peta</span>
                 </button>
                 <a
-                  href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
+                  href={WARUNG_MENTENG_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition shadow-2xs"

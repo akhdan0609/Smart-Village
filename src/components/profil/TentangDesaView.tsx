@@ -43,6 +43,7 @@ import rumahAdatImg from '../../assets/images/rumah_adat_sunda_1788955442032.jpg
 import budayaImg from '../../assets/images/tradisi_budaya_lokal_1788955478016.jpg';
 import potensiHeroImg from '../../assets/images/potensi_hero_banner_1788325154234.jpg';
 import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
+import { WARUNG_MENTENG_MAPS_URL } from '../../data/mapLinks';
 
 interface TentangDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -297,7 +298,7 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 <span>Lihat Barcode & Peta</span>
               </button>
               <a
-                href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
+                href={WARUNG_MENTENG_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-2.5 px-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-[0.99]"
@@ -651,7 +652,7 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 </div>
                 <div className="flex flex-wrap gap-2 w-full pt-1">
                   <a
-                    href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
+                    href={WARUNG_MENTENG_MAPS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-2 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs"
