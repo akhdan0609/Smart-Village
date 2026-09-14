@@ -104,7 +104,7 @@ export const SEJARAH_DESA_DATA = {
 export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   {
     id: 'kades-1',
-    nama: 'H. Irfan Setiawan, S.IP.',
+    nama: 'A. Zaenal Arifin, S.Ag.',
     jabatan: 'Kepala Desa',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Ilmu Pemerintahan',
@@ -114,7 +114,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'sekdes-1',
-    nama: 'Asep Saepuloh, S.Kom.',
+    nama: 'Agil Asmi Farizi, S.H.',
     jabatan: 'Sekretaris Desa (Sekdes)',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Sistem Informasi',
@@ -124,8 +124,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-keu-1',
-    nama: 'Siti Nurhayati, S.E.',
-    jabatan: 'Kepala Urusan Keuangan',
+    nama: 'Nasrudin',
+    jabatan: 'Bendahara Desa',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Akuntansi',
     tupoksi: 'Mengelola penatausahaan keuangan desa, pembukuan APBDes, penerimaan dan pengeluaran kas, serta penyusunan SPJ.',
@@ -133,8 +133,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-umum-1',
-    nama: 'Dadan Ramdani',
-    jabatan: 'Kepala Urusan Umum & Tata Usaha',
+    nama: 'M. Rizky Saefah',
+    jabatan: 'Kepala Seksi TUTR (Tata Usaha & Umum)',
     kategori: 'Pemerintah Desa',
     pendidikan: 'D3 Administrasi Perkantoran',
     tupoksi: 'Melaksanakan urusan ketatausahaan seperti tata naskah dinas, kearsipan, perlengkapan inventaris kantor, dan ekspedisi.',
@@ -142,8 +142,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-rencana-1',
-    nama: 'Rian Hidayat, S.P.',
-    jabatan: 'Kepala Urusan Perencanaan',
+    nama: 'M. Farhan Maulana',
+    jabatan: 'Kepala Seksi Perencanaan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Pertanian',
     tupoksi: 'Menyusun rancangan RPJMDes, RKPDes, musrenbangdes, pengumpulan data profil desa, dan pelaporan evaluasi pembangunan.',
@@ -151,7 +151,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-pem-1',
-    nama: 'M. Wildan Firdaus',
+    nama: 'M. Fajar Sandika',
     jabatan: 'Kepala Seksi Pemerintahan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Hukum',
@@ -160,8 +160,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-kesejahteraan-1',
-    nama: 'Ustadz Ahmad Fauzi',
-    jabatan: 'Kepala Seksi Kesejahteraan',
+    nama: 'M. Risman',
+    jabatan: 'Kepala Seksi Kesejahteraan (Kesra)',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Pendidikan Islam',
     tupoksi: 'Melaksanakan pembangunan sarana prasarana perdesaan, pembangunan bidang kesehatan, pendidikan, keagamaan, dan sosial budaya.',
@@ -169,7 +169,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-pelayanan-1',
-    nama: 'Dewi Anggraeni, S.Sos.',
+    nama: 'M. Alwi Farhan Jamil',
     jabatan: 'Kepala Seksi Pelayanan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Sosiologi',
@@ -178,7 +178,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-1',
-    nama: 'Endang Kuswara',
+    nama: 'Bagus Hadi',
     jabatan: 'Kepala Dusun I (Menteng Girang)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
@@ -187,7 +187,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-2',
-    nama: 'Cecep Suryana',
+    nama: 'Rahmat Setiyono',
     jabatan: 'Kepala Dusun II (Menteng Tengah)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
@@ -196,7 +196,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-3',
-    nama: 'Bambang Irawan',
+    nama: 'Diki Mahardika',
     jabatan: 'Kepala Dusun III (Menteng Hilir & Cimenteng)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
