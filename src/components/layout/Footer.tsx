@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
                 <span className="font-extrabold text-white text-base tracking-tight block">
                   Desa Warung Menteng
                 </span>
-                <span className="text-[11px] text-emerald-300 font-medium block">
+                <span className="text-[11px] text-white font-medium block">
                   Kec. Cijeruk, Kab. Bogor
                 </span>
               </div>
@@ -90,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/+6288291253033"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp Desa"
@@ -224,8 +224,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                <a href="tel:081234567890" className="hover:text-white transition">
-                  0812-3456-7890
+                <a 
+                  href="https://wa.me/+6288291253033" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="hover:text-white transition"
+                >
+                  +62 882-9125-3033
                 </a>
               </li>
             </ul>

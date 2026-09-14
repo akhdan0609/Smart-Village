@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   ChevronDown, 
   Menu, 
   X, 
   PhoneCall, 
+  Phone,
+  MessageSquare,
   Lock, 
   ArrowRight,
   LogOut,
@@ -13,6 +16,10 @@ import {
 import { PageRoute } from '../../types';
 import { getAdminAuth, setAdminAuth } from '../../utils/storage';
 import { KONTAK_DARURAT_LIST } from '../../data/mockData';
+import { 
+  EMERGENCY_CONTACTS, 
+  renderEmergencyBadgeIcon 
+} from '../../data/emergencyContacts';
 import logoDesaWarungMenteng from '../../assets/images/logo_warung_menteng.svg';
 
 interface NavbarProps {
@@ -33,8 +40,35 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const emergencyMobileScrollRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const kontakHoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Lock body scroll and reset scroll when mobile emergency modal or search modal is open
+  useEffect(() => {
+    if (kontakDaruratOpen) {
+      if (emergencyMobileScrollRef.current) {
+        emergencyMobileScrollRef.current.scrollTop = 0;
+      }
+      if (typeof window !== 'undefined' && window.innerWidth < 640) {
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+          document.body.style.overflow = originalOverflow;
+        };
+      }
+    }
+  }, [kontakDaruratOpen]);
+
+  useEffect(() => {
+    if (searchModalOpen && typeof document !== 'undefined') {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [searchModalOpen]);
 
   const handleDropdownMouseEnter = (menuName: string) => {
     if (hoverTimeoutRef.current) {
@@ -93,7 +127,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Close dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const emergencyModal = document.getElementById('emergency-modal-portal');
+      if (emergencyModal && emergencyModal.contains(target)) {
+        return;
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setOpenDropdown(null);
         setKontakDaruratOpen(false);
       }
@@ -175,8 +214,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, KKN, dan Kontak Darurat
   const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isKontakDaruratPage;
 
-  // Sembunyikan fitur kontak darurat pada Profil Desa, Potensi Desa, Pelayanan, KKN, dan Berita
-  const hideKontakDarurat = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isBeritaPage;
+  // Kontak darurat disembunyikan hanya saat sudah berada di dalam halaman Kontak Darurat itu sendiri
+  const hideKontakDarurat = isKontakDaruratPage;
 
   const searchResults = searchQuery.trim() === ''
     ? searchDirectory.slice(0, 8)
@@ -189,16 +228,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] border-b border-slate-200/75 transition-all duration-200" ref={dropdownRef}>
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4 min-w-0">
+      <div className="max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 min-w-0">
           
           {/* 1. Logo & Village Title (Left) */}
           <div 
             onClick={() => handleNavClick('beranda')}
-            className="flex items-center gap-3 cursor-pointer group select-none min-w-0"
+            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group select-none min-w-0"
           >
             {/* Official Village Emblem Logo */}
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white shadow-xs border border-emerald-700/20 group-hover:shadow-md group-hover:scale-105 transition-all duration-200 shrink-0 flex items-center justify-center p-0.5 overflow-hidden">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white shadow-xs border border-emerald-700/20 group-hover:shadow-md group-hover:scale-105 transition-all duration-200 shrink-0 flex items-center justify-center p-0.5 overflow-hidden">
               <img 
                 src={logoDesaWarungMenteng} 
                 alt="Logo Desa Warung Menteng" 
@@ -207,10 +246,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               />
             </div>
             <div className="min-w-0">
-              <span className="text-[15px] sm:text-base font-bold tracking-tight text-slate-900 block leading-tight truncate group-hover:text-[#0e3e2f] transition-colors">
+              <span className="text-sm sm:text-base font-bold tracking-tight text-slate-900 block leading-tight truncate group-hover:text-[#0e3e2f] transition-colors">
                 Desa Warung Menteng
               </span>
-              <p className="text-[11px] text-slate-500 font-normal tracking-normal truncate mt-0.5">
+              <p className="text-[10px] sm:text-[11px] text-slate-500 font-normal tracking-normal truncate mt-0.5">
                 Kec. Cijeruk, Kab. Bogor
               </p>
             </div>
@@ -566,14 +605,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* 3. Right Actions: Search Button + Emergency Button + Mobile Menu Trigger */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Fitur Pencarian Portal Desa Warung Menteng */}
             {!hideSearch && (
               <button
                 onClick={() => setSearchModalOpen(true)}
                 title="Pencarian Portal Desa Warung Menteng"
                 aria-label="Pencarian Portal Desa Warung Menteng"
-                className="w-10 h-10 rounded-xl bg-slate-50/80 hover:bg-slate-100 border border-slate-200/80 hover:border-slate-300 text-slate-600 hover:text-[#0e3e2f] shadow-2xs flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-95 shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-50/80 hover:bg-slate-100 border border-slate-200/80 hover:border-slate-300 text-slate-600 hover:text-[#0e3e2f] shadow-2xs flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-95 shrink-0"
               >
                 <Search className="w-4 h-4" />
               </button>
@@ -592,140 +631,276 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   aria-haspopup="true"
                   aria-expanded={kontakDaruratOpen}
-                  className={`group relative bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-[13px] font-semibold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-xs hover:shadow-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer active:scale-95 ${
+                  title="Kontak Darurat 24 Jam"
+                  className={`group relative bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-[13px] font-semibold px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl shadow-xs hover:shadow-sm transition-all duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap cursor-pointer active:scale-95 shrink-0 ${
                     kontakDaruratOpen ? 'bg-rose-700 ring-2 ring-rose-500/20' : ''
                   }`}
                 >
-                  <PhoneCall className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-12" />
-                  <span className="hidden min-[380px]:inline tracking-tight">Kontak Darurat</span>
-                  <ChevronDown className={`w-3.5 h-3.5 opacity-80 transition-transform duration-200 ${kontakDaruratOpen ? 'rotate-180' : ''}`} />
+                  <PhoneCall className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-12 shrink-0" />
+                  <span className="hidden sm:inline tracking-tight">Kontak Darurat</span>
+                  <span className="hidden min-[420px]:inline sm:hidden tracking-tight">Darurat</span>
+                  <ChevronDown className={`w-3.5 h-3.5 opacity-80 transition-transform duration-200 shrink-0 ${kontakDaruratOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {kontakDaruratOpen && (
                   <>
-                    {/* 1. Mobile Modal Center (< 640px - Screen-Centered & Viewport-Safe) */}
-                    <div 
-                      className="sm:hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-in fade-in duration-150"
-                      onClick={() => setKontakDaruratOpen(false)}
-                    >
+                    {/* 1. Mobile Modal Center (< 640px - Screen-Centered & Viewport-Safe via Portal) */}
+                    {typeof document !== 'undefined' && createPortal(
                       <div 
-                        className="max-h-[80vh] w-[90vw] max-w-md bg-white rounded-2xl flex flex-col overflow-hidden shadow-2xl border border-slate-200/80 animate-in zoom-in-95 duration-150"
-                        onClick={e => e.stopPropagation()}
+                        id="emergency-modal-portal"
+                        className="sm:hidden fixed inset-0 z-[100] flex items-center justify-center p-3.5 bg-slate-950/70 backdrop-blur-xs animate-in fade-in duration-150"
+                        onClick={() => setKontakDaruratOpen(false)}
                       >
-                        {/* Header (flex-shrink-0 p-4 border-b): Judul & tombol Close (X) */}
-                        <div className="flex-shrink-0 p-4 border-b border-slate-100 flex items-center justify-between bg-white">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
-                              <PhoneCall className="w-4 h-4" />
+                        <div 
+                          className="max-h-[82vh] w-[94vw] max-w-md bg-white rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150"
+                          onClick={e => e.stopPropagation()}
+                        >
+                          {/* Header */}
+                          <div className="flex-shrink-0 p-4 border-b border-slate-100 flex items-center justify-between bg-white">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-9 h-9 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+                                <PhoneCall className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <h3 className="text-sm font-bold text-slate-900 leading-tight">
+                                  Kontak Darurat 24 Jam
+                                </h3>
+                                <p className="text-[11px] text-slate-500 mt-0.5">
+                                  Sentuh tombol hubungi untuk langsung menelepon
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <h3 className="text-sm font-bold text-slate-900 leading-tight">
-                                Kontak Darurat 24 Jam
-                              </h3>
-                              <p className="text-[11px] text-slate-500 mt-0.5">
-                                Sentuh nomor untuk langsung menghubungi
-                              </p>
-                            </div>
+                            <button
+                              onClick={() => setKontakDaruratOpen(false)}
+                              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition cursor-pointer"
+                              aria-label="Tutup Kontak Darurat"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
                           </div>
-                          <button
-                            onClick={() => setKontakDaruratOpen(false)}
-                            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition cursor-pointer"
-                            aria-label="Tutup Kontak Darurat"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
-                        </div>
 
-                        {/* Daftar Kontak (flex-1 overflow-y-auto p-4): Mengisi sisa ruang & scroll vertikal */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                          {KONTAK_DARURAT_LIST.map(item => {
-                            const digits = item.nomorTelepon.replace(/[^0-9]/g, '');
-                            return (
-                              <a
+                          {/* Daftar Kontak */}
+                          <div 
+                            ref={emergencyMobileScrollRef}
+                            className="flex-1 overflow-y-auto p-3 space-y-2 overscroll-contain"
+                          >
+                            {EMERGENCY_CONTACTS.map(item => (
+                              <div
                                 key={item.id}
-                                href={`tel:${digits}`}
-                                onClick={() => setKontakDaruratOpen(false)}
-                                className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-rose-50/70 border border-slate-100 hover:border-rose-100 transition group active:scale-[0.99]"
+                                className="flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/80 hover:bg-emerald-50/40 border border-slate-100 hover:border-emerald-200 transition group"
                               >
-                                <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
-                                  <span className="w-8 h-8 shrink-0 rounded-lg bg-rose-600/10 text-rose-700 flex items-center justify-center">
-                                    <PhoneCall className="w-4 h-4" />
-                                  </span>
+                                <div className="flex items-center gap-3 min-w-0 flex-1 pr-2">
+                                  <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 bg-slate-100 shadow-2xs">
+                                    <img
+                                      src={item.image}
+                                      alt={item.name}
+                                      className="w-full h-full object-cover object-center"
+                                    />
+                                    <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white/95 flex items-center justify-center shadow-xs border border-slate-100">
+                                      {renderEmergencyBadgeIcon(item.badgeType, 'w-2.5 h-2.5 text-emerald-800')}
+                                    </div>
+                                  </div>
                                   <div className="min-w-0 flex-1">
                                     <span className="block text-xs font-bold text-slate-900 truncate">
+                                      {item.name}
+                                    </span>
+                                    <span className="block text-[11px] text-slate-500 truncate">
                                       {item.instansi}
                                     </span>
-                                    <span className="block text-[11px] text-rose-700 font-semibold truncate">
-                                      {item.nomorTelepon}
-                                    </span>
+                                    {item.secondaryPhone ? (
+                                      <div className="mt-1 space-y-0.5">
+                                        <a
+                                          href={`tel:${item.phoneRaw}`}
+                                          onClick={() => setKontakDaruratOpen(false)}
+                                          className="flex items-center gap-1.5 text-[11px] text-emerald-800 hover:text-emerald-950 font-bold"
+                                          title="Telepon Kantor (Aplikasi Telepon)"
+                                        >
+                                          <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100/90 text-emerald-900 rounded font-semibold shrink-0">Kantor</span>
+                                          <span className="truncate">{item.phone}</span>
+                                        </a>
+                                        <a
+                                          href={item.whatsappUrl || `https://wa.me/${item.secondaryPhoneRaw?.replace(/[^0-9]/g, '')}`}
+                                          target="_blank"
+                                          rel="noreferrer"
+                                          onClick={() => setKontakDaruratOpen(false)}
+                                          className="flex items-center gap-1.5 text-[11px] text-[#128c7e] hover:text-[#075e54] font-bold"
+                                          title="WhatsApp"
+                                        >
+                                          <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100/90 text-emerald-900 rounded font-semibold shrink-0">WA</span>
+                                          <span className="truncate">{item.secondaryPhone}</span>
+                                        </a>
+                                      </div>
+                                    ) : (
+                                      <span className="block text-[11px] text-emerald-800 font-bold truncate mt-0.5">
+                                        {item.phone}
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
-                                <span className="text-xs font-semibold text-rose-700 bg-rose-100/80 px-2.5 py-1 rounded-lg shrink-0 flex items-center gap-1">
-                                  <PhoneCall className="w-3 h-3" />
-                                  Hubungi
-                                </span>
-                              </a>
-                            );
-                          })}
-                        </div>
+                                {item.whatsappUrl ? (
+                                  <div className="flex flex-col gap-1 shrink-0">
+                                    <a
+                                      href={`tel:${item.phoneRaw}`}
+                                      onClick={() => setKontakDaruratOpen(false)}
+                                      className="py-1 px-2.5 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
+                                      title="Telepon Kantor"
+                                    >
+                                      <Phone className="w-3 h-3 fill-white" />
+                                      <span>Kantor</span>
+                                    </a>
+                                    <a
+                                      href={item.whatsappUrl}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      onClick={() => setKontakDaruratOpen(false)}
+                                      className="py-1 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
+                                      title="Chat WhatsApp"
+                                    >
+                                      <MessageSquare className="w-3 h-3 fill-white" />
+                                      <span>WA</span>
+                                    </a>
+                                  </div>
+                                ) : (
+                                  <a
+                                    href={`tel:${item.phoneRaw}`}
+                                    onClick={() => setKontakDaruratOpen(false)}
+                                    className="py-2 px-3 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95 shrink-0"
+                                  >
+                                    <Phone className="w-3.5 h-3.5 fill-white" />
+                                    <span>Hubungi</span>
+                                  </a>
+                                )}
+                              </div>
+                            ))}
+                          </div>
 
-                        {/* Footer (flex-shrink-0 p-4 border-t bg-gray-50): Berisi tombol 'Lihat Semua Kontak Darurat' */}
-                        <div className="flex-shrink-0 p-4 border-t border-slate-200 bg-slate-50">
-                          <button
-                            onClick={() => {
-                              setKontakDaruratOpen(false);
-                              handleNavClick('kontak-darurat');
-                            }}
-                            className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-3 px-4 transition shadow-xs cursor-pointer active:scale-[0.99]"
-                          >
-                            Lihat Semua Kontak Darurat
-                          </button>
+                          {/* Footer */}
+                          <div className="flex-shrink-0 p-3.5 border-t border-slate-200 bg-slate-50">
+                            <button
+                              onClick={() => {
+                                setKontakDaruratOpen(false);
+                                handleNavClick('kontak-darurat');
+                              }}
+                              className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-3 px-4 transition shadow-xs cursor-pointer active:scale-[0.99] flex items-center justify-center gap-1.5"
+                            >
+                              <span>Lihat Semua Kontak Darurat</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                      </div>,
+                      document.body
+                    )}
 
                     {/* 2. Desktop & Tablet Anchored Dropdown (>= 640px) */}
-                    <div className="hidden sm:flex flex-col absolute right-0 top-full mt-2 w-80 max-h-[80vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 z-50 animate-in fade-in slide-in-from-top-2 duration-150 origin-top-right overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                    <div className="hidden sm:flex flex-col absolute right-0 top-full mt-2 w-[410px] max-h-[82vh] bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200/90 z-50 animate-in fade-in slide-in-from-top-2 duration-150 origin-top-right overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                       <div className="flex-shrink-0 px-4 py-3 bg-white border-b border-slate-100 flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2 text-slate-800 font-bold text-xs sm:text-sm">
-                            <PhoneCall className="w-4 h-4 text-rose-600 shrink-0" />
-                            <span>Kontak Darurat 24 Jam</span>
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+                            <PhoneCall className="w-4 h-4" />
                           </div>
-                          <p className="text-[11px] text-slate-500 mt-0.5">
-                            Klik nomor untuk langsung menelepon
-                          </p>
+                          <div>
+                            <div className="flex items-center gap-2 text-slate-800 font-bold text-xs sm:text-sm">
+                              <span>Kontak Darurat 24 Jam</span>
+                            </div>
+                            <p className="text-[11px] text-slate-500 mt-0.5">
+                              Klik tombol hubungi untuk langsung menelepon
+                            </p>
+                          </div>
                         </div>
                         <span className="text-[10px] text-slate-400 font-medium">Warung Menteng</span>
                       </div>
 
-                      <div className="flex-1 min-h-0 overflow-y-auto max-h-60 p-2 space-y-1">
-                        {KONTAK_DARURAT_LIST.map(item => {
-                          const digits = item.nomorTelepon.replace(/[^0-9]/g, '');
-                          return (
-                            <a
-                              key={item.id}
-                              href={`tel:${digits}`}
-                              onClick={() => setKontakDaruratOpen(false)}
-                              className="flex items-center justify-between p-2 rounded-xl hover:bg-rose-50/70 border border-transparent hover:border-rose-100 transition group"
-                            >
-                              <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
-                                <span className="w-7 h-7 shrink-0 rounded-lg bg-rose-600/10 text-rose-700 flex items-center justify-center">
-                                  <PhoneCall className="w-3.5 h-3.5" />
-                                </span>
-                                <div className="min-w-0 flex-1">
-                                  <span className="block text-xs font-bold text-slate-900 truncate">
-                                    {item.instansi}
-                                  </span>
-                                  <span className="block text-[11px] text-rose-700 font-semibold truncate">
-                                    {item.nomorTelepon}
-                                  </span>
+                      <div className="flex-1 min-h-0 overflow-y-auto max-h-[380px] p-2.5 space-y-2">
+                        {EMERGENCY_CONTACTS.map(item => (
+                          <div
+                            key={item.id}
+                            className="flex items-center justify-between p-2 rounded-xl bg-slate-50/70 hover:bg-emerald-50/40 border border-slate-100 hover:border-emerald-200 transition group"
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
+                              <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 bg-slate-100 shadow-2xs">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <div className="absolute top-0.5 left-0.5 w-3.5 h-3.5 rounded-full bg-white/95 flex items-center justify-center shadow-xs border border-slate-100">
+                                  {renderEmergencyBadgeIcon(item.badgeType, 'w-2 h-2 text-emerald-800')}
                                 </div>
                               </div>
-                              <ChevronDown className="w-3.5 h-3.5 -rotate-90 text-slate-300 group-hover:text-rose-500 shrink-0" />
-                            </a>
-                          );
-                        })}
+                              <div className="min-w-0 flex-1">
+                                <span className="block text-xs font-bold text-slate-900 truncate group-hover:text-emerald-950">
+                                  {item.name}
+                                </span>
+                                <span className="block text-[11px] text-slate-500 truncate">
+                                  {item.instansi}
+                                </span>
+                                {item.secondaryPhone ? (
+                                  <div className="mt-0.5 space-y-0.5">
+                                    <a
+                                      href={`tel:${item.phoneRaw}`}
+                                      onClick={() => setKontakDaruratOpen(false)}
+                                      className="flex items-center gap-1.5 text-[11px] text-emerald-800 hover:text-emerald-950 font-bold"
+                                      title={`Telepon Kantor (Aplikasi Telepon): ${item.phone}`}
+                                    >
+                                      <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">Kantor</span>
+                                      <span className="truncate">{item.phone}</span>
+                                    </a>
+                                    <a
+                                      href={item.whatsappUrl || `https://wa.me/${item.secondaryPhoneRaw?.replace(/[^0-9]/g, '')}`}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      onClick={() => setKontakDaruratOpen(false)}
+                                      className="flex items-center gap-1.5 text-[11px] text-[#128c7e] hover:text-[#075e54] font-bold"
+                                      title={`WhatsApp: ${item.secondaryPhone}`}
+                                    >
+                                      <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">WA</span>
+                                      <span className="truncate">{item.secondaryPhone}</span>
+                                    </a>
+                                  </div>
+                                ) : (
+                                  <span className="block text-[11px] text-emerald-800 font-bold tracking-tight">
+                                    {item.phone}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            {item.whatsappUrl ? (
+                              <div className="flex flex-col gap-1 shrink-0">
+                                <a
+                                  href={`tel:${item.phoneRaw}`}
+                                  onClick={() => setKontakDaruratOpen(false)}
+                                  className="py-1 px-2.5 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
+                                  title={`Telepon Kantor: ${item.phone}`}
+                                >
+                                  <Phone className="w-3 h-3 fill-white" />
+                                  <span>Kantor</span>
+                                </a>
+                                <a
+                                  href={item.whatsappUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={() => setKontakDaruratOpen(false)}
+                                  className="py-1 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
+                                  title={`Chat WhatsApp: ${item.secondaryPhone}`}
+                                >
+                                  <MessageSquare className="w-3 h-3 fill-white" />
+                                  <span>WA</span>
+                                </a>
+                              </div>
+                            ) : (
+                              <a
+                                href={`tel:${item.phoneRaw}`}
+                                onClick={() => setKontakDaruratOpen(false)}
+                                className="py-1.5 px-3 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95 shrink-0"
+                                title={`Hubungi ${item.name}`}
+                              >
+                                <Phone className="w-3 h-3 fill-white" />
+                                <span>Hubungi</span>
+                              </a>
+                            )}
+                          </div>
+                        ))}
                       </div>
 
                       <div className="flex-shrink-0 border-t border-slate-100 p-2.5 bg-slate-50">
@@ -734,9 +909,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                             setKontakDaruratOpen(false);
                             handleNavClick('kontak-darurat');
                           }}
-                          className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-2 px-3 transition shadow-xs cursor-pointer active:scale-[0.99]"
+                          className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-2.5 px-3 transition shadow-xs cursor-pointer active:scale-[0.99] flex items-center justify-center gap-1.5"
                         >
-                          Lihat Semua Kontak Darurat
+                          <span>Lihat Semua Kontak Darurat</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
                     </div>
@@ -747,11 +923,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Mobile menu trigger */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-700 hover:text-[#0e3e2f] hover:bg-slate-100 md:hidden transition cursor-pointer"
-              aria-label="Buka Menu Navigasi"
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                setKontakDaruratOpen(false);
+              }}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl text-slate-700 hover:text-[#0e3e2f] hover:bg-slate-100 md:hidden transition cursor-pointer active:scale-95 shrink-0"
+              aria-label={mobileMenuOpen ? "Tutup Menu Navigasi" : "Buka Menu Navigasi"}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
 
@@ -759,8 +938,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Quick Search Modal */}
-      {searchModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
+      {searchModalOpen && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden space-y-4 p-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
@@ -818,297 +997,311 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Menu Drawer with Backdrop */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto space-y-2.5 animate-in slide-in-from-top-2 duration-150">
-          {/* Search box for mobile */}
-          {!hideSearch && (
-            <div 
-              onClick={() => { setSearchModalOpen(true); setMobileMenuOpen(false); }}
-              className="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-500 cursor-pointer hover:bg-slate-100 transition-colors"
-            >
-              <span>Cari informasi atau layanan...</span>
-              <Search className="w-4 h-4 text-slate-400" />
-            </div>
-          )}
-
-          <button
-            onClick={() => handleNavClick('beranda')}
-            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm transition-colors duration-150 ${
-              activePage === 'beranda' 
-                ? 'bg-emerald-50 text-[#0e3e2f] font-semibold' 
-                : 'text-slate-700 hover:bg-slate-50 font-medium'
-            }`}
+        <div 
+          className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-slate-950/40 backdrop-blur-xs animate-in fade-in duration-200"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div 
+            className="bg-white/98 backdrop-blur-md border-b border-slate-200 shadow-xl px-4 pt-3.5 pb-6 max-h-[calc(100vh-4.5rem)] overflow-y-auto space-y-2.5 animate-in slide-in-from-top-2 duration-200"
+            onClick={e => e.stopPropagation()}
           >
-            Beranda
-          </button>
-
-          {/* Profil Desa Mobile Accordion */}
-          <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
-            <div className="flex items-center justify-between pr-2">
-              <button
-                onClick={() => handleNavClick('profil-desa')}
-                className={`flex-1 text-left px-3.5 py-2.5 text-sm transition-colors duration-150 ${
-                  isProfilActive ? 'text-[#0e3e2f] font-semibold' : 'text-slate-700 font-medium'
-                }`}
+            {/* Search box for mobile */}
+            {!hideSearch && (
+              <div 
+                onClick={() => { setSearchModalOpen(true); setMobileMenuOpen(false); }}
+                className="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border border-slate-200/90 rounded-xl text-xs text-slate-500 cursor-pointer hover:bg-slate-100 transition-colors active:scale-[0.99]"
               >
-                Profil Desa
-              </button>
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'm-profil' ? null : 'm-profil')}
-                className="p-2 text-slate-400 hover:text-slate-700 cursor-pointer"
-                aria-label="Buka submenu Profil Desa"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-profil' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
-              </button>
-            </div>
-            {openDropdown === 'm-profil' && (
-              <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
-                <button
-                  onClick={() => handleNavClick('profil-tentang')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'profil-tentang'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
-                  }`}
-                >
-                  Tentang Desa
-                </button>
-                <button
-                  onClick={() => handleNavClick('profil-sejarah')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'profil-sejarah' || activePage === 'potensi-situs-sejarah'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
-                  }`}
-                >
-                  Sejarah Desa
-                </button>
-                <button
-                  onClick={() => handleNavClick('profil-pemerintahan')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'profil-pemerintahan'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
-                  }`}
-                >
-                  Perangkat Desa
-                </button>
-                <button
-                  onClick={() => handleNavClick('profil-anggaran')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'profil-anggaran'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
-                  }`}
-                >
-                  Anggaran Desa
-                </button>
+                <div className="flex items-center gap-2.5">
+                  <Search className="w-4 h-4 text-emerald-600" />
+                  <span>Cari informasi atau layanan desa...</span>
+                </div>
+                <span className="text-[10px] bg-slate-200/80 px-1.5 py-0.5 rounded text-slate-600 font-mono">Cari</span>
               </div>
             )}
-          </div>
 
-          {/* Potensi Desa Mobile Accordion */}
-          <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
-            <div className="flex items-center justify-between pr-2">
-              <button
-                onClick={() => handleNavClick('potensi-desa')}
-                className={`flex-1 text-left px-3.5 py-2.5 text-sm transition-colors duration-150 ${
-                  isPotensiActive ? 'text-[#0e3e2f] font-semibold' : 'text-slate-700 font-medium'
-                }`}
-              >
-                Potensi Desa
-              </button>
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'm-potensi' ? null : 'm-potensi')}
-                className="p-2 text-slate-400 hover:text-slate-700 cursor-pointer"
-                aria-label="Buka submenu Potensi Desa"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-potensi' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
-              </button>
-            </div>
-            {openDropdown === 'm-potensi' && (
-              <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+            {/* BERANDA */}
+            <button
+              onClick={() => handleNavClick('beranda')}
+              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm min-h-[44px] flex items-center transition-colors duration-150 active:scale-[0.99] ${
+                activePage === 'beranda' 
+                  ? 'bg-emerald-50 text-[#0e3e2f] font-bold shadow-2xs' 
+                  : 'text-slate-700 hover:bg-slate-50 font-medium'
+              }`}
+            >
+              Beranda
+            </button>
+
+            {/* Profil Desa Mobile Accordion */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <div className="flex items-center justify-between pr-2">
                 <button
-                  onClick={() => handleNavClick('potensi-akomodasi')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
+                  onClick={() => handleNavClick('profil-desa')}
+                  className={`flex-1 text-left px-3.5 py-2.5 text-sm min-h-[44px] flex items-center transition-colors duration-150 ${
+                    isProfilActive ? 'text-[#0e3e2f] font-bold' : 'text-slate-700 font-medium'
+                  }`}
                 >
-                  Akomodasi
+                  Profil Desa
                 </button>
                 <button
-                  onClick={() => handleNavClick('potensi-umkm')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
+                  onClick={() => setOpenDropdown(openDropdown === 'm-profil' ? null : 'm-profil')}
+                  className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-200/60 rounded-xl cursor-pointer transition-colors"
+                  aria-label="Buka submenu Profil Desa"
                 >
-                  UMKM
-                </button>
-                <button
-                  onClick={() => handleNavClick('potensi-budaya')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Budaya & Adat
-                </button>
-                <button
-                  onClick={() => handleNavClick('potensi-perikanan')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Budidaya
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-profil' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
                 </button>
               </div>
-            )}
-          </div>
-
-          {/* Pelayanan Mobile Accordion */}
-          <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
-            <div className="flex items-center justify-between pr-2">
-              <button
-                onClick={() => handleNavClick('pelayanan-desa')}
-                className={`flex-1 text-left px-3.5 py-2.5 text-sm transition-colors duration-150 ${
-                  isPelayananActive ? 'text-[#0e3e2f] font-semibold' : 'text-slate-700 font-medium'
-                }`}
-              >
-                Pelayanan
-              </button>
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'm-pelayanan' ? null : 'm-pelayanan')}
-                className="p-2 text-slate-400 hover:text-slate-700 cursor-pointer"
-                aria-label="Buka submenu Pelayanan"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-pelayanan' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
-              </button>
+              {openDropdown === 'm-profil' && (
+                <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+                  <button
+                    onClick={() => handleNavClick('profil-tentang')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'profil-tentang'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Tentang Desa
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('profil-sejarah')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'profil-sejarah' || activePage === 'potensi-situs-sejarah'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Sejarah Desa
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('profil-pemerintahan')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'profil-pemerintahan'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Perangkat Desa
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('profil-anggaran')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'profil-anggaran'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Anggaran Desa
+                  </button>
+                </div>
+              )}
             </div>
-            {openDropdown === 'm-pelayanan' && (
-              <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+
+            {/* Potensi Desa Mobile Accordion */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <div className="flex items-center justify-between pr-2">
                 <button
-                  onClick={() => handleNavClick('pelayanan-surat-keterangan')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
+                  onClick={() => handleNavClick('potensi-desa')}
+                  className={`flex-1 text-left px-3.5 py-2.5 text-sm min-h-[44px] flex items-center transition-colors duration-150 ${
+                    isPotensiActive ? 'text-[#0e3e2f] font-bold' : 'text-slate-700 font-medium'
+                  }`}
                 >
-                  Surat Keterangan
+                  Potensi Desa
                 </button>
                 <button
-                  onClick={() => handleNavClick('pelayanan-pindah-datang')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
+                  onClick={() => setOpenDropdown(openDropdown === 'm-potensi' ? null : 'm-potensi')}
+                  className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-200/60 rounded-xl cursor-pointer transition-colors"
+                  aria-label="Buka submenu Potensi Desa"
                 >
-                  Pindah Datang
-                </button>
-                <button
-                  onClick={() => handleNavClick('pelayanan-layanan-pernikahan')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Layanan Pernikahan
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-potensi' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
                 </button>
               </div>
-            )}
-          </div>
-
-          {/* Humas Mobile Accordion */}
-          <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
-            <div className="flex items-center justify-between pr-2">
-              <button
-                onClick={() => handleNavClick('berita-press-release')}
-                className={`flex-1 text-left px-3.5 py-2.5 text-sm transition-colors duration-150 ${
-                  isBeritaActive ? 'text-[#0e3e2f] font-semibold' : 'text-slate-700 font-medium'
-                }`}
-              >
-                Humas
-              </button>
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'm-berita' ? null : 'm-berita')}
-                className="p-2 text-slate-400 hover:text-slate-700 cursor-pointer"
-                aria-label="Buka submenu Humas"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-berita' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
-              </button>
+              {openDropdown === 'm-potensi' && (
+                <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+                  <button
+                    onClick={() => handleNavClick('potensi-akomodasi')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Akomodasi
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('potensi-umkm')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    UMKM
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('potensi-budaya')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Budaya & Adat
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('potensi-perikanan')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Budidaya
+                  </button>
+                </div>
+              )}
             </div>
-            {openDropdown === 'm-berita' && (
-              <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+
+            {/* Pelayanan Mobile Accordion */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <div className="flex items-center justify-between pr-2">
+                <button
+                  onClick={() => handleNavClick('pelayanan-desa')}
+                  className={`flex-1 text-left px-3.5 py-2.5 text-sm min-h-[44px] flex items-center transition-colors duration-150 ${
+                    isPelayananActive ? 'text-[#0e3e2f] font-bold' : 'text-slate-700 font-medium'
+                  }`}
+                >
+                  Pelayanan
+                </button>
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === 'm-pelayanan' ? null : 'm-pelayanan')}
+                  className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-200/60 rounded-xl cursor-pointer transition-colors"
+                  aria-label="Buka submenu Pelayanan"
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-pelayanan' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
+                </button>
+              </div>
+              {openDropdown === 'm-pelayanan' && (
+                <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+                  <button
+                    onClick={() => handleNavClick('pelayanan-surat-keterangan')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Surat Keterangan
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('pelayanan-pindah-datang')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Pindah Datang
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('pelayanan-layanan-pernikahan')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Layanan Pernikahan
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Humas Mobile Accordion */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <div className="flex items-center justify-between pr-2">
                 <button
                   onClick={() => handleNavClick('berita-press-release')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'berita-press-release'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
+                  className={`flex-1 text-left px-3.5 py-2.5 text-sm min-h-[44px] flex items-center transition-colors duration-150 ${
+                    isBeritaActive ? 'text-[#0e3e2f] font-bold' : 'text-slate-700 font-medium'
                   }`}
                 >
-                  Press Release
+                  Humas
                 </button>
                 <button
-                  onClick={() => handleNavClick('berita-galeri')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-lg transition-colors ${
-                    activePage === 'berita-galeri' || activePage === 'profil-galeri'
-                      ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                      : 'text-slate-600 hover:bg-slate-50 font-medium'
-                  }`}
+                  onClick={() => setOpenDropdown(openDropdown === 'm-berita' ? null : 'm-berita')}
+                  className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-200/60 rounded-xl cursor-pointer transition-colors"
+                  aria-label="Buka submenu Humas"
                 >
-                  Galeri Foto
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-berita' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
                 </button>
               </div>
-            )}
-          </div>
+              {openDropdown === 'm-berita' && (
+                <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+                  <button
+                    onClick={() => handleNavClick('berita-press-release')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'berita-press-release'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Press Release
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('berita-galeri')}
+                    className={`w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl transition-colors ${
+                      activePage === 'berita-galeri' || activePage === 'profil-galeri'
+                        ? 'bg-emerald-50 text-[#0e3e2f] font-bold'
+                        : 'text-slate-600 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    Galeri Foto
+                  </button>
+                </div>
+              )}
+            </div>
 
-          {/* KKN Mobile Accordion */}
-          <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
-            <div className="flex items-center justify-between pr-2">
+            {/* KKN Mobile Accordion */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <div className="flex items-center justify-between pr-2">
+                <button
+                  onClick={() => handleNavClick('kkn')}
+                  className={`flex-1 text-left px-3.5 py-2.5 text-sm min-h-[44px] flex items-center transition-colors duration-150 ${
+                    isKKNActive ? 'text-[#0e3e2f] font-bold' : 'text-slate-700 font-medium'
+                  }`}
+                >
+                  KKN
+                </button>
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === 'm-kkn' ? null : 'm-kkn')}
+                  className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-700 active:bg-slate-200/60 rounded-xl cursor-pointer transition-colors"
+                  aria-label="Buka submenu KKN"
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-kkn' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
+                </button>
+              </div>
+              {openDropdown === 'm-kkn' && (
+                <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
+                  <button
+                    onClick={() => handleNavClick('kkn-latar-belakang')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Latar Belakang
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('kkn-program-kerja')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Program Kerja
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('kkn-galeri')}
+                    className="w-full text-left px-3.5 py-2.5 text-xs min-h-[40px] flex items-center rounded-xl text-slate-600 hover:bg-slate-50 font-medium"
+                  >
+                    Galeri Kegiatan
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Action Buttons in Mobile Drawer */}
+            <div className="pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2.5">
+              {!hideKontakDarurat ? (
+                <button
+                  onClick={() => handleNavClick('kontak-darurat')}
+                  className="min-h-[44px] px-3 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/80 text-rose-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer shadow-2xs"
+                >
+                  <PhoneCall className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span className="truncate">Hotline Darurat</span>
+                </button>
+              ) : <div />}
+
               <button
-                onClick={() => handleNavClick('kkn')}
-                className={`flex-1 text-left px-3.5 py-2.5 text-sm transition-colors duration-150 ${
-                  isKKNActive ? 'text-[#0e3e2f] font-semibold' : 'text-slate-700 font-medium'
-                }`}
+                onClick={handleLoginClick}
+                className="min-h-[44px] px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer"
               >
-                KKN
-              </button>
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'm-kkn' ? null : 'm-kkn')}
-                className="p-2 text-slate-400 hover:text-slate-700 cursor-pointer"
-                aria-label="Buka submenu KKN"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-kkn' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
+                <Lock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <span className="truncate">Login Staf</span>
               </button>
             </div>
-            {openDropdown === 'm-kkn' && (
-              <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
-                <button
-                  onClick={() => handleNavClick('kkn-latar-belakang')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Latar Belakang
-                </button>
-                <button
-                  onClick={() => handleNavClick('kkn-program-kerja')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Program Kerja
-                </button>
-                <button
-                  onClick={() => handleNavClick('kkn-galeri')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Galeri Kegiatan
-                </button>
-              </div>
-            )}
-          </div>
-
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-            {!hideKontakDarurat ? (
-              <button
-                onClick={() => handleNavClick('kontak-darurat')}
-                className="text-xs font-semibold text-rose-700 flex items-center gap-1.5 py-1 hover:text-rose-800 transition-colors"
-              >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>Kontak Darurat 24 Jam</span>
-              </button>
-            ) : <div />}
-
-            <button
-              onClick={handleLoginClick}
-              className="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1.5 py-1 font-medium transition-colors"
-            >
-              <Lock className="w-3 h-3 text-amber-500" />
-              <span>Login Admin</span>
-            </button>
           </div>
         </div>
       )}

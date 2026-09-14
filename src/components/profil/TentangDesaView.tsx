@@ -293,8 +293,8 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 onClick={() => setModalPetaOpen(true)}
                 className="flex-1 py-2.5 px-4 rounded-xl border border-[#0e3e2f] text-[#0e3e2f] hover:bg-emerald-50 text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
-                <BookOpen className="w-4 h-4 text-emerald-700" />
-                <span>Lihat Peta Lengkap</span>
+                <QrCode className="w-4 h-4 text-emerald-700" />
+                <span>Lihat Barcode & Peta</span>
               </button>
               <a
                 href="https://maps.google.com/?q=Warung+Menteng+Cijeruk+Bogor"
@@ -643,10 +643,10 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-slate-800">
-                    Peta Digital & Navigasi Desa
+                    Barcode Peta Digital Desa
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    Arahkan kamera smartphone Anda ke kode di atas untuk membuka peta digital langsung di Google Maps.
+                    Arahkan kamera smartphone Anda ke barcode di atas untuk membuka navigasi digital instan di Google Maps.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2 w-full pt-1">
@@ -661,11 +661,11 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                   </a>
                   <a
                     href={warungMentengMapImg}
-                    download="Peta_Desa_Warung_Menteng.png"
+                    download="Barcode_Desa_Warung_Menteng.png"
                     className="py-2 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold transition flex items-center justify-center gap-1.5"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>Unduh</span>
+                    <span>Unduh Barcode</span>
                   </a>
                 </div>
               </div>
