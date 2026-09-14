@@ -67,8 +67,19 @@ import { AdminDashboardView } from './components/admin/AdminDashboardView';
 import { isAdminLoggedIn } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
+const getInitialPage = (): PageRoute => {
+  if (typeof window !== 'undefined') {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) return hash as PageRoute;
+    const urlParams = new URLSearchParams(window.location.search);
+    const p = urlParams.get('page');
+    if (p) return p as PageRoute;
+  }
+  return 'beranda';
+};
+
 export default function App() {
-  const [activePage, setActivePage] = useState<PageRoute>('beranda');
+  const [activePage, setActivePage] = useState<PageRoute>(getInitialPage());
   const [navParams, setNavParams] = useState<any>({});
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
@@ -79,9 +90,23 @@ export default function App() {
     setIsAdmin(isAdminLoggedIn());
   }, []);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        setActivePage(hash as PageRoute);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleNavigate = (page: PageRoute, params?: any) => {
     setActivePage(page);
     setNavParams(params || {});
+    if (typeof window !== 'undefined' && window.history) {
+      window.history.replaceState(null, '', `#${page}`);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -114,7 +139,7 @@ export default function App() {
       case 'profil-galeri':
         return <GaleriDesaView onNavigate={handleNavigate} />;
       case 'profil-pemerintahan':
-        return <PemerintahanDesaView />;
+        return <PemerintahanDesaView onNavigate={handleNavigate} />;
       case 'profil-lembaga':
         return <LembagaDesaView />;
       case 'profil-demografi':

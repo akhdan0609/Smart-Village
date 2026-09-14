@@ -172,8 +172,8 @@ const PILIHAN_SURAT_LIST: PilihanSurat[] = [
     id: 'kelahiran',
     no: 10,
     nama: 'Surat Keterangan Kelahiran',
-    page: 'pelayanan-pengajuan',
-    params: { defaultSuratId: 'sk-kelahiran' },
+    page: 'pelayanan-surat-keterangan',
+    params: { defaultJenis: 'kelahiran' },
     deskripsi: 'Surat keterangan kelahiran dari desa sebagai pengantar pembuatan Akta Kelahiran di Disdukcapil Kab. Bogor.',
     estimasiWaktu: '1 Hari Kerja',
     persyaratan: [

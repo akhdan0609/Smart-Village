@@ -11,7 +11,6 @@ import {
   ArrowRight, 
   X, 
   Instagram, 
-  Youtube, 
   Mail, 
   User
 } from 'lucide-react';
@@ -28,6 +27,7 @@ import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg'
 import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
+import { LogoKKNWigata } from './LogoKKNWigata';
 
 export interface KKNMember {
   id: string;
@@ -803,10 +803,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             
             {/* Left Brand Identity */}
             <div className="flex items-center gap-3 text-center md:text-left">
-              <div className="w-11 h-11 rounded-full bg-white text-[#064e3b] border-2 border-emerald-300 flex flex-col items-center justify-center font-black text-[9px] tracking-tight shadow-md shrink-0">
-                <span className="leading-none">WIGATA</span>
-                <span className="text-[7.5px] leading-none text-emerald-800">DHARMA</span>
-              </div>
+              <LogoKKNWigata className="w-12 h-12 border-2 border-emerald-300 shadow-md shrink-0" />
               <div className="space-y-0.5">
                 <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">
                   Kelompok KKN WIGATA DHARMA
@@ -828,35 +825,26 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             {/* Right Social Media & Contacts */}
             <div className="flex items-center gap-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/wigatadharma/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Instagram KKN"
+                aria-label="Instagram KKN Wigata Dharma"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <Instagram className="w-3.5 h-3.5" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.tiktok.com/@kknwigatadharma?_r=1&_t=ZS-99jBH5V8Izo"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="YouTube KKN"
-                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
-              >
-                <Youtube className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="TikTok KKN"
+                aria-label="TikTok KKN Wigata Dharma"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <TikTokIcon className="w-3.5 h-3.5" />
               </a>
               <a
-                href="mailto:kkn.warungmenteng@gmail.com"
-                aria-label="Email KKN"
+                href="mailto:kknwd2026@gmail.com"
+                aria-label="Email Gmail KKN Wigata Dharma"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <Mail className="w-3.5 h-3.5" />

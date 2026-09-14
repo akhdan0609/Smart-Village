@@ -1,1 +1,0 @@
-export const WARUNG_MENTENG_MAPS_URL = 'https://maps.app.goo.gl/y4hKRrMnF5d28LQz9';

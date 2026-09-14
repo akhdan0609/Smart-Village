@@ -21,6 +21,7 @@ import {
   renderEmergencyBadgeIcon 
 } from '../../data/emergencyContacts';
 import logoDesaWarungMenteng from '../../assets/images/logo_warung_menteng.svg';
+import { SearchModal } from './SearchModal';
 
 interface NavbarProps {
   activePage: PageRoute;
@@ -38,13 +39,27 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [kontakDaruratOpen, setKontakDaruratOpen] = useState(false);
   const [adminAuth, setAdminAuthState] = useState(getAdminAuth());
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const emergencyMobileScrollRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const kontakHoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Lock body scroll and reset scroll when mobile emergency modal or search modal is open
+  // Global shortcut to open search (Ctrl+K or /)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      } else if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Lock body scroll and reset scroll when mobile emergency modal is open
   useEffect(() => {
     if (kontakDaruratOpen) {
       if (emergencyMobileScrollRef.current) {
@@ -59,16 +74,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       }
     }
   }, [kontakDaruratOpen]);
-
-  useEffect(() => {
-    if (searchModalOpen && typeof document !== 'undefined') {
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [searchModalOpen]);
 
   const handleDropdownMouseEnter = (menuName: string) => {
     if (hoverTimeoutRef.current) {
@@ -170,60 +175,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isBeritaActive = activePage.startsWith('berita-') || activePage === 'informasi-berita' || activePage === 'informasi-galeri' || activePage === 'profil-galeri';
   const isKKNActive = activePage.startsWith('kkn');
 
-  // Search items list
-  const searchDirectory = [
-    { title: 'Beranda Desa', desc: 'Halaman utama portal informasi Desa Warung Menteng', page: 'beranda' as PageRoute, tag: 'Utama' },
-    // Profil Desa
-    { title: 'Profil Resmi Desa', desc: 'Portal profil resmi, karakteristik wilayah, dan sarana umum desa', page: 'profil-desa' as PageRoute, tag: 'Profil' },
-    { title: 'Tentang Desa', desc: 'Infografis visual 9 kartu: profil, sejarah, peta, visi misi, dan demografi', page: 'profil-tentang' as PageRoute, tag: 'Profil' },
-    { title: 'Sejarah Desa', desc: 'Asal usul nama Desa Warung Menteng dan garis waktu sejarah', page: 'profil-sejarah' as PageRoute, tag: 'Profil' },
-    { title: 'Situs Sejarah & Cagar Budaya', desc: 'Makam leluhur, batu menhir megalitikum, rumah adat Sunda kuno', page: 'potensi-situs-sejarah' as PageRoute, tag: 'Profil' },
-    { title: 'Pemerintahan Desa', desc: 'Struktur organisasi dan profil pemerintahan desa', page: 'profil-pemerintahan' as PageRoute, tag: 'Profil' },
-    { title: 'Demografi Kependudukan', desc: 'Data penduduk, rasio gender, kelompok usia, dan KK', page: 'profil-demografi' as PageRoute, tag: 'Profil' },
-    { title: 'Lembaga Kemasyarakatan', desc: 'BPD, LPMD, PKK, Karang Taruna, dan Linmas', page: 'profil-lembaga' as PageRoute, tag: 'Profil' },
-    { title: 'Anggaran Desa (APBDes)', desc: 'Transparansi pendapatan, belanja desa, dan pembiayaan', page: 'profil-anggaran' as PageRoute, tag: 'Transparansi' },
-    // Potensi Desa
-    { title: 'Potensi Desa', desc: 'Akomodasi wisata alam, UMKM unggulan, seni budaya adat, dan budidaya peternakan perikanan', page: 'potensi-desa' as PageRoute, tag: 'Potensi' },
-    { title: 'Akomodasi Desa', desc: 'Curug Cibaliung, Bukit Menteng, Persawahan Terasering, Camping Ground', page: 'potensi-akomodasi' as PageRoute, tag: 'Potensi' },
-    { title: 'UMKM Desa', desc: 'Pemberdayaan unit usaha mikro kecil menengah warga desa', page: 'potensi-umkm' as PageRoute, tag: 'Potensi' },
-    { title: 'Budaya & Adat Istiadat', desc: 'Upacara Seren Taun Cijeruk, Silat Cimande, Seni Calung', page: 'potensi-budaya' as PageRoute, tag: 'Potensi' },
-    { title: 'Budidaya', desc: 'Sentra budidaya kolam air deras nila, mas, dan gurame', page: 'potensi-perikanan' as PageRoute, tag: 'Potensi' },
-    // Pelayanan Desa
-    { title: 'Pelayanan Desa', desc: 'Pusat permohonan surat administrasi, kependudukan, nikah, dan pindah datang', page: 'pelayanan-desa' as PageRoute, tag: 'Pelayanan' },
-    { title: 'Surat Keterangan (Domisili, SKU, SKTM)', desc: 'Layanan online surat domisili, usaha, dan tidak mampu', page: 'pelayanan-surat-keterangan' as PageRoute, tag: 'Pelayanan' },
-    { title: 'Pindah Datang (SKPWNI)', desc: 'Surat keterangan pindah keluar dan masuk kependudukan', page: 'pelayanan-pindah-datang' as PageRoute, tag: 'Pelayanan' },
-    { title: 'Layanan Pernikahan (N1 - N4)', desc: 'Surat pengantar nikah desa, formulir N1-N4 dan KUA', page: 'pelayanan-layanan-pernikahan' as PageRoute, tag: 'Pelayanan' },
-    // HUMAS
-    { title: 'Press Release', desc: 'Siaran pers resmi publikasi kegiatan & kebijakan desa', page: 'berita-press-release' as PageRoute, tag: 'HUMAS' },
-    { title: 'Galeri Foto (Dokumentasi Desa)', desc: 'Dokumentasi & Keindahan Desa - Galeri Resmi Desa Warung Menteng', page: 'berita-galeri' as PageRoute, tag: 'HUMAS' },
-    // KKN
-    { title: 'Latar Belakang KKN', desc: 'Latar belakang pengabdian mahasiswa di Warung Menteng', page: 'kkn-latar-belakang' as PageRoute, tag: 'KKN' },
-    { title: 'Program Kerja KKN', desc: 'Program kerja dan rencana pengabdian mahasiswa KKN', page: 'kkn-program-kerja' as PageRoute, tag: 'KKN' },
-    { title: 'Galeri Kegiatan KKN', desc: 'Dokumentasi foto kegiatan bimbel, workshop, dan penyuluhan', page: 'kkn-galeri' as PageRoute, tag: 'KKN' },
-    // Kontak Darurat
-    { title: 'Kontak Darurat 24 Jam', desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' }
-  ];
-
-  const isProfilPage = activePage.startsWith('profil-') || activePage === 'potensi-situs-sejarah';
-  const isPotensiPage = (activePage === 'potensi-desa' || activePage.startsWith('potensi-') || activePage === 'akomodasi') && activePage !== 'potensi-situs-sejarah';
-  const isPelayananPage = activePage === 'pelayanan-desa' || activePage.startsWith('pelayanan-');
-  const isKKNPage = activePage.startsWith('kkn');
-  const isBeritaPage = activePage.startsWith('berita-') || activePage.startsWith('informasi-');
-  const isKontakDaruratPage = activePage === 'kontak-darurat' || activePage.startsWith('kontak-darurat');
-
-  // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, KKN, dan Kontak Darurat
-  const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isKontakDaruratPage;
-
-  // Kontak darurat disembunyikan hanya saat sudah berada di dalam halaman Kontak Darurat itu sendiri
-  const hideKontakDarurat = isKontakDaruratPage;
-
-  const searchResults = searchQuery.trim() === ''
-    ? searchDirectory.slice(0, 8)
-    : searchDirectory.filter(item => 
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.tag.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // Kontak darurat hanya ditampilkan pada halaman Beranda saja
+  const hideKontakDarurat = activePage !== 'beranda';
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] border-b border-slate-200/75 transition-all duration-200" ref={dropdownRef}>
@@ -298,7 +251,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {openDropdown === 'profil' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <button
                     onClick={() => handleNavClick('profil-tentang')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
@@ -373,7 +326,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {openDropdown === 'potensi' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-60 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-60 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <button
                     onClick={() => handleNavClick('potensi-akomodasi')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
@@ -448,7 +401,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {openDropdown === 'pelayanan' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-60 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-60 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <button
                     onClick={() => handleNavClick('pelayanan-surat-keterangan')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
@@ -512,7 +465,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {openDropdown === 'berita' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <button
                     onClick={() => handleNavClick('berita-press-release')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
@@ -565,7 +518,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {openDropdown === 'kkn' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 p-1.5 z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <button
                     onClick={() => handleNavClick('kkn-latar-belakang')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
@@ -607,16 +560,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* 3. Right Actions: Search Button + Emergency Button + Mobile Menu Trigger */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Fitur Pencarian Portal Desa Warung Menteng */}
-            {!hideSearch && (
-              <button
-                onClick={() => setSearchModalOpen(true)}
-                title="Pencarian Portal Desa Warung Menteng"
-                aria-label="Pencarian Portal Desa Warung Menteng"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-50/80 hover:bg-slate-100 border border-slate-200/80 hover:border-slate-300 text-slate-600 hover:text-[#0e3e2f] shadow-2xs flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-95 shrink-0"
-              >
-                <Search className="w-4 h-4" />
-              </button>
-            )}
+            <button
+              onClick={() => setSearchModalOpen(true)}
+              title="Pencarian Cepat Portal Desa (Tekan / atau Ctrl+K)"
+              aria-label="Pencarian Portal Desa Warung Menteng"
+              className="px-2.5 sm:px-3 h-9 sm:h-10 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/90 hover:border-emerald-300 text-slate-600 hover:text-[#0e3e2f] shadow-2xs flex items-center gap-2 transition-colors cursor-pointer shrink-0"
+            >
+              <Search className="w-4 h-4 text-emerald-700" />
+              <span className="hidden xl:inline text-xs font-medium text-slate-500">Cari...</span>
+              <kbd className="hidden xl:inline-block px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] text-slate-400 font-mono">/</kbd>
+            </button>
 
             {!hideKontakDarurat && (
               <div 
@@ -938,92 +891,33 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Quick Search Modal */}
-      {searchModalOpen && typeof document !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
-          <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden space-y-4 p-6">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
-                <Search className="w-5 h-5 text-emerald-600" />
-                <span>Pencarian Portal Desa Warung Menteng</span>
-              </div>
-              <button 
-                onClick={() => setSearchModalOpen(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="relative">
-              <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                autoFocus
-                placeholder="Cari surat, HUMAS, profil, KKN, wisata, atau kontak darurat..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-              />
-            </div>
-
-            <div className="max-h-80 overflow-y-auto space-y-2 pr-1">
-              {searchResults.length > 0 ? (
-                searchResults.map((res, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => handleNavClick(res.page)}
-                    className="p-3.5 rounded-2xl hover:bg-emerald-50/80 border border-transparent hover:border-emerald-200 transition cursor-pointer flex items-center justify-between group"
-                  >
-                    <div className="space-y-0.5">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 group-hover:bg-emerald-200 group-hover:text-emerald-900 px-2 py-0.5 rounded">
-                          {res.tag}
-                        </span>
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-emerald-900">
-                          {res.title}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-500">
-                        {res.desc}
-                      </p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-700 group-hover:translate-x-1 transition" />
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-8 text-slate-400 text-sm">
-                  Tidak ditemukan hasil untuk "{searchQuery}".
-                </div>
-              )}
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
+      <SearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+        onNavigate={handleNavClick}
+      />
 
       {/* Mobile Menu Drawer with Backdrop */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-slate-950/40 backdrop-blur-xs animate-in fade-in duration-200"
+          className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-slate-950/40 backdrop-blur-xs"
           onClick={() => setMobileMenuOpen(false)}
         >
           <div 
-            className="bg-white/98 backdrop-blur-md border-b border-slate-200 shadow-xl px-4 pt-3.5 pb-6 max-h-[calc(100vh-4.5rem)] overflow-y-auto space-y-2.5 animate-in slide-in-from-top-2 duration-200"
+            className="bg-white/98 backdrop-blur-md border-b border-slate-200 shadow-xl px-4 pt-3.5 pb-6 max-h-[calc(100vh-4.5rem)] overflow-y-auto space-y-2.5"
             onClick={e => e.stopPropagation()}
           >
             {/* Search box for mobile */}
-            {!hideSearch && (
-              <div 
-                onClick={() => { setSearchModalOpen(true); setMobileMenuOpen(false); }}
-                className="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border border-slate-200/90 rounded-xl text-xs text-slate-500 cursor-pointer hover:bg-slate-100 transition-colors active:scale-[0.99]"
-              >
-                <div className="flex items-center gap-2.5">
-                  <Search className="w-4 h-4 text-emerald-600" />
-                  <span>Cari informasi atau layanan desa...</span>
-                </div>
-                <span className="text-[10px] bg-slate-200/80 px-1.5 py-0.5 rounded text-slate-600 font-mono">Cari</span>
+            <div 
+              onClick={() => { setSearchModalOpen(true); setMobileMenuOpen(false); }}
+              className="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border border-slate-200/90 rounded-xl text-xs text-slate-500 cursor-pointer hover:bg-slate-100 transition-colors active:scale-[0.99]"
+            >
+              <div className="flex items-center gap-2.5">
+                <Search className="w-4 h-4 text-emerald-600" />
+                <span>Cari informasi atau layanan desa...</span>
               </div>
-            )}
+              <span className="text-[10px] bg-slate-200/80 px-1.5 py-0.5 rounded text-slate-600 font-mono">Cari</span>
+            </div>
 
             {/* BERANDA */}
             <button
@@ -1283,8 +1177,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Bottom Action Buttons in Mobile Drawer */}
-            <div className="pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2.5">
-              {!hideKontakDarurat ? (
+            <div className={`pt-3 border-t border-slate-200/80 ${!hideKontakDarurat ? 'grid grid-cols-2 gap-2.5' : 'flex'}`}>
+              {!hideKontakDarurat && (
                 <button
                   onClick={() => handleNavClick('kontak-darurat')}
                   className="min-h-[44px] px-3 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/80 text-rose-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer shadow-2xs"
@@ -1292,11 +1186,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <PhoneCall className="w-4 h-4 text-rose-600 shrink-0" />
                   <span className="truncate">Hotline Darurat</span>
                 </button>
-              ) : <div />}
+              )}
 
               <button
                 onClick={handleLoginClick}
-                className="min-h-[44px] px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer"
+                className={`min-h-[44px] px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer ${!hideKontakDarurat ? '' : 'w-full'}`}
               >
                 <Lock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span className="truncate">Login Staf</span>

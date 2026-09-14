@@ -1,352 +1,547 @@
 import React, { useState } from 'react';
 import {
+  Landmark,
   Users,
+  X,
   ShieldCheck,
-  Leaf,
-  MapPin,
-  Phone,
-  Clock,
-  Mail,
-  ArrowRight,
   GraduationCap,
-  Building2
+  FileText,
+  CheckCircle2,
+  Leaf
 } from 'lucide-react';
 import { PERANGKAT_DESA_LIST } from '../../data/mockData';
-import { PerangkatDesa } from '../../types';
-import heroKantorImg from '../../assets/images/pelayanan_hero_kantor_desa_1788325727506.jpg';
-import heroPanoramaImg from '../../assets/images/profil_hero_panorama_1789112047188.jpg';
+import { PerangkatDesa, PageRoute } from '../../types';
 
-interface StrukturCardProps {
-  person: PerangkatDesa;
-  highlight?: boolean;
+// Images
+import panoramaImg from '../../assets/images/desa_cijeruk_panorama_1789390926013.jpg';
+import kadesPortrait from '../../assets/images/kades_portrait_1789390945641.jpg';
+import pMale1 from '../../assets/images/perangkat_desa_male_1789390956915.jpg';
+import pMale2 from '../../assets/images/perangkat_desa_two_1789390973775.jpg';
+import pMale3 from '../../assets/images/perangkat_desa_three_1789390988234.jpg';
+
+interface PemerintahanDesaViewProps {
+  onNavigate?: (page: PageRoute, params?: any) => void;
 }
 
-const StrukturCard: React.FC<StrukturCardProps> = ({ person, highlight }) => (
-  <div
-    className={`w-full max-w-[240px] mx-auto rounded-2xl border p-4 text-center transition duration-200 ${
-      highlight
-        ? 'bg-gradient-to-b from-emerald-700 to-emerald-900 text-white border-emerald-800 shadow-lg'
-        : 'bg-gradient-to-b from-emerald-50 to-white text-slate-900 border-emerald-200 shadow-sm'
-    }`}
+// Decorative Corner Leaf Accent matching user reference
+const CornerLeafBadge: React.FC = () => (
+  <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none overflow-hidden rounded-tl-2xl z-10">
+    <div className="w-12 h-12 bg-gradient-to-br from-[#194432] via-[#20533e] to-transparent -translate-x-4 -translate-y-4 rounded-full flex items-center justify-center">
+      <Leaf className="w-3.5 h-3.5 text-emerald-200 translate-x-1 translate-y-1 opacity-90" />
+    </div>
+  </div>
+);
+
+// Botanical Leaf Silhouette SVG for soft backgrounds
+const BotanicalLeafDecoration: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg
+    viewBox="0 0 100 100"
+    fill="currentColor"
+    className={`pointer-events-none text-emerald-800/10 ${className}`}
   >
-    <img
-      src={person.fotoUrl}
-      alt={person.nama}
-      className={`w-16 h-20 rounded-xl object-cover object-top mx-auto border-2 shadow-sm ${
-        highlight ? 'border-white/40' : 'border-emerald-500/40'
-      }`}
-    />
-    <h3 className={`text-sm font-extrabold leading-snug mt-3 ${highlight ? 'text-white' : 'text-slate-900'}`}>
-      {person.nama}
-    </h3>
-    <span className={`block text-[10px] uppercase tracking-wide font-bold mt-1 ${highlight ? 'text-emerald-100' : 'text-emerald-700'}`}>
-      {person.jabatan}
-    </span>
-  </div>
+    <path d="M50 0 C65 25 80 40 100 50 C75 65 60 80 50 100 C35 75 20 60 0 50 C25 35 40 20 50 0 Z" />
+    <path d="M50 0 Q50 100 50 100" stroke="currentColor" strokeWidth="2" fill="none" />
+  </svg>
 );
 
-interface StumpRowProps {
-  cols: number;
-}
+export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
+  const [selectedOfficial, setSelectedOfficial] = useState<PerangkatDesa | null>(null);
 
-const StumpRow: React.FC<StumpRowProps> = ({ cols }) => (
-  <div
-    className="hidden sm:grid grid-cols-2 sm:grid-cols-5"
-    style={cols === 2 ? { gridTemplateColumns: 'repeat(2, 1fr)' } : cols === 3 ? { gridTemplateColumns: 'repeat(3, 1fr)' } : cols === 1 ? { gridTemplateColumns: '1fr' } : undefined}
-  >
-    {Array.from({ length: cols }).map((_, i) => (
-      <div key={i} className="mx-auto w-px h-8 bg-emerald-300/70" />
-    ))}
-  </div>
-);
-
-interface BarRowProps {
-  cols: number;
-}
-
-const BarRow: React.FC<BarRowProps> = ({ cols }) => (
-  <div className="relative hidden sm:block h-px">
-    <div className="absolute top-0 h-px bg-emerald-300/70" style={{ left: `calc(100% / ${cols * 2})`, right: `calc(100% / ${cols * 2})` }} />
-  </div>
-);
-
-export const PemerintahanDesaView: React.FC = () => {
-  const [showAllPerangkat, setShowAllPerangkat] = useState(false);
-  const [activeModalPerson, setActiveModalPerson] = useState<PerangkatDesa | null>(null);
-
-  const findPerson = (id: string): PerangkatDesa => PERANGKAT_DESA_LIST.find(p => p.id === id)!;
-
-  const kades = findPerson('kades-1');
-  const level2Persons = ['sekdes-1', 'kaur-keu-1'].map(findPerson);
-  const level3Persons = ['kasi-pem-1', 'kasi-kesejahteraan-1', 'kasi-pelayanan-1', 'kaur-rencana-1', 'kaur-umum-1'].map(findPerson);
-  const level4Persons = ['kadus-1', 'kadus-2', 'kadus-3'].map(findPerson);
-
-  const perangkatGridList = showAllPerangkat
-    ? PERANGKAT_DESA_LIST
-    : PERANGKAT_DESA_LIST.filter(p => p.kategori !== 'BPD' && p.kategori !== 'LPMD');
-
-  const scrollToPerangkat = () => {
-    document.getElementById('profil-perangkat')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Helper to map official to matching portrait photo
+  const getOfficialPhoto = (id: string, fallback: string): string => {
+    if (id === 'kades-1') return kadesPortrait;
+    if (id === 'sekdes-1') return pMale1;
+    if (id === 'kaur-keu-1') return pMale2;
+    if (id === 'kasi-pem-1') return pMale3;
+    if (id === 'kasi-kesejahteraan-1') return pMale1;
+    if (id === 'kasi-pelayanan-1') return pMale2;
+    if (id === 'kaur-rencana-1') return pMale3;
+    if (id === 'kaur-umum-1') return pMale1;
+    if (id === 'kadus-1') return pMale2;
+    if (id === 'kadus-2') return pMale3;
+    if (id === 'kadus-3') return pMale1;
+    return fallback;
   };
 
-  const fiturUnggulan = [
-    { icon: Users, label: 'Pelayanan', sub: 'Cepat & Profesional' },
-    { icon: ShieldCheck, label: 'Transparansi', sub: 'Transparan & Akuntabel' },
-    { icon: Leaf, label: 'Bersama Membangun', sub: 'Desa yang Lebih Baik' }
+  const findOfficial = (id: string): PerangkatDesa => {
+    return PERANGKAT_DESA_LIST.find((p) => p.id === id) || PERANGKAT_DESA_LIST[0];
+  };
+
+  // Structured Officials exactly matching the reference screenshot
+  const kades = findOfficial('kades-1');
+  const sekdes = findOfficial('sekdes-1');
+
+  const rowOfficials = [
+    {
+      person: findOfficial('kaur-keu-1'),
+      badge: 'Bendahara Desa',
+      name: 'Nasrudin',
+      photoId: 'kaur-keu-1'
+    },
+    {
+      person: findOfficial('kasi-pem-1'),
+      badge: 'Kasi Pemerintahan',
+      name: 'M. Fajar Sandika',
+      photoId: 'kasi-pem-1'
+    },
+    {
+      person: findOfficial('kasi-kesejahteraan-1'),
+      badge: 'Kasi Kesra',
+      name: 'M. Risman',
+      photoId: 'kasi-kesejahteraan-1'
+    },
+    {
+      person: findOfficial('kasi-pelayanan-1'),
+      badge: 'Kasi Pelayanan',
+      name: 'M. Alwi Farhan Jamil',
+      photoId: 'kasi-pelayanan-1'
+    },
+    {
+      person: findOfficial('kaur-rencana-1'),
+      badge: 'Kasi Perencanaan',
+      name: 'M. Farhan Maulana',
+      photoId: 'kaur-rencana-1'
+    },
+    {
+      person: findOfficial('kaur-umum-1'),
+      badge: 'Kasi TUTR',
+      name: 'M. Rizky Saefah',
+      photoId: 'kaur-umum-1'
+    }
   ];
 
-  const infoKontak = [
-    { icon: MapPin, label: 'Alamat Kantor', value: 'Jl. Raya Warung Menteng No. 01, Kec. Cijeruk, Kab. Bogor' },
-    { icon: Phone, label: 'Kontak / Telepon', value: '0813-2211-9988 (Kantor) • 0812-8877-6611 (Mobile)' },
-    { icon: Clock, label: 'Jam Pelayanan', value: 'Senin – Jumat, 08.00 – 16.00 WIB' },
-    { icon: Mail, label: 'Email Resmi', value: 'desa@warungmenteng.desa.id' }
+  const kadusList = [
+    {
+      person: findOfficial('kadus-1'),
+      badge: 'Kadus 1',
+      name: 'Bagus Hadi',
+      photoId: 'kadus-1'
+    },
+    {
+      person: findOfficial('kadus-2'),
+      badge: 'Kadus 2',
+      name: 'Rahmat Setiyono',
+      photoId: 'kadus-2'
+    },
+    {
+      person: findOfficial('kadus-3'),
+      badge: 'Kadus 3',
+      name: 'Diki Mahardika',
+      photoId: 'kadus-3'
+    }
   ];
 
   return (
-    <div className="py-10 bg-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
+    <div className="bg-[#eef5f0] text-slate-800 font-sans min-h-screen relative pb-16 overflow-x-hidden">
+      
+      {/* ========================================================
+          HERO & HEADER BANNER (EXACT REPLICA OF SCREENSHOT)
+          ======================================================== */}
+      <div className="relative w-full bg-[#1b4835] overflow-hidden">
+        
+        {/* Landscape Panoramic Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={panoramaImg}
+            alt="Pemandangan Desa Warung Menteng & Pegunungan Salak"
+            className="w-full h-full object-cover object-top opacity-85"
+          />
+          {/* Subtle overlay gradient to match the screenshot atmosphere */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#173e2d]/90 via-[#173e2d]/30 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1b4835] via-transparent to-transparent" />
+        </div>
 
-        {/* Banner Utama / Hero Section */}
-        <section className="relative rounded-3xl overflow-hidden shadow-md text-white">
-          <img src={heroKantorImg} alt="Kantor Desa Warung Menteng" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/95 via-teal-900/90 to-emerald-900/70" />
+        {/* Decorative Green Organic Wave Borders on Left and Edges */}
+        <div className="absolute top-0 left-0 w-80 h-80 bg-[#163f2d]/80 rounded-full blur-3xl pointer-events-none -translate-x-20 -translate-y-20 z-0" />
+        <div className="absolute top-4 left-6 sm:left-12 pointer-events-none opacity-25 z-0">
+          <BotanicalLeafDecoration className="w-32 h-32 text-white" />
+        </div>
 
-          <div className="relative z-10 p-8 sm:p-12 space-y-6">
-            <span className="inline-block bg-emerald-500/30 text-emerald-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-400/30">
-              Tata Kelola Pemerintahan
-            </span>
+        {/* Top Header Content Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 sm:pb-16 relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          
+          {/* Left: Badge, Title & Subtitle */}
+          <div className="space-y-2">
+            {/* Profil Desa Pill Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-[#173f2e] text-white text-xs font-semibold px-3.5 py-1 rounded-full shadow-md border border-emerald-500/30">
+              <Landmark className="w-3.5 h-3.5 text-emerald-300" />
+              <span>Profil Desa</span>
+            </div>
 
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-['Playfair_Display',serif]">
-              Mengenal Pemerintahan Desa Warung Menteng
+            {/* Main Headline: Struktur Organisasi */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white sm:text-[#f8faf9] tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+              Struktur Organisasi
             </h1>
 
-            <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-3xl">
-              Mewujudkan pemerintahan desa yang transparan, akuntabel, dan partisipatif dalam melayani masyarakat serta membangun Desa Warung Menteng yang maju dan sejahtera.
+            {/* Subtitle */}
+            <div className="pt-0.5">
+              <p className="text-sm sm:text-base font-semibold text-emerald-100 drop-shadow-sm">
+                Pemerintahan Desa Warung Menteng
+              </p>
+              {/* Short Green Underline */}
+              <div className="w-14 h-1 bg-emerald-400 rounded-full mt-2 shadow-xs" />
+            </div>
+          </div>
+
+          {/* Right: Cursive Slogan "Bersama Membangun Desa yang Lebih Baik" */}
+          <div className="md:text-right">
+            <p className="font-serif italic text-white text-lg sm:text-2xl lg:text-[26px] tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] font-medium">
+              &ldquo;Bersama Membangun Desa yang Lebih Baik&rdquo;
             </p>
-
-            {/* Tiga Fitur Unggulan */}
-            <div className="flex flex-wrap gap-3 pt-2">
-              {fiturUnggulan.map(f => (
-                <div key={f.label} className="flex items-center gap-3 bg-white/10 border border-white/25 rounded-2xl px-4 py-3 backdrop-blur-sm">
-                  <span className="w-10 h-10 rounded-xl bg-emerald-400/20 border border-emerald-300/30 flex items-center justify-center shrink-0">
-                    <f.icon className="w-5 h-5 text-emerald-300" />
-                  </span>
-                  <span>
-                    <span className="block text-sm font-extrabold text-white">{f.label}</span>
-                    <span className="block text-[11px] text-emerald-200">{f.sub}</span>
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
-        </section>
+        </div>
 
-        {/* Bagian Struktur Organisasi */}
-        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div className="space-y-2 max-w-xl">
-              <span className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                <Building2 className="w-3.5 h-3.5" />
-                Struktur Organisasi
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-['Playfair_Display',serif]">
-                Struktur Organisasi Pemerintahan Desa
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                Bagan hierarki Pemerintah Desa Warung Menteng mulai dari Kepala Desa, Sekretariat, Kepala Seksi, hingga Kepala Dusun di setiap wilayah.
-              </p>
-            </div>
-            <button
-              onClick={scrollToPerangkat}
-              className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition shadow-sm"
-            >
-              <span>Lihat Detail Tugas & Fungsi</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+        {/* Organic Curved Cutout Wave at Bottom of Hero */}
+        <div className="relative w-full h-8 sm:h-12 overflow-hidden z-10">
+          <svg
+            viewBox="0 0 1440 80"
+            fill="none"
+            preserveAspectRatio="none"
+            className="w-full h-full text-[#eef5f0]"
+          >
+            <path
+              d="M0,0 C360,70 1080,70 1440,0 L1440,80 L0,80 Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* ========================================================
+          MAIN ORGANIZATIONAL CHART CONTAINER
+          ======================================================== */}
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-4 sm:-mt-6 relative z-20">
+        <div className="bg-gradient-to-b from-[#fbfdfc] via-[#f5faf7] to-[#ecf6f0] rounded-3xl border-2 border-emerald-200/90 shadow-xl p-4 sm:p-8 lg:p-10 relative overflow-hidden">
+          
+          {/* Subtle Background Watermark Leaf Decors */}
+          <BotanicalLeafDecoration className="absolute top-6 left-6 w-44 h-44 opacity-20 -rotate-45" />
+          <BotanicalLeafDecoration className="absolute top-1/3 right-6 w-52 h-52 opacity-20 rotate-45" />
+          <BotanicalLeafDecoration className="absolute bottom-6 left-12 w-48 h-48 opacity-20 rotate-12" />
+          <BotanicalLeafDecoration className="absolute bottom-6 right-12 w-40 h-40 opacity-20 -rotate-12" />
+
+          {/* Interactive Hint */}
+          <div className="text-center mb-6">
+            <span className="inline-block text-[11px] font-medium text-emerald-800/80 bg-emerald-100/70 border border-emerald-200 px-3 py-1 rounded-full">
+              Klik pada kartu perangkat desa untuk melihat informasi profil & tupoksi
+            </span>
           </div>
 
-          {/* Bagan Hierarki */}
-          <div className="mt-10 space-y-0">
-            {/* Level 1: Kepala Desa */}
-            <div className="flex justify-center">
-              <StrukturCard person={kades} highlight />
-            </div>
-            <StumpRow cols={1} />
-            <BarRow cols={2} />
-
-            {/* Level 2: Sekretariat */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-6">
-              {level2Persons.map(p => <StrukturCard key={p.id} person={p} />)}
-            </div>
-            <StumpRow cols={2} />
-            <BarRow cols={5} />
-
-            {/* Level 3: Kepala Seksi */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
-              {level3Persons.map(p => <StrukturCard key={p.id} person={p} />)}
-            </div>
-            <StumpRow cols={5} />
-            <BarRow cols={3} />
-
-            {/* Level 4: Kepala Dusun */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6">
-              {level4Persons.map(p => <StrukturCard key={p.id} person={p} />)}
-            </div>
-          </div>
-        </section>
-
-        {/* Bagian Profil Perangkat Desa */}
-        <section id="profil-perangkat" className="scroll-mt-24 space-y-6">
-          <div className="flex items-end justify-between gap-4 flex-wrap">
-            <div className="space-y-2 max-w-xl">
-              <span className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                <Users className="w-3.5 h-3.5" />
-                Profil Perangkat
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-['Playfair_Display',serif]">
-                Profil Perangkat Desa
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                Mengenal lebih dekat Kepala Desa, Sekretariat, Kepala Seksi, hingga Kepala Dusun yang bertugas melayani masyarakat.
-              </p>
-            </div>
-            <button
-              onClick={() => { setShowAllPerangkat(true); scrollToPerangkat(); }}
-              className="inline-flex items-center gap-2 px-5 py-3 bg-white border border-emerald-600 text-emerald-700 hover:bg-emerald-50 rounded-xl text-xs font-bold transition shadow-sm"
-            >
-              <span>Lihat Semua Perangkat</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {perangkatGridList.map(person => (
-              <div
-                key={person.id}
-                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between"
+          <div className="relative z-10">
+            
+            {/* ----------------------------------------------------
+                LEVEL 1: KEPALA DESA (TOP CENTER)
+                ---------------------------------------------------- */}
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                onClick={() => setSelectedOfficial(kades)}
+                className="bg-white rounded-2xl border border-emerald-200/90 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all p-3 sm:py-3.5 sm:px-5 flex items-center gap-4 w-fit min-w-[280px] sm:min-w-[320px] max-w-sm relative group cursor-pointer text-left"
               >
-                <div>
-                  <div className="relative h-52 sm:h-56 bg-gradient-to-b from-emerald-50 to-slate-100 overflow-hidden">
-                    <img
-                      src={person.fotoUrl}
-                      alt={person.nama}
-                      className="w-full h-full object-cover object-top"
-                    />
-                    <span className="absolute top-3 left-3 bg-emerald-800/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
-                      {person.kategori}
-                    </span>
-                  </div>
+                <CornerLeafBadge />
 
-                  <div className="p-5 space-y-2">
-                    <span className="text-xs font-bold text-emerald-700 block uppercase tracking-wide">
-                      {person.jabatan}
-                    </span>
-                    <h3 className="text-base font-extrabold text-slate-900 leading-snug">
-                      {person.nama}
-                    </h3>
-
-                    <div className="pt-1 text-xs text-slate-500 space-y-1">
-                      <div className="flex items-center gap-1.5">
-                        <GraduationCap className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                        <span>{person.pendidikan}</span>
-                      </div>
-                      {person.kontak && (
-                        <div className="flex items-center gap-1.5 text-emerald-700 font-medium">
-                          <Phone className="w-3.5 h-3.5 shrink-0" />
-                          <span>{person.kontak}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                {/* Circular Photo */}
+                <div className="relative">
+                  <img
+                    src={getOfficialPhoto('kades-1', kades.fotoUrl)}
+                    alt={kades.nama}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top border-2 border-emerald-600 shrink-0 shadow-xs group-hover:scale-105 transition-transform"
+                  />
                 </div>
 
-                <div className="p-5 pt-0">
-                  <button
-                    onClick={() => setActiveModalPerson(person)}
-                    className="w-full py-2 bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5"
-                  >
-                    <span>Lihat Profil</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                {/* Badge & Name */}
+                <div className="space-y-1">
+                  <div className="bg-[#184631] text-white text-[11px] sm:text-xs font-semibold px-3 py-0.5 rounded-full w-fit shadow-2xs">
+                    Kepala Desa
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-800 leading-snug group-hover:text-[#184631] transition-colors">
+                    A. Zaenal Arifin S.ag
+                  </h3>
+                </div>
+              </button>
+
+              {/* Vertical Connector: Kepala Desa -> Sekretaris Desa */}
+              <div className="w-0.5 h-8 sm:h-10 bg-[#184631]" />
+            </div>
+
+            {/* ----------------------------------------------------
+                LEVEL 2: SEKRETARIS DESA (CENTER)
+                ---------------------------------------------------- */}
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                onClick={() => setSelectedOfficial(sekdes)}
+                className="bg-white rounded-2xl border border-emerald-200/90 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all p-3 sm:py-3.5 sm:px-5 flex items-center gap-4 w-fit min-w-[280px] sm:min-w-[320px] max-w-sm relative group cursor-pointer text-left"
+              >
+                <CornerLeafBadge />
+
+                {/* Circular Photo */}
+                <div className="relative">
+                  <img
+                    src={getOfficialPhoto('sekdes-1', sekdes.fotoUrl)}
+                    alt={sekdes.nama}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top border-2 border-emerald-600 shrink-0 shadow-xs group-hover:scale-105 transition-transform"
+                  />
+                </div>
+
+                {/* Badge & Name */}
+                <div className="space-y-1">
+                  <div className="bg-[#184631] text-white text-[11px] sm:text-xs font-semibold px-3 py-0.5 rounded-full w-fit shadow-2xs">
+                    Sekretaris Desa
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-800 leading-snug group-hover:text-[#184631] transition-colors">
+                    Agil Asmi Farizi S.H
+                  </h3>
+                </div>
+              </button>
+
+              {/* Vertical Connector: Sekretaris Desa -> Horizontal Tree Bar */}
+              <div className="w-0.5 h-8 sm:h-10 bg-[#184631]" />
+            </div>
+
+            {/* ----------------------------------------------------
+                LEVEL 3: HORIZONTAL TREE ROW (6 DIVISION HEADS)
+                Bendahara Desa | Kasi Pemerintahan | Kasi Kesra | 
+                Kasi Pelayanan | Kasi Perencanaan | Kasi TUTR
+                ---------------------------------------------------- */}
+            <div className="relative mt-0">
+              
+              {/* Connector Lines for Level 3 on Large Screens */}
+              <div className="hidden lg:block relative w-full mb-0">
+                {/* Horizontal Spanning Branch Line */}
+                <div className="mx-[8%] border-t-2 border-[#184631]" />
+                
+                {/* 6 Vertical Drop Pins aligned with the 6 columns */}
+                <div className="grid grid-cols-6 gap-3 sm:gap-4 px-1">
+                  {[0, 1, 2, 3, 4, 5].map((idx) => (
+                    <div key={idx} className="flex justify-center">
+                      <div className="w-0.5 h-6 bg-[#184631]" />
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Banner Penutup */}
-        <section className="relative rounded-3xl overflow-hidden shadow-md text-white">
-          <img src={heroPanoramaImg} alt="Pemandangan Desa Warung Menteng" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/95 to-teal-900/85" />
-          <div className="relative z-10 p-10 sm:p-14 text-center space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-['Playfair_Display',serif]">
-              Bersama Warga Membangun Desa
-            </h2>
-            <p className="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-              Pemerintah Desa Warung Menteng berkomitmen melayani, membangun, dan memberdayakan masyarakat secara gotong royong.
-            </p>
-          </div>
-        </section>
+              {/* Responsive Grid of the 6 Cards */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                {rowOfficials.map((item, idx) => {
+                  const photoSrc = getOfficialPhoto(item.photoId, item.person.fotoUrl);
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedOfficial(item.person)}
+                      className="bg-white border border-emerald-200/90 rounded-2xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex flex-col items-center text-center relative group cursor-pointer"
+                    >
+                      <CornerLeafBadge />
 
-        {/* Kotak Informasi Kontak Pemerintahan Desa */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {infoKontak.map(item => (
-            <div key={item.label} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-              <span className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-3">
-                <item.icon className="w-5 h-5 text-emerald-700" />
-              </span>
-              <h4 className="text-xs font-bold uppercase tracking-wide text-slate-400 mb-1">
-                {item.label}
-              </h4>
-              <p className="text-sm font-semibold text-slate-800 leading-relaxed">
-                {item.value}
-              </p>
+                      {/* Photo */}
+                      <div className="relative mt-1">
+                        <img
+                          src={photoSrc}
+                          alt={item.name}
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top border-2 border-emerald-600 shadow-xs group-hover:scale-105 transition-transform"
+                        />
+                      </div>
+
+                      {/* Dark Green Pill Badge */}
+                      <div className="bg-[#184631] text-white text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-full mt-2.5 whitespace-nowrap shadow-2xs">
+                        {item.badge}
+                      </div>
+
+                      {/* Name */}
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-[13px] mt-1.5 leading-snug group-hover:text-[#184631] transition-colors">
+                        {item.name}
+                      </h4>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          ))}
-        </section>
 
-        {/* Modal Detail Tupoksi */}
-        {activeModalPerson && (
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 animate-in fade-in zoom-in-95 duration-150 relative">
-              <div className="flex items-start gap-4">
+            {/* ----------------------------------------------------
+                LEVEL 4: KADUS (KEPALA DUSUN) SECTION
+                Connected from tree bottom to 3 Dusun heads
+                ---------------------------------------------------- */}
+            <div className="mt-8 flex flex-col items-center">
+              
+              {/* Vertical Connector from Level 3 to Kadus Pill */}
+              <div className="w-0.5 h-6 sm:h-8 bg-[#184631]" />
+
+              {/* Kadus Header Badge */}
+              <div className="inline-flex items-center justify-center gap-2 bg-[#184631] text-white text-xs sm:text-sm font-bold px-6 py-1.5 rounded-full shadow-sm">
+                <Users className="w-4 h-4 text-emerald-300" />
+                <span>Kadus</span>
+              </div>
+
+              {/* Vertical Connector from Kadus Pill to Kadus Branch */}
+              <div className="w-0.5 h-6 bg-[#184631]" />
+
+              {/* Kadus Branch Line & Vertical Pins */}
+              <div className="w-full max-w-lg hidden sm:block">
+                <div className="mx-[16%] border-t-2 border-[#184631]" />
+                <div className="grid grid-cols-3">
+                  {[0, 1, 2].map((idx) => (
+                    <div key={idx} className="flex justify-center">
+                      <div className="w-0.5 h-5 bg-[#184631]" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3 Kadus Cards */}
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-6 w-full max-w-2xl mt-1">
+                {kadusList.map((k, idx) => {
+                  const photoSrc = getOfficialPhoto(k.photoId, k.person.fotoUrl);
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedOfficial(k.person)}
+                      className="bg-white border border-emerald-200/90 rounded-2xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex flex-col items-center text-center w-36 sm:w-44 relative group cursor-pointer"
+                    >
+                      <CornerLeafBadge />
+
+                      {/* Photo */}
+                      <div className="relative mt-1">
+                        <img
+                          src={photoSrc}
+                          alt={k.name}
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top border-2 border-emerald-600 shadow-xs group-hover:scale-105 transition-transform"
+                        />
+                      </div>
+
+                      {/* Name */}
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm mt-2 leading-snug group-hover:text-[#184631] transition-colors">
+                        {k.name}
+                      </h4>
+
+                      {/* Soft Mint Pill Badge */}
+                      <div className="bg-emerald-100/90 text-[#184631] border border-emerald-300/60 text-[11px] font-bold px-3 py-0.5 rounded-full mt-1.5 shadow-2xs">
+                        {k.badge}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      {/* ========================================================
+          MODAL DETAIL PERANGKAT DESA
+          ======================================================== */}
+      {selectedOfficial && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fadeIn"
+          onClick={() => setSelectedOfficial(null)}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-emerald-200 animate-scaleUp text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-[#173e2d] to-[#1e503b] text-white p-6 relative">
+              <button
+                onClick={() => setSelectedOfficial(null)}
+                aria-label="Tutup modal"
+                className="absolute top-4 right-4 text-emerald-200 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-4">
                 <img
-                  src={activeModalPerson.fotoUrl}
-                  alt={activeModalPerson.nama}
-                  className="w-20 h-24 rounded-2xl object-cover object-top border-2 border-emerald-500 shadow shrink-0"
+                  src={getOfficialPhoto(selectedOfficial.id, selectedOfficial.fotoUrl)}
+                  alt={selectedOfficial.nama}
+                  className="w-20 h-20 rounded-full object-cover border-2 border-emerald-400 shadow-md bg-white shrink-0"
                 />
                 <div>
-                  <span className="text-xs font-bold text-emerald-700 uppercase bg-emerald-50 px-2 py-0.5 rounded">
-                    {activeModalPerson.jabatan}
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-700/80 text-emerald-100 border border-emerald-500/40 mb-1">
+                    {selectedOfficial.jabatan}
                   </span>
-                  <h3 className="text-lg font-extrabold text-slate-900 mt-1">
-                    {activeModalPerson.nama}
+                  <h3 className="text-xl font-bold leading-snug">
+                    {selectedOfficial.nama}
                   </h3>
-                  <p className="text-xs text-slate-500 mt-0.5">{activeModalPerson.kategori}</p>
+                  {selectedOfficial.nip && (
+                    <p className="text-xs text-emerald-200 font-mono mt-0.5">
+                      NIP: {selectedOfficial.nip}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-5 text-sm">
+              {/* Profile Details */}
+              <div className="grid grid-cols-2 gap-3 bg-[#f6faf7] p-3.5 rounded-2xl border border-emerald-100">
+                <div className="flex items-center gap-2 text-slate-700">
+                  <GraduationCap className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <div>
+                    <span className="text-[10px] text-slate-600 block">Pendidikan Terakhir</span>
+                    <span className="font-semibold text-xs text-slate-800">
+                      {selectedOfficial.pendidikan || 'Pendidikan Tinggi'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-slate-700">
+                  <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <div>
+                    <span className="text-[10px] text-slate-600 block">Status Jabatan</span>
+                    <span className="font-semibold text-xs text-slate-800">
+                      Perangkat Desa Aktif
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-3 text-xs text-slate-700 pt-2 border-t border-slate-100">
-                <div className="p-3 bg-slate-50 rounded-xl">
-                  <span className="font-bold text-slate-800 block mb-1">Pendidikan Terakhir:</span>
-                  <span>{activeModalPerson.pendidikan}</span>
-                </div>
-                <div className="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100">
-                  <span className="font-bold text-emerald-900 block mb-1">Tugas Pokok & Fungsi (Tupoksi):</span>
-                  <p className="leading-relaxed text-slate-700">{activeModalPerson.tupoksi}</p>
+              {/* Tugas Pokok & Fungsi */}
+              <div className="space-y-2">
+                <h4 className="font-bold text-slate-800 text-xs tracking-wider uppercase flex items-center gap-1.5 text-emerald-900">
+                  <FileText className="w-4 h-4 text-emerald-700" />
+                  <span>Tugas Pokok & Fungsi (Tupoksi)</span>
+                </h4>
+                <div className="bg-emerald-50/70 border border-emerald-100 rounded-2xl p-4 text-slate-700 text-xs sm:text-sm leading-relaxed">
+                  {selectedOfficial.tupoksi ||
+                    'Melaksanakan tugas pemerintahan desa dan memberikan pelayanan prima kepada masyarakat Desa Warung Menteng sesuai dengan peraturan perundang-undangan.'}
                 </div>
               </div>
 
-              <button
-                onClick={() => setActiveModalPerson(null)}
-                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition"
-              >
-                Tutup Jendela
-              </button>
+              {/* Key Responsibilities Bullet List */}
+              <div className="space-y-2">
+                <h4 className="font-bold text-slate-800 text-xs tracking-wider uppercase flex items-center gap-1.5 text-emerald-900">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                  <span>Fokus Pelayanan</span>
+                </h4>
+                <ul className="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                  <li>Pelayanan administrasi warga yang transparan dan bebas pungli.</li>
+                  <li>Koordinasi aktif bersama lembaga RT/RW dan masyarakat.</li>
+                  <li>Mendukung keterbukaan informasi dan digitalisasi Desa Warung Menteng.</li>
+                </ul>
+              </div>
+
+              {/* Modal Footer Button */}
+              <div className="pt-2 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setSelectedOfficial(null)}
+                  className="px-5 py-2.5 rounded-full bg-[#173e2d] hover:bg-[#1f533d] text-white font-bold text-xs transition-colors cursor-pointer shadow-sm"
+                >
+                  Tutup
+                </button>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
     </div>
   );
 };
+
+export default PemerintahanDesaView;

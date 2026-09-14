@@ -109,8 +109,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Ilmu Pemerintahan',
     tupoksi: 'Memimpin penyelenggaraan pemerintahan desa, membina kehidupan masyarakat desa, memelihara ketenteraman dan ketertiban, serta memberdayakan masyarakat desa.',
-    fotoUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
-    kontak: '0812-8877-6611'
+    fotoUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
   },
   {
     id: 'sekdes-1',
@@ -119,8 +118,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Sistem Informasi',
     tupoksi: 'Membantu Kepala Desa dalam mengoordinasikan administrasi pemerintahan, perencanaan, pelaporan, dan tata kelola keuangan desa.',
-    fotoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    kontak: '0813-2211-9988'
+    fotoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   },
   {
     id: 'kaur-keu-1',

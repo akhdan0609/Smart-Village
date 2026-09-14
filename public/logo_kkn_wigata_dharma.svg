@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradient for inner disc -->
+    <radialGradient id="innerGlow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#420d18" />
+      <stop offset="40%" stop-color="#2e0a12" />
+      <stop offset="75%" stop-color="#111625" />
+      <stop offset="100%" stop-color="#080c16" />
+    </radialGradient>
+
+    <!-- Path for Top Curved Text: KKN DESA WARUNG MENTENG -->
+    <path id="topTextArc" d="M 66 250 A 184 184 0 1 1 434 250" fill="none" />
+    
+    <!-- Path for Bottom Curved Text: WIGATA DHARMA -->
+    <path id="bottomTextArc" d="M 82 272 A 186 186 0 0 0 418 272" fill="none" />
+
+    <!-- Quill Feather Definition -->
+    <g id="singleQuill">
+      <!-- Main Rachis / Spine -->
+      <line x1="0" y1="-115" x2="0" y2="65" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+      <!-- Nib at bottom -->
+      <path d="M -4 65 L 0 85 L 4 65 Z" fill="#ffffff" />
+      <line x1="0" y1="65" x2="0" y2="78" stroke="#111625" stroke-width="1.5" />
+      
+      <!-- Outer Feather Vane Silhouette -->
+      <path d="M 0 -115 
+               C -25 -80 -42 -20 -38 25 
+               C -35 45 -18 60 0 65 
+               C 18 60 35 45 38 25 
+               C 42 -20 25 -80 0 -115 Z" 
+            fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round" />
+
+      <!-- Left Vane Cuts / Slots -->
+      <path d="M -34 -2 L -12 -18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+      <path d="M -36 15 L -10 0" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+      <path d="M -28 -35 L -12 -45" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Right Vane Cuts / Slots -->
+      <path d="M 34 -2 L 12 -18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+      <path d="M 36 15 L 10 0" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+      <path d="M 28 -35 L 12 -45" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+    </g>
+
+    <!-- Inkwell Definition -->
+    <g id="inkwell">
+      <!-- Cap / Opening -->
+      <rect x="-16" y="-32" width="32" height="7" rx="3" fill="none" stroke="#ffffff" stroke-width="2.5" />
+      <!-- Neck -->
+      <path d="M -11 -25 L -11 -20 L 11 -20 L 11 -25 Z" fill="none" stroke="#ffffff" stroke-width="2.5" />
+      <!-- Jar / Bottle Body -->
+      <path d="M -11 -20 L -24 -2 L -21 16 L 21 16 L 24 -2 L 11 -20 Z" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round" />
+      <!-- Inner Ink Window / Level -->
+      <rect x="-14" y="-2" width="28" height="12" rx="3" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+    </g>
+  </defs>
+
+  <!-- Outermost Background Circle (Dark Navy Seal) -->
+  <circle cx="250" cy="250" r="240" fill="#0d1424" stroke="#ffffff" stroke-width="4" />
+  <circle cx="250" cy="250" r="233" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" />
+  
+  <!-- Inner Ring Separator -->
+  <circle cx="250" cy="250" r="168" fill="none" stroke="#ffffff" stroke-width="3.5" />
+
+  <!-- Inner Disc with Radial Gradient (Crimson Glow to Midnight) -->
+  <circle cx="250" cy="250" r="166" fill="url(#innerGlow)" />
+
+  <!-- ================= TEXT IN OUTER RING ================= -->
+  <!-- Top Text: KKN DESA WARUNG MENTENG -->
+  <text fill="#ffffff" font-family="'Montserrat', 'Arial Black', -apple-system, sans-serif" font-size="23" font-weight="800" letter-spacing="3.8">
+    <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">
+      KKN DESA WARUNG MENTENG
+    </textPath>
+  </text>
+
+  <!-- Left Star ★ -->
+  <g transform="translate(84, 294) rotate(-38)">
+    <polygon points="0,-9 2.7,-2.7 9,-2.7 4,1.8 5.8,8 0,4.2 -5.8,8 -4,1.8 -9,-2.7 -2.7,-2.7" fill="#ffffff" />
+  </g>
+
+  <!-- Right Star ★ -->
+  <g transform="translate(416, 294) rotate(38)">
+    <polygon points="0,-9 2.7,-2.7 9,-2.7 4,1.8 5.8,8 0,4.2 -5.8,8 -4,1.8 -9,-2.7 -2.7,-2.7" fill="#ffffff" />
+  </g>
+
+  <!-- Bottom Text: WIGATA DHARMA -->
+  <text fill="#ffffff" font-family="'Montserrat', 'Arial Black', -apple-system, sans-serif" font-size="34" font-weight="900" letter-spacing="5.5">
+    <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">
+      WIGATA DHARMA
+    </textPath>
+  </text>
+
+  <!-- ================= CENTRAL ARTWORK ================= -->
+  <!-- Background Inner Halo Ring (behind quills) -->
+  <circle cx="250" cy="236" r="66" fill="none" stroke="#ffffff" stroke-width="2.2" opacity="0.9" />
+
+  <!-- Crossed Quill Pens (X-Shape) -->
+  <!-- Left Quill (tilted pointing to top-left) -->
+  <g transform="translate(250, 236) rotate(-28)">
+    <use href="#singleQuill" />
+  </g>
+
+  <!-- Right Quill (tilted pointing to top-right) -->
+  <g transform="translate(250, 236) rotate(28)">
+    <use href="#singleQuill" />
+  </g>
+
+  <!-- Left Inkwell -->
+  <g transform="translate(192, 268) rotate(-4)">
+    <use href="#inkwell" />
+  </g>
+
+  <!-- Right Inkwell -->
+  <g transform="translate(308, 268) rotate(4)">
+    <use href="#inkwell" />
+  </g>
+
+  <!-- Globe (Earth Sphere) at Center Bottom -->
+  <g id="globeGroup" transform="translate(250, 298)">
+    <!-- Globe Circle Outer -->
+    <circle cx="0" cy="0" r="19" fill="#0d1424" stroke="#ffffff" stroke-width="2.5" />
+    
+    <!-- Longitude Lines (Meridians) -->
+    <ellipse cx="0" cy="0" rx="8" ry="19" fill="none" stroke="#ffffff" stroke-width="1.8" />
+    <line x1="0" y1="-19" x2="0" y2="19" stroke="#ffffff" stroke-width="1.8" />
+    
+    <!-- Latitude Lines (Parallels) -->
+    <line x1="-19" y1="0" x2="19" y2="0" stroke="#ffffff" stroke-width="1.8" />
+    <path d="M -16 -8 Q 0 -5 16 -8" fill="none" stroke="#ffffff" stroke-width="1.5" />
+    <path d="M -16 8 Q 0 5 16 8" fill="none" stroke="#ffffff" stroke-width="1.5" />
+  </g>
+
+  <!-- Digital Tech Circuit Board Lines (PCB Traces) -->
+  <g id="circuitTraces" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left PCB branch to Left Inkwell -->
+    <path d="M 231 298 L 210 298 L 200 286 L 200 284" />
+    <path d="M 210 298 L 202 308 L 175 308" />
+    <path d="M 194 308 L 186 317 L 168 317" />
+    <!-- Left Circuit Node Dots -->
+    <circle cx="175" cy="308" r="3" fill="#ffffff" />
+    <circle cx="168" cy="317" r="3" fill="#ffffff" />
+
+    <!-- Right PCB branch to Right Inkwell -->
+    <path d="M 269 298 L 290 298 L 300 286 L 300 284" />
+    <path d="M 290 298 L 298 308 L 325 308" />
+    <path d="M 306 308 L 314 317 L 332 317" />
+    <!-- Right Circuit Node Dots -->
+    <circle cx="325" cy="308" r="3" fill="#ffffff" />
+    <circle cx="332" cy="317" r="3" fill="#ffffff" />
+  </g>
+
+  <!-- Year: • 2026 • -->
+  <text x="250" y="346" fill="#ffffff" font-family="'Montserrat', -apple-system, sans-serif" font-size="18" font-weight="800" letter-spacing="3" text-anchor="middle">
+    • 2026 •
+  </text>
+</svg>

@@ -37,7 +37,9 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       items: [
         'Surat Keterangan Domisili Warga',
         'Surat Keterangan Domisili Usaha',
-        'Surat Keterangan Tidak Mampu (SKTM)'
+        'Surat Keterangan Tidak Mampu (SKTM)',
+        'Surat Keterangan Kelahiran',
+        'Surat Keterangan Kematian'
       ],
       icon: FileText,
       page: 'pelayanan-surat-keterangan' as PageRoute
