@@ -48,7 +48,8 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       desc: 'Layanan administrasi pernikahan sesuai ketentuan yang berlaku.',
       items: [
         'Formulir N1 - N4',
-        'Surat Pengantar Nikah'
+        'Surat Pengantar Nikah',
+        'Keterangan NA (Numpang Nikah)'
       ],
       icon: Heart,
       page: 'pelayanan-layanan-pernikahan' as PageRoute

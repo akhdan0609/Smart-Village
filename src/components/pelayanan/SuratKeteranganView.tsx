@@ -14,7 +14,7 @@ import {
 import { saveSuratRequest } from '../../utils/storage';
 
 export const SuratKeteranganView: React.FC = () => {
-  const [activeJenis, setActiveJenis] = useState<'domisili-warga' | 'domisili-usaha' | 'sktm'>('domisili-warga');
+  const [activeJenis, setActiveJenis] = useState<'domisili-warga' | 'domisili-usaha' | 'sktm' | 'kematian'>('domisili-warga');
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
@@ -40,6 +40,14 @@ export const SuratKeteranganView: React.FC = () => {
     keperluanSKTM: 'Persyaratan Beasiswa Pendidikan',
     penghasilanBulanan: '< Rp 1.500.000',
     tanggunganKeluarga: '3 Orang',
+    // Spesifik Surat Keterangan Kematian (SKK)
+    namaAlmarhum: '',
+    nikAlmarhum: '',
+    tempatKematian: '',
+    tanggalKematian: '',
+    penyebabKematian: 'Sakit',
+    lokasiKematian: 'Rumah',
+    hubunganPelapor: 'Anak',
     // Umum
     keperluanSurat: ''
   });
@@ -49,12 +57,19 @@ export const SuratKeteranganView: React.FC = () => {
     
     let jenisSuratLabel = 'Surat Keterangan Domisili Warga';
     let kodePrefix = 'SKD';
+    let keperluan = formData.keperluanSurat || 'Keterangan Domisili Tempat Tinggal';
     if (activeJenis === 'domisili-usaha') {
       jenisSuratLabel = 'Surat Keterangan Domisili Usaha (SKU)';
       kodePrefix = 'SKU';
+      keperluan = `Usaha ${formData.namaUsaha} (${formData.jenisUsaha})`;
     } else if (activeJenis === 'sktm') {
       jenisSuratLabel = 'Surat Keterangan Tidak Mampu (SKTM)';
       kodePrefix = 'SKTM';
+      keperluan = formData.keperluanSKTM;
+    } else if (activeJenis === 'kematian') {
+      jenisSuratLabel = 'Surat Keterangan Kematian (SKK)';
+      kodePrefix = 'SKK';
+      keperluan = `Kematian ${formData.namaAlmarhum || 'Almarhum/Almarhumah'} - ${formData.penyebabKematian}`;
     }
 
     const regCode = `${kodePrefix}-${Date.now().toString().slice(-6)}`;
@@ -68,11 +83,7 @@ export const SuratKeteranganView: React.FC = () => {
       noWhatsapp: formData.noWhatsapp,
       dusun: formData.dusun,
       rtRw: `RT ${formData.rt} / RW ${formData.rw}`,
-      keperluan: activeJenis === 'domisili-usaha' 
-        ? `Usaha ${formData.namaUsaha} (${formData.jenisUsaha})` 
-        : activeJenis === 'sktm' 
-        ? formData.keperluanSKTM 
-        : (formData.keperluanSurat || 'Keterangan Domisili Tempat Tinggal'),
+      keperluan: keperluan,
       status: 'diajukan' as const,
       tanggalPengajuan: new Date().toISOString().split('T')[0],
       estimasiSelesai: '1 Hari Kerja'
@@ -103,6 +114,13 @@ export const SuratKeteranganView: React.FC = () => {
       shortTitle: 'SKTM (Tidak Mampu)',
       badge: 'SKTM',
       desc: 'Menerangkan keadaan ekonomi keluarga untuk keringanan biaya pengobatan RS, beasiswa pendidikan, atau bantuan sosial.'
+    },
+    {
+      id: 'kematian' as const,
+      title: 'Surat Keterangan Kematian',
+      shortTitle: 'Kematian (SKK)',
+      badge: 'SKK',
+      desc: 'Menerangkan peristiwa kematian warga untuk keperluan ahlî waris, asuransi, dan administrasi lanjutan.'
     }
   ];
 
@@ -125,13 +143,13 @@ export const SuratKeteranganView: React.FC = () => {
             </h1>
             
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-              Pembuatan Surat Keterangan Domisili Warga, Surat Keterangan Domisili Usaha (SKU), dan Surat Keterangan Tidak Mampu (SKTM) secara online langsung terverifikasi oleh Seksi Pelayanan Desa Warung Menteng.
+              Pembuatan Surat Keterangan Domisili Warga, Surat Keterangan Domisili Usaha (SKU), Surat Keterangan Tidak Mampu (SKTM), dan Surat Keterangan Kematian (SKK) secara online langsung terverifikasi oleh Seksi Pelayanan Desa Warung Menteng.
             </p>
           </div>
         </div>
 
-        {/* 3 Nav Tabs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* 4 Nav Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {jenisTabs.map(tab => (
             <button
               key={tab.id}
@@ -243,6 +261,35 @@ export const SuratKeteranganView: React.FC = () => {
               </ul>
             )}
 
+            {activeJenis === 'kematian' && (
+              <ul className="space-y-3 text-xs text-slate-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Surat Pengantar dari Ketua RT dan RW setempat</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Fotokopi KTP almarhum / almarhumah</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Fotokopi Kartu Keluarga (KK) yang masih berlaku</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Fotokopi KTP pelapor (keluarga / ahlî waris)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Surat keterangan penyebab kematian dari dokter / Puskesmas / Rumah Sakit (bila meninggal karena sakit)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Berita acara / laporan kepolisian (bila meninggal karena kecelakaan atau peristiwa lain)</span>
+                </li>
+              </ul>
+            )}
+
             <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200/80 text-xs text-emerald-900 space-y-1.5">
               <div className="flex items-center gap-1.5 font-bold text-emerald-950">
                 <Clock className="w-4 h-4 text-emerald-700" />
@@ -256,7 +303,7 @@ export const SuratKeteranganView: React.FC = () => {
           <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
             <div className="border-b border-slate-100 pb-4">
               <h2 className="text-lg sm:text-xl font-bold text-slate-900">
-                Formulir Pengajuan {activeJenis === 'domisili-warga' ? 'Surat Keterangan Domisili' : activeJenis === 'domisili-usaha' ? 'Surat Keterangan Usaha (SKU)' : 'Surat Keterangan Tidak Mampu (SKTM)'}
+                Formulir Pengajuan {activeJenis === 'domisili-warga' ? 'Surat Keterangan Domisili' : activeJenis === 'domisili-usaha' ? 'Surat Keterangan Usaha (SKU)' : activeJenis === 'sktm' ? 'Surat Keterangan Tidak Mampu (SKTM)' : 'Surat Keterangan Kematian (SKK)'}
               </h2>
               <p className="text-xs text-slate-500">
                 Lengkapi data pemohon di bawah ini dengan benar sesuai dokumen KTP & KK Anda
@@ -298,7 +345,7 @@ export const SuratKeteranganView: React.FC = () => {
                 {/* Biodata Pemohon */}
                 <div className="space-y-3">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 pb-1">
-                    1. Data Pemohon
+                    {activeJenis === 'kematian' ? '1. Data Pelapor / Ahlî Waris' : '1. Data Pemohon'}
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -597,6 +644,126 @@ export const SuratKeteranganView: React.FC = () => {
                           onChange={e => setFormData({ ...formData, tanggunganKeluarga: e.target.value })}
                           className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
                         />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Spesifik Bagian Kematian (SKK) */}
+                {activeJenis === 'kematian' && (
+                  <div className="space-y-3 pt-3 border-t border-slate-100">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1">
+                      2. Data Almarhum / Almarhumah (Khusus SKK)
+                    </h4>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nama Lengkap Almarhum / Almarhumah *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Ujang Sutisna"
+                          value={formData.namaAlmarhum}
+                          onChange={e => setFormData({ ...formData, namaAlmarhum: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          NIK Almarhum / Almarhumah *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          maxLength={16}
+                          placeholder="16 Digit NIK KTP"
+                          value={formData.nikAlmarhum}
+                          onChange={e => setFormData({ ...formData, nikAlmarhum: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Tempat Kematian *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Rumah, Kp. Cimenteng"
+                          value={formData.tempatKematian}
+                          onChange={e => setFormData({ ...formData, tempatKematian: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Tanggal Kematian *
+                        </label>
+                        <input
+                          type="date"
+                          required
+                          value={formData.tanggalKematian}
+                          onChange={e => setFormData({ ...formData, tanggalKematian: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Penyebab Kematian *
+                        </label>
+                        <select
+                          value={formData.penyebabKematian}
+                          onChange={e => setFormData({ ...formData, penyebabKematian: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        >
+                          <option value="Sakit">Sakit</option>
+                          <option value="Kecelakaan">Kecelakaan</option>
+                          <option value="Usia Lanjut">Usia Lanjut</option>
+                          <option value="Lainnya">Lainnya</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Lokasi Kematian *
+                        </label>
+                        <select
+                          value={formData.lokasiKematian}
+                          onChange={e => setFormData({ ...formData, lokasiKematian: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        >
+                          <option value="Rumah">Rumah</option>
+                          <option value="Rumah Sakit">Rumah Sakit</option>
+                          <option value="Puskesmas">Puskesmas</option>
+                          <option value="Tempat Lainnya">Tempat Lainnya</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Hubungan Pelapor dengan Almarhum *
+                        </label>
+                        <select
+                          value={formData.hubunganPelapor}
+                          onChange={e => setFormData({ ...formData, hubunganPelapor: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        >
+                          <option value="Anak">Anak</option>
+                          <option value="Istri / Suami">Istri / Suami</option>
+                          <option value="Orang Tua">Orang Tua</option>
+                          <option value="Saudara">Saudara</option>
+                          <option value="Lainnya">Lainnya</option>
+                        </select>
                       </div>
                     </div>
                   </div>
