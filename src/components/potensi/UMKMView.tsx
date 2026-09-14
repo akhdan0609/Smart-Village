@@ -150,119 +150,102 @@ export const UMKMView: React.FC = () => {
         </div>
       </div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal - layout pas mengisi layar perangkat tanpa perlu scroll */}
       {activeItem && (
         <div
           role="dialog"
           aria-modal="true"
           onClick={() => setActiveItem(null)}
-          className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-150 my-8"
+            className="bg-white w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in fade-in zoom-in-95 duration-150 flex flex-col max-h-[100dvh] sm:max-h-[calc(100dvh-2rem)] overflow-hidden"
           >
             {/* Galeri Foto */}
-            <div className="bg-slate-100">
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <img
-                  src={fotoList[activeFoto] || 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&w=800&q=80'}
-                  alt={activeItem.nama}
-                  className="w-full h-full object-cover"
-                />
+            <div className="relative h-44 sm:h-52 w-full shrink-0 bg-slate-100">
+              <img
+                src={fotoList[activeFoto] || 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&w=800&q=80'}
+                alt={activeItem.nama}
+                className="w-full h-full object-cover"
+              />
 
-                {/* Navigasi panah */}
-                {fotoList.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => setActiveFoto((i) => (i - 1 + fotoList.length) % fotoList.length)}
-                      aria-label="Foto sebelumnya"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => setActiveFoto((i) => (i + 1) % fotoList.length)}
-                      aria-label="Foto selanjutnya"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
-
-                <button
-                  onClick={() => setActiveItem(null)}
-                  aria-label="Tutup modal"
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
-                <span className="absolute bottom-3 left-3 bg-black/60 text-white text-xs font-semibold px-3 py-1 rounded-lg">
-                  {activeFoto + 1} / {fotoList.length || 1}
-                </span>
-              </div>
-
-              {/* Thumbnail scrollable (klik untuk ganti foto) */}
+              {/* Navigasi panah */}
               {fotoList.length > 1 && (
-                <div className="flex gap-2 px-3 py-3 overflow-x-auto">
-                  {fotoList.map((foto, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveFoto(i)}
-                      className={`shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition cursor-pointer ${
-                        i === activeFoto ? 'border-[#0b3b29]' : 'border-transparent opacity-70 hover:opacity-100'
-                      }`}
-                    >
-                      <img src={foto} alt={`${activeItem.nama} ${i + 1}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <button
+                    onClick={() => setActiveFoto((i) => (i - 1 + fotoList.length) % fotoList.length)}
+                    aria-label="Foto sebelumnya"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setActiveFoto((i) => (i + 1) % fotoList.length)}
+                    aria-label="Foto selanjutnya"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
               )}
+
+              <button
+                onClick={() => setActiveItem(null)}
+                aria-label="Tutup modal"
+                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <span className="absolute bottom-3 left-3 bg-black/60 text-white text-xs font-semibold px-3 py-1 rounded-lg">
+                {activeFoto + 1} / {fotoList.length || 1}
+              </span>
             </div>
 
-            {/* Isi Detail */}
-            <div className="p-5 sm:p-6 space-y-4 max-h-[45vh] overflow-y-auto">
-              <div>
-                <h2 className="text-xl font-extrabold text-slate-900">{activeItem.nama}</h2>
-                <p className="text-[11px] text-emerald-800 font-semibold mt-1 flex items-center gap-1">
-                  Produk Asli Desa Warung Menteng
-                </p>
+            {/* Thumbnail scrollable (klik untuk ganti foto) */}
+            {fotoList.length > 1 && (
+              <div className="flex gap-2 px-3 py-2.5 overflow-x-auto shrink-0 bg-slate-50 border-b border-slate-100">
+                {fotoList.map((foto, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveFoto(i)}
+                    className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition cursor-pointer ${
+                      i === activeFoto ? 'border-[#0b3b29]' : 'border-transparent opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={foto} alt={`${activeItem.nama} ${i + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
               </div>
+            )}
 
+            {/* Deskripsi - memakai sisa ruang agar nomor WA tetap terlihat */}
+            <div className="flex-1 overflow-y-auto min-h-0 px-5 sm:px-6 py-4 space-y-2">
+              <h2 className="text-xl font-extrabold text-slate-900 leading-snug">{activeItem.nama}</h2>
               <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <p>{activeItem.detailLengkap || activeItem.deskripsi}</p>
               </div>
+            </div>
 
-              {/* Nomor WhatsApp */}
-              {activeItem.kontak && (
-                <div className="p-4 bg-emerald-50/70 rounded-2xl border border-emerald-100 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600">Nomor WhatsApp:</span>
-                    <span className="font-bold text-emerald-900">{activeItem.kontak}</span>
-                  </div>
-                  <a
-                    href={getWhatsAppLink(activeItem)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-white" />
-                    <span>Hubungi Penjual via WhatsApp</span>
-                  </a>
+            {/* Nomor WhatsApp - selalu terlihat tanpa scroll */}
+            {activeItem.kontak && (
+              <div className="px-5 sm:px-6 py-4 bg-emerald-50/70 border-t border-emerald-100 shrink-0 space-y-2.5">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-600">Nomor WhatsApp:</span>
+                  <span className="font-bold text-emerald-900">{activeItem.kontak}</span>
                 </div>
-              )}
-            </div>
-
-            <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-2">
-              <button
-                onClick={() => setActiveItem(null)}
-                className="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-xl transition"
-              >
-                Tutup
-              </button>
-            </div>
+                <a
+                  href={getWhatsAppLink(activeItem)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition"
+                >
+                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <span>Hubungi Penjual via WhatsApp</span>
+                </a>
+              </div>
+            )}
           </div>
         </div>
       )}
