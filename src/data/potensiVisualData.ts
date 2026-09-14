@@ -7,6 +7,7 @@ export interface PotensiCardItem {
   deskripsi: string;
   detailLengkap?: string;
   fotoUrl?: string;
+  galeriFoto?: string[];
   lokasi?: string;
   kategori?: string;
   jamOperasional?: string;
@@ -534,78 +535,156 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     id: 'umkm-1',
     nama: 'Mamy Popcorn',
     deskripsi: 'Aneka popcorn renyah dengan pilihan rasa manis dan gurih.',
+    detailLengkap: 'Popcorn jagung pilihan diolah dengan mesin khusus sehingga setiap butirnya renyah megar dan tidak keras. Tersedia varian rasa manis karamel, gurih mentega, dan pedas balado. Dikemas higienis sehingga aman untuk teman santai keluarga maupun oleh-oleh khas desa.',
+    fotoUrl: 'https://images.unsplash.com/photo-1579211549520-cc02a2fec8cc?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1518263424-060b8f95101b?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1566969023665-e90b7a426d79?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '08992022422'
   },
   {
     id: 'umkm-2',
     nama: 'Keripik Singkong Ibu Iya',
     deskripsi: 'Keripik singkong renyah khas buatan rumahan.',
+    detailLengkap: 'Singkong mentega pilihan dipotong tipis lalu digoreng dengan minyak segar hingga renyah gurih. Dibumbui racikan bawang putih, ketumbar, dan garam tradisional tanpa MSG berlebih, menghasilkan keripik yang garing di luar dan tidak keras di gigi.',
+    fotoUrl: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1626369310886-921a247a36c3?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085814244479'
   },
   {
     id: 'umkm-3',
     nama: 'Kripik Pisang Bu Oom',
     deskripsi: 'Kripik pisang renyah dari pisang lokal pilihan.',
+    detailLengkap: 'Kripik dari pisang kepok lokal yang diiris tipis tipis-saer berkelanjutan, digoreng sampai renyah keemasan. Tersedia rasa original, manis gula aren, cokelat, dan keju. Produk dijamin menggunakan pisang matang pohon tanpa pengawet.',
+    fotoUrl: 'https://images.unsplash.com/photo-1621447504864-d8686e12698c?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '0895617703274'
   },
   {
     id: 'umkm-4',
     nama: 'Kripik Pisang Bu Nyai Mintarsih',
     deskripsi: 'Kripik pisang gurih dengan cita rasa khas desa.',
+    detailLengkap: 'Kripik pisang buatan tangan dengan resep keluarga turun-temurun. Pisang diiris tipis kemudian digoreng dengan api kecil agar teksturnya renyah dan tidak menyerap banyak minyak. Wajib dicoba varian balado pedas yang nikmat untuk cemilan sore.',
+    fotoUrl: 'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1621447504864-d8686e12698c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1518263424-060b8f95101b?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '0895328969653'
   },
   {
     id: 'umkm-5',
     nama: 'Abel Layangan',
     deskripsi: 'Layangan dan mainan tradisional karya warga desa.',
+    detailLengkap: 'Layangan hias dan layangan gliding buatan tangan warga desa dengan rangka bambu kuat dan kertas aluminium warna-warni. Tersedia berbagai ukuran dari layangan kenangan mini hingga layangan aduan besar. Cocok untuk bermain di musim angin maupun dekorasi kampung.',
+    fotoUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1607748851687-ba9d31ee3ae0?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085817390993'
   },
   {
     id: 'umkm-6',
     nama: 'Tahu Bapak Mukti',
     deskripsi: 'Tahu putih dan tahu goreng segar produksi rumahan.',
+    detailLengkap: 'Tahu putih dan tahu kuning produksi rumahan menggunakan kedelai pilihan tanpa pengawet. Diproses pagi hari sehingga selalu segar saat sampai ke tangan konsumen. Tekstur padat, halus, dan cocok untuk digoreng, ditumis, maupun dibuat tahu gejrot khas Sunda.',
+    fotoUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1541059609227-0bdbd75a5d55?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085776080746'
   },
   {
     id: 'umkm-7',
     nama: 'Benih Lele Pak Ujangko',
     deskripsi: 'Benih/bibit lele berkualitas siap tebar.',
+    detailLengkap: 'Bibit lele sangkuriang dan lele dumbo berkualitas yang siap ditebar untuk budidaya kolam rumah. Dipelihara dengan pakan bergizi sehingga pertumbuhan cepat dan tingkat hidup tinggi. Tersedia ukuran ukuran 3-4 cm hingga 5-7 cm dengan jumlah sesuai pesanan.',
+    fotoUrl: 'https://images.unsplash.com/photo-1533794298457-aa3aadd6de19?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1498654200942-2b5241467bb6?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085716601611'
   },
   {
     id: 'umkm-8',
     nama: 'Peternakan Ikan Nila Bapak Abdul Qodir',
     deskripsi: 'Ikan nila segar dari kolam air deras peternakan desa.',
+    detailLengkap: 'Ikan nila segar hasil panen kolam air deras (KAD) dengan kualitas jumbo dan daging tebal. Ikan ditangkap langsung setelah pesanan masuk sehingga kesegarannya terjaga. Tersedia dalam bentuk segar utuh maupun fillet, siap dikirim ke rumah.',
+    fotoUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1498654200942-2b5241467bb6?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085770586298'
   },
   {
     id: 'umkm-9',
     nama: 'Ikan Cue Tongkol & Anyaman Bambu Pak Ujang Bobo',
     deskripsi: 'Ikan cue tongkol dan kerajinan anyaman bambu buatan tangan.',
+    detailLengkap: 'Ikan cue tongkol olahan tradisional bergizi tinggi sebagai lauk tahan lama, diproduksi dari ikan tongkol segar pilihan dengan bumbu rempah asli. Selain itu tersedia kerajinan anyaman bambu seperti besek, bakul nasi, dan tas etnik karya tangan yang rapi dan kokoh.',
+    fotoUrl: 'https://images.unsplash.com/photo-1597397655642-0f8da100cb78?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '08568857478'
   },
   {
     id: 'umkm-10',
     nama: 'Manisan Pala Juandi',
     deskripsi: 'Manisan pala manis segar olahan buah khas desa.',
+    detailLengkap: 'Manisan pala basah dan kering dari buah pala kebun sendiri yang diolah higienis. Manisan pala basah segar dengan cita rasa manis asam yang menyegarkan, sedangkan pala kering cocok sebagai camilan tahan lama. Kemasan botol praktis untuk oleh-oleh.',
+    fotoUrl: 'https://images.unsplash.com/photo-1541647376583-8934aaf0798a?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085697137675'
   },
   {
     id: 'umkm-11',
     nama: 'Ikan Nila Bapak Iteung Fram',
     deskripsi: 'Ikan nila segar hasil budidaya kolam warga.',
+    detailLengkap: 'Ikan nila segar hasil budidaya kolam tanah milik warga dengan pakan alami dan pelet berkualitas. Ikan dipanen ketika sudah mencapai ukuran konsumsi dengan daging putih bersih dan tidak berbau lumpur. Pesanan segar langsung dipotong atau utuh tanpa dikirim beku.',
+    fotoUrl: 'https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085770586298'
   },
   {
     id: 'umkm-12',
     nama: 'Kerupuk Lembayung Warung Menteng',
     deskripsi: 'Kerupuk lembayung renyah berwarna alami.',
+    detailLengkap: 'Kerupuk lembayung dibuat dari campuran tepung tapioka dan daun lembayung/daun kacang panjang sehingga memiliki warna hijau alami yang cantik. Digoreng hingga renyah megar dan gurih. Tanpa pewarna sintetis, aman untuk seluruh keluarga.',
+    fotoUrl: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1626369310886-921a247a36c3?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '0895385253202'
   },
   {
     id: 'umkm-13',
     nama: 'Eli Toys',
     deskripsi: 'Mainan dan perlengkapan anak produksi warga desa.',
+    detailLengkap: 'Toko mainan dan perlengkapan anak milik warga desa yang menyediakan mainan edukatif, aksesoris, serta kebutuhan sekolah anak. Koleksi selalu diperbarui dengan harga terjangkau dan pelayanan ramah dari tetangga sendiri.',
+    fotoUrl: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80',
+    galeriFoto: [
+      'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1572204297792-ae989ce8df60?auto=format&fit=crop&w=800&q=80'
+    ],
     kontak: '085714769758'
   }
 ];
