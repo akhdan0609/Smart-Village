@@ -17,6 +17,7 @@ export type PageRoute =
   | 'potensi-akomodasi'
   | 'akomodasi'
   | 'potensi-umkm'
+  | 'potensi-umkm-detail'
   | 'potensi-situs-sejarah'
   | 'potensi-budaya'
   | 'potensi-perikanan'

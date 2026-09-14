@@ -20,6 +20,7 @@ import { AnggaranDesaView } from './components/profil/AnggaranDesaView';
 import { PotensiDesaView } from './components/potensi/PotensiDesaView';
 import { AkomodasiView } from './components/potensi/AkomodasiView';
 import { UMKMView } from './components/potensi/UMKMView';
+import { UMKMDetailView } from './components/potensi/UMKMDetailView';
 import { BudayaAdatView } from './components/potensi/BudayaAdatView';
 import { SitusSejarahView } from './components/potensi/SitusSejarahView';
 import { BudidayaView } from './components/potensi/BudidayaView';
@@ -129,7 +130,9 @@ export default function App() {
       case 'akomodasi':
         return <AkomodasiView />;
       case 'potensi-umkm':
-        return <UMKMView />;
+        return <UMKMView onNavigate={handleNavigate} />;
+      case 'potensi-umkm-detail':
+        return <UMKMDetailView umkmId={navParams?.umkmId} onNavigate={handleNavigate} />;
       case 'potensi-budaya':
         return <BudayaAdatView />;
       case 'potensi-situs-sejarah':

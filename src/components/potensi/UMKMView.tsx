@@ -1,46 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import {
-  X,
-  ArrowRight,
-  MessageCircle,
-  ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
-import { UMKM_VISUAL_LIST, PotensiCardItem } from '../../data/potensiVisualData';
+import React from 'react';
+import { ArrowRight, Store } from 'lucide-react';
+import { UMKM_VISUAL_LIST } from '../../data/potensiVisualData';
+import { PageRoute } from '../../types';
 
-export const UMKMView: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<PotensiCardItem | null>(null);
-  const [activeFoto, setActiveFoto] = useState(0);
+interface UMKMViewProps {
+  onNavigate?: (page: PageRoute | string, params?: any) => void;
+}
 
-  const getFotoList = (item: PotensiCardItem) => {
-    const list: string[] = [];
-    if (item.fotoUrl) list.push(item.fotoUrl);
-    if (item.galeriFoto) list.push(...item.galeriFoto);
-    return list;
+export const UMKMView: React.FC<UMKMViewProps> = ({ onNavigate }) => {
+  const openDetail = (id: string) => {
+    onNavigate?.('potensi-umkm-detail', { umkmId: id });
   };
-
-  const openModal = (item: PotensiCardItem) => {
-    setActiveFoto(0);
-    setActiveItem(item);
-  };
-
-  const getWhatsAppLink = (item: PotensiCardItem) => {
-    const rawNumber = (item.kontak || '').replace(/[^0-9]/g, '');
-    const formattedNumber = rawNumber.startsWith('0') ? '62' + rawNumber.slice(1) : rawNumber;
-    const text = encodeURIComponent(`Halo, saya tertarik dengan produk *${item.nama}* dari UMKM Desa Warung Menteng. Mohon info pemesanannya. Terima kasih.`);
-    return `https://wa.me/${formattedNumber}?text=${text}`;
-  };
-
-  useEffect(() => {
-    if (!activeItem) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveItem(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [activeItem]);
-
-  const fotoList = activeItem ? getFotoList(activeItem) : [];
 
   return (
     <div className="py-8 bg-[#f8faf8] min-h-screen">
@@ -87,7 +57,7 @@ export const UMKMView: React.FC = () => {
               Daftar UMKM Desa Warung Menteng
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-              Klik foto produk untuk melihat galeri dan klik "Lihat Selengkapnya" untuk detail selengkapnya.
+              Klik "Lihat Selengkapnya" untuk membuka halaman detail setiap UMKM.
             </p>
           </div>
           <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-full px-3 py-1">
@@ -102,11 +72,11 @@ export const UMKMView: React.FC = () => {
               key={item.id}
               className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden group"
             >
-              {/* Photo (klik untuk lihat galeri) */}
+              {/* Photo (klik untuk buka halaman detail) */}
               <button
-                onClick={() => openModal(item)}
+                onClick={() => openDetail(item.id)}
                 className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer"
-                aria-label={`Lihat galeri ${item.nama}`}
+                aria-label={`Lihat detail ${item.nama}`}
               >
                 {item.fotoUrl ? (
                   <img
@@ -117,12 +87,12 @@ export const UMKMView: React.FC = () => {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-slate-300">
-                    <ArrowRight className="w-8 h-8" />
+                    <Store className="w-8 h-8" />
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition" />
                 <span className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-xs text-white text-[10px] font-semibold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
-                  Lihat Foto
+                  Detail
                 </span>
               </button>
 
@@ -136,9 +106,9 @@ export const UMKMView: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Tombol Lihat Selengkapnya */}
+                {/* Tombol Lihat Selengkapnya -> halaman detail */}
                 <button
-                  onClick={() => openModal(item)}
+                  onClick={() => openDetail(item.id)}
                   className="mt-auto w-full inline-flex items-center justify-center gap-1.5 bg-[#0b3b29] hover:bg-[#082a1d] text-white text-xs font-semibold py-2.5 px-4 rounded-xl transition-colors shadow-xs"
                 >
                   <span>Lihat Selengkapnya</span>
@@ -149,120 +119,6 @@ export const UMKMView: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Detail Modal */}
-      {activeItem && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setActiveItem(null)}
-          className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-150 flex flex-col max-h-[calc(100dvh-1.5rem)]"
-          >
-            {/* Galeri Foto */}
-            <div className="bg-slate-100 shrink-0">
-              <div className="relative h-40 sm:h-52 lg:h-60 w-full overflow-hidden bg-slate-100">
-                <img
-                  src={fotoList[activeFoto] || 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&w=800&q=80'}
-                  alt={activeItem.nama}
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Navigasi panah */}
-                {fotoList.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => setActiveFoto((i) => (i - 1 + fotoList.length) % fotoList.length)}
-                      aria-label="Foto sebelumnya"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => setActiveFoto((i) => (i + 1) % fotoList.length)}
-                      aria-label="Foto selanjutnya"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
-
-                <button
-                  onClick={() => setActiveItem(null)}
-                  aria-label="Tutup modal"
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
-                <span className="absolute bottom-3 left-3 bg-black/60 text-white text-xs font-semibold px-3 py-1 rounded-lg">
-                  {activeFoto + 1} / {fotoList.length || 1}
-                </span>
-              </div>
-
-              {/* Thumbnail scrollable (klik untuk ganti foto) */}
-              {fotoList.length > 1 && (
-                <div className="flex gap-2 px-3 py-2 overflow-x-auto">
-                  {fotoList.map((foto, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveFoto(i)}
-                      className={`shrink-0 w-16 h-10 rounded-lg overflow-hidden border-2 transition cursor-pointer ${
-                        i === activeFoto ? 'border-[#0b3b29]' : 'border-transparent opacity-70 hover:opacity-100'
-                      }`}
-                    >
-                      <img src={foto} alt={`${activeItem.nama} ${i + 1}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Title & Deskripsi (scroll internal bila panjang) */}
-            <div className="px-5 sm:px-6 py-4 overflow-y-auto min-h-0 flex-1 space-y-3">
-              <div>
-                <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">{activeItem.nama}</h2>
-                <p className="text-[10px] sm:text-xs text-emerald-800 font-semibold mt-0.5">
-                  Produk Asli Desa Warung Menteng
-                </p>
-              </div>
-
-              <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                <p>{activeItem.detailLengkap || activeItem.deskripsi}</p>
-              </div>
-            </div>
-
-            {/* Nomor WhatsApp & Tutup (selalu terlihat, tanpa scroll) */}
-            {activeItem.kontak && (
-              <div className="shrink-0 border-t border-slate-200/90 bg-white p-4 sm:p-5 space-y-2.5">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-600">Nomor WhatsApp:</span>
-                  <span className="font-bold text-emerald-900">{activeItem.kontak}</span>
-                </div>
-                <a
-                  href={getWhatsAppLink(activeItem)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition"
-                >
-                  <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Hubungi Penjual via WhatsApp</span>
-                </a>
-                <button
-                  onClick={() => setActiveItem(null)}
-                  className="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-xl transition"
-                >
-                  Tutup
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };
