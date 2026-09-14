@@ -47,7 +47,7 @@ export const DownloadFormulirView: React.FC<DownloadFormulirProps> = ({ onNaviga
               Unduh Formulir & Dokumen Resmi Desa
             </h1>
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-              Unduh blanko surat pengantar RT/RW, formulir permohonan administrasi kependudukan, buku SOP pelayanan, dan laporan transparansi APBDes secara gratis.
+              Unduh peraturan desa dan panduan layanan administrasi resmi Desa Warung Menteng secara gratis.
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ export const DownloadFormulirView: React.FC<DownloadFormulirProps> = ({ onNaviga
           </div>
 
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
-            {['semua', 'Formulir Surat', 'Regulasi & Perdes', 'Laporan Transparansi', 'Panduan Layanan'].map(cat => (
+            {['semua', 'Regulasi & Perdes', 'Panduan Layanan'].map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedKategori(cat)}

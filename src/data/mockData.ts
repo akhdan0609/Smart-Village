@@ -1434,39 +1434,6 @@ export const LEMBAGA_DESA_LIST: LembagaItem[] = [
 // DATA DOKUMEN DOWNLOAD & FORMULIR
 export const DOKUMEN_DOWNLOAD_LIST: DokumenDownloadItem[] = [
   {
-    id: 'doc-1',
-    judul: 'Blanko Surat Pengantar RT / RW Resmi Desa Warung Menteng',
-    kategori: 'Formulir Surat',
-    ukuran: '145 KB',
-    format: 'DOCX',
-    tanggalUpdate: '15 Januari 2026',
-    deskripsi: 'Formulir standar pengantar dari Ketua RT dan Ketua RW yang wajib dibawa sebelum mengajukan surat administrasi ke kantor desa.',
-    jumlahUnduh: 1240,
-    downloadUrl: '#'
-  },
-  {
-    id: 'doc-2',
-    judul: 'Formulir Permohonan Surat Keterangan Usaha (SKU) & Surat Pernyataan Usaha',
-    kategori: 'Formulir Surat',
-    ukuran: '210 KB',
-    format: 'PDF',
-    tanggalUpdate: '20 Januari 2026',
-    deskripsi: 'Dokumen kelengkapan permohonan SKU untuk pengajuan KUR perbankan, perizinan dagang, dan sertifikasi halal UMKM.',
-    jumlahUnduh: 890,
-    downloadUrl: '#'
-  },
-  {
-    id: 'doc-3',
-    judul: 'Formulir F-1.01 Biodata Kependudukan & Pendaftaran Perpindahan Penduduk WNI',
-    kategori: 'Formulir Surat',
-    ukuran: '320 KB',
-    format: 'PDF',
-    tanggalUpdate: '10 Februari 2026',
-    deskripsi: 'Formulir baku Dinas Kependudukan dan Catatan Sipil untuk permohonan KK baru, perubahan elemen data, atau surat pindah datang.',
-    jumlahUnduh: 670,
-    downloadUrl: '#'
-  },
-  {
     id: 'doc-4',
     judul: 'Peraturan Desa (Perdes) No. 04 Tahun 2025 tentang Pelestarian Sumber Mata Air & Lingkungan',
     kategori: 'Regulasi & Perdes',
@@ -1475,17 +1442,6 @@ export const DOKUMEN_DOWNLOAD_LIST: DokumenDownloadItem[] = [
     tanggalUpdate: '05 Desember 2025',
     deskripsi: 'Regulasi perlindungan kawasan sungai Cimenteng, larangan pembuangan limbah, dan penataan kolam air deras budidaya ikan.',
     jumlahUnduh: 430,
-    downloadUrl: '#'
-  },
-  {
-    id: 'doc-5',
-    judul: 'Laporan Realisasi Pertanggungjawaban APBDes Warung Menteng Tahun Anggaran 2025',
-    kategori: 'Laporan Transparansi',
-    ukuran: '1.2 MB',
-    format: 'PDF',
-    tanggalUpdate: '12 Januari 2026',
-    deskripsi: 'Buku laporan transparansi keuangan desa, realisasi Dana Desa, Bagi Hasil Pajak, dan Alokasi Dana Desa (ADD) 2025.',
-    jumlahUnduh: 950,
     downloadUrl: '#'
   },
   {
