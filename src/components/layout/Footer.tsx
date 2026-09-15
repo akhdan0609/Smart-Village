@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed font-normal">
-              Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat.
+              Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat yang ramah.
             </p>
 
             {/* Social Icons (Circles) */}
