@@ -384,7 +384,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
                 <div>
                   <span className="text-xs text-slate-500 font-medium block">Kepala Desa</span>
                   <span className="text-sm sm:text-base font-bold text-slate-900 block">
-                    Asep Saepudin
+                    A. Zaenal Arifin S.ag
                   </span>
                 </div>
               </div>
