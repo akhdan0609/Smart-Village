@@ -8,9 +8,22 @@ import {
   Activity
 } from 'lucide-react';
 import { BUDIDAYA_LIST, PotensiCardItem } from '../../data/potensiVisualData';
+import { PageRoute } from '../../types';
 
-export const BudidayaView: React.FC = () => {
+interface BudidayaViewProps {
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
+
+export const BudidayaView: React.FC<BudidayaViewProps> = ({ onNavigate }) => {
   const [activeItem, setActiveItem] = useState<PotensiCardItem | null>(null);
+
+  const handleOpenDetail = (item: PotensiCardItem) => {
+    if (onNavigate) {
+      onNavigate('potensi-budidaya-detail', { itemId: item.id });
+    } else {
+      setActiveItem(item);
+    }
+  };
 
   return (
     <div className="py-8 bg-[#f8faf8] min-h-screen">
@@ -71,7 +84,7 @@ export const BudidayaView: React.FC = () => {
               {/* Action Button: Baca Selengkapnya -> */}
               <div className="pt-3">
                 <button
-                  onClick={() => setActiveItem(item)}
+                  onClick={() => handleOpenDetail(item)}
                   className="inline-flex items-center gap-1.5 bg-[#0b3b29] hover:bg-[#082a1d] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-colors shadow-xs"
                 >
                   <span>Baca Selengkapnya</span>

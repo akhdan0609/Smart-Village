@@ -19,11 +19,14 @@ import { AnggaranDesaView } from './components/profil/AnggaranDesaView';
 // Potensi Views
 import { PotensiDesaView } from './components/potensi/PotensiDesaView';
 import { AkomodasiView } from './components/potensi/AkomodasiView';
+import { AkomodasiDetailView } from './components/potensi/AkomodasiDetailView';
 import { UMKMView } from './components/potensi/UMKMView';
 import { UMKMDetailView } from './components/potensi/UMKMDetailView';
 import { BudayaAdatView } from './components/potensi/BudayaAdatView';
+import { BudayaAdatDetailView } from './components/potensi/BudayaAdatDetailView';
 import { SitusSejarahView } from './components/potensi/SitusSejarahView';
 import { BudidayaView } from './components/potensi/BudidayaView';
+import { BudidayaDetailView } from './components/potensi/BudidayaDetailView';
 
 // Informasi & Berita Views
 import { BeritaView } from './components/informasi/BeritaView';
@@ -125,21 +128,26 @@ export default function App() {
       // POTENSI DESA
       case 'potensi-desa':
         return <PotensiDesaView onNavigate={handleNavigate} />;
-      case 'potensi-destinasi':
       case 'potensi-akomodasi':
       case 'akomodasi':
-        return <AkomodasiView />;
+        return <AkomodasiView onNavigate={handleNavigate} />;
+      case 'potensi-akomodasi-detail':
+        return <AkomodasiDetailView itemId={navParams?.itemId} onNavigate={handleNavigate} />;
       case 'potensi-umkm':
         return <UMKMView onNavigate={handleNavigate} />;
       case 'potensi-umkm-detail':
         return <UMKMDetailView umkmId={navParams?.umkmId} onNavigate={handleNavigate} />;
       case 'potensi-budaya':
-        return <BudayaAdatView />;
+        return <BudayaAdatView onNavigate={handleNavigate} />;
+      case 'potensi-budaya-detail':
+        return <BudayaAdatDetailView itemId={navParams?.itemId} onNavigate={handleNavigate} />;
       case 'potensi-situs-sejarah':
         return <SitusSejarahView onNavigate={handleNavigate} />;
       case 'potensi-perikanan':
       case 'potensi-budidaya':
-        return <BudidayaView />;
+        return <BudidayaView onNavigate={handleNavigate} />;
+      case 'potensi-budidaya-detail':
+        return <BudidayaDetailView itemId={navParams?.itemId} onNavigate={handleNavigate} />;
 
       // BERITA & INFORMASI DESA / HUMAS
       case 'berita-press-release':

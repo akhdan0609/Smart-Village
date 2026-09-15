@@ -7,9 +7,22 @@ import {
   Sparkles
 } from 'lucide-react';
 import { BUDAYA_ADAT_LIST, PotensiCardItem } from '../../data/potensiVisualData';
+import { PageRoute } from '../../types';
 
-export const BudayaAdatView: React.FC = () => {
+interface BudayaAdatViewProps {
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
+
+export const BudayaAdatView: React.FC<BudayaAdatViewProps> = ({ onNavigate }) => {
   const [activeItem, setActiveItem] = useState<PotensiCardItem | null>(null);
+
+  const handleOpenDetail = (item: PotensiCardItem) => {
+    if (onNavigate) {
+      onNavigate('potensi-budaya-detail', { itemId: item.id });
+    } else {
+      setActiveItem(item);
+    }
+  };
 
   return (
     <div className="py-8 bg-[#f8faf8] min-h-screen">
@@ -70,7 +83,7 @@ export const BudayaAdatView: React.FC = () => {
               {/* Action Button: Baca Selengkapnya -> */}
               <div className="pt-3">
                 <button
-                  onClick={() => setActiveItem(item)}
+                  onClick={() => handleOpenDetail(item)}
                   className="inline-flex items-center gap-1.5 bg-[#0b3b29] hover:bg-[#082a1d] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-colors shadow-xs"
                 >
                   <span>Baca Selengkapnya</span>
