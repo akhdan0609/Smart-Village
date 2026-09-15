@@ -3,9 +3,11 @@ import { animate, waapi } from 'animejs';
 
 /**
  * Hook animasi global menyeluruh menggunakan Anime.js (animate & waapi.animate).
- * Mengatur transisi perpindahan halaman dan animasi scroll (naik/turun)
- * untuk seluruh halaman di Desa Warung Menteng:
- * Profil, Potensi, Informasi & Berita, Pelayanan, Aspirasi, KKN, Kontak Darurat, dan Admin.
+ * Mengatur transisi perpindahan halaman dan animasi scroll (naik/turun).
+ *
+ * Animasi HANYA dijalankan pada 5 halaman utama berikut:
+ * Beranda, Profil Desa, Potensi Desa, Pelayanan, dan KKN.
+ * Sub-halaman (isi dropdown) dan seluruh halaman HUMAS tidak dianimasikan.
  */
 export function useGlobalAnimations(activePage: string) {
   const isInitialMount = useRef(true);
@@ -13,6 +15,10 @@ export function useGlobalAnimations(activePage: string) {
   const mutationObserverRef = useRef<MutationObserver | null>(null);
 
   useEffect(() => {
+    // Hanya jalankan animasi pada halaman utama yang diizinkan
+    const animatedPages: string[] = ['beranda', 'profil-desa', 'potensi-desa', 'pelayanan-desa', 'kkn'];
+    if (!animatedPages.includes(activePage)) return;
+
     // 1. Animasi transisi masuk halaman (Page Transition)
     const pageWrapper = document.getElementById('app-page-wrapper');
     if (pageWrapper) {
