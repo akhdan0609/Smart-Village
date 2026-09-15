@@ -11,7 +11,6 @@ import {
   UserCheck,
   Search,
   MessageCircle,
-  Phone,
   Flame,
   Ambulance,
   Shield,
@@ -653,7 +652,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div className="flex-1 overflow-y-auto p-2.5 space-y-1">
                           {KONTAK_DARURAT_LIST.map(item => {
                             const isDamkar = item.id === 'dar-1';
-                            const digits = isDamkar ? '02518291505' : item.nomorTelepon.replace(/[^0-9]/g, '');
                             const waLink = isDamkar 
                               ? 'https://wa.me/+628567785200' 
                               : item.nomorWA ? `https://wa.me/${item.nomorWA}` : null;
@@ -676,15 +674,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                                   <span className="block text-[10px] text-slate-500 truncate leading-tight mt-0.5">
                                     {item.instansi}
                                   </span>
-                                  <a
-                                    href={`tel:${digits}`}
-                                    className="block text-[11px] font-semibold text-emerald-700 truncate leading-tight mt-0.5 hover:underline"
-                                  >
+                                  <span className="block text-[11px] font-semibold text-slate-700 truncate leading-tight mt-0.5">
                                     {isDamkar ? '(0251) 829-1505' : item.nomorTelepon}
-                                  </a>
+                                  </span>
                                 </div>
 
-                                {/* Minified Action Buttons */}
+                                {/* WhatsApp Action Button */}
                                 <div className="flex items-center gap-2 shrink-0">
                                   {waLink && (
                                     <a
@@ -699,15 +694,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                                       <MessageCircle className="w-5 h-5" />
                                     </a>
                                   )}
-                                  <a
-                                    href={`tel:${digits}`}
-                                    onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
-                                    title="Telepon"
-                                    aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
-                                    className="w-11 h-11 rounded-xl bg-[#0e3e2f]/10 text-[#0e3e2f] active:bg-[#0e3e2f] active:text-white flex items-center justify-center transition-colors duration-150"
-                                  >
-                                    <Phone className="w-5 h-5" />
-                                  </a>
                                 </div>
                               </div>
                             );
@@ -759,7 +745,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <div className="flex-1 min-h-0 overflow-y-auto max-h-[380px] p-2 space-y-1">
                         {KONTAK_DARURAT_LIST.map(item => {
                           const isDamkar = item.id === 'dar-1';
-                          const digits = isDamkar ? '02518291505' : item.nomorTelepon.replace(/[^0-9]/g, '');
                           const waLink = isDamkar 
                             ? 'https://wa.me/+628567785200' 
                             : item.nomorWA ? `https://wa.me/${item.nomorWA}` : null;
@@ -787,7 +772,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 </span>
                               </div>
 
-                              {/* Minified Action Buttons */}
+                              {/* WhatsApp Action Button */}
                               <div className="flex items-center gap-1.5 shrink-0">
                                 {waLink && (
                                   <a
@@ -802,15 +787,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     <MessageCircle className="w-4 h-4" />
                                   </a>
                                 )}
-                                <a
-                                  href={`tel:${digits}`}
-                                  onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
-                                  title="Telepon"
-                                  aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
-                                  className="w-8 h-8 rounded-lg bg-[#0e3e2f]/10 text-[#0e3e2f] hover:bg-[#0e3e2f] hover:text-white flex items-center justify-center transition-colors duration-150"
-                                >
-                                  <Phone className="w-4 h-4" />
-                                </a>
                               </div>
                             </div>
                           );

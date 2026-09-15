@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  Phone, 
   PhoneCall, 
   Clock, 
   ShieldCheck, 
@@ -148,7 +147,7 @@ export const KontakDaruratView: React.FC = () => {
             <div className="max-w-2xl space-y-3">
               {/* Pill Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 border border-white/20 text-white backdrop-blur-xs shadow-xs">
-                <Phone className="w-3.5 h-3.5 text-white" />
+                <MessageCircle className="w-3.5 h-3.5 text-white" />
                 <span className="text-[10px] sm:text-[11px] font-bold tracking-wider">
                   Kontak Darurat
                 </span>
@@ -288,13 +287,13 @@ export const KontakDaruratView: React.FC = () => {
                     {contact.instansi}
                   </p>
                   <div className="pt-2 flex items-center gap-2 text-sm sm:text-base font-extrabold text-slate-900">
-                    <Phone className="w-4 h-4 text-emerald-800 shrink-0" />
+                    <MessageCircle className="w-4 h-4 text-emerald-800 shrink-0" />
                     <span>{contact.phone}</span>
                   </div>
                 </div>
 
-                {/* Full-width WhatsApp & Telepon Buttons */}
-                <div className="grid grid-cols-2 gap-2">
+                {/* Full-width WhatsApp Button */}
+                <div className="grid grid-cols-1 gap-2">
                   <a
                     href={`https://wa.me/${contact.waRaw}?text=${encodeURIComponent('Halo, saya warga Desa Warung Menteng, mohon bantuan darurat.')}`}
                     target="_blank"
@@ -303,13 +302,6 @@ export const KontakDaruratView: React.FC = () => {
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp</span>
-                  </a>
-                  <a
-                    href={`tel:${contact.phoneRaw}`}
-                    className="py-2.5 px-2 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-                  >
-                    <Phone className="w-4 h-4 fill-white" />
-                    <span>Telepon</span>
                   </a>
                 </div>
               </div>
