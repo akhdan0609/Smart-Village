@@ -34,7 +34,7 @@ export const HomeBentoGrid: React.FC<HomeBentoGridProps> = ({ onNavigate }) => {
     {
       icon: BookOpen,
       label: 'Profil Desa',
-      page: 'profil-tentang' as PageRoute
+page: 'profil-desa' as PageRoute
     },
     {
       icon: Palmtree,
