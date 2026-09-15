@@ -23,6 +23,7 @@ import {
 import { PageRoute } from '../../types';
 import { getAdminAuth, setAdminAuth } from '../../utils/storage';
 import { KONTAK_DARURAT_LIST } from '../../data/mockData';
+import { AKOMODASI_LIST, UMKM_VISUAL_LIST, BUDAYA_ADAT_LIST, BUDIDAYA_LIST } from '../../data/potensiVisualData';
 import logoDesaWarungMenteng from '../../assets/images/logo_warung_menteng.svg';
 
 const DARURAT_ICONS: Record<string, React.ReactNode> = {
@@ -183,7 +184,39 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Latar Belakang KKN', desc: 'Latar belakang pengabdian mahasiswa di Warung Menteng', page: 'kkn-latar-belakang' as PageRoute, tag: 'KKN' },
     { title: 'Album Kami KKN', desc: 'Album foto dokumentasi kegiatan KKN Wigata Dharma', page: 'kkn-galeri' as PageRoute, tag: 'KKN' },
     // Kontak Darurat
-    { title: 'Kontak Darurat 24 Jam', desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' }
+    { title: 'Kontak Darurat 24 Jam', desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' },
+    // Akomodasi / Wisata individual
+    ...AKOMODASI_LIST.map(item => ({
+      title: item.nama,
+      desc: (item.deskripsi || '').slice(0, 90),
+      page: 'potensi-akomodasi-detail' as PageRoute,
+      tag: 'Wisata',
+      params: { itemId: item.id }
+    })),
+    // UMKM individual
+    ...UMKM_VISUAL_LIST.map(item => ({
+      title: item.nama,
+      desc: (item.deskripsi || '').slice(0, 90),
+      page: 'potensi-umkm-detail' as PageRoute,
+      tag: 'UMKM',
+      params: { umkmId: item.id }
+    })),
+    // Budaya & Adat individual
+    ...BUDAYA_ADAT_LIST.map(item => ({
+      title: item.nama,
+      desc: (item.deskripsi || '').slice(0, 90),
+      page: 'potensi-budaya-detail' as PageRoute,
+      tag: 'Budaya',
+      params: { itemId: item.id }
+    })),
+    // Budidaya individual
+    ...BUDIDAYA_LIST.map(item => ({
+      title: item.nama,
+      desc: (item.deskripsi || '').slice(0, 90),
+      page: 'potensi-budidaya-detail' as PageRoute,
+      tag: 'Budidaya',
+      params: { itemId: item.id }
+    }))
   ];
 
   const isProfilPage = activePage.startsWith('profil-') || activePage === 'potensi-situs-sejarah';
@@ -858,7 +891,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 searchResults.map((res, idx) => (
                   <div
                     key={idx}
-                    onClick={() => handleNavClick(res.page)}
+                    onClick={() => handleNavClick(res.page, (res as any).params)}
                     className="p-3.5 rounded-2xl hover:bg-emerald-50/80 border border-transparent hover:border-emerald-200 transition cursor-pointer flex items-center justify-between group"
                   >
                     <div className="space-y-0.5">

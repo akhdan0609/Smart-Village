@@ -673,7 +673,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
             <div>
               <button
-                onClick={() => setActiveModal('galeri')}
+                onClick={() => onNavigate ? onNavigate('kkn-galeri') : setActiveModal('galeri')}
                 className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
               >
                 <span>Lihat Selengkapnya</span>
