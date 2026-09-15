@@ -490,19 +490,15 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* BPH Tab */}
           <button
             onClick={() => setActiveTab('BPH')}
-            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
-              activeTab === 'BPH'
-                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
-                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
-            }`}
+            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
           >
             <div className="flex items-center gap-2">
-              <User className={`w-4 h-4 ${activeTab === 'BPH' ? 'text-amber-300' : 'text-slate-500'}`} />
+              <User className="w-4 h-4 text-slate-500" />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   BPH
                 </span>
-                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'BPH' ? 'text-emerald-100' : 'text-slate-500'}`}>
+                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
                   Badan Pengurus Harian
                 </span>
               </div>
@@ -512,19 +508,15 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* ACARA Tab */}
           <button
             onClick={() => setActiveTab('ACARA')}
-            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
-              activeTab === 'ACARA'
-                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
-                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
-            }`}
+            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
           >
             <div className="flex items-center gap-2">
-              <Calendar className={`w-4 h-4 ${activeTab === 'ACARA' ? 'text-amber-300' : 'text-slate-500'}`} />
+              <Calendar className="w-4 h-4 text-slate-500" />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   ACARA
                 </span>
-                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'ACARA' ? 'text-emerald-100' : 'text-slate-500'}`}>
+                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
                   Divisi Acara
                 </span>
               </div>
@@ -534,19 +526,15 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* HUMAS Tab */}
           <button
             onClick={() => setActiveTab('HUMAS')}
-            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
-              activeTab === 'HUMAS'
-                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
-                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
-            }`}
+            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
           >
             <div className="flex items-center gap-2">
-              <Megaphone className={`w-4 h-4 ${activeTab === 'HUMAS' ? 'text-amber-300' : 'text-slate-500'}`} />
+              <Megaphone className="w-4 h-4 text-slate-500" />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   HUMAS
                 </span>
-                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'HUMAS' ? 'text-emerald-100' : 'text-slate-500'}`}>
+                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
                   Divisi Hubungan Masyarakat
                 </span>
               </div>
@@ -556,19 +544,15 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* MEDIA Tab */}
           <button
             onClick={() => setActiveTab('MEDIA')}
-            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
-              activeTab === 'MEDIA'
-                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
-                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
-            }`}
+            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
           >
             <div className="flex items-center gap-2">
-              <Camera className={`w-4 h-4 ${activeTab === 'MEDIA' ? 'text-amber-300' : 'text-slate-500'}`} />
+              <Camera className="w-4 h-4 text-slate-500" />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   MEDIA
                 </span>
-                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'MEDIA' ? 'text-emerald-100' : 'text-slate-500'}`}>
+                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
                   Divisi Media & Dokumentasi
                 </span>
               </div>

@@ -13,15 +13,26 @@ import {
   UserCheck,
   Search
 } from 'lucide-react';
-import { PageRoute } from '../../types';
+import { PageRoute, KontakDaruratItem } from '../../types';
 import { getAdminAuth, setAdminAuth } from '../../utils/storage';
 import { KONTAK_DARURAT_LIST } from '../../data/mockData';
-import { 
-  EMERGENCY_CONTACTS, 
-  renderEmergencyBadgeIcon 
-} from '../../data/emergencyContacts';
 import logoDesaWarungMenteng from '../../assets/images/logo_warung_menteng.svg';
 import { SearchModal } from './SearchModal';
+
+// Icon mapping untuk badge emergency contacts
+const getEmergencyIcon = (iconName?: string) => {
+  const iconMap: Record<string, string> = {
+    'Flame': '🔥',
+    'Ambulance': '🚑',
+    'Shield': '🛡️',
+    'ShieldAlert': '⚠️',
+    'Building2': '🏢',
+    'ShieldCheck': '✓',
+    'HeartPulse': '❤️',
+    'Users': '👥'
+  };
+  return iconMap[iconName || ''] || '📞';
+};
 
 interface NavbarProps {
   activePage: PageRoute;
@@ -637,42 +648,38 @@ export const Navbar: React.FC<NavbarProps> = ({
                             ref={emergencyMobileScrollRef}
                             className="flex-1 overflow-y-auto p-3 space-y-2 overscroll-contain"
                           >
-                            {EMERGENCY_CONTACTS.map(item => (
+                            {KONTAK_DARURAT_LIST.map((item: KontakDaruratItem) => {
+                              const phoneRaw = item.nomorTelepon?.replace(/[^0-9+]/g, '') || '';
+                              const waRaw = item.nomorWA?.replace(/[^0-9+]/g, '') || '';
+                              return (
                               <div
                                 key={item.id}
                                 className="flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/80 hover:bg-emerald-50/40 border border-slate-100 hover:border-emerald-200 transition group"
                               >
                                 <div className="flex items-center gap-3 min-w-0 flex-1 pr-2">
-                                  <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 bg-slate-100 shadow-2xs">
-                                    <img
-                                      src={item.image}
-                                      alt={item.name}
-                                      className="w-full h-full object-cover object-center"
-                                    />
-                                    <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white/95 flex items-center justify-center shadow-xs border border-slate-100">
-                                      {renderEmergencyBadgeIcon(item.badgeType, 'w-2.5 h-2.5 text-emerald-800')}
-                                    </div>
+                                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center shrink-0 border border-emerald-200 shadow-2xs text-lg font-bold">
+                                    {getEmergencyIcon(item.iconName)}
                                   </div>
                                   <div className="min-w-0 flex-1">
                                     <span className="block text-xs font-bold text-slate-900 truncate">
-                                      {item.name}
+                                      {item.namaLayanan}
                                     </span>
                                     <span className="block text-[11px] text-slate-500 truncate">
                                       {item.instansi}
                                     </span>
-                                    {item.secondaryPhone ? (
+                                    {item.nomorWA ? (
                                       <div className="mt-1 space-y-0.5">
                                         <a
-                                          href={`tel:${item.phoneRaw}`}
+                                          href={`tel:${phoneRaw}`}
                                           onClick={() => setKontakDaruratOpen(false)}
                                           className="flex items-center gap-1.5 text-[11px] text-emerald-800 hover:text-emerald-950 font-bold"
-                                          title="Telepon Kantor (Aplikasi Telepon)"
+                                          title="Telepon"
                                         >
-                                          <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100/90 text-emerald-900 rounded font-semibold shrink-0">Kantor</span>
-                                          <span className="truncate">{item.phone}</span>
+                                          <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100/90 text-emerald-900 rounded font-semibold shrink-0">Telepon</span>
+                                          <span className="truncate">{item.nomorTelepon}</span>
                                         </a>
                                         <a
-                                          href={item.whatsappUrl || `https://wa.me/${item.secondaryPhoneRaw?.replace(/[^0-9]/g, '')}`}
+                                          href={`https://wa.me/${waRaw}`}
                                           target="_blank"
                                           rel="noreferrer"
                                           onClick={() => setKontakDaruratOpen(false)}
@@ -680,34 +687,34 @@ export const Navbar: React.FC<NavbarProps> = ({
                                           title="WhatsApp"
                                         >
                                           <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100/90 text-emerald-900 rounded font-semibold shrink-0">WA</span>
-                                          <span className="truncate">{item.secondaryPhone}</span>
+                                          <span className="truncate">{item.nomorWA}</span>
                                         </a>
                                       </div>
                                     ) : (
                                       <span className="block text-[11px] text-emerald-800 font-bold truncate mt-0.5">
-                                        {item.phone}
+                                        {item.nomorTelepon}
                                       </span>
                                     )}
                                   </div>
                                 </div>
-                                {item.whatsappUrl ? (
+                                {item.nomorWA ? (
                                   <div className="flex flex-col gap-1 shrink-0">
                                     <a
-                                      href={`tel:${item.phoneRaw}`}
+                                      href={`tel:${phoneRaw}`}
                                       onClick={() => setKontakDaruratOpen(false)}
                                       className="py-1 px-2.5 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
-                                      title="Telepon Kantor"
+                                      title="Telepon"
                                     >
                                       <Phone className="w-3 h-3 fill-white" />
-                                      <span>Kantor</span>
+                                      <span>Telp</span>
                                     </a>
                                     <a
-                                      href={item.whatsappUrl}
+                                      href={`https://wa.me/${waRaw}`}
                                       target="_blank"
                                       rel="noreferrer"
                                       onClick={() => setKontakDaruratOpen(false)}
                                       className="py-1 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
-                                      title="Chat WhatsApp"
+                                      title="WhatsApp"
                                     >
                                       <MessageSquare className="w-3 h-3 fill-white" />
                                       <span>WA</span>
@@ -715,7 +722,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                   </div>
                                 ) : (
                                   <a
-                                    href={`tel:${item.phoneRaw}`}
+                                    href={`tel:${phoneRaw}`}
                                     onClick={() => setKontakDaruratOpen(false)}
                                     className="py-2 px-3 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95 shrink-0"
                                   >
@@ -724,7 +731,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                   </a>
                                 )}
                               </div>
-                            ))}
+                            );
+                            })}
                           </div>
 
                           {/* Footer */}
@@ -765,77 +773,73 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
 
                       <div className="flex-1 min-h-0 overflow-y-auto max-h-[380px] p-2.5 space-y-2">
-                        {EMERGENCY_CONTACTS.map(item => (
+                        {KONTAK_DARURAT_LIST.map((item: KontakDaruratItem) => {
+                          const phoneRaw = item.nomorTelepon?.replace(/[^0-9+]/g, '') || '';
+                          const waRaw = item.nomorWA?.replace(/[^0-9+]/g, '') || '';
+                          return (
                           <div
                             key={item.id}
                             className="flex items-center justify-between p-2 rounded-xl bg-slate-50/70 hover:bg-emerald-50/40 border border-slate-100 hover:border-emerald-200 transition group"
                           >
                             <div className="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
-                              <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 bg-slate-100 shadow-2xs">
-                                <img
-                                  src={item.image}
-                                  alt={item.name}
-                                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                                />
-                                <div className="absolute top-0.5 left-0.5 w-3.5 h-3.5 rounded-full bg-white/95 flex items-center justify-center shadow-xs border border-slate-100">
-                                  {renderEmergencyBadgeIcon(item.badgeType, 'w-2 h-2 text-emerald-800')}
-                                </div>
+                              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center shrink-0 border border-emerald-200 shadow-2xs text-lg font-bold">
+                                {getEmergencyIcon(item.iconName)}
                               </div>
                               <div className="min-w-0 flex-1">
                                 <span className="block text-xs font-bold text-slate-900 truncate group-hover:text-emerald-950">
-                                  {item.name}
+                                  {item.namaLayanan}
                                 </span>
                                 <span className="block text-[11px] text-slate-500 truncate">
                                   {item.instansi}
                                 </span>
-                                {item.secondaryPhone ? (
+                                {item.nomorWA ? (
                                   <div className="mt-0.5 space-y-0.5">
                                     <a
-                                      href={`tel:${item.phoneRaw}`}
+                                      href={`tel:${phoneRaw}`}
                                       onClick={() => setKontakDaruratOpen(false)}
                                       className="flex items-center gap-1.5 text-[11px] text-emerald-800 hover:text-emerald-950 font-bold"
-                                      title={`Telepon Kantor (Aplikasi Telepon): ${item.phone}`}
+                                      title={`Telepon: ${item.nomorTelepon}`}
                                     >
-                                      <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">Kantor</span>
-                                      <span className="truncate">{item.phone}</span>
+                                      <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">Telp</span>
+                                      <span className="truncate">{item.nomorTelepon}</span>
                                     </a>
                                     <a
-                                      href={item.whatsappUrl || `https://wa.me/${item.secondaryPhoneRaw?.replace(/[^0-9]/g, '')}`}
+                                      href={`https://wa.me/${waRaw}`}
                                       target="_blank"
                                       rel="noreferrer"
                                       onClick={() => setKontakDaruratOpen(false)}
                                       className="flex items-center gap-1.5 text-[11px] text-[#128c7e] hover:text-[#075e54] font-bold"
-                                      title={`WhatsApp: ${item.secondaryPhone}`}
+                                      title={`WhatsApp: ${item.nomorWA}`}
                                     >
                                       <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">WA</span>
-                                      <span className="truncate">{item.secondaryPhone}</span>
+                                      <span className="truncate">{item.nomorWA}</span>
                                     </a>
                                   </div>
                                 ) : (
                                   <span className="block text-[11px] text-emerald-800 font-bold tracking-tight">
-                                    {item.phone}
+                                    {item.nomorTelepon}
                                   </span>
                                 )}
                               </div>
                             </div>
-                            {item.whatsappUrl ? (
+                            {item.nomorWA ? (
                               <div className="flex flex-col gap-1 shrink-0">
                                 <a
-                                  href={`tel:${item.phoneRaw}`}
+                                  href={`tel:${phoneRaw}`}
                                   onClick={() => setKontakDaruratOpen(false)}
                                   className="py-1 px-2.5 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
-                                  title={`Telepon Kantor: ${item.phone}`}
+                                  title={`Telepon: ${item.nomorTelepon}`}
                                 >
                                   <Phone className="w-3 h-3 fill-white" />
-                                  <span>Kantor</span>
+                                  <span>Telp</span>
                                 </a>
                                 <a
-                                  href={item.whatsappUrl}
+                                  href={`https://wa.me/${waRaw}`}
                                   target="_blank"
                                   rel="noreferrer"
                                   onClick={() => setKontakDaruratOpen(false)}
                                   className="py-1 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95"
-                                  title={`Chat WhatsApp: ${item.secondaryPhone}`}
+                                  title={`WhatsApp: ${item.nomorWA}`}
                                 >
                                   <MessageSquare className="w-3 h-3 fill-white" />
                                   <span>WA</span>
@@ -843,17 +847,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                               </div>
                             ) : (
                               <a
-                                href={`tel:${item.phoneRaw}`}
+                                href={`tel:${phoneRaw}`}
                                 onClick={() => setKontakDaruratOpen(false)}
                                 className="py-1.5 px-3 rounded-lg bg-[#063b25] hover:bg-[#094d31] text-white text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition duration-150 cursor-pointer active:scale-95 shrink-0"
-                                title={`Hubungi ${item.name}`}
+                                title={`Hubungi ${item.namaLayanan}`}
                               >
                                 <Phone className="w-3 h-3 fill-white" />
                                 <span>Hubungi</span>
                               </a>
                             )}
                           </div>
-                        ))}
+                        );
+                        })}
                       </div>
 
                       <div className="flex-shrink-0 border-t border-slate-100 p-2.5 bg-slate-50">
