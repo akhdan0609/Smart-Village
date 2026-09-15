@@ -191,6 +191,17 @@ export const KKN_MEMBERS: KKNMember[] = [
     whatsapp: '6281234567812',
     instagram: 'ikmal_nur_awaludin'
   },
+  {
+    id: 'acara-7',
+    name: 'CAISAR FAYTH ISYADIRDA',
+    role: 'Anggota Acara',
+    division: 'ACARA',
+    photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&auto=format&fit=crop&q=80',
+    prodi: 'Sejarah Peradaban Islam (UNUSIA)',
+    quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
+    whatsapp: '6281234567822',
+    instagram: 'caisar_fayth'
+  },
 
   // HUMAS
   {
@@ -768,7 +779,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                 <div className="grid grid-cols-3 gap-1 text-[8px] pt-0.5">
                   <div className="bg-emerald-50/80 border border-emerald-200/80 p-1 rounded text-center">
                     <span className="block font-bold text-emerald-900 text-[8px]">Acara</span>
-                    <span className="text-[7px] text-slate-500 leading-tight block">Munhamir (Koord), Devran, Andika, RISNA, Achmad, Ikmal</span>
+                    <span className="text-[7px] text-slate-500 leading-tight block">Munhamir (Koord), Devran, Andika, RISNA, Achmad, Ikmal, Caisar</span>
                   </div>
                   <div className="bg-emerald-50/80 border border-emerald-200/80 p-1 rounded text-center">
                     <span className="block font-bold text-emerald-900 text-[8px]">Humas</span>
@@ -1161,6 +1172,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                   <p><strong>4. Anggota Acara:</strong> RISNA</p>
                   <p><strong>5. Anggota Acara:</strong> Achmad Pahlevi Ramadhan</p>
                   <p><strong>6. Anggota Acara:</strong> Ikmal Nur Awaludin</p>
+                  <p><strong>7. Anggota Acara:</strong> CAISAR FAYTH ISYADIRDA</p>
                 </div>
               </div>
             </div>
