@@ -21,6 +21,7 @@ export interface PotensiCardItem {
   actionText?: string;
   galeriFoto?: string[];
   nomorWA?: string;
+  mapsLink?: string;
 }
 
 // 1. AKOMODASI (15 Cards, 5 Kolom Grid - Pengganti Destinasi sesuai instruksi)
@@ -566,11 +567,12 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 12.000 - Rp 20.000 / bungkus',
     jamOperasional: '07.30 - 18.00 WIB',
     kontak: '085814244479',
-    nomorWA: '6285814244479'
+    nomorWA: '6285814244479',
+    mapsLink: 'https://maps.app.goo.gl/e4Li8JnREZwxU9LX9?g_st=aw'
   },
   {
     id: 'kripik-pisang-bu-oom',
-    nama: 'Kripik Pisang Bu Oom',
+    nama: 'Aneka Kripik Bu Oom',
     deskripsi: 'Keripik pisang kepok manis gurih renyah tanpa pengawet dengan cita rasa otentik.',
     detailLengkap: 'Kripik pisang olahan Bu Oom dibuat dari pisang kepok tua segar yang dipetik langsung dari kebun pekarangan warga. Diolah higienis dengan teknik perendaman garam alami dan penggorengan suhu teratur, menghasilkan keripik renyah garing yang tahan lama tanpa bahan pengawet.',
     fotoUrl: 'https://images.unsplash.com/photo-1621447504864-d8686e12698c?auto=format&fit=crop&w=800&q=80',
@@ -584,7 +586,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 15.000 / bungkus 250gr',
     jamOperasional: '08.00 - 17.00 WIB',
     kontak: '0895617703274',
-    nomorWA: '62895617703274'
+    nomorWA: '62895617703274',
+    mapsLink: 'https://maps.app.goo.gl/29AH3pNZvBQ2k9eB7'
   },
   {
     id: 'kripik-pisang-bu-nyai-mintarsih',
@@ -620,7 +623,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 2.000 - Rp 35.000 / pcs',
     jamOperasional: '08.00 - 19.00 WIB',
     kontak: '085817390993',
-    nomorWA: '6285817390993'
+    nomorWA: '6285817390993',
+    mapsLink: 'https://maps.app.goo.gl/5AmRPwZkdKZWWqKr6?g_st=ac'
   },
   {
     id: 'tahu-bapak-mukti',
@@ -656,7 +660,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 150 - Rp 350 / ekor benih',
     jamOperasional: '06.30 - 17.30 WIB',
     kontak: '085716601611',
-    nomorWA: '6285716601611'
+    nomorWA: '6285716601611',
+    mapsLink: 'https://maps.app.goo.gl/3uUeSExxeo2qTeTdA?g_st=aw'
   },
   {
     id: 'peternakan-ikan-nila-abdul-qodir',
@@ -692,7 +697,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Ikan Cue: Rp 15.000 / besek • Anyaman: Rp 10.000 - Rp 85.000',
     jamOperasional: '06.00 - 18.00 WIB',
     kontak: '08568857478',
-    nomorWA: '628568857478'
+    nomorWA: '628568857478',
+    mapsLink: 'https://maps.app.goo.gl/tBjFFm6zbAduub2e6'
   },
   {
     id: 'manisan-pala-juandi',
@@ -710,7 +716,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 15.000 - Rp 30.000 / toples atau pouch',
     jamOperasional: '08.00 - 20.00 WIB',
     kontak: '085697137675',
-    nomorWA: '6285697137675'
+    nomorWA: '6285697137675',
+    mapsLink: 'https://maps.app.goo.gl/XLJUneEamQgpKnbf6'
   },
   {
     id: 'ikan-nila-iteung-farm',
@@ -746,7 +753,8 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 5.000 / bungkus isi 5 pcs • Rp 25.000 / bal kaleng',
     jamOperasional: '07.00 - 18.00 WIB',
     kontak: '0895385253202',
-    nomorWA: '62895385253202'
+    nomorWA: '62895385253202',
+    mapsLink: 'https://maps.app.goo.gl/Pny698eBsdWKW1ov5?g_st=ac'
   },
   {
     id: 'eli-toys',
@@ -764,6 +772,7 @@ export const UMKM_VISUAL_LIST: PotensiCardItem[] = [
     harga: 'Rp 5.000 - Rp 75.000',
     jamOperasional: '08.30 - 20.30 WIB',
     kontak: '085714769758',
-    nomorWA: '6285714769758'
+    nomorWA: '6285714769758',
+    mapsLink: 'https://maps.app.goo.gl/zRHckTbtmAqgeoQE6?g_st=ac'
   }
 ];

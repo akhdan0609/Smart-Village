@@ -239,6 +239,18 @@ export const UMKMDetailView: React.FC<UMKMDetailViewProps> = ({ umkmId, onNaviga
                     <span>Telepon Langsung</span>
                   </a>
                 </div>
+
+                {currentItem.mapsLink && (
+                  <a
+                    href={currentItem.mapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-emerald-800 border border-emerald-300 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition shadow-2xs active:scale-[0.98]"
+                  >
+                    <MapPin className="w-4 h-4 text-emerald-700" />
+                    <span>Lihat Lokasi di Google Maps</span>
+                  </a>
+                )}
               </div>
 
               {/* Description & Full Detail */}

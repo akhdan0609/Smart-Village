@@ -7,6 +7,7 @@ import {
   Tag,
   Phone,
   ExternalLink,
+  MapPin,
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
@@ -176,6 +177,19 @@ export const UMKMView: React.FC<UMKMViewProps> = ({ onNavigate }) => {
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                   </a>
+
+                  {item.mapsLink && (
+                    <a
+                      href={item.mapsLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Lihat lokasi ${item.nama} di Google Maps`}
+                      className="inline-flex items-center justify-center p-2.5 bg-white hover:bg-slate-50 text-emerald-700 border border-emerald-200 rounded-xl transition shadow-xs active:scale-98 cursor-pointer"
+                      title="Lihat Lokasi di Google Maps"
+                    >
+                      <MapPin className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             );
@@ -240,6 +254,18 @@ export const UMKMView: React.FC<UMKMViewProps> = ({ onNavigate }) => {
                   <span>Hubungi Penjual via WhatsApp</span>
                 </a>
               </div>
+
+              {activeItem.mapsLink && (
+                <a
+                  href={activeItem.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-emerald-800 border border-emerald-200 text-xs font-bold py-2.5 px-4 rounded-xl transition shadow-xs"
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Lihat Lokasi di Google Maps</span>
+                </a>
+              )}
             </div>
 
             <div className="p-3 bg-slate-50 border-t border-slate-100 flex justify-end">
