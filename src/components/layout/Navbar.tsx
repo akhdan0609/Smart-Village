@@ -10,6 +10,7 @@ import {
   UserCheck,
   Search,
   MessageCircle,
+  Phone,
   Flame,
   Ambulance,
   Shield,
@@ -637,7 +638,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         {/* Header */}
                         <div className="flex-shrink-0 p-3.5 border-b border-slate-100 flex items-center justify-between bg-white">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+                            <div className="w-8 h-8 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
                               <PhoneCall className="w-4 h-4" />
                             </div>
                             <div>
@@ -645,7 +646,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 Kontak Darurat 24 Jam
                               </h3>
                               <p className="text-[11px] text-slate-500 mt-0.5">
-                                Sentuh nomor telepon atau WhatsApp
+                                Layanan siaga Desa Warung Menteng
                               </p>
                             </div>
                           </div>
@@ -659,7 +660,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </div>
 
                         {/* Daftar Kontak */}
-                        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+                        <div className="flex-1 overflow-y-auto p-2.5 space-y-1">
                           {KONTAK_DARURAT_LIST.map(item => {
                             const isDamkar = item.id === 'dar-1';
                             const digits = isDamkar ? '02518291505' : item.nomorTelepon.replace(/[^0-9]/g, '');
@@ -670,53 +671,50 @@ export const Navbar: React.FC<NavbarProps> = ({
                             return (
                               <div
                                 key={item.id}
-                                className="p-2.5 rounded-2xl bg-white border border-slate-100 shadow-xs space-y-2.5"
+                                className="flex items-center gap-3 px-2.5 py-2.5 rounded-xl hover:bg-slate-50 transition-colors duration-150 border border-transparent hover:border-slate-100"
                               >
-                                <div className="flex items-start gap-2.5">
-                                  <div className="w-9 h-9 rounded-xl bg-rose-100/70 text-rose-700 flex items-center justify-center shrink-0">
-                                    {getDaruratIcon(item.iconName)}
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <span className="block text-xs font-bold text-slate-900 truncate">
-                                      {item.namaLayanan ?? item.instansi}
-                                    </span>
-                                    <span className="block text-[11px] text-slate-500 truncate">
-                                      {item.instansi}
-                                    </span>
-                                    {isDamkar ? (
-                                      <div className="text-[11px] text-rose-700 font-semibold mt-0.5 space-y-0.5">
-                                        <div>Telp: (0251) 829-1505</div>
-                                        <div>WA / HP: (+62) 856-7785-200</div>
-                                      </div>
-                                    ) : (
-                                      <span className="block text-[11px] text-rose-700 font-semibold mt-0.5 truncate">
-                                        {item.nomorTelepon}
-                                      </span>
-                                    )}
-                                  </div>
+                                {/* Icon */}
+                                <div className="w-9 h-9 rounded-lg bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                                  {getDaruratIcon(item.iconName)}
                                 </div>
 
-                                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-100/80">
-                                  <a
-                                    href={`tel:${digits}`}
-                                    onClick={() => setKontakDaruratOpen(false)}
-                                    className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 bg-rose-700 hover:bg-rose-800 text-white rounded-lg text-[11px] font-bold shadow-2xs"
-                                  >
-                                    <PhoneCall className="w-3 h-3" />
-                                    <span>Telepon</span>
-                                  </a>
+                                {/* Nama & Nomor */}
+                                <div className="min-w-0 flex-1">
+                                  <span className="block text-xs font-bold text-slate-900 truncate leading-tight">
+                                    {item.namaLayanan ?? item.instansi}
+                                  </span>
+                                  <span className="block text-[10px] text-slate-500 truncate leading-tight mt-0.5">
+                                    {item.instansi}
+                                  </span>
+                                  <span className="block text-[11px] font-semibold text-slate-700 truncate leading-tight mt-0.5">
+                                    {isDamkar ? '(0251) 829-1505' : item.nomorTelepon}
+                                  </span>
+                                </div>
+
+                                {/* Minified Action Buttons */}
+                                <div className="flex items-center gap-1.5 shrink-0">
                                   {waLink && (
                                     <a
                                       href={waLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       onClick={() => setKontakDaruratOpen(false)}
-                                      className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-lg text-[11px] font-bold shadow-2xs"
+                                      title="WhatsApp"
+                                      aria-label={`WhatsApp ${item.namaLayanan ?? item.instansi}`}
+                                      className="w-9 h-9 rounded-lg bg-[#25D366]/10 text-[#1e9e52] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-colors duration-150"
                                     >
-                                      <MessageCircle className="w-3 h-3 fill-white" />
-                                      <span>WhatsApp</span>
+                                      <MessageCircle className="w-4 h-4" />
                                     </a>
                                   )}
+                                  <a
+                                    href={`tel:${digits}`}
+                                    onClick={() => setKontakDaruratOpen(false)}
+                                    title="Telepon"
+                                    aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
+                                    className="w-9 h-9 rounded-lg bg-[#0e3e2f]/10 text-[#0e3e2f] hover:bg-[#0e3e2f] hover:text-white flex items-center justify-center transition-colors duration-150"
+                                  >
+                                    <Phone className="w-4 h-4" />
+                                  </a>
                                 </div>
                               </div>
                             );
@@ -724,13 +722,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </div>
 
                         {/* Footer */}
-                        <div className="flex-shrink-0 p-3 border-t border-slate-200 bg-slate-50">
+                        <div className="flex-shrink-0 p-3 border-t border-slate-100 bg-white">
                           <button
                             onClick={() => {
                               setKontakDaruratOpen(false);
                               handleNavClick('kontak-darurat');
                             }}
-                            className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-2.5 px-4 transition shadow-xs cursor-pointer active:scale-[0.99]"
+                            className="w-full text-center text-xs font-bold text-white bg-[#0e3e2f] hover:bg-[#124a35] rounded-xl py-2.5 px-4 transition shadow-xs cursor-pointer active:scale-[0.99]"
                           >
                             Lihat Semua Kontak Darurat
                           </button>
@@ -739,29 +737,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
 
                     {/* 2. Desktop & Tablet Anchored Dropdown (>= 640px) */}
-                    <div className="hidden sm:flex flex-col absolute right-0 top-full mt-2 w-[380px] max-h-[80vh] bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-900/10 border border-slate-200/80 z-50 animate-in fade-in slide-in-from-top-2 duration-150 origin-top-right overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
-                      {/* Elegant Header */}
-                      <div className="flex-shrink-0 px-5 py-4 bg-gradient-to-r from-rose-700 to-rose-500 flex items-center justify-between">
+                    <div className="hidden sm:flex flex-col absolute right-0 top-full mt-2 w-[380px] max-h-[80vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 z-50 animate-in fade-in slide-in-from-top-2 duration-150 origin-top-right overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                      {/* Header */}
+                      <div className="flex-shrink-0 px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-white">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center backdrop-blur-xs border border-white/20">
-                            <PhoneCall className="w-4 h-4 text-white" />
+                          <div className="w-8 h-8 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                            <PhoneCall className="w-4 h-4" />
                           </div>
                           <div>
-                            <span className="block text-sm font-extrabold text-white tracking-tight leading-tight">
+                            <h3 className="text-sm font-bold text-slate-900 leading-tight">
                               Kontak Darurat 24 Jam
-                            </span>
-                            <span className="block text-[10px] font-medium text-rose-100 leading-tight mt-0.5">
-                              Layanan Siaga Desa Warung Menteng
-                            </span>
+                            </h3>
+                            <p className="text-[11px] text-slate-500 mt-0.5">
+                              Layanan siaga Desa Warung Menteng
+                            </p>
                           </div>
                         </div>
-                        <span className="text-[10px] font-bold text-white bg-white/15 border border-white/25 px-2.5 py-1 rounded-full animate-pulse">
-                          Siaga
+                        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-full">
+                          Siaga 24 Jam
                         </span>
                       </div>
 
-                      {/* Item List */}
-                      <div className="flex-1 min-h-0 overflow-y-auto max-h-[400px] p-2.5 space-y-1.5">
+                      {/* Daftar Kontak */}
+                      <div className="flex-1 min-h-0 overflow-y-auto max-h-[380px] p-2 space-y-1">
                         {KONTAK_DARURAT_LIST.map(item => {
                           const isDamkar = item.id === 'dar-1';
                           const digits = isDamkar ? '02518291505' : item.nomorTelepon.replace(/[^0-9]/g, '');
@@ -772,47 +770,50 @@ export const Navbar: React.FC<NavbarProps> = ({
                           return (
                             <div
                               key={item.id}
-                              className="p-2.5 rounded-2xl border border-slate-100 hover:border-rose-200 hover:bg-rose-50/50 transition-all duration-150"
+                              className="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-colors duration-150"
                             >
-                              <div className="flex items-start gap-3">
-                                {/* Icon Badge */}
-                                <div className="w-9 h-9 rounded-xl bg-rose-100/70 text-rose-700 flex items-center justify-center shrink-0">
-                                  {getDaruratIcon(item.iconName)}
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                  <span className="block text-[13px] font-bold text-slate-900 truncate">
-                                    {item.namaLayanan ?? item.instansi}
-                                  </span>
-                                  <span className="block text-[11px] text-slate-500 truncate">
-                                    {item.instansi}
-                                  </span>
-                                  <span className="block text-[11px] font-semibold text-rose-700 mt-0.5">
-                                    {isDamkar ? 'Telp: (0251) 829-1505' : item.nomorTelepon}
-                                  </span>
-                                </div>
+                              {/* Icon */}
+                              <div className="w-9 h-9 rounded-lg bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                                {getDaruratIcon(item.iconName)}
                               </div>
 
-                              <div className="flex items-center gap-1.5 mt-2 pt-1.5 border-t border-slate-100/80">
-                                <a
-                                  href={`tel:${digits}`}
-                                  onClick={() => setKontakDaruratOpen(false)}
-                                  className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 bg-rose-700 hover:bg-rose-800 text-white rounded-lg text-[11px] font-bold shadow-2xs transition-colors"
-                                >
-                                  <PhoneCall className="w-3 h-3" />
-                                  <span>Telepon</span>
-                                </a>
+                              {/* Nama & Nomor */}
+                              <div className="min-w-0 flex-1">
+                                <span className="block text-xs font-bold text-slate-900 truncate leading-tight">
+                                  {item.namaLayanan ?? item.instansi}
+                                </span>
+                                <span className="block text-[10px] text-slate-500 truncate leading-tight mt-0.5">
+                                  {item.instansi}
+                                </span>
+                                <span className="block text-[11px] font-semibold text-slate-700 truncate leading-tight mt-0.5">
+                                  {isDamkar ? '(0251) 829-1505' : item.nomorTelepon}
+                                </span>
+                              </div>
+
+                              {/* Minified Action Buttons */}
+                              <div className="flex items-center gap-1.5 shrink-0">
                                 {waLink && (
                                   <a
                                     href={waLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setKontakDaruratOpen(false)}
-                                    className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-lg text-[11px] font-bold shadow-2xs transition-colors"
+                                    title="WhatsApp"
+                                    aria-label={`WhatsApp ${item.namaLayanan ?? item.instansi}`}
+                                    className="w-8 h-8 rounded-lg bg-[#25D366]/10 text-[#1e9e52] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-colors duration-150"
                                   >
-                                    <MessageCircle className="w-3 h-3 fill-white" />
-                                    <span>WhatsApp</span>
+                                    <MessageCircle className="w-4 h-4" />
                                   </a>
                                 )}
+                                <a
+                                  href={`tel:${digits}`}
+                                  onClick={() => setKontakDaruratOpen(false)}
+                                  title="Telepon"
+                                  aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
+                                  className="w-8 h-8 rounded-lg bg-[#0e3e2f]/10 text-[#0e3e2f] hover:bg-[#0e3e2f] hover:text-white flex items-center justify-center transition-colors duration-150"
+                                >
+                                  <Phone className="w-4 h-4" />
+                                </a>
                               </div>
                             </div>
                           );
@@ -820,13 +821,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
 
                       {/* Footer */}
-                      <div className="flex-shrink-0 p-2.5 border-t border-slate-100 bg-slate-50">
+                      <div className="flex-shrink-0 border-t border-slate-100 p-2 bg-white">
                         <button
                           onClick={() => {
                             setKontakDaruratOpen(false);
                             handleNavClick('kontak-darurat');
                           }}
-                          className="w-full text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl py-2.5 px-3 transition shadow-xs cursor-pointer active:scale-[0.99]"
+                          className="w-full text-center text-xs font-bold text-white bg-[#0e3e2f] hover:bg-[#124a35] rounded-xl py-2.5 px-3 transition shadow-xs cursor-pointer active:scale-[0.99]"
                         >
                           Lihat Semua Kontak Darurat
                         </button>

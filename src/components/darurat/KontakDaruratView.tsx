@@ -14,7 +14,8 @@ import {
   UserCheck, 
   Home, 
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  MessageCircle
 } from 'lucide-react';
 
 // Hero Panorama & Emergency Images
@@ -34,6 +35,7 @@ interface EmergencyContact {
   instansi: string;
   phone: string;
   phoneRaw: string;
+  waRaw: string;
   image: string;
   badgeIcon: React.ReactNode;
 }
@@ -46,6 +48,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Layanan Kesehatan Desa Warung Menteng',
       phone: '0811-2233-4455',
       phoneRaw: '081122334455',
+      waRaw: '6281122334455',
       image: daruratAmbulans,
       badgeIcon: <PlusSquare className="w-4 h-4 text-emerald-800" />
     },
@@ -55,6 +58,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Polsek Cijeruk',
       phone: '0812-3456-7890',
       phoneRaw: '081234567890',
+      waRaw: '6281234567890',
       image: daruratPolisi,
       badgeIcon: <ShieldCheck className="w-4 h-4 text-emerald-800" />
     },
@@ -64,6 +68,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Pos Damkar Cijeruk',
       phone: '(0251) 8240113',
       phoneRaw: '02518240113',
+      waRaw: '628567785200',
       image: daruratDamkar,
       badgeIcon: <Flame className="w-4 h-4 text-red-600" />
     },
@@ -73,6 +78,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Kab. Bogor',
       phone: '(0251) 8542220',
       phoneRaw: '02518542220',
+      waRaw: '6281210109008',
       image: daruratBpbd,
       badgeIcon: <Landmark className="w-4 h-4 text-emerald-800" />
     },
@@ -82,6 +88,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Kec. Cijeruk',
       phone: '0857-7788-9900',
       phoneRaw: '085777889900',
+      waRaw: '6285777889900',
       image: daruratSatpolPp,
       badgeIcon: <Shield className="w-4 h-4 text-emerald-800" />
     },
@@ -91,6 +98,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Koramil Cijeruk',
       phone: '0813-8899-0011',
       phoneRaw: '081388990011',
+      waRaw: '6281388990011',
       image: daruratBabinsa,
       badgeIcon: <UserCheck className="w-4 h-4 text-emerald-800" />
     },
@@ -100,6 +108,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'Puskesmas Cijeruk',
       phone: '0813-1122-3344',
       phoneRaw: '081311223344',
+      waRaw: '6281311223344',
       image: daruratBidanDesa,
       badgeIcon: <Home className="w-4 h-4 text-emerald-800" />
     },
@@ -109,6 +118,7 @@ export const KontakDaruratView: React.FC = () => {
       instansi: 'BKKBN Cijeruk',
       phone: '0858-9900-1133',
       phoneRaw: '085899001133',
+      waRaw: '6285899001133',
       image: daruratPlkbListrik,
       badgeIcon: <Zap className="w-4 h-4 text-emerald-800" />
     }
@@ -283,14 +293,25 @@ export const KontakDaruratView: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Full-width Call Button */}
-                <a
-                  href={`tel:${contact.phoneRaw}`}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-                >
-                  <Phone className="w-3.5 h-3.5 fill-white" />
-                  <span>Hubungi Sekarang</span>
-                </a>
+                {/* Full-width WhatsApp & Telepon Buttons */}
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={`https://wa.me/${contact.waRaw}?text=${encodeURIComponent('Halo, saya warga Desa Warung Menteng, mohon bantuan darurat.')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white" />
+                    <span>WhatsApp</span>
+                  </a>
+                  <a
+                    href={`tel:${contact.phoneRaw}`}
+                    className="py-2.5 px-2 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+                  >
+                    <Phone className="w-4 h-4 fill-white" />
+                    <span>Telepon</span>
+                  </a>
+                </div>
               </div>
             </div>
           ))}
