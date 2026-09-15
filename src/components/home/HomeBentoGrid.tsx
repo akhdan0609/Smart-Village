@@ -141,7 +141,7 @@ page: 'profil-desa' as PageRoute
             </div>
 
             {/* Description */}
-            <p className="text-xs text-slate-600 leading-relaxed font-normal">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal text-justify">
               Desa Warung Menteng adalah desa yang terletak di Kecamatan Cijeruk, Kabupaten Bogor, Jawa Barat. Dengan potensi alam yang melimpah dan masyarakat yang ramah, desa ini terus berkembang menjadi desa yang mandiri dan sejahtera.
             </p>
 

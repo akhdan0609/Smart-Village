@@ -230,7 +230,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
 
         {/* Bottom Copyright */}
         <div className="mt-12 pt-6 border-t border-[#094734] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
-          <p>© 2024 Desa Warung Menteng. All rights reserved.</p>
+          <p>© 2026 Desa Warung Menteng. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <button
               onClick={() => handleNav('kontak-darurat')}

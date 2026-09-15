@@ -38,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
 
           {/* Subtitle Description */}
           <p className="beranda-hero-desc text-slate-800 text-sm sm:text-base leading-relaxed font-medium max-w-md will-change-transform">
-            Desa asri di kaki Gunung Salak yang kaya akan potensi alam dan budaya yang terus berkembang.
+            Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat.
           </p>
 
           {/* Action Button: Jelajahi Desa Kami */}

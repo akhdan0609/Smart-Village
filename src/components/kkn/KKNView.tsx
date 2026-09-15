@@ -410,10 +410,10 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
               <div className="space-y-2 pt-1">
                 <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
-                  Bersama Mahasiswa, Membangun Desa<br className="hidden sm:inline" /> Menuju Masa Depan yang Lebih Baik
+                  Bersama Mahasiswa, Membangun Desa<br /> Menuju Masa Depan yang Lebih Baik
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md">
-                  Sinergi antara ilmu, pengalaman dan pengabdian untuk mewujudkan desa yang mandiri, maju dan sejahtera.
+                  Menggabungkan ilmu, pengalaman, dan pengabdian untuk tumbuh bersama menuju desa yang mandiri, maju, dan sejahtera.
                 </p>
               </div>
 
@@ -629,7 +629,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
       {/* 3. FOUR BENTO CARDS (Latar Belakang, Program Kerja, Galeri, Struktur) */}
       <section id="kkn-program-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
           
           {/* Card 1: Latar Belakang */}
           <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
@@ -647,35 +647,6 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             <div>
               <button
                 onClick={() => onNavigate ? onNavigate('kkn-latar-belakang') : setActiveModal('latar-belakang')}
-                className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
-              >
-                <span>Lihat Selengkapnya</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2: Program Kerja KKN */}
-          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm sm:text-base border-b border-slate-100 pb-2.5">
-                <Calendar className="w-4 h-4 text-emerald-800" />
-                <span>Program Kerja KKN</span>
-              </div>
-
-              <div className="space-y-2 text-xs text-slate-700">
-                {programKerjaList.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="leading-snug text-slate-700 text-xs font-medium">{item.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <button
-                onClick={() => onNavigate ? onNavigate('kkn-program-kerja') : setActiveModal('program-kerja')}
                 className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
               >
                 <span>Lihat Selengkapnya</span>
