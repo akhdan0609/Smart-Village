@@ -628,13 +628,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <>
                     {/* 1. Mobile Modal Center (< 640px - Screen-Centered & Viewport-Safe) */}
                     <div 
-                      className="sm:hidden fixed inset-0 z-[100] flex items-center justify-center p-3 bg-slate-950/75 backdrop-blur-xs animate-in fade-in duration-150"
+                      className="sm:hidden fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
                       onClick={() => setKontakDaruratOpen(false)}
                     >
-                      <div 
-                        className="max-h-[85vh] w-[92vw] max-w-md bg-white rounded-2xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150"
-                        onClick={e => e.stopPropagation()}
-                      >
+                      <div className="flex min-h-full items-center justify-center p-3">
+                        <div 
+                          className="max-h-[calc(100dvh-1.5rem)] w-[92vw] max-w-md bg-white rounded-2xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150"
+                          onClick={e => e.stopPropagation()}
+                        >
                         {/* Header */}
                         <div className="flex-shrink-0 p-3.5 border-b border-slate-100 flex items-center justify-between bg-white">
                           <div className="flex items-center gap-2.5">
@@ -732,6 +733,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           >
                             Lihat Semua Kontak Darurat
                           </button>
+                        </div>
                         </div>
                       </div>
                     </div>
