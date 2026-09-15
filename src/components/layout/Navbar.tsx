@@ -16,7 +16,7 @@ import {
 import { PageRoute, KontakDaruratItem } from '../../types';
 import { getAdminAuth, setAdminAuth } from '../../utils/storage';
 import { KONTAK_DARURAT_LIST } from '../../data/mockData';
-import logoDesaWarungMenteng from '../../assets/images/logo_warung_menteng.svg';
+import logoDesaWarungMenteng from '../../assets/images/WarungMenteng.svg';
 import { SearchModal } from './SearchModal';
 
 // Icon mapping untuk badge emergency contacts

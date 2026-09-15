@@ -16,10 +16,10 @@ import {
 import { PageRoute } from '../../types';
 
 // Imported team banners
-import bphBanner from '../../assets/images/kkn_team_bph_1788605172906.jpg';
-import acaraBanner from '../../assets/images/kkn_team_acara_1788605188095.jpg';
-import humasBanner from '../../assets/images/kkn_team_humas_1788605201912.jpg';
-import mediaBanner from '../../assets/images/kkn_team_media_1788605216631.jpg';
+import bphBanner from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import acaraBanner from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import humasBanner from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import mediaBanner from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 
 // Individual student portraits
 import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg';

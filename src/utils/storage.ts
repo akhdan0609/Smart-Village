@@ -49,3 +49,19 @@ export const clearAdminAuth = (): void => {
 export const isAdminAuthenticated = (): boolean => {
   return getAdminAuth() !== null;
 };
+
+/**
+ * Save a surat request to localStorage
+ */
+export const saveSuratRequest = (request: object): void => {
+  try {
+    const existingRequests = localStorage.getItem('suratRequests');
+    const requests = existingRequests ? JSON.parse(existingRequests) : [];
+
+    requests.push(request);
+
+    localStorage.setItem('suratRequests', JSON.stringify(requests));
+  } catch (error) {
+    console.error('Error saving surat request:', error);
+  }
+};

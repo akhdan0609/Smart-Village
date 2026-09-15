@@ -16,7 +16,7 @@ import {
   Phone
 } from 'lucide-react';
 import { PageRoute } from '../../types';
-import pelayananHeroImage from '../../assets/images/pelayanan_hero_kantor_desa_1788325727506.jpg';
+import pelayananHeroImage from '../../assets/images/kantor_desa_cijeruk_1789390911036.jpg';
 
 interface PelayananDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
