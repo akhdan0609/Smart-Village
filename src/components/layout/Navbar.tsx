@@ -630,7 +630,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {/* 1. Mobile Modal Center (< 640px - Rendered via Portal so it is in front of the sticky navbar) */}
                     {createPortal(
                     <div 
-                      className="sm:hidden fixed inset-0 z-[9999] bg-slate-950/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
+                      className="sm:hidden fixed inset-0 z-[9999] bg-slate-950/75 overflow-y-auto animate-in fade-in duration-150"
                       onClick={() => setKontakDaruratOpen(false)}
                     >
                       <div className="flex min-h-full items-center justify-center p-3">
@@ -654,6 +654,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             </div>
                           </div>
                           <button
+                            type="button"
                             onClick={() => setKontakDaruratOpen(false)}
                             className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition cursor-pointer"
                             aria-label="Tutup Kontak Darurat"
@@ -695,7 +696,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 </div>
 
                                 {/* Minified Action Buttons */}
-                                <div className="flex items-center gap-1.5 shrink-0">
+                                <div className="flex items-center gap-2 shrink-0">
                                   {waLink && (
                                     <a
                                       href={waLink}
@@ -704,9 +705,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                                       onClick={() => setKontakDaruratOpen(false)}
                                       title="WhatsApp"
                                       aria-label={`WhatsApp ${item.namaLayanan ?? item.instansi}`}
-                                      className="w-9 h-9 rounded-lg bg-[#25D366]/10 text-[#1e9e52] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-colors duration-150"
+                                      className="w-11 h-11 rounded-xl bg-[#25D366]/10 text-[#1e9e52] active:bg-[#25D366] active:text-white flex items-center justify-center transition-colors duration-150"
                                     >
-                                      <MessageCircle className="w-4 h-4" />
+                                      <MessageCircle className="w-5 h-5" />
                                     </a>
                                   )}
                                   <a
@@ -714,9 +715,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     onClick={() => setKontakDaruratOpen(false)}
                                     title="Telepon"
                                     aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
-                                    className="w-9 h-9 rounded-lg bg-[#0e3e2f]/10 text-[#0e3e2f] hover:bg-[#0e3e2f] hover:text-white flex items-center justify-center transition-colors duration-150"
+                                    className="w-11 h-11 rounded-xl bg-[#0e3e2f]/10 text-[#0e3e2f] active:bg-[#0e3e2f] active:text-white flex items-center justify-center transition-colors duration-150"
                                   >
-                                    <Phone className="w-4 h-4" />
+                                    <Phone className="w-5 h-5" />
                                   </a>
                                 </div>
                               </div>
@@ -727,6 +728,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         {/* Footer */}
                         <div className="flex-shrink-0 p-3 border-t border-slate-100 bg-white">
                           <button
+                            type="button"
                             onClick={() => {
                               setKontakDaruratOpen(false);
                               handleNavClick('kontak-darurat');
@@ -859,7 +861,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Quick Search Modal */}
       {searchModalOpen && createPortal(
-        <div className="fixed inset-0 z-[9999] bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
+        <div className="fixed inset-0 z-[9999] bg-slate-900/60 flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden space-y-4 p-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
