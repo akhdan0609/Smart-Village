@@ -20,6 +20,14 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 
+// Program Kerja Detail Routes (setiap proker punya halaman sendiri)
+const PROKER_ROUTES: Record<string, PageRoute> = {
+  'proker-1': 'kkn-proker-1',
+  'proker-2': 'kkn-proker-2',
+  'proker-3': 'kkn-proker-3',
+  'proker-4': 'kkn-proker-4'
+};
+
 // Image Assets
 import kknHeroGroup from '../../assets/images/kkn_hero_group_1788604287174.jpg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
@@ -482,6 +490,15 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
                           </div>
                         ))}
                       </div>
+
+                      {/* Tombol Lihat Selengkapnya */}
+                      <button
+                        onClick={() => onNavigate ? onNavigate(PROKER_ROUTES[prog.id]) : null}
+                        className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0a3828] hover:bg-[#06352a] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 shadow-2xs cursor-pointer active:scale-[0.98] group/btn"
+                      >
+                        <span>Lihat Selengkapnya</span>
+                        <ChevronRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                      </button>
 
                     </div>
                   );

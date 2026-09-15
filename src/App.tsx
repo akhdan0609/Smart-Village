@@ -60,6 +60,7 @@ import { KKNVisiMisiView } from './components/kkn/KKNVisiMisiView';
 import { KKNStrukturalView } from './components/kkn/KKNStrukturalView';
 import { KKNGaleriView } from './components/kkn/KKNGaleriView';
 import { KKNDivisionView } from './components/kkn/KKNDivisionView';
+import { KKNProgramDetailView } from './components/kkn/KKNProgramDetailView';
 
 // Kontak Darurat View
 import { KontakDaruratView } from './components/darurat/KontakDaruratView';
@@ -215,6 +216,14 @@ export default function App() {
         return <KKNStrukturalView />;
       case 'kkn-galeri':
         return <KKNGaleriView onNavigate={handleNavigate} />;
+      case 'kkn-proker-1':
+        return <KKNProgramDetailView prokerId="proker-1" onNavigate={handleNavigate} />;
+      case 'kkn-proker-2':
+        return <KKNProgramDetailView prokerId="proker-2" onNavigate={handleNavigate} />;
+      case 'kkn-proker-3':
+        return <KKNProgramDetailView prokerId="proker-3" onNavigate={handleNavigate} />;
+      case 'kkn-proker-4':
+        return <KKNProgramDetailView prokerId="proker-4" onNavigate={handleNavigate} />;
       case 'kkn':
         return <KKNView onNavigate={handleNavigate} />;
 

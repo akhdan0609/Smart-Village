@@ -62,6 +62,10 @@ export type PageRoute =
   | 'kkn-visi-misi'
   | 'kkn-struktural'
   | 'kkn-galeri'
+  | 'kkn-proker-1'
+  | 'kkn-proker-2'
+  | 'kkn-proker-3'
+  | 'kkn-proker-4'
   // Kontak Darurat
   | 'kontak-darurat'
   // Admin
