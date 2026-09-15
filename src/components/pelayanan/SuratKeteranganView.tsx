@@ -14,9 +14,9 @@ import {
 import { saveSuratRequest } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
-type SuratJenis = 'domisili-warga' | 'domisili-usaha' | 'sktm' | 'kematian' | 'kelahiran';
+type SuratJenis = 'domisili-warga' | 'domisili-usaha' | 'sktm' | 'kematian';
 
-const JENIS_VALID: SuratJenis[] = ['domisili-warga', 'domisili-usaha', 'sktm', 'kematian', 'kelahiran'];
+const JENIS_VALID: SuratJenis[] = ['domisili-warga', 'domisili-usaha', 'sktm', 'kematian'];
 
 interface SuratKeteranganProps {
   defaultJenis?: string;
@@ -67,20 +67,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
     penyebabKematian: 'Sakit',
     lokasiKematian: 'Rumah',
     hubunganPelapor: 'Anak',
-    // Spesifik Surat Keterangan Kelahiran (SKL)
-    namaBayi: '',
-    jenisKelaminBayi: 'Laki-laki',
-    tempatLahirBayi: '',
-    tanggalLahirBayi: '',
-    jamLahirBayi: '',
-    anakKe: '1',
-    beratBayi: '',
-    panjangBayi: '',
-    penolongKelahiran: 'Bidan',
-    namaAyah: '',
-    nikAyah: '',
-    namaIbu: '',
-    nikIbu: '',
     // Umum
     keperluanSurat: ''
   });
@@ -103,10 +89,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
       jenisSuratLabel = 'Surat Keterangan Kematian (SKK)';
       kodePrefix = 'SKK';
       keperluan = `Kematian ${formData.namaAlmarhum || 'Almarhum/Almarhumah'} - ${formData.penyebabKematian}`;
-    } else if (activeJenis === 'kelahiran') {
-      jenisSuratLabel = 'Surat Keterangan Kelahiran (SKL)';
-      kodePrefix = 'SKL';
-      keperluan = `Kelahiran ${formData.namaBayi || 'Bayi/Anak'} - Pengurusan Akta Kelahiran & KK`;
     }
 
     const regCode = `${kodePrefix}-${Date.now().toString().slice(-6)}`;
@@ -158,13 +140,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
       shortTitle: 'Kematian (SKK)',
       badge: 'SKK',
       desc: 'Menerangkan peristiwa kematian warga untuk keperluan ahlî waris, asuransi, dan administrasi lanjutan.'
-    },
-    {
-      id: 'kelahiran' as const,
-      title: 'Surat Keterangan Kelahiran',
-      shortTitle: 'Kelahiran (SKL)',
-      badge: 'SKL',
-      desc: 'Menerangkan peristiwa kelahiran anak warga desa untuk pengurusan Akta Kelahiran Disdukcapil, BPJS Bayi, & KK.'
     }
   ];
 
@@ -187,13 +162,13 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
             </h1>
             
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-              Pembuatan Surat Keterangan Domisili Warga, Surat Keterangan Domisili Usaha (SKU), Surat Keterangan Tidak Mampu (SKTM), Surat Keterangan Kematian (SKK), dan Surat Keterangan Kelahiran (SKL) secara online langsung terverifikasi oleh Seksi Pelayanan Desa Warung Menteng.
+              Pembuatan Surat Keterangan Domisili Warga, Surat Keterangan Domisili Usaha (SKU), Surat Keterangan Tidak Mampu (SKTM), dan Surat Keterangan Kematian (SKK) secara online langsung terverifikasi oleh Seksi Pelayanan Desa Warung Menteng.
             </p>
           </div>
         </div>
 
-        {/* Nav Tabs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-4">
+        {/* 4 Nav Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {jenisTabs.map(tab => (
             <button
               key={tab.id}
@@ -334,35 +309,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
               </ul>
             )}
 
-            {activeJenis === 'kelahiran' && (
-              <ul className="space-y-3 text-xs text-slate-700">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Surat Pengantar Keterangan Kelahiran dari Ketua RT & RW</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Surat Keterangan Lahir Asli dari Bidan / Dokter / Puskesmas / Rumah Sakit</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi Kartu Tanda Penduduk (e-KTP) Orang Tua (Ayah & Ibu)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi Kartu Keluarga (KK) Orang Tua yang masih berlaku</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi Buku Nikah / Akta Perkawinan Orang Tua</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi e-KTP 2 (dua) orang saksi kelahiran (tetangga / kerabat)</span>
-                </li>
-              </ul>
-            )}
-
             <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200/80 text-xs text-emerald-900 space-y-1.5">
               <div className="flex items-center gap-1.5 font-bold text-emerald-950">
                 <Clock className="w-4 h-4 text-emerald-700" />
@@ -376,7 +322,7 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
           <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
             <div className="border-b border-slate-100 pb-4">
               <h2 className="text-lg sm:text-xl font-bold text-slate-900">
-                Formulir Pengajuan {activeJenis === 'domisili-warga' ? 'Surat Keterangan Domisili' : activeJenis === 'domisili-usaha' ? 'Surat Keterangan Usaha (SKU)' : activeJenis === 'sktm' ? 'Surat Keterangan Tidak Mampu (SKTM)' : activeJenis === 'kematian' ? 'Surat Keterangan Kematian (SKK)' : 'Surat Keterangan Kelahiran (SKL)'}
+                Formulir Pengajuan {activeJenis === 'domisili-warga' ? 'Surat Keterangan Domisili' : activeJenis === 'domisili-usaha' ? 'Surat Keterangan Usaha (SKU)' : activeJenis === 'sktm' ? 'Surat Keterangan Tidak Mampu (SKTM)' : 'Surat Keterangan Kematian (SKK)'}
               </h2>
               <p className="text-xs text-slate-500">
                 Lengkapi data pemohon di bawah ini dengan benar sesuai dokumen KTP & KK Anda
@@ -418,7 +364,7 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
                 {/* Biodata Pemohon */}
                 <div className="space-y-3">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 pb-1">
-                    {activeJenis === 'kematian' ? '1. Data Pelapor / Ahlî Waris' : activeJenis === 'kelahiran' ? '1. Data Pelapor / Orang Tua Pemohon' : '1. Data Pemohon'}
+                    {activeJenis === 'kematian' ? '1. Data Pelapor / Ahlî Waris' : '1. Data Pemohon'}
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -837,210 +783,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganProps> = ({ defaultJen
                           <option value="Saudara">Saudara</option>
                           <option value="Lainnya">Lainnya</option>
                         </select>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Spesifik Bagian Kelahiran (SKL) */}
-                {activeJenis === 'kelahiran' && (
-                  <div className="space-y-4 pt-3 border-t border-slate-100">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1 flex items-center justify-between">
-                      <span>2. Data Kelahiran Bayi / Anak (Khusus SKL)</span>
-                      <span className="text-[10px] normal-case bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">Wajib Diisi</span>
-                    </h4>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Nama Lengkap Bayi / Anak *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Contoh: Muhammad Rizky Pratama"
-                          value={formData.namaBayi}
-                          onChange={e => setFormData({ ...formData, namaBayi: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Jenis Kelamin Bayi *
-                        </label>
-                        <select
-                          value={formData.jenisKelaminBayi}
-                          onChange={e => setFormData({ ...formData, jenisKelaminBayi: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        >
-                          <option value="Laki-laki">Laki-laki</option>
-                          <option value="Perempuan">Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Tempat Dilahirkan *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Contoh: RSUD Ciawi / Puskesmas Cijeruk / Rumah"
-                          value={formData.tempatLahirBayi}
-                          onChange={e => setFormData({ ...formData, tempatLahirBayi: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Tanggal Lahir Bayi *
-                        </label>
-                        <input
-                          type="date"
-                          required
-                          value={formData.tanggalLahirBayi}
-                          onChange={e => setFormData({ ...formData, tanggalLahirBayi: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Pukul / Jam Kelahiran *
-                        </label>
-                        <input
-                          type="time"
-                          required
-                          value={formData.jamLahirBayi}
-                          onChange={e => setFormData({ ...formData, jamLahirBayi: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Kelahiran Anak Ke- *
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          max="20"
-                          required
-                          placeholder="Contoh: 1"
-                          value={formData.anakKe}
-                          onChange={e => setFormData({ ...formData, anakKe: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Berat & Panjang Bayi
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            placeholder="Berat (cth: 3.2 kg)"
-                            value={formData.beratBayi}
-                            onChange={e => setFormData({ ...formData, beratBayi: e.target.value })}
-                            className="w-1/2 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                          />
-                          <input
-                            type="text"
-                            placeholder="Pjg (cth: 50 cm)"
-                            value={formData.panjangBayi}
-                            onChange={e => setFormData({ ...formData, panjangBayi: e.target.value })}
-                            className="w-1/2 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Penolong Kelahiran *
-                        </label>
-                        <select
-                          value={formData.penolongKelahiran}
-                          onChange={e => setFormData({ ...formData, penolongKelahiran: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        >
-                          <option value="Bidan">Bidan</option>
-                          <option value="Dokter Kandungan / SpOG">Dokter Kandungan / SpOG</option>
-                          <option value="Perawat / Tenaga Medis">Perawat / Tenaga Medis</option>
-                          <option value="Lainnya">Lainnya</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1 pt-2">
-                      3. Data Orang Tua Bayi
-                    </h4>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Nama Lengkap Ayah Kandung *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Contoh: Asep Sunandar"
-                          value={formData.namaAyah}
-                          onChange={e => setFormData({ ...formData, namaAyah: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          NIK Ayah Kandung *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          maxLength={16}
-                          placeholder="16 Digit NIK Ayah"
-                          value={formData.nikAyah}
-                          onChange={e => setFormData({ ...formData, nikAyah: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          Nama Lengkap Ibu Kandung *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Contoh: Siti Fatimah"
-                          value={formData.namaIbu}
-                          onChange={e => setFormData({ ...formData, namaIbu: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
-                          NIK Ibu Kandung *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          maxLength={16}
-                          placeholder="16 Digit NIK Ibu"
-                          value={formData.nikIbu}
-                          onChange={e => setFormData({ ...formData, nikIbu: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                        />
                       </div>
                     </div>
                   </div>

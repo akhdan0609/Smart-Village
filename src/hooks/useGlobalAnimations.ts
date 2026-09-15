@@ -2,23 +2,10 @@ import { useEffect, useRef } from 'react';
 import { animate, waapi } from 'animejs';
 
 /**
- * Daftar halaman utama yang diizinkan memiliki animasi:
- * Beranda, Profil Desa, Potensi Desa, Pelayanan, dan KKN.
- * Semua sub-halaman di dalam dropdown (Profil, Potensi, Informasi/Humas, Pelayanan, KKN Divisi)
- * TIDAK menggunakan animasi sesuai instruksi pengguna.
- */
-const ALLOWED_ANIMATION_PAGES = new Set([
-  'beranda',
-  'profil-desa',
-  'potensi-desa',
-  'pelayanan-desa',
-  'kkn',
-]);
-
-/**
- * Hook animasi menggunakan Anime.js (animate & waapi.animate).
- * Hanya aktif pada: Beranda, Profil Desa, Potensi Desa, Pelayanan, dan KKN.
- * Halaman-halaman turunan dalam dropdown dan HUMAS sepenuhnya dinonaktifkan dari animasi.
+ * Hook animasi global menyeluruh menggunakan Anime.js (animate & waapi.animate).
+ * Mengatur transisi perpindahan halaman dan animasi scroll (naik/turun)
+ * untuk seluruh halaman di Desa Warung Menteng:
+ * Profil, Potensi, Informasi & Berita, Pelayanan, Aspirasi, KKN, Kontak Darurat, dan Admin.
  */
 export function useGlobalAnimations(activePage: string) {
   const isInitialMount = useRef(true);
@@ -26,35 +13,7 @@ export function useGlobalAnimations(activePage: string) {
   const mutationObserverRef = useRef<MutationObserver | null>(null);
 
   useEffect(() => {
-    // Jika halaman saat ini adalah sub-halaman dalam dropdown / Humas, matikan semua animasi
-    if (!ALLOWED_ANIMATION_PAGES.has(activePage)) {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-      if (mutationObserverRef.current) {
-        mutationObserverRef.current.disconnect();
-      }
-
-      // Pastikan tampilan halaman langsung tampil stabil tanpa efek transformasi
-      const pageWrapper = document.getElementById('app-page-wrapper');
-      if (pageWrapper) {
-        pageWrapper.style.transform = 'none';
-        pageWrapper.style.opacity = '1';
-      }
-
-      const allElements = document.querySelectorAll<HTMLElement>(
-        'main h1, main .page-header-title, main .hero-banner-title, main article, main .card-desa, main .anim-card, main [data-anim-status]'
-      );
-      allElements.forEach((el) => {
-        el.style.transform = 'none';
-        el.style.opacity = '1';
-        el.dataset.animStatus = 'in';
-      });
-
-      return;
-    }
-
-    // 1. Animasi transisi masuk halaman (Page Transition) untuk 5 halaman utama
+    // 1. Animasi transisi masuk halaman (Page Transition)
     const pageWrapper = document.getElementById('app-page-wrapper');
     if (pageWrapper) {
       animate(pageWrapper, {

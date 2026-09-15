@@ -16,7 +16,7 @@ import {
   Phone
 } from 'lucide-react';
 import { PageRoute } from '../../types';
-import pelayananHeroImage from '../../assets/images/kantor_desa_cijeruk_1789390911036.jpg';
+import pelayananHeroImage from '../../assets/images/pelayanan_hero_kantor_desa_1788325727506.jpg';
 
 interface PelayananDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -37,9 +37,7 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       items: [
         'Surat Keterangan Domisili Warga',
         'Surat Keterangan Domisili Usaha',
-        'Surat Keterangan Tidak Mampu (SKTM)',
-        'Surat Keterangan Kelahiran',
-        'Surat Keterangan Kematian'
+        'Surat Keterangan Tidak Mampu (SKTM)'
       ],
       icon: FileText,
       page: 'pelayanan-surat-keterangan' as PageRoute

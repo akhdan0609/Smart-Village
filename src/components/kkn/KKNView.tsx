@@ -11,23 +11,23 @@ import {
   ArrowRight, 
   X, 
   Instagram, 
+  Youtube, 
   Mail, 
   User
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import { KKNDivisionView } from './KKNDivisionView';
-import kknHeroGroup from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import kknHeroGroup from '../../assets/images/kkn_hero_group_1788604287174.jpg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerWebsite from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerBudaya from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknMengajarBale from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknKerjaBakti from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknPanorama from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
+import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
+import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
+import kknKerjaBakti from '../../assets/images/kkn_kerja_bakti_1788606750207.jpg';
+import kknPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
 import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg';
 import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
-import { LogoKKNWigata } from './LogoKKNWigata';
 
 export interface KKNMember {
   id: string;
@@ -490,15 +490,19 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* BPH Tab */}
           <button
             onClick={() => setActiveTab('BPH')}
-            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
+            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
+              activeTab === 'BPH'
+                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
+                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
+            }`}
           >
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-slate-500" />
+              <User className={`w-4 h-4 ${activeTab === 'BPH' ? 'text-amber-300' : 'text-slate-500'}`} />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   BPH
                 </span>
-                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
+                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'BPH' ? 'text-emerald-100' : 'text-slate-500'}`}>
                   Badan Pengurus Harian
                 </span>
               </div>
@@ -508,15 +512,19 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* ACARA Tab */}
           <button
             onClick={() => setActiveTab('ACARA')}
-            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
+            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
+              activeTab === 'ACARA'
+                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
+                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
+            }`}
           >
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-slate-500" />
+              <Calendar className={`w-4 h-4 ${activeTab === 'ACARA' ? 'text-amber-300' : 'text-slate-500'}`} />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   ACARA
                 </span>
-                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
+                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'ACARA' ? 'text-emerald-100' : 'text-slate-500'}`}>
                   Divisi Acara
                 </span>
               </div>
@@ -526,15 +534,19 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* HUMAS Tab */}
           <button
             onClick={() => setActiveTab('HUMAS')}
-            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
+            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
+              activeTab === 'HUMAS'
+                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
+                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
+            }`}
           >
             <div className="flex items-center gap-2">
-              <Megaphone className="w-4 h-4 text-slate-500" />
+              <Megaphone className={`w-4 h-4 ${activeTab === 'HUMAS' ? 'text-amber-300' : 'text-slate-500'}`} />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   HUMAS
                 </span>
-                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
+                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'HUMAS' ? 'text-emerald-100' : 'text-slate-500'}`}>
                   Divisi Hubungan Masyarakat
                 </span>
               </div>
@@ -544,15 +556,19 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
           {/* MEDIA Tab */}
           <button
             onClick={() => setActiveTab('MEDIA')}
-            className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
+            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-left transition duration-200 border cursor-pointer ${
+              activeTab === 'MEDIA'
+                ? 'bg-[#064e3b] text-white border-[#064e3b] shadow-md ring-2 ring-emerald-600/30'
+                : 'bg-white text-slate-700 border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs'
+            }`}
           >
             <div className="flex items-center gap-2">
-              <Camera className="w-4 h-4 text-slate-500" />
+              <Camera className={`w-4 h-4 ${activeTab === 'MEDIA' ? 'text-amber-300' : 'text-slate-500'}`} />
               <div>
                 <span className="block text-xs font-black uppercase tracking-wider leading-none">
                   MEDIA
                 </span>
-                <span className="text-[10px] leading-tight block mt-0.5 text-slate-500">
+                <span className={`text-[10px] leading-tight block mt-0.5 ${activeTab === 'MEDIA' ? 'text-emerald-100' : 'text-slate-500'}`}>
                   Divisi Media & Dokumentasi
                 </span>
               </div>
@@ -787,7 +803,10 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             
             {/* Left Brand Identity */}
             <div className="flex items-center gap-3 text-center md:text-left">
-              <LogoKKNWigata className="w-12 h-12 border-2 border-emerald-300 shadow-md shrink-0" />
+              <div className="w-11 h-11 rounded-full bg-white text-[#064e3b] border-2 border-emerald-300 flex flex-col items-center justify-center font-black text-[9px] tracking-tight shadow-md shrink-0">
+                <span className="leading-none">WIGATA</span>
+                <span className="text-[7.5px] leading-none text-emerald-800">DHARMA</span>
+              </div>
               <div className="space-y-0.5">
                 <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">
                   Kelompok KKN WIGATA DHARMA
@@ -809,26 +828,35 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             {/* Right Social Media & Contacts */}
             <div className="flex items-center gap-2">
               <a
-                href="https://www.instagram.com/wigatadharma/"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Instagram KKN Wigata Dharma"
+                aria-label="Instagram KKN"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <Instagram className="w-3.5 h-3.5" />
               </a>
               <a
-                href="https://www.tiktok.com/@kknwigatadharma?_r=1&_t=ZS-99jBH5V8Izo"
+                href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="TikTok KKN Wigata Dharma"
+                aria-label="YouTube KKN"
+                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
+              >
+                <Youtube className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok KKN"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <TikTokIcon className="w-3.5 h-3.5" />
               </a>
               <a
-                href="mailto:kknwd2026@gmail.com"
-                aria-label="Email Gmail KKN Wigata Dharma"
+                href="mailto:kkn.warungmenteng@gmail.com"
+                aria-label="Email KKN"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <Mail className="w-3.5 h-3.5" />

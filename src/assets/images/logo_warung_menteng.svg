@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Circular clip to ensure clean emblem boundary -->
+    <clipPath id="emblem-clip">
+      <circle cx="100" cy="100" r="95" />
+    </clipPath>
+    <clipPath id="inner-clip">
+      <circle cx="100" cy="100" r="90" />
+    </clipPath>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d365" />
+      <stop offset="50%" stop-color="#d4a017" />
+      <stop offset="100%" stop-color="#a67c12" />
+    </linearGradient>
+    <linearGradient id="leaf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d6a4f" />
+      <stop offset="100%" stop-color="#0f382a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring -->
+  <circle cx="100" cy="100" r="96" fill="#0f382a" />
+  <circle cx="100" cy="100" r="91" fill="#ffffff" />
+  <circle cx="100" cy="100" r="88" fill="#0f382a" />
+  <circle cx="100" cy="100" r="86" fill="#f9fbf9" />
+
+  <!-- Main Illustration Group -->
+  <g clip-path="url(#inner-clip)">
+    <!-- Sky Background -->
+    <rect x="0" y="0" width="200" height="200" fill="#f4f7f5" />
+
+    <!-- Mountain Silhouette (Gunung Salak) -->
+    <path d="M 10 115 L 45 75 L 75 52 L 105 78 L 135 48 L 165 80 L 195 115 Z" fill="#0f382a" />
+    <!-- Mountain ridge highlight -->
+    <path d="M 75 52 L 88 66 L 105 78 L 118 64 L 135 48" stroke="#1b4d3e" stroke-width="2" fill="none" />
+
+    <!-- Terraced Rice Fields (Terasering) on Left -->
+    <path d="M 10 100 Q 40 102 65 110 Q 80 114 95 118 L 95 140 L 10 140 Z" fill="#2d6a4f" />
+    <path d="M 10 108 Q 45 112 80 120" stroke="#f4f7f5" stroke-width="1.5" fill="none" />
+    <path d="M 10 116 Q 40 120 75 127" stroke="#f4f7f5" stroke-width="1.5" fill="none" />
+    <path d="M 10 124 Q 35 127 70 133" stroke="#f4f7f5" stroke-width="1.5" fill="none" />
+
+    <!-- Traditional Sundanese House (Rumah Adat Sunda) -->
+    <g transform="translate(42, 68)">
+      <!-- Roof -->
+      <polygon points="18,0 0,16 36,16" fill="#0f382a" stroke="#ffffff" stroke-width="1.2" />
+      <line x1="18" y1="0" x2="18" y2="4" stroke="url(#gold-grad)" stroke-width="2" />
+      <!-- Overhang & Walls -->
+      <rect x="5" y="16" width="26" height="14" fill="#ffffff" stroke="#0f382a" stroke-width="1.5" />
+      <!-- Window slats & door -->
+      <rect x="8" y="19" width="5" height="7" fill="#0f382a" />
+      <rect x="15" y="19" width="6" height="11" fill="#0f382a" />
+      <rect x="23" y="19" width="5" height="7" fill="#0f382a" />
+      <!-- Stilts / pillars -->
+      <line x1="7" y1="30" x2="7" y2="35" stroke="#0f382a" stroke-width="2" />
+      <line x1="14" y1="30" x2="14" y2="35" stroke="#0f382a" stroke-width="2" />
+      <line x1="22" y1="30" x2="22" y2="35" stroke="#0f382a" stroke-width="2" />
+      <line x1="29" y1="30" x2="29" y2="35" stroke="#0f382a" stroke-width="2" />
+    </g>
+
+    <!-- Tea Leaf (Daun Teh) on Right -->
+    <path d="M 120 135 C 135 105 170 85 180 82 C 178 105 160 135 125 142 Z" fill="url(#leaf-grad)" stroke="#ffffff" stroke-width="1.2" />
+    <path d="M 125 135 Q 155 110 178 84" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.8" />
+    <path d="M 140 120 Q 152 116 160 118" stroke="#ffffff" stroke-width="0.8" fill="none" opacity="0.8" />
+    <path d="M 150 110 Q 162 105 168 106" stroke="#ffffff" stroke-width="0.8" fill="none" opacity="0.8" />
+
+    <!-- Rice Grains (Bulir Padi Emas) curving right border -->
+    <g fill="url(#gold-grad)" stroke="#0f382a" stroke-width="0.7">
+      <ellipse cx="145" cy="40" rx="3.5" ry="7" transform="rotate(30 145 40)" />
+      <ellipse cx="156" cy="50" rx="3.5" ry="7" transform="rotate(45 156 50)" />
+      <ellipse cx="166" cy="63" rx="3.5" ry="7" transform="rotate(60 166 63)" />
+      <ellipse cx="174" cy="78" rx="3.5" ry="7" transform="rotate(75 174 78)" />
+      <ellipse cx="177" cy="94" rx="3.5" ry="7" transform="rotate(90 177 94)" />
+      <!-- Rice stalk curve -->
+      <path d="M 135 32 Q 170 60 175 105" stroke="url(#gold-grad)" stroke-width="2.5" fill="none" />
+    </g>
+
+    <!-- Center Kujang Spire (Senjata Khas Jawa Barat / Kujang Emas) -->
+    <g transform="translate(93, 26)">
+      <!-- Kujang Blade Silhouette -->
+      <path d="M 7 4 
+               C 5 12, 1 18, 0 25 
+               C -1 32, 2 38, 5 44 
+               C 8 50, 8 58, 6 68 
+               C 6 76, 8 82, 9 86 
+               L 11 86 
+               C 12 78, 14 70, 12 58 
+               C 11 50, 13 42, 15 36 
+               C 17 28, 15 18, 10 4 Z" 
+            fill="url(#gold-grad)" stroke="#0f382a" stroke-width="1.2" />
+      <!-- Kujang prong / branch -->
+      <path d="M 4 28 C -3 32, -4 40, -1 46 C 2 40, 4 36, 4 30 Z" fill="url(#gold-grad)" stroke="#0f382a" stroke-width="1" />
+      <!-- Small hole / eyelet -->
+      <circle cx="7" cy="38" r="1.5" fill="#0f382a" />
+      <circle cx="8" cy="46" r="1.5" fill="#0f382a" />
+      <circle cx="8" cy="54" r="1.5" fill="#0f382a" />
+    </g>
+
+    <!-- Lower Section Background: Dark Green Arc -->
+    <path d="M 10 135 C 40 120 160 120 190 135 L 190 200 L 10 200 Z" fill="#0f382a" />
+
+    <!-- Center Curved White Banner for "WARUNG MENTENG" -->
+    <g transform="translate(0, 5)">
+      <!-- Banner shadow -->
+      <path d="M 24 133 Q 100 123 176 133 L 172 153 Q 100 143 28 153 Z" fill="#072017" opacity="0.5" />
+      <!-- Banner main body -->
+      <path d="M 25 130 Q 100 120 175 130 L 172 149 Q 100 139 28 149 Z" fill="#ffffff" stroke="#0f382a" stroke-width="1.8" />
+      <!-- Banner cut-ends / folds -->
+      <polygon points="25,130 18,136 28,149" fill="#e2e8f0" stroke="#0f382a" stroke-width="1" />
+      <polygon points="175,130 182,136 172,149" fill="#e2e8f0" stroke="#0f382a" stroke-width="1" />
+
+      <!-- Text "WARUNG MENTENG" -->
+      <text x="100" y="143" 
+            text-anchor="middle" 
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+            font-weight="900" 
+            font-size="11.5" 
+            letter-spacing="0.8" 
+            fill="#0f382a">
+        WARUNG MENTENG
+      </text>
+    </g>
+
+    <!-- Subtext: DESA MANDIRI with flanking gold lines -->
+    <g transform="translate(0, 163)">
+      <line x1="45" y1="-3" x2="62" y2="-3" stroke="url(#gold-grad)" stroke-width="1.5" stroke-linecap="round" />
+      <text x="100" y="0" 
+            text-anchor="middle" 
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+            font-weight="700" 
+            font-size="7.5" 
+            letter-spacing="2.2" 
+            fill="url(#gold-grad)">
+        DESA MANDIRI
+      </text>
+      <line x1="138" y1="-3" x2="155" y2="-3" stroke="url(#gold-grad)" stroke-width="1.5" stroke-linecap="round" />
+    </g>
+
+    <!-- Bottom Emblem: Golden Three-Leaf Sprout (Simbol Kemakmuran) -->
+    <g transform="translate(100, 178)" fill="url(#gold-grad)">
+      <!-- Center petal -->
+      <ellipse cx="0" cy="-3" rx="2.2" ry="4" />
+      <!-- Left petal -->
+      <ellipse cx="-4" cy="-1" rx="2" ry="3.5" transform="rotate(-35 -4 -1)" />
+      <!-- Right petal -->
+      <ellipse cx="4" cy="-1" rx="2" ry="3.5" transform="rotate(35 4 -1)" />
+      <!-- Small seed dot -->
+      <circle cx="0" cy="2" r="1.5" />
+    </g>
+
+  </g>
+</svg>

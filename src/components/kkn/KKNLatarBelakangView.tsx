@@ -11,6 +11,7 @@ import {
   X, 
   ZoomIn, 
   Instagram, 
+  Youtube, 
   Mail,
   ArrowLeft,
   Calendar,
@@ -20,14 +21,13 @@ import {
 import { PageRoute } from '../../types';
 
 // Image Assets
-import kknHeroGroup from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import kknHeroGroup from '../../assets/images/kkn_hero_group_1788604287174.jpg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerWebsite from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerCyberbullying from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerBudaya from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerKekerasan from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknTeamMedia from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import { LogoKKNWigata } from './LogoKKNWigata';
+import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
+import kknProkerCyberbullying from '../../assets/images/kkn_proker_cyberbullying_1788606061840.jpg';
+import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
+import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
+import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
 
 interface ModalImage {
   src: string;
@@ -543,7 +543,12 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
           
           {/* Left: Logo & Kelompok Info */}
           <div className="flex items-center gap-3 text-left">
-            <LogoKKNWigata className="w-12 h-12 border-2 border-emerald-300 shadow-md shrink-0" />
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0 border border-amber-300/60">
+              <div className="w-full h-full rounded-full bg-emerald-900 flex flex-col items-center justify-center text-[8px] font-black text-amber-300 leading-tight">
+                <span>WIGATA</span>
+                <span className="text-[7px] text-white">DHARMA</span>
+              </div>
+            </div>
             <div>
               <h4 className="font-bold text-sm tracking-wide text-white">
                 Kelompok KKN WIGATA DHARMA
@@ -567,29 +572,36 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
           {/* Right: Social Media Icon Circles */}
           <div className="flex items-center gap-2.5">
             <a
-              href="https://www.instagram.com/wigatadharma/"
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="Instagram KKN Wigata Dharma"
+              aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
             </a>
             <a
-              href="https://www.tiktok.com/@kknwigatadharma?_r=1&_t=ZS-99jBH5V8Izo"
+              href="https://youtube.com"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="TikTok KKN Wigata Dharma"
+              aria-label="YouTube"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.3 6.3 0 0 0 1.94-4.49V8.78a8.21 8.21 0 0 0 4.83 1.57V6.9a4.84 4.84 0 0 1-1-.21z"/>
-              </svg>
+              <Youtube className="w-4 h-4" />
             </a>
             <a
-              href="mailto:kknwd2026@gmail.com"
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="Email Gmail KKN Wigata Dharma"
+              aria-label="TikTok"
+            >
+              <span className="text-xs font-bold font-sans">d</span>
+            </a>
+            <a
+              href="mailto:kkn.wigatadharma@gmail.com"
+              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
+              aria-label="Email"
             >
               <Mail className="w-4 h-4" />
             </a>
