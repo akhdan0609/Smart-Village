@@ -56,9 +56,9 @@ export const KontakDaruratView: React.FC = () => {
       id: 'babinkamtibmas',
       name: 'Babinkamtibmas',
       instansi: 'Polsek Cijeruk',
-      phone: '0812-3456-7890',
-      phoneRaw: '081234567890',
-      waRaw: '6281234567890',
+      phone: '0877-8566-2677',
+      phoneRaw: '087785662677',
+      waRaw: '6287785662677',
       image: daruratPolisi,
       badgeIcon: <ShieldCheck className="w-4 h-4 text-emerald-800" />
     },

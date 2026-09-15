@@ -419,18 +419,11 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
               <div className="pt-2">
                 <button
-                  onClick={() => {
-                    const el = document.getElementById('kkn-program-section');
-                    if (el) {
-                      el.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      setActiveModal('program-kerja');
-                    }
-                  }}
+                  onClick={() => onNavigate ? onNavigate('kkn-galeri') : setActiveModal('galeri')}
                   className="bg-[#facc15] hover:bg-[#eab308] text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition duration-200 shadow-xs inline-flex items-center gap-2 cursor-pointer hover:shadow-md active:scale-95"
                 >
                   <User className="w-4 h-4 text-slate-950" />
-                  <span>Lihat Program KKN</span>
+                  <span>Lihat Album Kami</span>
                   <ArrowRight className="w-4 h-4 text-slate-950" />
                 </button>
               </div>

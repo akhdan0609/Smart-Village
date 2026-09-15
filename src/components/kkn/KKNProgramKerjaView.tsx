@@ -344,18 +344,18 @@ export const KKNProgramKerjaView: React.FC<KKNProgramKerjaViewProps> = ({ onNavi
               {/* Menu Items List */}
               <div className="p-2 space-y-1 text-xs">
                 
-                {/* 1. Lihat Program KKN */}
+                {/* 1. Lihat Album Kami */}
                 <button
-                  onClick={() => handleSidebarClick('lihat-program')}
+                  onClick={() => handleSidebarClick('galeri')}
                   className={`w-full text-left px-3.5 py-2.5 rounded-xl flex items-center justify-between font-semibold transition cursor-pointer ${
-                    activeSidebarItem === 'lihat-program' 
+                    activeSidebarItem === 'galeri' 
                       ? 'bg-emerald-50 text-[#0b3b29] border border-emerald-200' 
                       : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
                     <BookOpen className="w-4 h-4 text-slate-400" />
-                    <span>Lihat Program KKN</span>
+                    <span>Lihat Album Kami</span>
                   </div>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                 </button>
