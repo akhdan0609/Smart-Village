@@ -193,7 +193,7 @@ export const KKN_MEMBERS: KKNMember[] = [
   },
   {
     id: 'acara-7',
-    name: 'CAISAR FAYTH ISYADIRDA',
+    name: 'Caisar Fayth Isyadirda',
     role: 'Anggota Acara',
     division: 'ACARA',
     photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&auto=format&fit=crop&q=80',
@@ -800,7 +800,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                 className="w-full bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold py-2 px-3 rounded-xl border border-slate-300 shadow-2xs flex items-center justify-center gap-1.5 transition cursor-pointer"
               >
                 <Users className="w-3.5 h-3.5 text-emerald-700" />
-                <span>19 Mahasiswa & DPL</span>
+                <span>20 Mahasiswa & DPL</span>
               </button>
             </div>
           </div>
@@ -1172,7 +1172,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                   <p><strong>4. Anggota Acara:</strong> RISNA</p>
                   <p><strong>5. Anggota Acara:</strong> Achmad Pahlevi Ramadhan</p>
                   <p><strong>6. Anggota Acara:</strong> Ikmal Nur Awaludin</p>
-                  <p><strong>7. Anggota Acara:</strong> CAISAR FAYTH ISYADIRDA</p>
+                  <p><strong>7. Anggota Acara:</strong> Caisar Fayth Isyadirda</p>
                 </div>
               </div>
             </div>

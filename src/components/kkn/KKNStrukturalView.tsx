@@ -137,7 +137,7 @@ export const KKNStrukturalView: React.FC = () => {
       fotoUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80'
     },
     {
-      nama: 'CAISAR FAYTH ISYADIRDA',
+      nama: 'Caisar Fayth Isyadirda',
       peran: 'Anggota Acara',
       divisi: 'ACARA',
       prodi: 'Sejarah Peradaban Islam (UNUSIA)',

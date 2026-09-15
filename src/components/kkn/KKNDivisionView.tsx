@@ -201,8 +201,8 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
       },
       {
         id: 'caisar-fayth-isyardirda',
-        name: 'CAISAR FAYTH ISYADIRDA',
-        fullName: 'CAISAR FAYTH ISYADIRDA',
+        name: 'Caisar Fayth Isyadirda',
+        fullName: 'Caisar Fayth Isyadirda',
         role: 'Anggota Acara',
         quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
         prodi: 'Sejarah Peradaban Islam',
