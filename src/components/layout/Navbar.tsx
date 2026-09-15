@@ -182,8 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Galeri Foto (Dokumentasi Desa)', desc: 'Dokumentasi & Keindahan Desa - Galeri Resmi Desa Warung Menteng', page: 'berita-galeri' as PageRoute, tag: 'HUMAS' },
     // KKN
     { title: 'Latar Belakang KKN', desc: 'Latar belakang pengabdian mahasiswa di Warung Menteng', page: 'kkn-latar-belakang' as PageRoute, tag: 'KKN' },
-    { title: 'Program Kerja KKN', desc: 'Program kerja dan rencana pengabdian mahasiswa KKN', page: 'kkn-program-kerja' as PageRoute, tag: 'KKN' },
-    { title: 'Galeri Kegiatan KKN', desc: 'Dokumentasi foto kegiatan bimbel, workshop, dan penyuluhan', page: 'kkn-galeri' as PageRoute, tag: 'KKN' },
+    { title: 'Album Kami KKN', desc: 'Album foto dokumentasi kegiatan KKN Wigata Dharma', page: 'kkn-galeri' as PageRoute, tag: 'KKN' },
     // Kontak Darurat
     { title: 'Kontak Darurat 24 Jam', desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' }
   ];
@@ -562,17 +561,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </button>
                   <button
-                    onClick={() => handleNavClick('kkn-program-kerja')}
-                    className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
-                      activePage === 'kkn-program-kerja'
-                        ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                        : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
-                    }`}
-                  >
-                    <span>Program Kerja</span>
-                    <ArrowRight className="w-3 h-3 text-slate-400" />
-                  </button>
-                  <button
                     onClick={() => handleNavClick('kkn-galeri')}
                     className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
                       activePage === 'kkn-galeri'
@@ -580,7 +568,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
                     }`}
                   >
-                    <span>Galeri Kegiatan</span>
+                    <span>Album Kami</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </button>
                 </div>
@@ -1179,16 +1167,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Latar Belakang
                 </button>
                 <button
-                  onClick={() => handleNavClick('kkn-program-kerja')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Program Kerja
-                </button>
-                <button
                   onClick={() => handleNavClick('kkn-galeri')}
                   className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
                 >
-                  Galeri Kegiatan
+                  Album Kami
                 </button>
               </div>
             )}

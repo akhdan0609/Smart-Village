@@ -372,14 +372,14 @@ export const KKNProgramKerjaView: React.FC<KKNProgramKerjaViewProps> = ({ onNavi
                   <ChevronRight className="w-3.5 h-3.5 text-emerald-300" />
                 </button>
 
-                {/* 3. Galeri Kegiatan */}
+                {/* 3. Album Kami */}
                 <button
                   onClick={() => handleSidebarClick('galeri')}
                   className="w-full text-left px-3.5 py-2.5 rounded-xl flex items-center justify-between font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
                     <Camera className="w-4 h-4 text-slate-400" />
-                    <span>Galeri Kegiatan</span>
+                    <span>Album Kami</span>
                   </div>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                 </button>

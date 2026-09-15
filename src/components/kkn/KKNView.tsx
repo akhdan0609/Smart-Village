@@ -673,12 +673,12 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             </div>
           </div>
 
-          {/* Card 3: Galeri Kegiatan KKN */}
+          {/* Card 3: Album Kami */}
           <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm sm:text-base border-b border-slate-100 pb-2.5">
                 <ImageIcon className="w-4 h-4 text-emerald-800" />
-                <span>Galeri Kegiatan KKN</span>
+                <span>Album Kami</span>
               </div>
 
               {/* Photo Collage Preview (2 rows x 3 photos) */}
