@@ -3,7 +3,6 @@ import {
   Building2, 
   Users, 
   GraduationCap, 
-  Phone, 
   Briefcase, 
   X, 
   ChevronRight,
@@ -31,7 +30,6 @@ interface OfficialProfile {
   fotoUrl: string;
   pendidikan: string;
   tupoksi: string;
-  kontak: string;
 }
 
 const STRUKTUR_DATA: {
@@ -48,8 +46,7 @@ const STRUKTUR_DATA: {
     roleTag: 'Kepala Desa',
     fotoUrl: kadesImg,
     pendidikan: 'S1 Agama & Pemerintahan',
-    tupoksi: 'Memimpin penyelenggaraan pemerintahan desa, membina ketenteraman dan ketertiban masyarakat, memelihara kerukunan hidup, serta mengoordinasikan pembangunan dan pemberdayaan masyarakat Desa Warung Menteng.',
-    kontak: '0812-8877-6611'
+    tupoksi: 'Memimpin penyelenggaraan pemerintahan desa, membina ketenteraman dan ketertiban masyarakat, memelihara kerukunan hidup, serta mengoordinasikan pembangunan dan pemberdayaan masyarakat Desa Warung Menteng.'
   },
   sekdes: {
     id: 'sekdes-1',
@@ -59,8 +56,7 @@ const STRUKTUR_DATA: {
     roleTag: 'Sekretaris Desa',
     fotoUrl: sekdesImg,
     pendidikan: 'S1 Ilmu Hukum',
-    tupoksi: 'Membantu Kepala Desa dalam mengoordinasikan bidang administrasi pemerintahan, tata persuratan, kearsipan, penyusunan rancangan peraturan desa, pelaporan, dan pengelolaan keuangan desa.',
-    kontak: '0813-2211-9988'
+    tupoksi: 'Membantu Kepala Desa dalam mengoordinasikan bidang administrasi pemerintahan, tata persuratan, kearsipan, penyusunan rancangan peraturan desa, pelaporan, dan pengelolaan keuangan desa.'
   },
   staff: [
     {
@@ -71,8 +67,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Bendahara Desa',
       fotoUrl: staff1Img,
       pendidikan: 'D3 Administrasi Keuangan',
-      tupoksi: 'Mengelola penatausahaan kas dan perbendaharaan desa, pembukuan realisasi APBDes, penerimaan pendapatan asli desa, serta pertanggungjawaban SPJ keuangan.',
-      kontak: '0812-3456-7801'
+      tupoksi: 'Mengelola penatausahaan kas dan perbendaharaan desa, pembukuan realisasi APBDes, penerimaan pendapatan asli desa, serta pertanggungjawaban SPJ keuangan.'
     },
     {
       id: 'staff-2',
@@ -82,8 +77,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Kasi Pemerintahan',
       fotoUrl: staff2Img,
       pendidikan: 'S1 Ilmu Pemerintahan',
-      tupoksi: 'Melaksanakan manajemen tata praja pemerintahan, administrasi kependudukan (KK, KTP, Surat Pindah), tata kelola pertanahan, ketertiban umum, dan perlindungan masyarakat.',
-      kontak: '0812-3456-7802'
+      tupoksi: 'Melaksanakan manajemen tata praja pemerintahan, administrasi kependudukan (KK, KTP, Surat Pindah), tata kelola pertanahan, ketertiban umum, dan perlindungan masyarakat.'
     },
     {
       id: 'staff-3',
@@ -93,8 +87,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Kasi Kesra',
       fotoUrl: staff3Img,
       pendidikan: 'S1 Kesejahteraan Sosial',
-      tupoksi: 'Melaksanakan program pembangunan bidang pendidikan, keagamaan, kesehatan masyarakat, penanganan stunting, jaminan sosial (BPJS/PBI/BLT), serta pembinaan adat & kebudayaan lokal.',
-      kontak: '0812-3456-7803'
+      tupoksi: 'Melaksanakan program pembangunan bidang pendidikan, keagamaan, kesehatan masyarakat, penanganan stunting, jaminan sosial (BPJS/PBI/BLT), serta pembinaan adat & kebudayaan lokal.'
     },
     {
       id: 'staff-4',
@@ -104,8 +97,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Kasi Pelayanan',
       fotoUrl: staff4Img,
       pendidikan: 'S1 Administrasi Publik',
-      tupoksi: 'Melaksanakan penyuluhan hukum dan motivasi masyarakat, melayani surat pengantar administrasi warga, pembinaan karang taruna pemuda, seni budaya, serta olah raga desa.',
-      kontak: '0812-3456-7804'
+      tupoksi: 'Melaksanakan penyuluhan hukum dan motivasi masyarakat, melayani surat pengantar administrasi warga, pembinaan karang taruna pemuda, seni budaya, serta olah raga desa.'
     },
     {
       id: 'staff-5',
@@ -115,8 +107,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Kasi Perencanaan',
       fotoUrl: staff1Img,
       pendidikan: 'S1 Perencanaan Wilayah',
-      tupoksi: 'Menyusun rancangan RKPDes, RPJMDes, musrenbang desa, mengumpulkan dan menganalisis data profil desa, serta menyusun laporan evaluasi perkembangan pembangunan berkala.',
-      kontak: '0812-3456-7805'
+      tupoksi: 'Menyusun rancangan RKPDes, RPJMDes, musrenbang desa, mengumpulkan dan menganalisis data profil desa, serta menyusun laporan evaluasi perkembangan pembangunan berkala.'
     },
     {
       id: 'staff-6',
@@ -126,8 +117,7 @@ const STRUKTUR_DATA: {
       roleTag: 'Kasi TUTR',
       fotoUrl: staff2Img,
       pendidikan: 'S1 Teknik Sipil / Tata Ruang',
-      tupoksi: 'Melaksanakan tata urusan tata ruang desa, monitoring infrastruktur jalan lingkungan, pemeliharaan saluran irigasi, sarana prasarana fisik, dan sanitasi permukiman desa.',
-      kontak: '0812-3456-7806'
+      tupoksi: 'Melaksanakan tata urusan tata ruang desa, monitoring infrastruktur jalan lingkungan, pemeliharaan saluran irigasi, sarana prasarana fisik, dan sanitasi permukiman desa.'
     }
   ],
   kadus: [
@@ -140,8 +130,7 @@ const STRUKTUR_DATA: {
       subTag: 'Kadus 1',
       fotoUrl: staff3Img,
       pendidikan: 'SMA / Sederajat',
-      tupoksi: 'Membantu Kepala Desa dalam pelaksanaan tugas di wilayah kerja Dusun 1 (meliputi RW 01 & RW 02), pembinaan ketentraman, ketertiban umum, dan gotong royong warga.',
-      kontak: '0812-3456-7811'
+      tupoksi: 'Membantu Kepala Desa dalam pelaksanaan tugas di wilayah kerja Dusun 1 (meliputi RW 01 & RW 02), pembinaan ketentraman, ketertiban umum, dan gotong royong warga.'
     },
     {
       id: 'kadus-2',
@@ -152,8 +141,7 @@ const STRUKTUR_DATA: {
       subTag: 'Kadus 2',
       fotoUrl: staff4Img,
       pendidikan: 'SMA / Sederajat',
-      tupoksi: 'Membantu Kepala Desa dalam pembinaan kemasyarakatan, penyerapan aspirasi pembangunan, ketertiban lingkungan, dan pelayanan warga di wilayah Dusun 2 (meliputi RW 03 & RW 04).',
-      kontak: '0812-3456-7812'
+      tupoksi: 'Membantu Kepala Desa dalam pembinaan kemasyarakatan, penyerapan aspirasi pembangunan, ketertiban lingkungan, dan pelayanan warga di wilayah Dusun 2 (meliputi RW 03 & RW 04).'
     },
     {
       id: 'kadus-3',
@@ -164,8 +152,7 @@ const STRUKTUR_DATA: {
       subTag: 'Kadus 3',
       fotoUrl: staff1Img,
       pendidikan: 'SMA / Sederajat',
-      tupoksi: 'Membantu tugas operasional Kepala Desa di wilayah Dusun 3 (meliputi RW 05 & RW 06), koordinasi ronda malam, posyandu dusun, serta kesiapsiagaan tanggap bencana lingkungan.',
-      kontak: '0812-3456-7813'
+      tupoksi: 'Membantu tugas operasional Kepala Desa di wilayah Dusun 3 (meliputi RW 05 & RW 06), koordinasi ronda malam, posyandu dusun, serta kesiapsiagaan tanggap bencana lingkungan.'
     }
   ]
 };
@@ -532,16 +519,6 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                   <span>{selectedOfficial.pendidikan}</span>
                 </div>
               </div>
-
-              {selectedOfficial.kontak && (
-                <div className="p-3 bg-slate-50 rounded-xl flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-emerald-700 shrink-0" />
-                  <div>
-                    <span className="font-bold text-slate-800 block text-[11px]">Kontak Resmi Kantor:</span>
-                    <span className="text-emerald-800 font-semibold">{selectedOfficial.kontak}</span>
-                  </div>
-                </div>
-              )}
 
               <div className="p-3.5 bg-emerald-50/70 rounded-xl border border-emerald-100 space-y-1">
                 <span className="font-bold text-[#14533e] flex items-center gap-1.5 text-xs">

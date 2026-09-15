@@ -1289,7 +1289,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-1',
     namaLayanan: 'Pemadam Kebakaran',
-    instansi: 'Dinas Pemadam Kebakaran Sektor Ciawi / Bogor Selatan',
+    instansi: 'Pos Damkar Cijeruk',
     kategori: 'Kebakaran & Bencana',
     nomorTelepon: '(0251) 829-1505',
     nomorWA: '+628567785200',
@@ -1301,8 +1301,8 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   },
   {
     id: 'dar-2',
-    namaLayanan: 'Ambulance Siaga',
-    instansi: 'Pemerintah Desa Warung Menteng & Puskesmas Cijeruk',
+    namaLayanan: 'Ambulans Siaga',
+    instansi: 'Layanan Kesehatan Desa Warung Menteng',
     kategori: 'Medis & Kesehatan',
     nomorTelepon: '0811-2233-4455',
     nomorWA: '6281122334455',
@@ -1315,7 +1315,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-3',
     namaLayanan: 'Bhabinkamtibmas',
-    instansi: 'Kepolisian Sektor (Polsek) Cijeruk - Polres Bogor',
+    instansi: 'Polsek Cijeruk',
     kategori: 'Keamanan & Ketertiban',
     nomorTelepon: '0812-3456-7890',
     nomorWA: '6281234567890',
@@ -1328,7 +1328,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-4',
     namaLayanan: 'BPBD',
-    instansi: 'BPBD Kabupaten Bogor (Posko Siaga Bencana Selatan)',
+    instansi: 'Kab. Bogor',
     kategori: 'Kebakaran & Bencana',
     nomorTelepon: '(0251) 8542220',
     nomorWA: '6281210109008',
@@ -1341,7 +1341,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-5',
     namaLayanan: 'Satpol PP',
-    instansi: 'Satuan Polisi Pamong Praja Kecamatan Cijeruk',
+    instansi: 'Kec. Cijeruk',
     kategori: 'Keamanan & Ketertiban',
     nomorTelepon: '0857-7788-9900',
     nomorWA: '6285777889900',
@@ -1354,7 +1354,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-6',
     namaLayanan: 'Babinsa',
-    instansi: 'Komando Rayon Militer (Koramil) Kodim 0621 Kab. Bogor',
+    instansi: 'Koramil Cijeruk',
     kategori: 'Keamanan & Ketertiban',
     nomorTelepon: '0813-8899-0011',
     nomorWA: '6281388990011',
@@ -1367,7 +1367,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-7',
     namaLayanan: 'Bidan Desa',
-    instansi: 'Pustu Warung Menteng / Puskesmas Cijeruk',
+    instansi: 'Puskesmas Cijeruk',
     kategori: 'Medis & Kesehatan',
     nomorTelepon: '0813-1122-3344',
     nomorWA: '6281311223344',
@@ -1380,7 +1380,7 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-8',
     namaLayanan: 'PLKB',
-    instansi: 'DP3AP2KB Kabupaten Bogor',
+    instansi: 'BKKBN Cijeruk',
     kategori: 'Pamong Desa',
     nomorTelepon: '0858-9900-1133',
     nomorWA: '6285899001133',
