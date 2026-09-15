@@ -2,24 +2,117 @@ import React from 'react';
 import { 
   Phone, 
   PhoneCall, 
-  MessageSquare,
   Clock, 
   ShieldCheck, 
   Users, 
   AlertTriangle, 
   Info, 
+  Flame, 
+  PlusSquare, 
+  Shield, 
+  Landmark, 
+  UserCheck, 
+  Home, 
+  Zap,
   CheckCircle2
 } from 'lucide-react';
 
-// Hero Panorama & Shared Emergency Data
+// Hero Panorama & Emergency Images
 import kknHeroPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
-import { 
-  EMERGENCY_CONTACTS, 
-  renderEmergencyBadgeIcon 
-} from '../../data/emergencyContacts';
+import daruratAmbulans from '../../assets/images/darurat_ambulans_1788607275359.jpg';
+import daruratPolisi from '../../assets/images/darurat_polisi_1788607291417.jpg';
+import daruratDamkar from '../../assets/images/darurat_damkar_1788607305696.jpg';
+import daruratBpbd from '../../assets/images/darurat_bpbd_1788607319133.jpg';
+import daruratSatpolPp from '../../assets/images/darurat_satpol_pp_1788607334637.jpg';
+import daruratBabinsa from '../../assets/images/darurat_babinsa_1788607347386.jpg';
+import daruratBidanDesa from '../../assets/images/darurat_bidan_desa_1788607359724.jpg';
+import daruratPlkbListrik from '../../assets/images/darurat_plkb_listrik_1788607373650.jpg';
+
+interface EmergencyContact {
+  id: string;
+  name: string;
+  instansi: string;
+  phone: string;
+  phoneRaw: string;
+  image: string;
+  badgeIcon: React.ReactNode;
+}
 
 export const KontakDaruratView: React.FC = () => {
-  const contacts = EMERGENCY_CONTACTS;
+  const contacts: EmergencyContact[] = [
+    {
+      id: 'ambulans',
+      name: 'Ambulans Siaga',
+      instansi: 'Layanan Kesehatan Desa Warung Menteng',
+      phone: '0811-2233-4455',
+      phoneRaw: '081122334455',
+      image: daruratAmbulans,
+      badgeIcon: <PlusSquare className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'babinkamtibmas',
+      name: 'Babinkamtibmas',
+      instansi: 'Polsek Cijeruk',
+      phone: '0812-3456-7890',
+      phoneRaw: '081234567890',
+      image: daruratPolisi,
+      badgeIcon: <ShieldCheck className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'damkar',
+      name: 'Pemadam Kebakaran',
+      instansi: 'Pos Damkar Cijeruk',
+      phone: '(0251) 8240113',
+      phoneRaw: '02518240113',
+      image: daruratDamkar,
+      badgeIcon: <Flame className="w-4 h-4 text-red-600" />
+    },
+    {
+      id: 'bpbd',
+      name: 'BPBD',
+      instansi: 'Kab. Bogor',
+      phone: '(0251) 8542220',
+      phoneRaw: '02518542220',
+      image: daruratBpbd,
+      badgeIcon: <Landmark className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'satpol-pp',
+      name: 'Satpol PP',
+      instansi: 'Kec. Cijeruk',
+      phone: '0857-7788-9900',
+      phoneRaw: '085777889900',
+      image: daruratSatpolPp,
+      badgeIcon: <Shield className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'babinsa',
+      name: 'Babinsa',
+      instansi: 'Koramil Cijeruk',
+      phone: '0813-8899-0011',
+      phoneRaw: '081388990011',
+      image: daruratBabinsa,
+      badgeIcon: <UserCheck className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'bidan-desa',
+      name: 'Bidan Desa',
+      instansi: 'Puskesmas Cijeruk',
+      phone: '0813-1122-3344',
+      phoneRaw: '081311223344',
+      image: daruratBidanDesa,
+      badgeIcon: <Home className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'plkb',
+      name: 'PLKB',
+      instansi: 'BKKBN Cijeruk',
+      phone: '0858-9900-1133',
+      phoneRaw: '085899001133',
+      image: daruratPlkbListrik,
+      badgeIcon: <Zap className="w-4 h-4 text-emerald-800" />
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-white text-slate-800 font-sans pb-16">
@@ -145,12 +238,12 @@ export const KontakDaruratView: React.FC = () => {
             <div className="w-8 h-8 rounded-full bg-emerald-50 text-[#0a3828] flex items-center justify-center shrink-0">
               <PhoneCall className="w-4 h-4" />
             </div>
-            <h2 className="text-lg sm:text-2xl font-extrabold text-[#0a3828] tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0a3828] tracking-tight whitespace-nowrap">
               Layanan Kontak Darurat
             </h2>
-            <div className="flex-1 h-[1.5px] bg-emerald-900/20 hidden sm:block" />
+            <div className="flex-1 h-[1.5px] bg-emerald-900/20" />
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 pl-0 sm:pl-11">
+          <p className="text-xs sm:text-sm text-slate-600 pl-11">
             Hubungi segera layanan berikut jika Anda membutuhkan bantuan atau pertolongan:
           </p>
         </div>
@@ -171,7 +264,7 @@ export const KontakDaruratView: React.FC = () => {
                 />
                 {/* Floating Circle Icon */}
                 <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center backdrop-blur-xs border border-slate-100">
-                  {renderEmergencyBadgeIcon(contact.badgeType)}
+                  {contact.badgeIcon}
                 </div>
               </div>
 
@@ -184,68 +277,20 @@ export const KontakDaruratView: React.FC = () => {
                   <p className="text-xs text-slate-500 font-medium">
                     {contact.instansi}
                   </p>
-                  {contact.secondaryPhone ? (
-                    <div className="pt-2 space-y-1.5">
-                      <a 
-                        href={`tel:${contact.phoneRaw}`}
-                        className="flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-900 hover:text-emerald-800 transition"
-                        title="Telepon Kantor (Aplikasi Telepon)"
-                      >
-                        <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-semibold shrink-0">Kantor</span>
-                        <Phone className="w-3.5 h-3.5 text-emerald-800 shrink-0" />
-                        <span className="truncate">{contact.phone}</span>
-                      </a>
-                      <a 
-                        href={contact.whatsappUrl || `https://wa.me/${contact.secondaryPhoneRaw?.replace(/[^0-9]/g, '')}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-2 text-xs sm:text-sm font-extrabold text-[#128c7e] hover:text-[#075e54] transition"
-                        title="Chat WhatsApp"
-                      >
-                        <span className="text-[10px] px-1.5 py-0.5 bg-emerald-100 text-emerald-900 rounded font-semibold shrink-0">WA</span>
-                        <MessageSquare className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
-                        <span className="truncate">{contact.secondaryPhone}</span>
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="pt-2 flex items-center gap-2 text-sm sm:text-base font-extrabold text-slate-900">
-                      <Phone className="w-4 h-4 text-emerald-800 shrink-0" />
-                      <span>{contact.phone}</span>
-                    </div>
-                  )}
+                  <div className="pt-2 flex items-center gap-2 text-sm sm:text-base font-extrabold text-slate-900">
+                    <Phone className="w-4 h-4 text-emerald-800 shrink-0" />
+                    <span>{contact.phone}</span>
+                  </div>
                 </div>
 
-                {/* Call Button(s) */}
-                {contact.whatsappUrl ? (
-                  <div className="grid grid-cols-2 gap-2">
-                    <a
-                      href={`tel:${contact.phoneRaw}`}
-                      className="py-2.5 px-2 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-                      title="Panggil Nomor Kantor"
-                    >
-                      <Phone className="w-3.5 h-3.5 fill-white" />
-                      <span>Telepon</span>
-                    </a>
-                    <a
-                      href={contact.whatsappUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="py-2.5 px-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-                      title="Chat WhatsApp"
-                    >
-                      <MessageSquare className="w-3.5 h-3.5 fill-white" />
-                      <span>WhatsApp</span>
-                    </a>
-                  </div>
-                ) : (
-                  <a
-                    href={`tel:${contact.phoneRaw}`}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-                  >
-                    <Phone className="w-3.5 h-3.5 fill-white" />
-                    <span>Hubungi Sekarang</span>
-                  </a>
-                )}
+                {/* Full-width Call Button */}
+                <a
+                  href={`tel:${contact.phoneRaw}`}
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#063b25] hover:bg-[#094d31] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+                >
+                  <Phone className="w-3.5 h-3.5 fill-white" />
+                  <span>Hubungi Sekarang</span>
+                </a>
               </div>
             </div>
           ))}

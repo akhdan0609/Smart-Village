@@ -162,11 +162,11 @@ export default function App() {
       case 'pelayanan-desa':
         return <PelayananDesaView onNavigate={handleNavigate} />;
       case 'pelayanan-surat-keterangan':
-        return <SuratKeteranganView onNavigate={handleNavigate} defaultJenis={navParams?.defaultJenis} />;
+        return <SuratKeteranganView initialJenis={navParams?.initialJenis} onNavigate={handleNavigate} />;
       case 'pelayanan-pindah-datang':
-        return <PindahDatangView onNavigate={handleNavigate} defaultJenis={navParams?.defaultJenis} />;
+        return <PindahDatangView initialJenis={navParams?.initialJenis} onNavigate={handleNavigate} />;
       case 'pelayanan-layanan-pernikahan':
-        return <LayananPernikahanView onNavigate={handleNavigate} defaultTab={navParams?.defaultTab} />;
+        return <LayananPernikahanView initialTab={navParams?.initialTab} onNavigate={handleNavigate} />;
       case 'pelayanan-informasi':
         return <InformasiAdministrasiView onNavigate={handleNavigate} />;
       case 'pelayanan-persyaratan':

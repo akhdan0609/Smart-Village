@@ -43,7 +43,7 @@ import rumahAdatImg from '../../assets/images/rumah_adat_sunda_1788955442032.jpg
 import budayaImg from '../../assets/images/tradisi_budaya_lokal_1788955478016.jpg';
 import potensiHeroImg from '../../assets/images/potensi_hero_banner_1788325154234.jpg';
 import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
-import { WARUNG_MENTENG_MAPS_URL } from '../../data/mapLinks';
+import warungMentengQrSvg from '../../assets/images/WarungMenteng.svg';
 
 interface TentangDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -252,19 +252,29 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 </span>
               </div>
 
-              {/* Stylized Map Area with WarungMenteng Image */}
-              <div className="relative w-full h-52 sm:h-56 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center p-3 group">
-                <img
-                  src={warungMentengMapImg}
-                  alt="Peta Digital Desa Warung Menteng"
-                  className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105 cursor-pointer select-none"
+              {/* Stylized Barcode Viewport - Matching Lihat Barcode */}
+              <div 
+                onClick={() => setModalPetaOpen(true)}
+                className="relative w-full h-52 sm:h-56 rounded-xl bg-gradient-to-b from-slate-50 to-emerald-50/50 border border-emerald-100 overflow-hidden flex items-center justify-center p-3 group cursor-pointer select-none shadow-xs"
+              >
+                {/* White card framing the QR barcode */}
+                <div 
+                  className="bg-white p-3 rounded-xl border border-emerald-200/90 shadow-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
                   style={{ transform: `scale(${mapZoom})` }}
-                  onClick={() => setModalPetaOpen(true)}
-                  referrerPolicy="no-referrer"
-                />
+                >
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent('https://maps.app.goo.gl/y4hKRrMnF5d28LQz9')}`}
+                    alt="Barcode Peta Digital Desa Warung Menteng"
+                    className="w-28 h-28 sm:w-32 sm:h-32 object-contain rounded-md"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = warungMentengQrSvg;
+                    }}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
 
                 {/* Badge Overlay */}
-                <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-xs flex items-center gap-1.5 pointer-events-none">
+                <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-emerald-200 shadow-2xs flex items-center gap-1.5 pointer-events-none">
                   <QrCode className="w-3.5 h-3.5 text-emerald-700" />
                   <span className="text-[10px] font-bold text-slate-800">Scan Peta Digital</span>
                 </div>
@@ -294,11 +304,11 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                 onClick={() => setModalPetaOpen(true)}
                 className="flex-1 py-2.5 px-4 rounded-xl border border-[#0e3e2f] text-[#0e3e2f] hover:bg-emerald-50 text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
-                <QrCode className="w-4 h-4 text-emerald-700" />
-                <span>Lihat Barcode & Peta</span>
+                <BookOpen className="w-4 h-4 text-emerald-700" />
+                <span>Lihat Peta Lengkap</span>
               </button>
               <a
-                href={WARUNG_MENTENG_MAPS_URL}
+                href="https://maps.app.goo.gl/y4hKRrMnF5d28LQz9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-2.5 px-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer active:scale-[0.99]"
@@ -634,25 +644,34 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
               {/* QR Code Column */}
               <div className="md:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center text-center space-y-3">
-                <div className="w-48 h-48 sm:w-52 sm:h-52 bg-white p-3 rounded-xl border border-slate-200 shadow-xs flex items-center justify-center">
+                <a 
+                  href="https://maps.app.goo.gl/y4hKRrMnF5d28LQz9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-48 h-48 sm:w-52 sm:h-52 bg-white p-3 rounded-xl border border-slate-200 shadow-xs flex items-center justify-center cursor-pointer group hover:ring-2 hover:ring-emerald-500/30 transition"
+                  title="Klik untuk buka Google Maps"
+                >
                   <img
-                    src={warungMentengMapImg}
-                    alt="Peta Desa Warung Menteng"
-                    className="w-full h-full object-contain"
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent('https://maps.app.goo.gl/y4hKRrMnF5d28LQz9')}`}
+                    alt="Barcode Resmi Peta Desa Warung Menteng"
+                    className="w-full h-full object-contain transition-transform group-hover:scale-102"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = warungMentengQrSvg;
+                    }}
                     referrerPolicy="no-referrer"
                   />
-                </div>
+                </a>
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-slate-800">
-                    Barcode Peta Digital Desa
+                    Peta Digital & Navigasi Desa
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    Arahkan kamera smartphone Anda ke barcode di atas untuk membuka navigasi digital instan di Google Maps.
+                    Arahkan kamera smartphone Anda ke barcode di atas untuk membuka peta digital langsung di Google Maps.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2 w-full pt-1">
                   <a
-                    href={WARUNG_MENTENG_MAPS_URL}
+                    href="https://maps.app.goo.gl/y4hKRrMnF5d28LQz9"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-2 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs"
@@ -661,8 +680,10 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
                     <span>Buka Maps</span>
                   </a>
                   <a
-                    href={warungMentengMapImg}
-                    download="Barcode_Desa_Warung_Menteng.png"
+                    href={`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent('https://maps.app.goo.gl/y4hKRrMnF5d28LQz9')}`}
+                    download="Barcode_Peta_Desa_Warung_Menteng.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="py-2 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold transition flex items-center justify-center gap-1.5"
                   >
                     <Download className="w-3.5 h-3.5" />

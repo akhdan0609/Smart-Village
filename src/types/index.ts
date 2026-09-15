@@ -195,6 +195,8 @@ export interface JenisSurat {
   estimasiWaktu: string;
   persyaratan: string[];
   kegunaanUmum: string;
+  targetPage?: PageRoute;
+  targetParams?: any;
 }
 
 export type StatusSurat = 'Diajukan' | 'Verifikasi Berkas' | 'Diproses' | 'Siap Diambil' | 'Ditolak' | 'Selesai';
@@ -303,7 +305,7 @@ export interface LembagaItem {
 export interface DokumenDownloadItem {
   id: string;
   judul: string;
-  kategori: 'Regulasi & Perdes' | 'Panduan Layanan';
+  kategori: 'Formulir Surat' | 'Regulasi & Perdes' | 'Laporan Transparansi' | 'Panduan Layanan';
   ukuran: string;
   format: 'PDF' | 'DOCX' | 'XLSX';
   tanggalUpdate: string;

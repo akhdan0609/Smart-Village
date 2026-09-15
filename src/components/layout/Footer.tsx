@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal }) 
                 <span className="font-extrabold text-white text-base tracking-tight block">
                   Desa Warung Menteng
                 </span>
-                <span className="text-[11px] text-white font-medium block">
+                <span className="text-[11px] text-emerald-300 font-medium block">
                   Kec. Cijeruk, Kab. Bogor
                 </span>
               </div>

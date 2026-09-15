@@ -104,7 +104,7 @@ export const SEJARAH_DESA_DATA = {
 export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   {
     id: 'kades-1',
-    nama: 'A. Zaenal Arifin, S.Ag.',
+    nama: 'H. Irfan Setiawan, S.IP.',
     jabatan: 'Kepala Desa',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Ilmu Pemerintahan',
@@ -114,7 +114,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'sekdes-1',
-    nama: 'Agil Asmi Farizi, S.H.',
+    nama: 'Asep Saepuloh, S.Kom.',
     jabatan: 'Sekretaris Desa (Sekdes)',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Sistem Informasi',
@@ -124,8 +124,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-keu-1',
-    nama: 'Nasrudin',
-    jabatan: 'Bendahara Desa',
+    nama: 'Siti Nurhayati, S.E.',
+    jabatan: 'Kepala Urusan Keuangan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Akuntansi',
     tupoksi: 'Mengelola penatausahaan keuangan desa, pembukuan APBDes, penerimaan dan pengeluaran kas, serta penyusunan SPJ.',
@@ -133,8 +133,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-umum-1',
-    nama: 'M. Rizky Saefah',
-    jabatan: 'Kepala Seksi TUTR (Tata Usaha & Umum)',
+    nama: 'Dadan Ramdani',
+    jabatan: 'Kepala Urusan Umum & Tata Usaha',
     kategori: 'Pemerintah Desa',
     pendidikan: 'D3 Administrasi Perkantoran',
     tupoksi: 'Melaksanakan urusan ketatausahaan seperti tata naskah dinas, kearsipan, perlengkapan inventaris kantor, dan ekspedisi.',
@@ -142,8 +142,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kaur-rencana-1',
-    nama: 'M. Farhan Maulana',
-    jabatan: 'Kepala Seksi Perencanaan',
+    nama: 'Rian Hidayat, S.P.',
+    jabatan: 'Kepala Urusan Perencanaan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Pertanian',
     tupoksi: 'Menyusun rancangan RPJMDes, RKPDes, musrenbangdes, pengumpulan data profil desa, dan pelaporan evaluasi pembangunan.',
@@ -151,7 +151,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-pem-1',
-    nama: 'M. Fajar Sandika',
+    nama: 'M. Wildan Firdaus',
     jabatan: 'Kepala Seksi Pemerintahan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Hukum',
@@ -160,8 +160,8 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-kesejahteraan-1',
-    nama: 'M. Risman',
-    jabatan: 'Kepala Seksi Kesejahteraan (Kesra)',
+    nama: 'Ustadz Ahmad Fauzi',
+    jabatan: 'Kepala Seksi Kesejahteraan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Pendidikan Islam',
     tupoksi: 'Melaksanakan pembangunan sarana prasarana perdesaan, pembangunan bidang kesehatan, pendidikan, keagamaan, dan sosial budaya.',
@@ -169,7 +169,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kasi-pelayanan-1',
-    nama: 'M. Alwi Farhan Jamil',
+    nama: 'Dewi Anggraeni, S.Sos.',
     jabatan: 'Kepala Seksi Pelayanan',
     kategori: 'Pemerintah Desa',
     pendidikan: 'S1 Sosiologi',
@@ -178,7 +178,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-1',
-    nama: 'Bagus Hadi',
+    nama: 'Endang Kuswara',
     jabatan: 'Kepala Dusun I (Menteng Girang)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
@@ -187,7 +187,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-2',
-    nama: 'Rahmat Setiyono',
+    nama: 'Cecep Suryana',
     jabatan: 'Kepala Dusun II (Menteng Tengah)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
@@ -196,7 +196,7 @@ export const PERANGKAT_DESA_LIST: PerangkatDesa[] = [
   },
   {
     id: 'kadus-3',
-    nama: 'Diki Mahardika',
+    nama: 'Bambang Irawan',
     jabatan: 'Kepala Dusun III (Menteng Hilir & Cimenteng)',
     kategori: 'Kadus',
     pendidikan: 'SMA',
@@ -979,19 +979,37 @@ export const GALERI_LIST: GaleriItem[] = [
 // DATA PELAYANAN DESA - DAFTAR JENIS SURAT
 export const JENIS_SURAT_LIST: JenisSurat[] = [
   {
+    id: 'sk-domisili',
+    kode: 'SKD',
+    nama: 'Surat Keterangan Domisili Warga',
+    deskripsi: 'Surat yang menyatakan bahwa seseorang benar berdomisili dan menetap di alamat Desa Warung Menteng.',
+    estimasiWaktu: '1 Hari Kerja',
+    persyaratan: [
+      'Surat Pengantar dari Ketua RT dan RW domisili',
+      'Foto / Scan e-KTP Pemohon yang masih berlaku',
+      'Foto / Scan Kartu Keluarga (KK)',
+      'Bukti sewa/kontrak rumah (khusus warga pendatang/pengontrak)'
+    ],
+    kegunaanUmum: 'Pendaftaran sekolah (zonasi), pembukaan rekening bank, pengurusan NPWP, persyaratan kerja, dan verifikasi kependudukan.',
+    targetPage: 'pelayanan-surat-keterangan',
+    targetParams: { initialJenis: 'domisili-warga' }
+  },
+  {
     id: 'sku',
     kode: 'SKU',
     nama: 'Surat Keterangan Usaha (SKU)',
     deskripsi: 'Surat keterangan resmi yang menyatakan bahwa pemohon memiliki usaha aktif di wilayah Desa Warung Menteng.',
-    estimasiWaktu: '1 Hari Kerja (Bisa Instan jika berkas lengkap)',
+    estimasiWaktu: '1 Hari Kerja',
     persyaratan: [
-      'Foto / Scan e-KTP Pemohon yang masih berlaku',
+      'Surat Pengantar dari Ketua RT dan RW setempat',
+      'Foto / Scan e-KTP Pemilik Usaha',
       'Foto / Scan Kartu Keluarga (KK)',
-      'Surat Pengantar dari RT & RW setempat',
-      'Foto Tempat Usaha / Produk Usaha',
+      'Foto Tempat Usaha / Produk UMKM',
       'Data Jenis Usaha & Alamat Lokasi Usaha'
     ],
-    kegunaanUmum: 'Pengajuan pinjaman KUR Bank (BRI/BSI/Mandiri), izin UMKM, syarat pembukaan rekening bisnis, lelang, dll.'
+    kegunaanUmum: 'Pengajuan pinjaman KUR Bank (BRI/BSI/Mandiri), izin UMKM, syarat pembukaan rekening bisnis, lelang, dll.',
+    targetPage: 'pelayanan-surat-keterangan',
+    targetParams: { initialJenis: 'domisili-usaha' }
   },
   {
     id: 'sktm',
@@ -1000,42 +1018,121 @@ export const JENIS_SURAT_LIST: JenisSurat[] = [
     deskripsi: 'Surat yang menerangkan bahwa keluarga pemohon tergolong keluarga prasejahtera untuk keperluan bantuan sosial atau pendidikan.',
     estimasiWaktu: '1 Hari Kerja',
     persyaratan: [
+      'Surat Pengantar dari Ketua RT dan RW yang menyatakan kondisi ekonomi keluarga',
       'Foto / Scan e-KTP Pemohon & Kepala Keluarga',
       'Foto / Scan Kartu Keluarga (KK)',
-      'Surat Pengantar RT & RW yang menyatakan kondisi ekonomi keluarga',
       'Foto Kondisi Rumah Tampak Depan & Ruang Tengah',
-      'Surat Pernyataan Tidak Mampu bermaterai (opsional jika untuk beasiswa)'
+      'Surat Pernyataan Tidak Mampu bermaterai Rp 10.000 (opsional jika untuk beasiswa)'
     ],
-    kegunaanUmum: 'Keringanan biaya RS/BPJS PBI, beasiswa sekolah/kuliah (KIP-Kuliah), permohonan bantuan hukum, dll.'
+    kegunaanUmum: 'Keringanan biaya RS/BPJS PBI, beasiswa sekolah/kuliah (KIP-Kuliah), permohonan bantuan hukum, dll.',
+    targetPage: 'pelayanan-surat-keterangan',
+    targetParams: { initialJenis: 'sktm' }
   },
   {
-    id: 'skck-pengantar',
-    kode: 'SKCK',
-    nama: 'Surat Pengantar Catatan Kepolisian (SKCK)',
-    deskripsi: 'Surat pengantar dari pemerintah desa untuk melengkapi pembuatan SKCK di Polsek Cijeruk / Polres Bogor.',
+    id: 'sk-kematian',
+    kode: 'SK-MATI',
+    nama: 'Surat Keterangan Kematian',
+    deskripsi: 'Surat resmi yang menerangkan telah meninggal dunianya seorang warga Desa Warung Menteng.',
     estimasiWaktu: '1 Hari Kerja',
     persyaratan: [
-      'Foto / Scan e-KTP Pemohon',
-      'Foto / Scan Kartu Keluarga (KK)',
-      'Foto / Scan Akta Kelahiran atau Ijazah Terakhir',
-      'Surat Pengantar dari Ketua RT & RW',
-      'Pas foto 4x6 latar belakang merah (2 lembar)'
+      'Surat Pengantar dari RT/RW setempat',
+      'Surat Keterangan Kematian dari Dokter/RS/Puskesmas (jika ada)',
+      'Foto / Scan e-KTP & KK Almarhum/Almarhumah',
+      'Foto / Scan e-KTP Pelapor (Ahli Waris / Keluarga)',
+      'Foto / Scan e-KTP 2 orang saksi'
     ],
-    kegunaanUmum: 'Melamar pekerjaan BUMN/Swasta/CPNS, mendaftar TNI/Polri, melanjutkan studi, pengurusan visa, dll.'
+    kegunaanUmum: 'Penerbitan Akta Kematian Disdukcapil, pengurusan asuransi/BPJS Ketenagakerjaan, penutupan rekening bank, hak waris.',
+    targetPage: 'pelayanan-surat-keterangan',
+    targetParams: { initialJenis: 'sk-kematian' }
   },
   {
-    id: 'skd',
-    kode: 'SKD',
-    nama: 'Surat Keterangan Domisili Tempat Tinggal / Lembaga',
-    deskripsi: 'Surat yang menyatakan bahwa seseorang atau yayasan/lembaga benar berdomisili di alamat Desa Warung Menteng.',
+    id: 'sk-pindah-keluar',
+    kode: 'SK-PINDAH',
+    nama: 'Surat Keterangan Pindah Keluar Desa',
+    deskripsi: 'Surat pengantar perpindahan penduduk dari Desa Warung Menteng ke desa/kelurahan/kota lain (SKPWNI).',
     estimasiWaktu: '1 Hari Kerja',
     persyaratan: [
+      'Surat Pengantar Pindah dari Ketua RT dan RW domisili asal',
+      'Foto / Scan Kartu Keluarga (KK) Asli',
+      'Foto / Scan e-KTP seluruh anggota keluarga yang pindah',
+      'Alamat Tujuan Pindah Lengkap (RT/RW, Desa, Kec, Kab/Kota, Provinsi)',
+      'Pas foto 3x4 (3 lembar)'
+    ],
+    kegunaanUmum: 'Pengurusan Surat Keterangan Pindah WNI (SKPWNI) di Disdukcapil untuk registrasi daerah baru.',
+    targetPage: 'pelayanan-pindah-datang',
+    targetParams: { initialJenis: 'pindah-keluar' }
+  },
+  {
+    id: 'sk-pindah-datang',
+    kode: 'SK-DATANG',
+    nama: 'Pendaftaran Warga Pindah Datang Baru',
+    deskripsi: 'Pelayanan pendaftaran warga baru yang pindah domisili masuk menjadi warga Desa Warung Menteng.',
+    estimasiWaktu: '1 Hari Kerja',
+    persyaratan: [
+      'Surat Keterangan Pindah WNI (SKPWNI) asli dari daerah asal yang diterbitkan Disdukcapil',
+      'Surat Pengantar Datang dari Ketua RT dan RW di Desa Warung Menteng',
+      'Foto / Scan e-KTP dan Kartu Keluarga (KK) pemohon',
+      'Buku Nikah / Akta Perkawinan (bagi yang sudah berkeluarga)',
+      'Akta Kelahiran seluruh anggota keluarga yang ikut pindah'
+    ],
+    kegunaanUmum: 'Penerbitan Kartu Keluarga (KK) baru dan pencetakan KTP-el dengan alamat resmi Desa Warung Menteng.',
+    targetPage: 'pelayanan-pindah-datang',
+    targetParams: { initialJenis: 'pindah-datang' }
+  },
+  {
+    id: 'formulir-n1-n4',
+    kode: 'FORM-NIKAH',
+    nama: 'Formulir N1-N4',
+    deskripsi: 'Formulir resmi pernikahan model N1, N2, N3, dan N4 untuk administrasi pendaftaran akad nikah ke KUA.',
+    estimasiWaktu: '1 Hari Kerja',
+    persyaratan: [
+      'Surat Pengantar Nikah dari Ketua RT dan RW domisili',
+      'Fotokopi KTP-el & Kartu Keluarga (KK) calon mempelai (2 lembar)',
+      'Fotokopi KTP kedua orang tua / wali nikah',
+      'Fotokopi Akta Kelahiran & Ijazah Terakhir calon pengantin',
+      'Pas foto berdampingan latar biru (2x3 = 4 lbr, 4x6 = 2 lbr)',
+      'Surat Keterangan Imunisasi TT dari Puskesmas Cijeruk (calon istri)',
+      'Bila status Duda/Janda: Lampirkan Akta Cerai Asli atau Akta Kematian'
+    ],
+    kegunaanUmum: 'Pendaftaran nikah resmi di Kantor Urusan Agama (KUA) Kecamatan Cijeruk.',
+    targetPage: 'pelayanan-layanan-pernikahan',
+    targetParams: { initialTab: 'formulir-n1-n4' }
+  },
+  {
+    id: 'sk-belum-nikah',
+    kode: 'SK-BELUM-NIKAH',
+    nama: 'Surat Keterangan Belum Nikah',
+    deskripsi: 'Surat yang menerangkan bahwa warga yang bersangkutan berstatus belum pernah menikah / lajang.',
+    estimasiWaktu: '1 Hari Kerja',
+    persyaratan: [
+      'Surat Pengantar dari Ketua RT dan RW setempat',
       'Foto / Scan e-KTP Pemohon',
       'Foto / Scan Kartu Keluarga (KK)',
-      'Surat Pengantar RT & RW',
-      'Bukti sewa/kontrak rumah (jika berstatus pengontrak/pendatang)'
+      'Surat Pernyataan Belum Pernah Menikah bermaterai Rp 10.000',
+      'Fotokopi KTP 2 (dua) orang saksi warga tetangga'
     ],
-    kegunaanUmum: 'Pendaftaran sekolah zonasi, pembukaan rekening bank, pengurusan administrasi perpajakan, verifikasi domisili.'
+    kegunaanUmum: 'Syarat melamar pekerjaan tertentu, pendaftaran KPR rumah subsidi, pengajuan beasiswa ikatan dinas.',
+    targetPage: 'pelayanan-layanan-pernikahan',
+    targetParams: { initialTab: 'belum-nikah' }
+  },
+  {
+    id: 'sk-na',
+    kode: 'SK-NA',
+    nama: 'Surat Keterangan NA (Numpang Nikah)',
+    deskripsi: 'Surat keterangan rekomendasi pernikahan untuk warga yang akan melangsungkan akad nikah di luar wilayah domisili desa.',
+    estimasiWaktu: '1 Hari Kerja',
+    persyaratan: [
+      'Surat Pengantar dari Ketua RT dan RW domisili Desa Warung Menteng',
+      'Fotokopi KTP-el & Kartu Keluarga (KK) Pemohon',
+      'Fotokopi Akta Kelahiran & Ijazah Terakhir Pemohon',
+      'Fotokopi KTP-el Calon Pasangan di daerah tujuan nikah',
+      'Pas foto latar belakang biru (2x3 = 3 lbr, 3x4 = 3 lbr)',
+      'Nama dan alamat lengkap KUA Kecamatan tujuan numpang nikah',
+      'Bila status Duda/Janda: Lampirkan Akta Cerai Asli atau Surat Kematian'
+    ],
+    kegunaanUmum: 'Pendaftaran akad nikah di KUA luar kecamatan tempat tinggal mempelai pasangan.',
+    targetPage: 'pelayanan-layanan-pernikahan',
+    targetParams: { initialTab: 'sk-na' }
   },
   {
     id: 'sk-kelahiran',
@@ -1050,51 +1147,9 @@ export const JENIS_SURAT_LIST: JenisSurat[] = [
       'Foto / Scan Buku Nikah Orang Tua',
       'Foto / Scan e-KTP 2 orang saksi kelahiran'
     ],
-    kegunaanUmum: 'Pembuatan Akta Kelahiran anak, pendaftaran BPJS Bayi Baru Lahir, penambahan anggota KK.'
-  },
-  {
-    id: 'sk-kematian',
-    kode: 'SK-MATI',
-    nama: 'Surat Keterangan Kematian',
-    deskripsi: 'Surat resmi yang menerangkan telah meninggal dunianya seorang warga Desa Warung Menteng.',
-    estimasiWaktu: '1 Hari Kerja',
-    persyaratan: [
-      'Surat Keterangan Kematian dari Dokter/RS/Puskesmas (jika ada)',
-      'Foto / Scan e-KTP & KK Almarhum/Almarhumah',
-      'Foto / Scan e-KTP Pelapor (Ahli Waris)',
-      'Foto / Scan e-KTP 2 orang saksi',
-      'Surat Pengantar dari RT/RW setempat'
-    ],
-    kegunaanUmum: 'Penerbitan Akta Kematian Disdukcapil, pengurusan asuransi/BPJS Ketenagakerjaan, penutupan rekening bank, hak waris.'
-  },
-  {
-    id: 'sk-belum-nikah',
-    kode: 'SK-BELUM-NIKAH',
-    nama: 'Surat Keterangan Belum Menikah / Lajang',
-    deskripsi: 'Surat yang menerangkan bahwa warga yang bersangkutan berstatus belum pernah menikah.',
-    estimasiWaktu: '1 Hari Kerja',
-    persyaratan: [
-      'Foto / Scan e-KTP Pemohon',
-      'Foto / Scan Kartu Keluarga (KK)',
-      'Surat Pengantar RT & RW',
-      'Surat Pernyataan Belum Pernah Menikah bermaterai Rp 10.000'
-    ],
-    kegunaanUmum: 'Syarat melamar pekerjaan tertentu, pendaftaran KPR rumah subsidi, pengajuan beasiswa ikatan dinas.'
-  },
-  {
-    id: 'sk-pindah',
-    kode: 'SK-PINDAH',
-    nama: 'Surat Pengantar Pindah Domisili Keluar Desa',
-    deskripsi: 'Surat pengantar perpindahan penduduk dari Desa Warung Menteng ke desa/kelurahan/kota lain.',
-    estimasiWaktu: '2 Hari Kerja',
-    persyaratan: [
-      'Foto / Scan e-KTP seluruh anggota keluarga yang pindah',
-      'Foto / Scan Kartu Keluarga (KK) Asli',
-      'Surat Pengantar Pindah dari RT & RW',
-      'Alamat Tujuan Pindah Lengkap (RT/RW, Desa, Kec, Kab/Kota, Provinsi)',
-      'Pas foto 3x4 (3 lembar)'
-    ],
-    kegunaanUmum: 'Pengurusan Surat Keterangan Pindah WNI (SKPWNI) di Disdukcapil.'
+    kegunaanUmum: 'Pembuatan Akta Kelahiran anak, pendaftaran BPJS Bayi Baru Lahir, penambahan anggota KK.',
+    targetPage: 'pelayanan-surat-keterangan',
+    targetParams: { initialJenis: 'sk-kelahiran' }
   }
 ];
 
@@ -1237,11 +1292,11 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
     instansi: 'Dinas Pemadam Kebakaran Sektor Ciawi / Bogor Selatan',
     kategori: 'Kebakaran & Bencana',
     nomorTelepon: '(0251) 829-1505',
-    nomorWA: '628567785200',
+    nomorWA: '+628567785200',
     alamatPos: 'Pos Damkar Sektor Ciawi, Jl. Raya Puncak KM 72',
     siaga: '24 Jam Siaga Panggilan Darurat',
     namaPetugas: 'Regu Piket Damkar Ciawi',
-    deskripsi: 'Penanganan kebakaran rumah, hutan, penyelamatan bencana, evakuasi sarang tawon vespa, ular berbisa, dan pohon tumbang.',
+    deskripsi: 'Penanganan kebakaran rumah, hutan, evakuasi sarang tawon, ular berbisa, dan pohon tumbang. Hubungi Telepon: (0251) 829-1505 atau WhatsApp: (+62) 856-7785-200.',
     iconName: 'Flame'
   },
   {
@@ -1434,6 +1489,39 @@ export const LEMBAGA_DESA_LIST: LembagaItem[] = [
 // DATA DOKUMEN DOWNLOAD & FORMULIR
 export const DOKUMEN_DOWNLOAD_LIST: DokumenDownloadItem[] = [
   {
+    id: 'doc-1',
+    judul: 'Blanko Surat Pengantar RT / RW Resmi Desa Warung Menteng',
+    kategori: 'Formulir Surat',
+    ukuran: '145 KB',
+    format: 'DOCX',
+    tanggalUpdate: '15 Januari 2026',
+    deskripsi: 'Formulir standar pengantar dari Ketua RT dan Ketua RW yang wajib dibawa sebelum mengajukan surat administrasi ke kantor desa.',
+    jumlahUnduh: 1240,
+    downloadUrl: '#'
+  },
+  {
+    id: 'doc-2',
+    judul: 'Formulir Permohonan Surat Keterangan Usaha (SKU) & Surat Pernyataan Usaha',
+    kategori: 'Formulir Surat',
+    ukuran: '210 KB',
+    format: 'PDF',
+    tanggalUpdate: '20 Januari 2026',
+    deskripsi: 'Dokumen kelengkapan permohonan SKU untuk pengajuan KUR perbankan, perizinan dagang, dan sertifikasi halal UMKM.',
+    jumlahUnduh: 890,
+    downloadUrl: '#'
+  },
+  {
+    id: 'doc-3',
+    judul: 'Formulir F-1.01 Biodata Kependudukan & Pendaftaran Perpindahan Penduduk WNI',
+    kategori: 'Formulir Surat',
+    ukuran: '320 KB',
+    format: 'PDF',
+    tanggalUpdate: '10 Februari 2026',
+    deskripsi: 'Formulir baku Dinas Kependudukan dan Catatan Sipil untuk permohonan KK baru, perubahan elemen data, atau surat pindah datang.',
+    jumlahUnduh: 670,
+    downloadUrl: '#'
+  },
+  {
     id: 'doc-4',
     judul: 'Peraturan Desa (Perdes) No. 04 Tahun 2025 tentang Pelestarian Sumber Mata Air & Lingkungan',
     kategori: 'Regulasi & Perdes',
@@ -1442,6 +1530,17 @@ export const DOKUMEN_DOWNLOAD_LIST: DokumenDownloadItem[] = [
     tanggalUpdate: '05 Desember 2025',
     deskripsi: 'Regulasi perlindungan kawasan sungai Cimenteng, larangan pembuangan limbah, dan penataan kolam air deras budidaya ikan.',
     jumlahUnduh: 430,
+    downloadUrl: '#'
+  },
+  {
+    id: 'doc-5',
+    judul: 'Laporan Realisasi Pertanggungjawaban APBDes Warung Menteng Tahun Anggaran 2025',
+    kategori: 'Laporan Transparansi',
+    ukuran: '1.2 MB',
+    format: 'PDF',
+    tanggalUpdate: '12 Januari 2026',
+    deskripsi: 'Buku laporan transparansi keuangan desa, realisasi Dana Desa, Bagi Hasil Pajak, dan Alokasi Dana Desa (ADD) 2025.',
+    jumlahUnduh: 950,
     downloadUrl: '#'
   },
   {

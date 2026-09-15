@@ -697,7 +697,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
             <div>
               <button
-                onClick={() => onNavigate ? onNavigate('kkn-galeri') : setActiveModal('galeri')}
+                onClick={() => setActiveModal('galeri')}
                 className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
               >
                 <span>Lihat Selengkapnya</span>
@@ -974,22 +974,10 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
               </p>
             </div>
 
-            <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
-              {onNavigate && (
-                <button
-                  onClick={() => {
-                    setActiveModal(null);
-                    onNavigate('kkn-latar-belakang');
-                  }}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#064e3b] hover:text-[#043d2c] hover:underline cursor-pointer"
-                >
-                  <span>Buka Halaman Lengkap</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              )}
+            <div className="pt-3 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setActiveModal(null)}
-                className="bg-[#064e3b] hover:bg-[#043d2c] text-white font-bold px-5 py-2.5 rounded-xl text-xs transition ml-auto cursor-pointer"
+                className="bg-[#064e3b] hover:bg-[#043d2c] text-white font-bold px-5 py-2.5 rounded-xl text-xs transition"
               >
                 Selesai Membaca
               </button>

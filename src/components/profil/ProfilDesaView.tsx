@@ -135,50 +135,50 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
         </section>
 
         {/* 3. KEY STATS BAR (Single horizontal bar with dividers) */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-3 sm:py-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-0 sm:divide-x divide-slate-200">
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs py-4 px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-200">
             
             {/* 1. Luas Wilayah */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-0 sm:pr-4 rounded-xl sm:rounded-none bg-slate-50/70 sm:bg-transparent border border-slate-100 sm:border-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
-                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-[#0e3e2f]" />
+            <div className="flex items-center gap-3.5 pr-2 pt-2 md:pt-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                <BookOpen className="w-5 h-5 text-[#0e3e2f]" />
               </div>
-              <div className="min-w-0">
-                <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Luas Wilayah</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">2,86 km<sup>2</sup></span>
+              <div>
+                <span className="text-[11px] text-slate-500 font-medium block">Luas Wilayah</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block">1.250 Ha</span>
               </div>
             </div>
 
             {/* 2. Jumlah Penduduk */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-0 sm:px-4 rounded-xl sm:rounded-none bg-slate-50/70 sm:bg-transparent border border-slate-100 sm:border-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
-                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#0e3e2f]" />
+            <div className="flex items-center gap-3.5 px-0 md:px-4 pt-2 md:pt-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                <Users className="w-5 h-5 text-[#0e3e2f]" />
               </div>
-              <div className="min-w-0">
-                <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Jumlah Penduduk</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">8.997 Jiwa</span>
+              <div>
+                <span className="text-[11px] text-slate-500 font-medium block">Jumlah Penduduk</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block">4.350 Jiwa</span>
               </div>
             </div>
 
             {/* 3. Jumlah Rw/Rt */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-0 sm:px-4 rounded-xl sm:rounded-none bg-slate-50/70 sm:bg-transparent border border-slate-100 sm:border-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
-                <Home className="w-4 h-4 sm:w-5 sm:h-5 text-[#0e3e2f]" />
+            <div className="flex items-center gap-3.5 px-0 md:px-4 pt-2 md:pt-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                <Home className="w-5 h-5 text-[#0e3e2f]" />
               </div>
-              <div className="min-w-0">
-                <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Jumlah Rw/Rt</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">8/25</span>
+              <div>
+                <span className="text-[11px] text-slate-500 font-medium block">Jumlah Rw/Rt</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block">8/25</span>
               </div>
             </div>
 
             {/* 4. Ketinggian */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-0 sm:pl-4 rounded-xl sm:rounded-none bg-slate-50/70 sm:bg-transparent border border-slate-100 sm:border-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
-                <Mountain className="w-4 h-4 sm:w-5 sm:h-5 text-[#0e3e2f]" />
+            <div className="flex items-center gap-3.5 pl-0 md:pl-4 pt-2 md:pt-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#0e3e2f] flex items-center justify-center shrink-0">
+                <Mountain className="w-5 h-5 text-[#0e3e2f]" />
               </div>
-              <div className="min-w-0">
-                <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium block truncate">Ketinggian</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">250 - 500 mdpl</span>
+              <div>
+                <span className="text-[11px] text-slate-500 font-medium block">Ketinggian</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block">600 – 900 mdpl</span>
               </div>
             </div>
 
@@ -186,10 +186,10 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
         </div>
 
         {/* 4. MIDDLE ROW: 2 CARDS (SEJARAH DESA & ANGGARAN DESA) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Card Left: Sejarah Desa */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-6 flex flex-col justify-between shadow-xs">
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-6 flex flex-col justify-between shadow-xs">
             <div className="space-y-3">
               <h3 className="text-base sm:text-lg font-bold text-slate-900">
                 Sejarah Desa
@@ -199,22 +199,22 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               </p>
             </div>
 
-            <div className="flex items-center justify-between mt-5 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
               <button
                 onClick={() => onNavigate('profil-sejarah')}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0e3e2f] hover:bg-[#092b20] active:bg-[#061d15] text-white text-xs sm:text-sm font-semibold shadow-xs transition cursor-pointer min-h-[42px] active:scale-95"
+                className="px-5 py-2.5 rounded-lg bg-[#0e3e2f] hover:bg-[#092b20] text-white text-xs sm:text-sm font-semibold shadow-xs transition cursor-pointer"
               >
                 Baca Selengkapnya
               </button>
 
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emerald-50 text-emerald-800 hidden sm:flex items-center justify-center border border-emerald-100 shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center border border-emerald-100 shrink-0">
                 <FileText className="w-5 h-5 text-emerald-800" />
               </div>
             </div>
           </div>
 
           {/* Card Right: Anggaran Desa */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-6 flex flex-col justify-between shadow-xs">
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-6 flex flex-col justify-between shadow-xs">
             <div className="space-y-3">
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-base sm:text-lg font-bold text-slate-900">

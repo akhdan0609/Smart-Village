@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Heart, 
   CheckCircle2, 
@@ -10,27 +10,24 @@ import {
 import { saveSuratRequest } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
-type PernikahanTab = 'formulir-n1-n4' | 'belum-nikah' | 'sk-na';
-
-const TABS_VALID: PernikahanTab[] = ['formulir-n1-n4', 'belum-nikah', 'sk-na'];
-
-interface LayananPernikahanProps {
-  defaultTab?: string;
+interface LayananPernikahanViewProps {
+  initialTab?: 'formulir-n1-n4' | 'belum-nikah' | 'sk-na';
   onNavigate?: (page: PageRoute, params?: any) => void;
 }
 
-export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaultTab }) => {
-  const [activeTab, setActiveTab] = useState<PernikahanTab>(
-    TABS_VALID.includes(defaultTab as PernikahanTab) ? (defaultTab as PernikahanTab) : 'formulir-n1-n4'
-  );
+export const LayananPernikahanView: React.FC<LayananPernikahanViewProps> = ({
+  initialTab = 'formulir-n1-n4',
+  onNavigate
+}) => {
+  const [activeTab, setActiveTab] = useState<'formulir-n1-n4' | 'belum-nikah' | 'sk-na'>(initialTab);
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (defaultTab && TABS_VALID.includes(defaultTab as PernikahanTab)) {
-      setActiveTab(defaultTab as PernikahanTab);
+  React.useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
       setSubmittedCode(null);
     }
-  }, [defaultTab]);
+  }, [initialTab]);
 
   const [formData, setFormData] = useState({
     namaCalonSuami: '',
@@ -59,7 +56,11 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
     noWhatsapp: '',
     dusun: 'Dusun I - Cimenteng',
     rt: '01',
-    rw: '01'
+    rw: '01',
+    // Khusus Keterangan NA (Numpang Nikah)
+    kuaTujuan: '',
+    alamatTujuanNikah: '',
+    asalWargaWarungMenteng: 'Pria (Calon Suami)'
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -68,7 +69,7 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
     const jenisMap: Record<'formulir-n1-n4' | 'belum-nikah' | 'sk-na', { label: string; prefix: string }> = {
       'formulir-n1-n4': { label: 'Formulir N1, N2, N3, dan N4', prefix: 'NIKAH' },
       'belum-nikah': { label: 'Surat Keterangan Belum Pernah Menikah', prefix: 'SKBM' },
-      'sk-na': { label: 'Surat Keterangan NA (Belum Menikah & Numpang Nikah)', prefix: 'SKNA' },
+      'sk-na': { label: 'Surat Keterangan NA (Numpang Nikah)', prefix: 'SKNA' },
     };
 
     const jenis = jenisMap[activeTab];
@@ -86,7 +87,11 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
       noWhatsapp: formData.noWhatsapp,
       dusun: formData.dusun,
       rtRw: `RT ${formData.rt} / RW ${formData.rw}`,
-      keperluan: `Layanan Pernikahan: ${jenisLabel} (Rencana Akad ${formData.tanggalAkad} di ${formData.lokasiAkad})`,
+      keperluan: activeTab === 'sk-na'
+        ? `Surat Keterangan NA / Numpang Nikah ke KUA Tujuan: ${formData.kuaTujuan || 'KUA Luar Domisili'} (Rencana Akad: ${formData.tanggalAkad || '-'})`
+        : activeTab === 'belum-nikah'
+        ? `Surat Keterangan Belum Pernah Menikah (Persyaratan Pernikahan / Pekerjaan)`
+        : `Layanan Pernikahan Model N1-N4 (Rencana Akad ${formData.tanggalAkad} di ${formData.lokasiAkad})`,
       status: 'diajukan' as const,
       tanggalPengajuan: new Date().toISOString().split('T')[0],
       estimasiSelesai: '1 Hari Kerja'
@@ -348,10 +353,65 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
             </div>
           </div>
 
+          {/* Khusus Section 4: Data KUA Tujuan (Hanya untuk Surat Keterangan NA / Numpang Nikah) */}
+          {activeTab === 'sk-na' && (
+            <div className="space-y-3 pt-3 border-t border-slate-100">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-rose-700 border-b border-slate-100 pb-1 flex items-center gap-1.5">
+                <Heart className="w-3.5 h-3.5 text-rose-600" />
+                <span>4. KUA / Wilayah Tujuan Numpang Nikah</span>
+              </h4>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    KUA Kecamatan & Kota/Kab. Tujuan *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Contoh: KUA Kec. Ciawi, Kab. Bogor"
+                    value={formData.kuaTujuan}
+                    onChange={e => setFormData({ ...formData, kuaTujuan: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Calon Mempelai Warga Asli Desa Warung Menteng *
+                  </label>
+                  <select
+                    value={formData.asalWargaWarungMenteng}
+                    onChange={e => setFormData({ ...formData, asalWargaWarungMenteng: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                  >
+                    <option value="Pria (Calon Suami)">Pria (Calon Suami)</option>
+                    <option value="Wanita (Calon Istri)">Wanita (Calon Istri)</option>
+                    <option value="Keduanya Warga Warung Menteng">Keduanya Warga Warung Menteng</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Alamat Lengkap Tempat Akad Nikah di Lokasi Tujuan *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Contoh: Kediaman Mempelai Wanita di Kp. Banjarwaru RT 02/03 Ds. Banjarwaru, Kec. Ciawi"
+                  value={formData.alamatTujuanNikah}
+                  onChange={e => setFormData({ ...formData, alamatTujuanNikah: e.target.value })}
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                />
+              </div>
+            </div>
+          )}
+
           <div className="pt-3 flex items-center justify-end">
             <button
               type="submit"
-              className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-7 py-3 rounded-xl text-xs transition shadow-md flex items-center gap-2"
+              className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-7 py-3 rounded-xl text-xs transition shadow-md flex items-center gap-2 cursor-pointer"
             >
               <Send className="w-4 h-4" />
               <span>{activeTab === 'belum-nikah' || activeTab === 'sk-na' ? 'Ajukan Surat Keterangan' : 'Ajukan Permohonan Surat'}</span>
@@ -381,7 +441,7 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
             </h1>
             
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-              Pelayanan penerbitan Surat Pengantar Nikah dari Desa, Formulir Model N1, N2, N3, N4, Surat Keterangan Belum Menikah, serta Surat Keterangan NA (Numpang Nikah) untuk pendaftaran akad nikah ke Kantor Urusan Agama (KUA) Kecamatan Cijeruk.
+              Pelayanan penerbitan Surat Pengantar Nikah dari Desa, Formulir Model N1, N2, N3, N4, Surat Keterangan Belum Menikah, serta Surat Keterangan NA (Numpang Nikah) untuk pendaftaran akad nikah ke Kantor Urusan Agama (KUA).
             </p>
           </div>
         </div>
@@ -389,14 +449,14 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
         {/* Pilihan Lembar Surat */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { key: 'formulir-n1-n4', tag: 'Formulir', title: 'Formulir N1-N4', desc: 'Panduan & isian Form N1, N2, N3, dan N4 untuk administrasi pernikahan.' },
-            { key: 'belum-nikah', tag: 'Surat Keterangan', title: 'Keterangan Belum Menikah', desc: 'Surat keterangan status lajang / belum pernah kawin.' },
-            { key: 'sk-na', tag: 'Surat Keterangan', title: 'Keterangan NA (Numpang Nikah)', desc: 'Surat keterangan status lajang sekaligus pernikahan di luar domisili.' }
+            { key: 'formulir-n1-n4', tag: 'Formulir', title: 'Formulir N1-N4', desc: 'Panduan & isian Form N1, N2, N3, dan N4 untuk administrasi pernikahan di KUA Cijeruk.' },
+            { key: 'belum-nikah', tag: 'Surat Keterangan', title: 'Keterangan Belum Menikah', desc: 'Surat keterangan status lajang / belum pernah kawin resmi dari desa.' },
+            { key: 'sk-na', tag: 'Surat Keterangan', title: 'Keterangan NA (Numpang Nikah)', desc: 'Surat rekomendasi / pengantar numpang nikah untuk pernikahan di luar domisili desa.' }
           ].map(opt => (
             <button
               key={opt.key}
               onClick={() => { setActiveTab(opt.key as typeof activeTab); setSubmittedCode(null); }}
-              className={`p-5 rounded-2xl border text-left transition duration-200 flex flex-col justify-between ${
+              className={`p-5 rounded-2xl border text-left transition duration-200 flex flex-col justify-between cursor-pointer ${
                 activeTab === opt.key
                   ? 'bg-white border-emerald-600 shadow-md ring-2 ring-emerald-600/20'
                   : 'bg-white border-slate-200 hover:border-emerald-300 shadow-xs'
@@ -431,48 +491,110 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
               <div className="border-b border-slate-100 pb-3">
                 <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                  <span>Persyaratan Berkas Pernikahan</span>
+                  <span>
+                    {activeTab === 'sk-na' 
+                      ? 'Syarat Surat NA (Numpang Nikah)' 
+                      : activeTab === 'belum-nikah'
+                      ? 'Syarat Belum Menikah'
+                      : 'Syarat Berkas Nikah (N1-N4)'}
+                  </span>
                 </h3>
-                <p className="text-xs text-slate-500">Berkas fisik yang diserahkan ke Balai Desa & KUA</p>
+                <p className="text-xs text-slate-500">Dokumen yang diserahkan ke Seksi Pelayanan Desa</p>
               </div>
 
-              <ul className="space-y-3 text-xs text-slate-700">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Surat Pengantar dari Ketua RT dan RW domisili</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi KTP & Kartu Keluarga (KK) calon mempelai (2 lembar)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi KTP kedua orang tua / wali nikah</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Fotokopi Akta Kelahiran & Ijazah Terakhir calon pengantin</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Pas foto bergandeng / berdampingan latar biru (2x3 = 4 lbr, 4x6 = 2 lbr)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Surat Keterangan Imunisasi TT dari Puskesmas Cijeruk (untuk calon istri)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>Bila status Duda/Janda: Lampirkan Akta Cerai Asli atau Akta Kematian pasangan</span>
-                </li>
-              </ul>
+              {activeTab === 'sk-na' && (
+                <ul className="space-y-3 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Surat Pengantar dari Ketua RT dan RW domisili Desa Warung Menteng</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP-el & Kartu Keluarga (KK) Pemohon</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi Akta Kelahiran & Ijazah Terakhir Pemohon</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP-el Calon Pasangan di daerah tujuan nikah</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Pas foto latar belakang biru (2x3 = 3 lbr, 3x4 = 3 lbr)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Nama dan alamat lengkap KUA Kecamatan tujuan numpang nikah</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Bila status Duda/Janda: Lampirkan Akta Cerai Asli atau Surat Kematian</span>
+                  </li>
+                </ul>
+              )}
+
+              {activeTab === 'belum-nikah' && (
+                <ul className="space-y-3 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Surat Pengantar dari Ketua RT dan RW setempat</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP-el & Kartu Keluarga (KK) Pemohon</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Surat Pernyataan Belum Pernah Menikah bermaterai Rp 10.000</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP 2 (dua) orang saksi warga tetangga</span>
+                  </li>
+                </ul>
+              )}
+
+              {activeTab === 'formulir-n1-n4' && (
+                <ul className="space-y-3 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Surat Pengantar dari Ketua RT dan RW domisili</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP & Kartu Keluarga (KK) calon mempelai (2 lembar)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi KTP kedua orang tua / wali nikah</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Fotokopi Akta Kelahiran & Ijazah Terakhir calon pengantin</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Pas foto berdampingan latar biru (2x3 = 4 lbr, 4x6 = 2 lbr)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Surat Keterangan Imunisasi TT dari Puskesmas Cijeruk (calon istri)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Bila status Duda/Janda: Lampirkan Akta Cerai Asli atau Akta Kematian</span>
+                  </li>
+                </ul>
+              )}
 
               <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200/80 text-xs text-emerald-900 space-y-1.5">
                 <div className="flex items-center gap-1.5 font-bold text-emerald-950">
                   <Clock className="w-4 h-4 text-emerald-700" />
-                  <span>Waktu Pengurusan KUA</span>
+                  <span>Waktu Pengurusan Desa & KUA</span>
                 </div>
-                <p>Minimal 10 hari kerja sebelum tanggal akad nikah yang direncanakan.</p>
+                <p>Surat Desa selesai dalam 1 hari kerja (Rp 0 / Gratis). Pendaftaran ke KUA minimal 10 hari kerja sebelum akad.</p>
               </div>
             </div>
 
@@ -483,11 +605,11 @@ export const LayananPernikahanView: React.FC<LayananPernikahanProps> = ({ defaul
                   {{
                     'formulir-n1-n4': 'Formulir N1-N4',
                     'belum-nikah': 'Formulir Surat Keterangan Belum Menikah',
-                    'sk-na': 'Formulir Surat Keterangan NA (Numpang Nikah & Belum Menikah)'
+                    'sk-na': 'Formulir Surat Keterangan NA (Numpang Nikah)'
                   }[activeTab]}
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Isi biodata kedua calon pengantin secara akurat sesuai data kependudukan
+                  Isi data calon pengantin dan rencana pernikahan secara akurat sesuai dokumen resmi kependudukan
                 </p>
               </div>
 

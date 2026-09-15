@@ -22,7 +22,11 @@ export const DownloadFormulirView: React.FC<DownloadFormulirProps> = ({ onNaviga
   const [selectedKategori, setSelectedKategori] = useState<string>('semua');
   const [downloadSuccess, setDownloadSuccess] = useState<string | null>(null);
 
-  const filteredDocs = DOKUMEN_DOWNLOAD_LIST.filter(doc => {
+  const availableDocs = DOKUMEN_DOWNLOAD_LIST.filter(
+    doc => doc.kategori !== 'Formulir Surat' && doc.kategori !== 'Laporan Transparansi'
+  );
+
+  const filteredDocs = availableDocs.filter(doc => {
     const matchSearch = doc.judul.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         doc.deskripsi.toLowerCase().includes(searchTerm.toLowerCase());
     const matchCat = selectedKategori === 'semua' || doc.kategori === selectedKategori;
@@ -47,7 +51,7 @@ export const DownloadFormulirView: React.FC<DownloadFormulirProps> = ({ onNaviga
               Unduh Formulir & Dokumen Resmi Desa
             </h1>
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-              Unduh peraturan desa dan panduan layanan administrasi resmi Desa Warung Menteng secara gratis.
+              Unduh regulasi, perdes, dan buku panduan SOP pelayanan Desa Warung Menteng secara resmi dan gratis.
             </p>
           </div>
         </div>

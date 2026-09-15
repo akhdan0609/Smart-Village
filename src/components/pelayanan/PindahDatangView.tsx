@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Truck, 
   CheckCircle2, 
@@ -13,27 +13,24 @@ import {
 import { saveSuratRequest } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
-type PindahJenis = 'pindah-keluar' | 'pindah-datang';
-
-const JENIS_VALID: PindahJenis[] = ['pindah-keluar', 'pindah-datang'];
-
-interface PindahDatangProps {
-  defaultJenis?: string;
+interface PindahDatangViewProps {
+  initialJenis?: 'pindah-keluar' | 'pindah-datang';
   onNavigate?: (page: PageRoute, params?: any) => void;
 }
 
-export const PindahDatangView: React.FC<PindahDatangProps> = ({ defaultJenis }) => {
-  const [activeJenis, setActiveJenis] = useState<PindahJenis>(
-    JENIS_VALID.includes(defaultJenis as PindahJenis) ? (defaultJenis as PindahJenis) : 'pindah-keluar'
-  );
+export const PindahDatangView: React.FC<PindahDatangViewProps> = ({
+  initialJenis = 'pindah-keluar',
+  onNavigate
+}) => {
+  const [activeJenis, setActiveJenis] = useState<'pindah-keluar' | 'pindah-datang'>(initialJenis);
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (defaultJenis && JENIS_VALID.includes(defaultJenis as PindahJenis)) {
-      setActiveJenis(defaultJenis as PindahJenis);
+  React.useEffect(() => {
+    if (initialJenis) {
+      setActiveJenis(initialJenis);
       setSubmittedCode(null);
     }
-  }, [defaultJenis]);
+  }, [initialJenis]);
 
   const [formData, setFormData] = useState({
     namaKepalaKeluarga: '',

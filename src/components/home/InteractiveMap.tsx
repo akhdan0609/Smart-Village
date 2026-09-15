@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import { MapPin, Navigation, Compass, Layers, Phone, Mail, Clock, QrCode, Download, X } from 'lucide-react';
+import React from 'react';
+import { MapPin, Navigation, Compass, Layers, Phone, Mail, Clock } from 'lucide-react';
 import { PROFIL_DESA_DATA } from '../../data/mockData';
-import { WARUNG_MENTENG_MAPS_URL } from '../../data/mapLinks';
-import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
 
 export const InteractiveMap: React.FC = () => {
-  const [barcodeModalOpen, setBarcodeModalOpen] = useState(false);
-
   return (
     <section className="py-14 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -55,24 +51,15 @@ export const InteractiveMap: React.FC = () => {
 
             <div className="p-4 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
               <span>Topografi: Perbukitan Kaki Gunung Salak (520 - 780 mdpl)</span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setBarcodeModalOpen(true)}
-                  className="bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition cursor-pointer shadow-2xs"
-                >
-                  <QrCode className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Barcode Peta</span>
-                </button>
-                <a
-                  href={WARUNG_MENTENG_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition shadow-2xs"
-                >
-                  <span>Buka di Google Maps</span>
-                  <Navigation className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <a
+                href="https://maps.app.goo.gl/y4hKRrMnF5d28LQz9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1"
+              >
+                <span>Buka di Google Maps</span>
+                <Navigation className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
 
@@ -127,68 +114,6 @@ export const InteractiveMap: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Barcode Modal */}
-      {barcodeModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[calc(100dvh-2rem)]">
-            <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                  <QrCode className="w-4 h-4 text-emerald-800" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">Barcode Peta Digital Desa</h3>
-                  <p className="text-xs text-slate-500">Desa Warung Menteng, Kec. Cijeruk</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setBarcodeModalOpen(false)}
-                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
-                aria-label="Tutup modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="p-5 flex flex-col items-center space-y-4">
-              <div className="bg-white p-3 rounded-2xl shadow-sm border border-slate-200">
-                <img
-                  src={warungMentengMapImg}
-                  alt="Barcode Resmi Peta Desa Warung Menteng"
-                  className="max-h-64 w-auto object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="text-center space-y-1">
-                <span className="text-xs font-bold text-slate-900 block">
-                  Scan dengan Kamera Smartphone
-                </span>
-                <p className="text-[11px] text-slate-500 leading-relaxed max-w-xs">
-                  Arahkan kamera smartphone atau pemindai QR ke barcode di atas untuk langsung membuka lokasi Desa Warung Menteng di Google Maps.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 w-full pt-1">
-                <a
-                  href={warungMentengMapImg}
-                  download="Barcode-Peta-Desa-Warung-Menteng.png"
-                  className="flex-1 py-2.5 px-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-xs"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Unduh Barcode</span>
-                </a>
-                <button
-                  onClick={() => setBarcodeModalOpen(false)}
-                  className="py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition cursor-pointer"
-                >
-                  Tutup
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

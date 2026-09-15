@@ -36,8 +36,10 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       desc: 'Layanan surat keterangan untuk berbagai keperluan administrasi warga dan usaha.',
       items: [
         'Surat Keterangan Domisili Warga',
-        'Surat Keterangan Domisili Usaha',
-        'Surat Keterangan Tidak Mampu (SKTM)'
+        'Surat Keterangan Domisili Usaha (SKU)',
+        'Surat Keterangan Tidak Mampu (SKTM)',
+        'Surat Keterangan Kelahiran',
+        'Surat Keterangan Kematian'
       ],
       icon: FileText,
       page: 'pelayanan-surat-keterangan' as PageRoute
@@ -58,7 +60,10 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       id: 'pindah-datang',
       title: 'PINDAH DATANG',
       desc: 'Layanan perpindahan penduduk bagi warga yang pindah datang ke atau dari Desa Warung Menteng.',
-      items: [],
+      items: [
+        'Surat Pindah Keluar (SKPWNI)',
+        'Surat Keterangan Datang WNI'
+      ],
       icon: Truck,
       page: 'pelayanan-pindah-datang' as PageRoute
     }
