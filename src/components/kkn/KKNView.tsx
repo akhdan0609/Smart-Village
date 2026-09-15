@@ -28,6 +28,7 @@ import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg'
 import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
+import kknLogo from '../../assets/images/logo.png';
 
 export interface KKNMember {
   id: string;
@@ -803,9 +804,12 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             
             {/* Left Brand Identity */}
             <div className="flex items-center gap-3 text-center md:text-left">
-              <div className="w-11 h-11 rounded-full bg-white text-[#064e3b] border-2 border-emerald-300 flex flex-col items-center justify-center font-black text-[9px] tracking-tight shadow-md shrink-0">
-                <span className="leading-none">WIGATA</span>
-                <span className="text-[7.5px] leading-none text-emerald-800">DHARMA</span>
+              <div className="w-11 h-11 rounded-full bg-white border-2 border-emerald-300 overflow-hidden shadow-md shrink-0">
+                <img
+                  src={kknLogo}
+                  alt="Logo KKN Wigata Dharma"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="space-y-0.5">
                 <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">

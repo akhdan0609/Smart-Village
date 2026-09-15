@@ -690,9 +690,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                                   <span className="block text-[10px] text-slate-500 truncate leading-tight mt-0.5">
                                     {item.instansi}
                                   </span>
-                                  <span className="block text-[11px] font-semibold text-slate-700 truncate leading-tight mt-0.5">
+                                  <a
+                                    href={`tel:${digits}`}
+                                    className="block text-[11px] font-semibold text-emerald-700 truncate leading-tight mt-0.5 hover:underline"
+                                  >
                                     {isDamkar ? '(0251) 829-1505' : item.nomorTelepon}
-                                  </span>
+                                  </a>
                                 </div>
 
                                 {/* Minified Action Buttons */}
@@ -702,7 +705,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                       href={waLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      onClick={() => setKontakDaruratOpen(false)}
+                                      onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
                                       title="WhatsApp"
                                       aria-label={`WhatsApp ${item.namaLayanan ?? item.instansi}`}
                                       className="w-11 h-11 rounded-xl bg-[#25D366]/10 text-[#1e9e52] active:bg-[#25D366] active:text-white flex items-center justify-center transition-colors duration-150"
@@ -712,7 +715,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                   )}
                                   <a
                                     href={`tel:${digits}`}
-                                    onClick={() => setKontakDaruratOpen(false)}
+                                    onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
                                     title="Telepon"
                                     aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
                                     className="w-11 h-11 rounded-xl bg-[#0e3e2f]/10 text-[#0e3e2f] active:bg-[#0e3e2f] active:text-white flex items-center justify-center transition-colors duration-150"
@@ -805,7 +808,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     href={waLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    onClick={() => setKontakDaruratOpen(false)}
+                                    onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
                                     title="WhatsApp"
                                     aria-label={`WhatsApp ${item.namaLayanan ?? item.instansi}`}
                                     className="w-8 h-8 rounded-lg bg-[#25D366]/10 text-[#1e9e52] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-colors duration-150"
@@ -815,7 +818,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 )}
                                 <a
                                   href={`tel:${digits}`}
-                                  onClick={() => setKontakDaruratOpen(false)}
+                                  onClick={(e) => { e.stopPropagation(); window.setTimeout(() => setKontakDaruratOpen(false), 200); }}
                                   title="Telepon"
                                   aria-label={`Telepon ${item.namaLayanan ?? item.instansi}`}
                                   className="w-8 h-8 rounded-lg bg-[#0e3e2f]/10 text-[#0e3e2f] hover:bg-[#0e3e2f] hover:text-white flex items-center justify-center transition-colors duration-150"

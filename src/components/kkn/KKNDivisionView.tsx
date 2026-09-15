@@ -27,6 +27,7 @@ import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg'
 import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
+import kknLogo from '../../assets/images/logo.png';
 
 export type DivisionType = 'BPH' | 'ACARA' | 'HUMAS' | 'MEDIA';
 
@@ -594,12 +595,12 @@ export const KKNDivisionView: React.FC<KKNDivisionViewProps> = ({
           
           {/* Left: Logo & Kelompok Info */}
           <div className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0 border border-amber-300/60">
-              {/* Emblem icon */}
-              <div className="w-full h-full rounded-full bg-emerald-900 flex flex-col items-center justify-center text-[8px] font-black text-amber-300 leading-tight">
-                <span>WIGATA</span>
-                <span className="text-[7px] text-white">DHARMA</span>
-              </div>
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-md shrink-0 border border-amber-300/60 overflow-hidden">
+              <img
+                src={kknLogo}
+                alt="Logo KKN Wigata Dharma"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
             <div>
               <h4 className="font-bold text-sm tracking-wide text-white">

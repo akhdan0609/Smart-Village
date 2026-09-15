@@ -28,6 +28,7 @@ import kknProkerCyberbullying from '../../assets/images/kkn_proker_cyberbullying
 import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
 import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
 import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
+import kknLogo from '../../assets/images/logo.png';
 
 interface ModalImage {
   src: string;
@@ -543,11 +544,12 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
           
           {/* Left: Logo & Kelompok Info */}
           <div className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0 border border-amber-300/60">
-              <div className="w-full h-full rounded-full bg-emerald-900 flex flex-col items-center justify-center text-[8px] font-black text-amber-300 leading-tight">
-                <span>WIGATA</span>
-                <span className="text-[7px] text-white">DHARMA</span>
-              </div>
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-md shrink-0 border border-amber-300/60 overflow-hidden">
+              <img
+                src={kknLogo}
+                alt="Logo KKN Wigata Dharma"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
             <div>
               <h4 className="font-bold text-sm tracking-wide text-white">
