@@ -635,7 +635,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 Kontak Darurat 24 Jam
                               </h3>
                               <p className="text-[11px] text-slate-500 mt-0.5">
-                                Layanan siaga Desa Warung Menteng
+                                Layanan Siaga Desa Warung Menteng
                               </p>
                             </div>
                           </div>
@@ -746,7 +746,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                               Kontak Darurat 24 Jam
                             </h3>
                             <p className="text-[11px] text-slate-500 mt-0.5">
-                              Layanan siaga Desa Warung Menteng
+                              Layanan Siaga Desa Warung Menteng
                             </p>
                           </div>
                         </div>
