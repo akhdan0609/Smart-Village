@@ -11,7 +11,7 @@ import {
   X, 
   ZoomIn, 
   Instagram, 
-  Youtube, 
+   
   Mail,
   ArrowLeft,
   Calendar,
@@ -598,15 +598,6 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-4 h-4" />
             </a>
             <a
               href="https://tiktok.com"

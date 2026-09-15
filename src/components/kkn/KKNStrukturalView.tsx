@@ -135,6 +135,14 @@ export const KKNStrukturalView: React.FC = () => {
       prodi: 'Teknik Informatika (UNUSIA)',
       tugas: 'Detail kecil adalah kunci keberhasilan acara yang besar.',
       fotoUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      nama: 'CAISAR FAYTH ISYADIRDA',
+      peran: 'Anggota Acara',
+      divisi: 'ACARA',
+      prodi: 'Sejarah Peradaban Islam (UNUSIA)',
+      tugas: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
+      fotoUrl: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=400&q=80'
     }
   ];
 

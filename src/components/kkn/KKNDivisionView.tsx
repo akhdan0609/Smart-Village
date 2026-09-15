@@ -9,7 +9,6 @@ import {
   Home, 
   ChevronRight,
   Instagram,
-  Youtube,
   Mail,
   X,
   Sparkles
@@ -198,6 +197,16 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         quote: 'Detail kecil adalah kunci keberhasilan acara yang besar.',
         prodi: 'Teknik Informatika',
         photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+        gender: 'm'
+      },
+      {
+        id: 'caisar-fayth-isyardirda',
+        name: 'CAISAR FAYTH ISYADIRDA',
+        fullName: 'CAISAR FAYTH ISYADIRDA',
+        role: 'Anggota Acara',
+        quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
+        prodi: 'Sejarah Peradaban Islam',
+        photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&auto=format&fit=crop&q=80',
         gender: 'm'
       }
     ]
@@ -632,15 +641,6 @@ export const KKNDivisionView: React.FC<KKNDivisionViewProps> = ({
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-4 h-4" />
             </a>
             <a
               href="https://tiktok.com"

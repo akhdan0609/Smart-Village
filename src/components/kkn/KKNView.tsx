@@ -11,7 +11,7 @@ import {
   ArrowRight, 
   X, 
   Instagram, 
-  Youtube, 
+   
   Mail, 
   User
 } from 'lucide-react';
@@ -839,15 +839,6 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
               >
                 <Instagram className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="YouTube KKN"
-                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
-              >
-                <Youtube className="w-3.5 h-3.5" />
               </a>
               <a
                 href="https://tiktok.com"
