@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   ChevronDown, 
   Menu, 
@@ -626,9 +627,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 {kontakDaruratOpen && (
                   <>
-                    {/* 1. Mobile Modal Center (< 640px - Screen-Centered & Viewport-Safe) */}
+                    {/* 1. Mobile Modal Center (< 640px - Rendered via Portal so it is in front of the sticky navbar) */}
+                    {createPortal(
                     <div 
-                      className="sm:hidden fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
+                      className="sm:hidden fixed inset-0 z-[9999] bg-slate-950/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
                       onClick={() => setKontakDaruratOpen(false)}
                     >
                       <div className="flex min-h-full items-center justify-center p-3">
@@ -736,7 +738,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </div>
                         </div>
                       </div>
-                    </div>
+                    </div>,
+                    document.body
+                    )}
 
                     {/* 2. Desktop & Tablet Anchored Dropdown (>= 640px) */}
                     <div className="hidden sm:flex flex-col absolute right-0 top-full mt-2 w-[380px] max-h-[80vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200/80 z-50 animate-in fade-in slide-in-from-top-2 duration-150 origin-top-right overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
@@ -854,8 +858,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Quick Search Modal */}
-      {searchModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
+      {searchModalOpen && createPortal(
+        <div className="fixed inset-0 z-[9999] bg-slate-900/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 animate-in fade-in duration-150">
           <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden space-y-4 p-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
@@ -913,7 +917,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Mobile Menu Drawer */}
