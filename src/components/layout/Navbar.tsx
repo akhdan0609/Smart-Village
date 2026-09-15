@@ -119,7 +119,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpenDropdown(null);
-        setKontakDaruratOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -631,7 +630,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {createPortal(
                     <div 
                       className="sm:hidden fixed inset-0 z-[9999] bg-slate-950/75 overflow-y-auto animate-in fade-in duration-150"
-                      onClick={() => setKontakDaruratOpen(false)}
                     >
                       <div className="flex min-h-full items-center justify-center p-3">
                         <div 
