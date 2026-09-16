@@ -37,6 +37,12 @@ import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432
 import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
 import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
 import kknLogo from '../../assets/images/logo.png';
+import kknPembukaan from '../../assets/images/Pembukaan_KKN.jpeg';
+import kknRw06 from '../../assets/images/RW06_KKN.jpeg';
+import kknRw07 from '../../assets/images/RW07_KKN.jpeg';
+import kknSekdes from '../../assets/images/Sekdes_KKN.jpeg';
+import kknUstd from '../../assets/images/Ustd_KKN.jpeg';
+import kknRw04 from '../../assets/images/RW04_KKN.jpeg';
 
 interface ModalImage {
   src: string;
@@ -54,48 +60,43 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
   // Strip 1: Kisah Awal & Observasi (5 Photos)
   const journeyStrip1 = [
     {
-      src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80',
-      title: 'Hari Pertama di Desa',
-      caption: 'Penerimaan dan sambutan hangat oleh pamong desa di Balai Desa Warung Menteng.'
+      src: kknPembukaan,
+      title: 'Pembukaan KKN',
+      caption: 'Acara pembukaan dan penerjunan KKN di Balai Desa Warung Menteng.'
     },
     {
-      src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80',
-      title: 'Musyawarah di Posko',
-      caption: 'Koordinasi internal kelompok dalam merumuskan pemetaan masalah desa.'
+      src: kknRw06,
+      title: 'Silaturahmi Warga RW 06',
+      caption: 'Kunjungan dan silaturahmi bersama warga RW 06 Desa Warung Menteng.'
     },
     {
-      src: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=600&q=80',
-      title: 'Silaturahmi Tokoh Masyarakat',
-      caption: 'Sowan ke kediaman Ketua RW dan sesepuh desa untuk memohon doa restu.'
+      src: kknRw07,
+      title: 'Silaturahmi Warga RW 07',
+      caption: 'Koordinasi dan keakraban bersama warga RW 07 Desa Warung Menteng.'
     },
     {
-      src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80',
-      title: 'Observasi Lingkungan',
-      caption: 'Penelusuran potensi pertanian dan sumber mata air bersih lereng Gunung Salak.'
+      src: kknSekdes,
+      title: 'Bersama Sekretaris Desa',
+      caption: 'Diskusi bersama Sekretaris Desa dalam penyusunan program kerja KKN.'
     },
     {
-      src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80',
-      title: 'Keindahan Warung Menteng',
-      caption: 'Pemandangan asri dan sejuk kawasan perbukitan Desa Warung Menteng.'
+      src: kknUstd,
+      title: 'Silaturahmi Ustad',
+      caption: 'Kunjungan dan silaturahmi bersama ustad desa setempat.'
     }
   ];
 
   // Strip 2: Dinamika & Evaluasi Akhir (5 Photos)
   const journeyStrip2 = [
     {
-      src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80',
-      title: 'Kebersamaan Pemuda',
-      caption: 'Diskusi santai dan ramah tamah bersama rekan-rekan Karang Taruna.'
+      src: kknRw04,
+      title: 'Silaturahmi Warga RW 04',
+      caption: 'Koordinasi dan keakraban bersama warga RW 04 Desa Warung Menteng.'
     },
     {
-      src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
-      title: 'Senyum Anak-Anak Desa',
-      caption: 'Keceriaan bimbingan belajar dan permainan edukatif di posko.'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
-      title: 'Malam Ramah Tamah',
-      caption: 'Momen keakraban bersama warga menjelang penutupan program KKN.'
+      src: kknSekdes,
+      title: 'Koordinasi dengan Sekretaris Desa',
+      caption: 'Pendalaman informasi kelembagaan desa bersama Sekretaris Desa.'
     },
     {
       src: kknActivityUmkm,
