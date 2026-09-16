@@ -67,9 +67,9 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
     gridColsClass: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4',
     members: [
       {
-        id: 'fajri-maulana',
-        name: 'Fajri Maulana',
-        fullName: 'Fajri Maulana',
+        id: 'fajry-maulana',
+        name: 'Fajry Maulana',
+        fullName: 'Fajry Maulana',
         role: 'Ketua',
         quote: 'Memimpin dengan tanggung jawab, bergerak dengan tujuan, menginspirasi untuk kebaikan bersama.',
         prodi: 'Ilmu Hukum',

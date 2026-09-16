@@ -38,7 +38,7 @@ export const KKNStrukturalView: React.FC = () => {
 
   const strukturBPH: AnggotaTim[] = [
     {
-      nama: 'Fajri Maulana',
+      nama: 'Fajry Maulana',
       peran: 'Ketua',
       divisi: 'BPH',
       prodi: 'Ilmu Hukum (UNUSIA)',
