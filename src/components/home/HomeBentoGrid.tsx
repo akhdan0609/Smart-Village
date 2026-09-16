@@ -20,6 +20,9 @@ import {
 import { PageRoute } from '../../types';
 import warungMentengMapImg from '../../assets/images/WarungMenteng.png';
 import warungMentengQrSvg from '../../assets/images/WarungMenteng.svg';
+import beritaStuntingImg from '../../assets/images/berita_stunting_1788954573683.jpg';
+import beritaMusdesImg from '../../assets/images/berita_musdes_gate_1788954594566.jpg';
+import beritaJalanImg from '../../assets/images/berita_jalan_lingkungan_1788954608799.jpg';
 
 interface HomeBentoGridProps {
   onNavigate: (page: PageRoute, params?: any) => void;
@@ -63,19 +66,19 @@ page: 'profil-desa' as PageRoute
       id: 'berita-stunting',
       title: 'Pemerintah Desa Warung Menteng Gelar Sosialisasi Pencegahan Stunting',
       date: '12 Agustus 2025',
-      image: '/src/assets/images/berita_stunting_1788954573683.jpg'
+      image: beritaStuntingImg
     },
     {
       id: 'berita-musdes',
       title: 'Musyawarah Desa (Musdes) RKPDES Tahun 2026 Resmi Dibuka',
       date: '8 Agustus 2025',
-      image: '/src/assets/images/berita_musdes_gate_1788954594566.jpg'
+      image: beritaMusdesImg
     },
     {
       id: 'berita-jalan',
       title: 'Pembangunan Jalan Lingkungan di Kp. Cijeruk Mulai Dikerjakan',
       date: '5 Agustus 2025',
-      image: '/src/assets/images/berita_jalan_lingkungan_1788954608799.jpg'
+      image: beritaJalanImg
     }
   ];
 

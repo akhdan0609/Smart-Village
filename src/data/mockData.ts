@@ -19,6 +19,11 @@ import {
 } from '../types';
 
 // DATA UMUM & STATISTIK DESA WARUNG MENTENG
+import beritaStuntingImg from '../assets/images/berita_stunting_1788954573683.jpg';
+import beritaMusdesImg from '../assets/images/berita_musdes_gate_1788954594566.jpg';
+import beritaJalanImg from '../assets/images/berita_jalan_lingkungan_1788954608799.jpg';
+import beritaSanggarImg from '../assets/images/berita_sanggar_seni_1788954626818.jpg';
+import beritaPelatihanUmkmImg from '../assets/images/berita_pelatihan_umkm_1788954647146.jpg';
 export const PROFIL_DESA_DATA = {
   nama: 'Desa Warung Menteng',
   kecamatan: 'Kecamatan Cijeruk',
@@ -573,7 +578,7 @@ Kepala Desa Warung Menteng menegaskan pentingnya intervensi gizi sejak 1.000 Har
 "Kesehatan anak-anak kita adalah fondasi masa depan desa. Kami memastikan seluruh posyandu memiliki timbangan digital standar antropometri dan pasokan suplemen gizi yang memadai," tutur Kepala Desa.
 
 Dalam sesi interaktif, Bidan Desa memberikan demonstrasi pembuatan menu MPASI higienis berbahan pangan lokal yang terjangkau namun kaya nutrisi esensial bagi tumbuh kembang balita.`,
-    fotoUrl: '/src/assets/images/berita_stunting_1788954573683.jpg',
+    fotoUrl: beritaStuntingImg,
     dibaca: 124,
     tags: ['Kegiatan Desa', 'Kesehatan', 'Stunting', 'Posyandu', 'Gizi']
   },
@@ -590,7 +595,7 @@ Dalam sesi interaktif, Bidan Desa memberikan demonstrasi pembuatan menu MPASI hi
 Kegiatan strategis ini dihadiri oleh jajaran Forkopimcam Cijeruk, Ketua RT/RW, tokoh masyarakat, tokoh agama, serta keterwakilan kelompok perempuan dan pemuda. Musdes ini menjadi wadah musyawarah mufakat guna menampung pokok-pokok pikiran masyarakat dari tingkatan dusun.
 
 Prioritas pembangunan tahun 2026 dititikberatkan pada peningkatan konektivitas jalan usaha tani, penguatan ketahanan pangan desa, rehabilitasi saluran irigasi, serta digitalisasi tata kelola administrasi perdesaan.`,
-    fotoUrl: '/src/assets/images/berita_musdes_gate_1788954594566.jpg',
+    fotoUrl: beritaMusdesImg,
     dibaca: 98,
     tags: ['Pemerintahan', 'Musdes', 'RKPDes', 'Transparansi', 'BPD']
   },
@@ -607,7 +612,7 @@ Prioritas pembangunan tahun 2026 dititikberatkan pada peningkatan konektivitas j
 Ketua Tim Pelaksana Kegiatan (TPK) menyampaikan bahwa panjang ruas jalan yang dibeton mencapai 850 meter dengan ketebalan standar 15 cm. Seluruh pengerjaan mengutamakan tenaga kerja setempat melalui program Padat Karya Tunai Desa (PKTD) guna membuka lapangan kerja warga sekitar.
 
 "Dengan jalan yang mulus dan bersih, anak-anak sekolah dapat berjalan dengan nyaman, serta aktivitas ekonomi pedagang dan pekebun menjadi jauh lebih lancar," pungkasnya.`,
-    fotoUrl: '/src/assets/images/berita_jalan_lingkungan_1788954608799.jpg',
+    fotoUrl: beritaJalanImg,
     dibaca: 87,
     tags: ['Pembangunan', 'Infrastruktur', 'Dana Desa', 'PKTD', 'Jalan Lingkungan']
   },
@@ -624,7 +629,7 @@ Ketua Tim Pelaksana Kegiatan (TPK) menyampaikan bahwa panjang ruas jalan yang di
 Keikutsertaan ini merupakan wujud dedikasi melestarikan warisan leluhur Pasundan serta membina karakter positif generasi muda desa agar terhindar dari pengaruh negatif gawai dan kenakalan remaja.
 
 Kepala Seksi Pelayanan Desa mengapresiasi kerja keras para pelatih dan penari yang giat berlatih di balai desa setiap akhir pekan. Diharapkan sanggar seni desa ini dapat terus berprestasi hingga tingkat kabupaten.`,
-    fotoUrl: '/src/assets/images/berita_sanggar_seni_1788954626818.jpg',
+    fotoUrl: beritaSanggarImg,
     dibaca: 76,
     tags: ['Pemberdayaan Masyarakat', 'Seni Budaya', 'Tari Tradisional', 'Pemuda']
   },
@@ -641,7 +646,7 @@ Kepala Seksi Pelayanan Desa mengapresiasi kerja keras para pelatih dan penari ya
 Materi pelatihan berfokus pada teknik pengambilan foto produk bermutu tinggi cukup dengan kamera smartphone, cara menyusun deskripsi produk yang menarik, pendaftaran izin NIB, serta implementasi sistem pembayaran non-tunai QRIS.
 
 Melalui digitalisasi ini, produk andalan Desa Warung Menteng seperti kopi lereng Salak, madu hutan murni, keripik singkong, dan olahan abon ikan diharapkan dapat menjangkau konsumen yang lebih luas secara nasional.`,
-    fotoUrl: '/src/assets/images/berita_pelatihan_umkm_1788954647146.jpg',
+    fotoUrl: beritaPelatihanUmkmImg,
     dibaca: 65,
     tags: ['Lainnya', 'UMKM', 'Pelatihan', 'Digitalisasi', 'Ekonomi Desa']
   },

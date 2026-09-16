@@ -82,11 +82,11 @@ export const AdminDashboardView: React.FC<AdminDashboardProps> = ({ onLogout, on
   const [alamatUmkm, setAlamatUmkm] = useState('RT 01 / RW 02, Desa Warung Menteng');
 
   const loadData = () => {
-    setSuratList(getStoredPengajuanSurat());
-    setLaporanList(getStoredLaporan());
-    setBeritaList(getStoredBerita());
-    setPengumumanList(getStoredPengumuman());
-    setUmkmList(getStoredUMKM());
+    setSuratList((getStoredPengajuanSurat() || []).filter(Boolean));
+    setLaporanList((getStoredLaporan() || []).filter(Boolean));
+    setBeritaList((getStoredBerita() || []).filter(Boolean));
+    setPengumumanList((getStoredPengumuman() || []).filter(Boolean));
+    setUmkmList((getStoredUMKM() || []).filter(Boolean));
   };
 
   useEffect(() => {
@@ -278,7 +278,7 @@ export const AdminDashboardView: React.FC<AdminDashboardProps> = ({ onLogout, on
                 <span className="text-xs font-bold text-slate-500 uppercase">Pengajuan Surat Masuk</span>
                 <h3 className="text-3xl font-black text-slate-900">{suratList.length}</h3>
                 <p className="text-xs text-emerald-600 font-semibold">
-                  {suratList.filter(s => s.status === 'Diajukan').length} Perlu Verifikasi
+                  {suratList.filter(s => s && s.status === 'Diajukan').length} Perlu Verifikasi
                 </p>
               </div>
 
@@ -286,7 +286,7 @@ export const AdminDashboardView: React.FC<AdminDashboardProps> = ({ onLogout, on
                 <span className="text-xs font-bold text-slate-500 uppercase">Aspirasi & Pengaduan</span>
                 <h3 className="text-3xl font-black text-slate-900">{laporanList.length}</h3>
                 <p className="text-xs text-rose-600 font-semibold">
-                  {laporanList.filter(l => l.status === 'Menunggu').length} Belum Diberi Tanggapan
+                  {laporanList.filter(l => l && l.status === 'Menunggu').length} Belum Diberi Tanggapan
                 </p>
               </div>
 
