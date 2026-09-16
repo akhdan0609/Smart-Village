@@ -280,7 +280,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
                   </div>
                   <div>
                     <span className="block text-[11px] text-slate-500 font-medium">Durasi KKN</span>
-                    <span className="block text-sm font-extrabold text-slate-900 leading-tight">60 Hari</span>
+                    <span className="block text-sm font-extrabold text-slate-900 leading-tight">54 Hari</span>
                     <span className="block text-[10px] text-slate-500">11 Agustus - 3 Oktober</span>
                   </div>
                 </div>
@@ -293,7 +293,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
                   <div>
                     <span className="block text-[11px] text-slate-500 font-medium">Lokasi</span>
                     <span className="block text-sm font-extrabold text-slate-900 leading-tight">Desa Warung Menteng</span>
-                    <span className="block text-[10px] text-slate-500">Kec. Cipeundeuy, Kab. Bogor</span>
+                    <span className="block text-[10px] text-slate-500">Kec.Cijeruk, Kab. Bogor</span>
                   </div>
                 </div>
 
