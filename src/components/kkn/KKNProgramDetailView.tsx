@@ -16,8 +16,6 @@ import { PageRoute } from '../../types';
 
 // Image Assets
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
-import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
-import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
 import Cyberbuliying_KKN from '../../assets/images/Cyberbuliying_KKN.jpeg';
 import Kepala_MTS_KKN from '../../assets/images/Kepala_MTS_KKN.jpeg';
 import Siswi_MTS_KKN from '../../assets/images/Siswi_MTS_KKN.jpeg';
@@ -97,23 +95,23 @@ const PROKER_DETAILS: ProkerDetail[] = [
       'Menanamkan etika digital dan perilaku bijak bermedia sosial',
       'Mendorong budaya saling menjaga di lingkungan digital'
     ],
-    target: 'Siswa Sekolah & Remaja Desa',
-    schedule: 'Minggu ke-2 s.d. ke-5 (Kegiatan Sekolah)',
+    target: 'Siswa Siswi kelas 9 Sekolah MTS Ar-Rosyid 2 Desa Warung Menteng',
+    schedule: 'Minggu ke-4 di hari rabu tanggal 9 September 2026 jam 08.30 s.d. 10.15 (Kegiatan Sekolah)',
     photos: [
       {
         src:  Cyberbuliying_KKN,
         title: 'Kelas Literasi Digital',
-        caption: 'Penyampaian materi anti cyber-bullying dan etika bermedia sosial di sekolah.'
+        caption: 'Penyampaian materi anti cyber-bullying dan etika bermedia sosial di sekolah dan Sesi tanya jawab studi kasus dan contoh perilaku bijak bermedia.'
       },
       {
         src: Kepala_MTS_KKN,
-        title: 'Diskusi Interaktif Murid',
-        caption: 'Sesi tanya jawab studi kasus dan contoh perilaku bijak bermedia.'
+        title: 'Pembagian Sertifikat',
+        caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma.'
       },
       {
         src: Siswi_MTS_KKN,
         title: 'Simulasi Perilaku Positif',
-        caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital.'
+        caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital melalui potret lewat frame foto booth yang di buat oleh Kelompok KKN.'
       }
     ]
   },
@@ -131,8 +129,8 @@ const PROKER_DETAILS: ProkerDetail[] = [
       'Mengenalkan kesenian dan seni budaya lokal kepada generasi muda',
       'Mendukung pengrajin kerajinan budaya khas desa'
     ],
-    target: 'Anak-Anak, Remaja & Komunitas Seni',
-    schedule: 'Minggu ke-3 s.d. ke-6 (Kegiatan Rutin)',
+    target: 'Siswa-siswi Sekolah Dasar negri Lengis',
+    schedule: 'Minggu ke-3 di hari senin tanggal 31 Agustus 2026 jam 09.30 s.d. 11.53 (Kegiatan Sekolah)',
     photos: [
       {
         src: Bangga_Budaya_KKN,
@@ -141,13 +139,13 @@ const PROKER_DETAILS: ProkerDetail[] = [
       },
       {
         src: Kepala_SDN_KKN,
-        title: 'Pentas Seni Cilik',
-        caption: 'Pertunjukan tari daerah anak-anak binaan posko KKN.'
+        title: 'Pembagian Sertifikat ',
+        caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma..'
       },
       {
         src: Pembagian_hadiah_KKN,
-        title: 'Eksplorasi Batik & Kerajinan',
-        caption: 'Mendukung pengrajin anyaman bambu dan cinderamata khas desa.'
+        title: 'Bentuk Apresiasi Peserta',
+        caption: 'Memberikan hadiah kepada mereka yang berhasil dalam mengikuti kegiatan Tentang Bangga budaya.'
       }
     ]
   },
@@ -165,18 +163,18 @@ const PROKER_DETAILS: ProkerDetail[] = [
       'Menyediakan ruang diskusi dan konsultasi bagi warga',
       'Mewujudkan deklarasi lingkungan desa bebas kekerasan'
     ],
-    target: 'Warga, Ibu PKK & Tokoh Masyarakat',
-    schedule: 'Minggu ke-4 s.d. ke-7 (Sosialisasi)',
+    target: 'Siswa-siswi SMK As-Syukur',
+    schedule: 'Minggu ke-4 tanggal 10 September 2026 jam 09.30 s.d. 12.08  (Sosialisasi)',
     photos: [
       {
         src: Edukasi_KKN,
-        title: 'Sosialisasi Perlindungan Warga',
-        caption: 'Penyuluhan hak perlindungan anak dan perempuan di Balai Pertemuan Warga.'
+        title: 'Sosialisasi Perlindungan anak',
+        caption: 'Penyuluhan tentang perlindungan anak dan perempuan bersama Siswa-Siswi SMK As-Syukur.'
       },
       {
         src: Sertif_pemateri_KKN,
-        title: 'Forum Komunikasi Warga',
-        caption: 'Diskusi terbuka bersama ibu-ibu kader PKK dan tokoh masyarakat.'
+        title: 'Pembagian Sertifikat Pemateri',
+        caption: 'Diskusi Terbuka anatara Pemateri bersama Siswa-Siswi SMK As-Syukur Tentang Edukasi anti pelecehan Sexsual.'
       },
       {
         src: Pengajaran_KKN,

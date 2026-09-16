@@ -32,8 +32,6 @@ const PROKER_ROUTES: Record<string, PageRoute> = {
 import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
-import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
-import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
 import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
 import kknLogo from '../../assets/images/logo.png';
 import kknPembukaan from '../../assets/images/Pembukaan_KKN.jpeg';

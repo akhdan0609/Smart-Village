@@ -20,7 +20,7 @@ import { KKNDivisionView } from './KKNDivisionView';
 import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
-import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
+import kknProkerBudaya from '../../assets/images/Banggabudaya_KKN.jpeg';
 import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
 import kknKerjaBakti from '../../assets/images/kkn_kerja_bakti_1788606750207.jpg';
 import kknPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
