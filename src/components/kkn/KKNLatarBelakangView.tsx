@@ -32,7 +32,6 @@ const PROKER_ROUTES: Record<string, PageRoute> = {
 import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
-import kknProkerCyberbullying from '../../assets/images/kkn_proker_cyberbullying_1788606061840.jpg';
 import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
 import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
 import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
@@ -46,6 +45,12 @@ import kknRw04 from '../../assets/images/RW04_KKN.jpeg';
 import Cyberbuliying_KKN from '../../assets/images/Cyberbuliying_KKN.jpeg';
 import Kepala_MTS_KKN from '../../assets/images/Kepala_MTS_KKN.jpeg';
 import Siswi_MTS_KKN from '../../assets/images/Siswi_MTS_KKN.jpeg';
+import Banggabudaya_KKN from '../../assets/images/Banggabudaya_KKN.jpeg';
+import Kepala_SDN_KKN from '../../assets/images/Kepala_SDN_KKN.jpeg';
+import Pembagian_hadiah_KKN from '../../assets/images/Pembagian_hadiah_KKN.jpeg';
+import Edukasi_KKN from '../../assets/images/Edukasi_KKN.jpeg';
+import Sertif_pemateri_KKN from '../../assets/images/Sertif_pemateri_KKN.jpeg';
+import Pengajaran_KKN from '../../assets/images/Pengajaran_KKN.jpeg';
 
 interface ModalImage {
   src: string;
@@ -168,17 +173,17 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
       description: 'Mengajak generasi muda untuk mencintai dan melestarikan budaya daerah melalui kegiatan edukatif dan kreatif seperti pengenalan seni, tradisi, dan permainan tradisional.',
       photos: [
         {
-          src: kknProkerBudaya,
+          src: Banggabudaya_KKN,
           title: 'Apresiasi Budaya Lokal',
           caption: 'Mengenalkan permainan tradisional Sunda dan kesenian calung kepada generasi muda.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80',
+          src: Kepala_SDN_KKN,
           title: 'Pentas Seni Cilik',
           caption: 'Pertunjukan tari daerah anak-anak binaan posko KKN.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=500&q=80',
+          src: Pembagian_hadiah_KKN,
           title: 'Eksplorasi Batik & Kerajinan',
           caption: 'Mendukung pengrajin anyaman bambu dan cinderamata khas desa.'
         }
@@ -191,17 +196,17 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
       description: 'Meningkatkan kesadaran masyarakat tentang pentingnya pencegahan kekerasan dan pelecehan seksual di lingkungan sekitar melalui sosialisasi dan diskusi interaktif.',
       photos: [
         {
-          src: kknProkerKekerasan,
+          src: Edukasi_KKN,
           title: 'Sosialisasi Perlindungan Warga',
           caption: 'Penyuluhan hak perlindungan anak dan perempuan di Balai Pertemuan Warga.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80',
+          src: Sertif_pemateri_KKN,
           title: 'Forum Komunikasi Warga',
           caption: 'Diskusi terbuka bersama ibu-ibu kader PKK dan tokoh masyarakat.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=80',
+          src: Pengajaran_KKN,
           title: 'Komitmen Bersama',
           caption: 'Penandatanganan deklarasi lingkungan desa ramah anak dan bebas kekerasan.'
         }
