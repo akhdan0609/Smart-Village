@@ -8,10 +8,14 @@ import { PageRoute } from '../../types';
 
 // Images
 import kknHeroPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
-import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
-import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
-import kknKerjaBakti from '../../assets/images/kkn_kerja_bakti_1788606750207.jpg';
-import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
+import Bimbingan_UMKM_KKN from '../../assets/images/Bimbingan_UMKM_KKN.jpeg';
+import Edukasi_Penipuan_KKN from '../../assets/images/Edukasi_penipuan_KKN.jpeg';
+import Gotong_Royong_KKN from '../../assets/images/Gotong_Royong_KKN.jpeg';
+import cek_kesehatan_kkn from '../../assets/images/Cek_kesehatan_KKN.jpeg';
+import Posyandu_KKN from '../../assets/images/Posyandu_KKN.jpeg';
+import Senam_KKN from '../../assets/images/Senam_KKN.jpeg';
+import Ngajar_Ngaji_KKN from '../../assets/images/Ngajar_ngaji_KKN.jpeg';
+import Jumat_Berkisah_KKN from "../../assets/images/Jum'at_berkisah_KKN.jpeg";
 
 interface GalleryAlbum {
   id: number;
@@ -28,42 +32,42 @@ export const KKNGaleriView: React.FC<KKNGaleriViewProps> = ({ onNavigate }) => {
   const galleryAlbums: GalleryAlbum[] = [
     {
       id: 1,
-      src: kknActivityUmkm,
+      src: Bimbingan_UMKM_KKN,
       title: 'Pendampingan dan Promosi UMKM Desa'
     },
     {
       id: 2,
-      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80',
+      src: Edukasi_Penipuan_KKN,
       title: 'Edukasi dan Pencegahan Penipuan Digital Bagi Masyarakat Desa'
     },
     {
       id: 3,
-      src: kknKerjaBakti,
+      src: Gotong_Royong_KKN,
       title: 'Gotong Royong'
     },
     {
       id: 4,
-      src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80',
+      src: cek_kesehatan_kkn,
       title: "BIAS Cek Kesehatan Gratis Bersama Puskesmas Cijeruk"
     },
     {
       id: 5,
-      src: 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=700&q=80',
+      src: Posyandu_KKN,
       title: 'Posyiandu'
     },
     {
       id: 6,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80',
+      src: Senam_KKN,
       title: 'Senam Sehat'
     },
     {
       id: 7,
-      src: kknMengajarBale,
+      src: Ngajar_Ngaji_KKN,
       title: 'Mengajar Ngaji'
     },
     {
       id: 8,
-      src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80',
+      src: Jumat_Berkisah_KKN,
       title: "Jum'at Berkisah"
     }
   ];
