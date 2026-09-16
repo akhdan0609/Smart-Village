@@ -24,7 +24,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { PageRoute } from '../../types';
-import kknHeroGroup from '../../assets/images/kkn_hero_group_1788604287174.jpg';
+import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';

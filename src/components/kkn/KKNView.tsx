@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import { KKNDivisionView } from './KKNDivisionView';
-import kknHeroGroup from '../../assets/images/kkn_hero_group_1788604287174.jpg';
+import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
 import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
