@@ -43,6 +43,9 @@ import kknRw07 from '../../assets/images/RW07_KKN.jpeg';
 import kknSekdes from '../../assets/images/Sekdes_KKN.jpeg';
 import kknUstd from '../../assets/images/Ustd_KKN.jpeg';
 import kknRw04 from '../../assets/images/RW04_KKN.jpeg';
+import Cyberbuliying_KKN from '../../assets/images/Cyberbuliying_KKN.jpeg';
+import Kepala_MTS_KKN from '../../assets/images/Kepala_MTS_KKN.jpeg';
+import Siswi_MTS_KKN from '../../assets/images/Siswi_MTS_KKN.jpeg';
 
 interface ModalImage {
   src: string;
@@ -142,17 +145,17 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
       description: 'Memberikan edukasi kepada siswa tentang bahaya cyber bullying, etika digital, dan cara menggunakan internet dengan bijak agar tercipta lingkungan digital yang aman dan positif.',
       photos: [
         {
-          src: kknProkerCyberbullying,
+          src: Cyberbuliying_KKN,
           title: 'Kelas Literasi Digital',
           caption: 'Penyampaian materi anti cyber-bullying dan etika bermedia sosial di sekolah.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=500&q=80',
+          src: Kepala_MTS_KKN,
           title: 'Diskusi Interaktif Murid',
           caption: 'Sesi tanya jawab studi kasus dan contoh perilaku bijak bermedia.'
         },
         {
-          src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=500&q=80',
+          src: Siswi_MTS_KKN,
           title: 'Simulasi Perilaku Positif',
           caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital.'
         }

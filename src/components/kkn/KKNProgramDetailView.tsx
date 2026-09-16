@@ -19,6 +19,9 @@ import kknProkerWebsite from '../../assets/images/kkn_proker_website_17886060420
 import kknProkerCyberbullying from '../../assets/images/kkn_proker_cyberbullying_1788606061840.jpg';
 import kknProkerBudaya from '../../assets/images/kkn_proker_budaya_1788606079432.jpg';
 import kknProkerKekerasan from '../../assets/images/kkn_proker_kekerasan_1788606094172.jpg';
+import Cyberbuliying_KKN from '../../assets/images/Cyberbuliying_KKN.jpeg';
+import Kepala_MTS_KKN from '../../assets/images/Kepala_MTS_KKN.jpeg';
+import Siswi_MTS_KKN from '../../assets/images/Siswi_MTS_KKN.jpeg';
 
 interface ProkerDetail {
   id: string;
@@ -93,17 +96,17 @@ const PROKER_DETAILS: ProkerDetail[] = [
     schedule: 'Minggu ke-2 s.d. ke-5 (Kegiatan Sekolah)',
     photos: [
       {
-        src: kknProkerCyberbullying,
+        src:  Cyberbuliying_KKN,
         title: 'Kelas Literasi Digital',
         caption: 'Penyampaian materi anti cyber-bullying dan etika bermedia sosial di sekolah.'
       },
       {
-        src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80',
+        src: Kepala_MTS_KKN,
         title: 'Diskusi Interaktif Murid',
         caption: 'Sesi tanya jawab studi kasus dan contoh perilaku bijak bermedia.'
       },
       {
-        src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80',
+        src: Siswi_MTS_KKN,
         title: 'Simulasi Perilaku Positif',
         caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital.'
       }
