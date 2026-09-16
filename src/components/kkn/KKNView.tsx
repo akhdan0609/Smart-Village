@@ -620,9 +620,9 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
       </section>
 
-      {/* 3. FOUR BENTO CARDS (Latar Belakang, Program Kerja, Galeri, Struktur) */}
+      {/* 3. TWO BENTO CARDS (Latar Belakang, Struktur) */}
       <section id="kkn-program-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
           
           {/* Card 1: Latar Belakang */}
           <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
@@ -648,41 +648,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             </div>
           </div>
 
-          {/* Card 3: Album Kami */}
-          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm sm:text-base border-b border-slate-100 pb-2.5">
-                <ImageIcon className="w-4 h-4 text-emerald-800" />
-                <span>Album Kami</span>
-              </div>
-
-              {/* Photo Collage Preview (2 rows x 3 photos) */}
-              <div className="grid grid-cols-3 gap-1.5">
-                {galleryItems.map((photo, idx) => (
-                  <img
-                    key={idx}
-                    src={photo.src}
-                    alt={photo.caption}
-                    referrerPolicy="no-referrer"
-                    onClick={() => setSelectedGalleryPhoto(photo.src)}
-                    className="w-full h-14 sm:h-16 rounded-lg object-cover cursor-pointer hover:opacity-90 transition border border-slate-100 shadow-2xs"
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <button
-                onClick={() => onNavigate ? onNavigate('kkn-galeri') : setActiveModal('galeri')}
-                className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
-              >
-                <span>Lihat Selengkapnya</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Card 4: Struktur Organisasi Diagram */}
+          {/* Card 2: Struktur Organisasi Diagram */}
           <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:shadow-md transition">
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm sm:text-base border-b border-slate-100 pb-2.5">
