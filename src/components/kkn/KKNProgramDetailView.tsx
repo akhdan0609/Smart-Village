@@ -89,7 +89,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
     badge: 'Edukasi & Kesadaran Digital',
     tagline: 'Menciptakan lingkungan digital yang aman dan positif bagi generasi muda.',
     description: 'Memberikan edukasi kepada siswa tentang bahaya cyber bullying, etika digital, dan cara menggunakan internet dengan bijak agar tercipta lingkungan digital yang aman dan positif.',
-    longDescription: 'Program edukasi ini menyasar siswa sekolah dan remaja di Desa Warung Menteng. Materi disampaikan secara interaktif meliputi pengenalan bentuk-bentuk perundungan di dunia maya, dampak psikologis bagi korban, etika bermedia sosial, serta strategi melindungi diri dan melapor. Kegiatan dilengkapi diskusi kasus dan simulasi perilaku positif agar pesan edukasi lebih mudah dipahami dan diterapkan sehari-hari.',
+    longDescription: 'Peserta KKN melaksanakan sosialisasi "Cyber Bullying" di MTs Arrosyid II sebagai bagian dari Proker Divisi Pendidikan PJ FTIK.',
     goals: [
       'Meningkatkan kesadaran siswa akan bahaya cyber bullying',
       'Menanamkan etika digital dan perilaku bijak bermedia sosial',
@@ -123,7 +123,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
     badge: 'Pelestarian Budaya Lokal',
     tagline: 'Menumbuhkan kecintaan generasi muda terhadap budaya daerah.',
     description: 'Mengajak generasi muda untuk mencintai dan melestarikan budaya daerah melalui kegiatan edukatif dan kreatif seperti pengenalan seni, tradisi, dan permainan tradisional.',
-    longDescription: 'Melestarikan kekayaan budaya Sunda melalui pendekatan edukatif yang menyenangkan. Kegiatan meliputi pengenalan permainan tradisional, apresiasi kesenian lokal seperti calung dan tari daerah, hingga eksplorasi kerajinan tangan khas desa. Program ini juga menjadi wadah anak-anak untuk menampilkan bakat seni mereka lewat pentas budaya sekaligus memperkuat rasa bangga terhadap identitas budaya Warung Menteng.',
+    longDescription: 'Peserta KKN melaksanakan sosialisasi "Aku Cinta Budaya" di SDN Lengis. Kegiatan ini merupakan Proker Pertama Divisi Pendidikan dengan Prodi SPI sebagai penanggung jawab (PJ).',
     goals: [
       'Menghidupkan kembali permainan tradisional Sunda',
       'Mengenalkan kesenian dan seni budaya lokal kepada generasi muda',
@@ -157,7 +157,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
     badge: 'Sosialisasi & Perlindungan',
     tagline: 'Menumbuhkan lingkungan desa yang aman, ramah anak, dan bebas kekerasan.',
     description: 'Meningkatkan kesadaran masyarakat tentang pentingnya pencegahan kekerasan dan pelecehan seksual di lingkungan sekitar melalui sosialisasi dan diskusi interaktif.',
-    longDescription: 'Program ini menyasar seluruh lapisan masyarakat untuk meningkatkan pemahaman tentang hak perlindungan anak dan perempuan. Kegiatan dilakukan melalui sosialisasi di balai desa, forum komunikasi warga bersama ibu-ibu PKK dan tokoh masyarakat, hingga deklarasi bersama lingkungan ramah anak. Materi mencakup pengenalan bentuk-bentuk kekerasan, mekanisme pelaporan, serta peran serta masyarakat dalam menjaga lingkungan yang aman.',
+    longDescription: 'Peserta KKN melaksanakan sosialisasi "Anti Pelecehan Seksual" di SMK As-Syukur sebagai bagian dari Proker Divisi Pendidikan dengan Prodi Ilmu Hukum sebagai PJ.',
     goals: [
       'Meningkatkan kesadaran masyarakat akan perlindungan anak & perempuan',
       'Menyediakan ruang diskusi dan konsultasi bagi warga',
