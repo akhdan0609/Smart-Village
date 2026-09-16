@@ -16,7 +16,7 @@ import {
 import { PageRoute } from '../../types';
 
 // Imported team banners
-import bphBanner from '../../assets/images/kkn_team_bph_1788605172906.jpg';
+import bphBanner from '../../assets/images/BPH_KKN.jpeg';
 import acaraBanner from '../../assets/images/kkn_team_acara_1788605188095.jpg';
 import humasBanner from '../../assets/images/kkn_team_humas_1788605201912.jpg';
 import mediaBanner from '../../assets/images/kkn_team_media_1788605216631.jpg';
