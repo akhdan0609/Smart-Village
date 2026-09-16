@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Compass, 
   Store, 
   Landmark, 
   Fish, 
   ArrowRight, 
-  X, 
-  MapPin, 
-  Phone, 
-  ExternalLink, 
-  Star,
-  Info,
   ChevronRight
 } from 'lucide-react';
 import { PageRoute } from '../../types';
@@ -33,8 +27,6 @@ interface ItemCardData {
 }
 
 export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) => {
-  const [selectedItem, setSelectedItem] = useState<ItemCardData | null>(null);
-
   const handleNav = (page: PageRoute, params?: any) => {
     if (onNavigate) {
       onNavigate(page, params);
@@ -395,8 +387,7 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
               {destinasiList.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className="group cursor-pointer flex flex-col"
+                  className="group flex flex-col"
                 >
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-xs relative">
                     <img
@@ -455,8 +446,7 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
               {umkmList.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className="group cursor-pointer flex flex-col"
+                  className="group flex flex-col"
                 >
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-xs relative">
                     <img
@@ -515,8 +505,7 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
               {budayaList.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className="group cursor-pointer flex flex-col"
+                  className="group flex flex-col"
                 >
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-xs relative">
                     <img
@@ -571,12 +560,11 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
             </div>
 
             {/* Right Cards (4 items in 4 columns) */}
-            <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+<div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {budidayaList.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className="group cursor-pointer flex flex-col"
+                  className="group flex flex-col"
                 >
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-xs relative">
                     <img
@@ -597,93 +585,6 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
         </div>
 
       </div>
-
-      {/* 4. DETAIL MODAL ON CARD CLICK */}
-      {selectedItem && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 space-y-4 shadow-2xl relative animate-in fade-in zoom-in duration-150">
-            <button
-              onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 transition cursor-pointer"
-              aria-label="Tutup"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <div className="h-52 sm:h-60 rounded-2xl overflow-hidden bg-slate-100 relative">
-              <img
-                src={selectedItem.fotoUrl}
-                alt={selectedItem.nama}
-                className="w-full h-full object-cover"
-              />
-              <span className="absolute top-3 left-3 bg-[#0f4d38] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                {selectedItem.kategori === 'destinasi' ? 'Akomodasi' : selectedItem.kategori}
-              </span>
-              {selectedItem.rating && (
-                <span className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-xs text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                  {selectedItem.rating} / 5.0
-                </span>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-slate-900 leading-snug">
-                {selectedItem.nama}
-              </h3>
-
-              {selectedItem.lokasi && (
-                <div className="flex items-center gap-1.5 text-xs text-slate-600 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                  <span>{selectedItem.lokasi}</span>
-                </div>
-              )}
-
-              {selectedItem.harga && (
-                <div className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg inline-block">
-                  Harga: {selectedItem.harga}
-                </div>
-              )}
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
-                {selectedItem.deskripsi}
-              </p>
-            </div>
-
-            {selectedItem.kontak && (
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-emerald-700 shrink-0" />
-                  <span><strong>Kontak / Pengelola:</strong> {selectedItem.kontak}</span>
-                </div>
-              </div>
-            )}
-
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-2">
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition cursor-pointer"
-              >
-                Tutup
-              </button>
-              <button
-                onClick={() => {
-                  const cat = selectedItem.kategori;
-                  setSelectedItem(null);
-                  if (cat === 'destinasi') handleNav('potensi-destinasi');
-                  else if (cat === 'umkm') handleNav('potensi-umkm');
-                  else if (cat === 'budaya') handleNav('potensi-budaya');
-                  else if (cat === 'budidaya') handleNav('potensi-perikanan');
-                }}
-                className="px-5 py-2 bg-[#0f4d38] hover:bg-[#0c3c2c] text-white text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5"
-              >
-                <span>Kunjungi Halaman Lengkap</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );
