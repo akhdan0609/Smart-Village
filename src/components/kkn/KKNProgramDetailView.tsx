@@ -140,7 +140,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
       {
         src: Kepala_SDN_KKN,
         title: 'Pembagian Sertifikat ',
-        caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma..'
+        caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma.'
       },
       {
         src: Pembagian_hadiah_KKN,

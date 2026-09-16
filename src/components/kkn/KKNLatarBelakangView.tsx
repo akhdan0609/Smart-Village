@@ -154,13 +154,13 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
         },
         {
           src: Kepala_MTS_KKN,
-          title: 'Diskusi Interaktif Murid',
-          caption: 'Sesi tanya jawab studi kasus dan contoh perilaku bijak bermedia.'
+          title: 'Pembagian Sertifikat',
+          caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma.'
         },
         {
           src: Siswi_MTS_KKN,
           title: 'Simulasi Perilaku Positif',
-          caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital.'
+          caption: 'Praktik saling mendukung dan menjaga persahabatan di era digital melalui potret lewat frame foto booth yang di buat oleh Kelompok KKN.'
         }
       ]
     },
@@ -177,13 +177,13 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
         },
         {
           src: Kepala_SDN_KKN,
-          title: 'Pentas Seni Cilik',
-          caption: 'Pertunjukan tari daerah anak-anak binaan posko KKN.'
+          title: 'Pembagian Sertifikat',
+          caption: 'Memberikan Cinderamata kepada pihak kepala Sekolah yang telah memberikan Ruang pembelajaran kepada Kelompok KKN Wigataha Dharma.'
         },
         {
           src: Pembagian_hadiah_KKN,
-          title: 'Eksplorasi Batik & Kerajinan',
-          caption: 'Mendukung pengrajin anyaman bambu dan cinderamata khas desa.'
+          title: 'Bentuk Apresiasi Peserta',
+          caption: 'Memberikan hadiah kepada mereka yang berhasil dalam mengikuti kegiatan Tentang Bangga budaya.'
         }
       ]
     },
@@ -195,13 +195,13 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
       photos: [
         {
           src: Edukasi_KKN,
-          title: 'Sosialisasi Perlindungan Warga',
-          caption: 'Penyuluhan hak perlindungan anak dan perempuan di Balai Pertemuan Warga.'
+          title: 'Sosialisasi Perlindungan Anak',
+          caption: 'Penyuluhan tentang perlindungan anak dan perempuan bersama Siswa-Siswi SMK As-Syukur.'
         },
         {
           src: Sertif_pemateri_KKN,
-          title: 'Forum Komunikasi Warga',
-          caption: 'Diskusi terbuka bersama ibu-ibu kader PKK dan tokoh masyarakat.'
+          title: 'Pembagian Sertifikat Pemateri',
+          caption: 'Diskusi Terbuka anatara Pemateri bersama Siswa-Siswi SMK As-Syukur Tentang Edukasi anti pelecehan Sexsual.'
         },
         {
           src: Pengajaran_KKN,
