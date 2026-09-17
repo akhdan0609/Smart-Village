@@ -18,8 +18,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         }}
       />
 
-      {/* Soft gradient overlay to ensure perfect contrast on the left */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:w-3/4 lg:w-3/5" />
+      {/* Soft gradient overlay to keep text readable while letting the image show */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/25 to-transparent sm:w-2/3 lg:w-3/5" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
 
       {/* Content Container */}
