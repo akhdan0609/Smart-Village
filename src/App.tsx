@@ -68,7 +68,12 @@ import { KontakDaruratView } from './components/darurat/KontakDaruratView';
 // Admin Views
 import { LoginAdminView } from './components/admin/LoginAdminView';
 import { AdminDashboardView } from './components/admin/AdminDashboardView';
-import { isAdminLoggedIn } from './utils/storage';
+import { AdminDashboardHome } from './components/admin/AdminDashboardHome';
+import { ProfilDesaAdmin } from './components/admin/ProfilDesaAdmin';
+import { PotensiDesaAdmin } from './components/admin/PotensiDesaAdmin';
+import { PelayananAdmin } from './components/admin/PelayananAdmin';
+import { HumasAdmin } from './components/admin/HumasAdmin';
+import { isAdminLoggedIn, getCurrentAdmin } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
 export default function App() {
@@ -234,13 +239,52 @@ export default function App() {
       // ADMIN
       case 'login-admin':
         return isAdmin ? (
-          <AdminDashboardView onLogout={handleLogout} onNavigate={handleNavigate} />
+          <AdminDashboardHome onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
       case 'admin-dashboard':
         return isAdmin ? (
-          <AdminDashboardView onLogout={handleLogout} onNavigate={handleNavigate} />
+          <AdminDashboardHome onLogout={handleLogout} onNavigate={handleNavigate} />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - PROFIL DESA (Admin 1 & Super Admin)
+      case 'admin-profil-tentang':
+      case 'admin-profil-sejarah':
+      case 'admin-profil-pemerintahan':
+      case 'admin-profil-anggaran':
+        return isAdmin && getCurrentAdmin()?.role !== 'admin_2' && getCurrentAdmin()?.role !== 'admin_3' ? (
+          <ProfilDesaAdmin />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - POTENSI DESA (Admin 2 & Super Admin)
+      case 'admin-potensi-akomodasi':
+      case 'admin-potensi-umkm':
+      case 'admin-potensi-budaya':
+      case 'admin-potensi-budidaya':
+        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_3' ? (
+          <PotensiDesaAdmin />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - PELAYANAN (Admin 2 & Super Admin)
+      case 'admin-pelayanan':
+        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_3' ? (
+          <PelayananAdmin />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - HUMAS (Admin 3 & Super Admin)
+      case 'admin-humas-press':
+      case 'admin-humas-galeri':
+        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_2' ? (
+          <HumasAdmin />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );

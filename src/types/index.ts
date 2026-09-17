@@ -1,5 +1,7 @@
 // Types definition for Website Desa Warung Menteng
 
+export type AdminRole = 'super_admin' | 'admin_1' | 'admin_2' | 'admin_3';
+
 export type PageRoute = 
   | 'beranda'
   // Profil Desa
@@ -70,7 +72,19 @@ export type PageRoute =
   | 'kontak-darurat'
   // Admin
   | 'login-admin'
-  | 'admin-dashboard';
+  | 'admin-dashboard'
+  | 'admin-profil-tentang'
+  | 'admin-profil-sejarah'
+  | 'admin-profil-pemerintahan'
+  | 'admin-profil-anggaran'
+  | 'admin-potensi-akomodasi'
+  | 'admin-potensi-umkm'
+  | 'admin-potensi-budaya'
+  | 'admin-potensi-budidaya'
+  | 'admin-pelayanan'
+  | 'admin-humas-press'
+  | 'admin-humas-galeri'
+  | 'admin-settings';
 
 export type UMKMKategori = 'makanan-minuman' | 'kerajinan' | 'produk-lainnya';
 
@@ -319,5 +333,82 @@ export interface DokumenDownloadItem {
   deskripsi: string;
   jumlahUnduh: number;
   downloadUrl: string;
+}
+
+// Admin System Types
+export interface AdminUser {
+  id: string;
+  username: string;
+  name: string;
+  role: AdminRole;
+  avatar?: string;
+  lastLogin?: string;
+}
+
+export interface AdminAuthState {
+  isLoggedIn: boolean;
+  user: AdminUser | null;
+}
+
+export interface AdminMenuItem {
+  id: string;
+  label: string;
+  icon: string;
+  route?: PageRoute;
+  roles: AdminRole[];
+  children?: AdminMenuItem[];
+}
+
+export interface StaticContentItem {
+  id: string;
+  title: string;
+  slug: string;
+  content: string; // HTML content
+  imageUrl?: string;
+  updatedAt: string;
+  updatedBy: string;
+}
+
+export interface DynamicContentItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  imageUrl: string;
+  status: 'draft' | 'published' | 'archived';
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  metadata?: Record<string, any>;
+}
+
+export interface SuratManajemenItem extends PengajuanSurat {
+  statusDisplay: string;
+  statusColor: string;
+}
+
+export interface GaleriItem {
+  id: string;
+  judul: string;
+  kategori: string;
+  tanggal: string;
+  fotoUrl: string;
+  deskripsi: string;
+  tags?: string[];
+}
+
+export interface PressReleaseItem {
+  id: string;
+  nomorSurat: string;
+  judul: string;
+  tanggal: string;
+  berlakuHingga?: string;
+  kategori: string;
+  isi: string;
+  lampiran?: string;
+  penanggungJawab: string;
+  status: 'draft' | 'published' | 'archived';
+  createdAt: string;
+  updatedAt: string;
 }
 

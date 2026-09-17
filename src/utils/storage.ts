@@ -1,4 +1,4 @@
-import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem } from '../types';
+import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem, AdminUser, AdminRole } from '../types';
 import { 
   INITIAL_PERMOHONAN_SURAT, 
   INITIAL_LAPORAN_WARGA, 
@@ -14,6 +14,89 @@ const STORAGE_KEYS = {
   PENGUMUMAN: 'desa_wm_pengumuman_v1',
   UMKM: 'desa_wm_umkm_v1',
   ADMIN_AUTH: 'desa_wm_admin_auth_v1'
+};
+
+// Admin Users Database
+const ADMIN_USERS: Record<string, { password: string; user: AdminUser }> = {
+  'superadmin': {
+    password: 'super2026',
+    user: {
+      id: 'sa-1',
+      username: 'superadmin',
+      name: 'Super Administrator',
+      role: 'super_admin',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=superadmin'
+    }
+  },
+  'admin1': {
+    password: 'admin1desa',
+    user: {
+      id: 'a1-1',
+      username: 'admin1',
+      name: 'Admin Profil Desa',
+      role: 'admin_1',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin1'
+    }
+  },
+  'admin2': {
+    password: 'admin2desa',
+    user: {
+      id: 'a2-1',
+      username: 'admin2',
+      name: 'Admin Potensi & Pelayanan',
+      role: 'admin_2',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin2'
+    }
+  },
+  'admin3': {
+    password: 'admin3desa',
+    user: {
+      id: 'a3-1',
+      username: 'admin3',
+      name: 'Admin Humas & Dokumentasi',
+      role: 'admin_3',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin3'
+    }
+  },
+  // Legacy credentials
+  'akhdan': {
+    password: 'FTIK888',
+    user: {
+      id: 'legacy-1',
+      username: 'akhdan',
+      name: 'Petugas PTSP Warung Menteng',
+      role: 'super_admin',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=akhdan'
+    }
+  },
+  'admin': {
+    password: 'desa2026',
+    user: {
+      id: 'legacy-2',
+      username: 'admin',
+      name: 'Administrator Desa',
+      role: 'super_admin',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'
+    }
+  },
+  'kades': {
+    password: 'menteng2026',
+    user: {
+      id: 'legacy-3',
+      username: 'kades',
+      name: 'Kepala Desa Warung Menteng',
+      role: 'super_admin',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=kades'
+    }
+  }
+};
+
+export const checkAdminLogin = (username: string, password: string): AdminUser | null => {
+  const record = ADMIN_USERS[username.toLowerCase()];
+  if (record && record.password === password) {
+    return record.user;
+  }
+  return null;
 };
 
 // Permohonan Surat
@@ -134,7 +217,7 @@ export const updateLaporan = (id: string, updates: Partial<any>): any[] => {
         ...updates
       };
     }
-    return p => p;
+    return l;
   });
   localStorage.setItem(STORAGE_KEYS.LAPORAN, JSON.stringify(updated));
   return updated;
@@ -157,6 +240,20 @@ export const saveBerita = (item: BeritaItem): BeritaItem[] => {
   return updated;
 };
 
+export const updateBerita = (id: string, updates: Partial<BeritaItem>): BeritaItem[] => {
+  const current = getStoredBerita();
+  const updated = current.map(b => b.id === id ? { ...b, ...updates } : b);
+  localStorage.setItem(STORAGE_KEYS.BERITA, JSON.stringify(updated));
+  return updated;
+};
+
+export const deleteBerita = (id: string): BeritaItem[] => {
+  const current = getStoredBerita();
+  const updated = current.filter(b => b.id !== id);
+  localStorage.setItem(STORAGE_KEYS.BERITA, JSON.stringify(updated));
+  return updated;
+};
+
 export const getStoredPengumuman = (): PengumumanItem[] => {
   try {
     const data = localStorage.getItem(STORAGE_KEYS.PENGUMUMAN);
@@ -169,6 +266,20 @@ export const getStoredPengumuman = (): PengumumanItem[] => {
 export const savePengumuman = (item: PengumumanItem): PengumumanItem[] => {
   const current = getStoredPengumuman();
   const updated = [item, ...current];
+  localStorage.setItem(STORAGE_KEYS.PENGUMUMAN, JSON.stringify(updated));
+  return updated;
+};
+
+export const updatePengumuman = (id: string, updates: Partial<PengumumanItem>): PengumumanItem[] => {
+  const current = getStoredPengumuman();
+  const updated = current.map(p => p.id === id ? { ...p, ...updates } : p);
+  localStorage.setItem(STORAGE_KEYS.PENGUMUMAN, JSON.stringify(updated));
+  return updated;
+};
+
+export const deletePengumuman = (id: string): PengumumanItem[] => {
+  const current = getStoredPengumuman();
+  const updated = current.filter(p => p.id !== id);
   localStorage.setItem(STORAGE_KEYS.PENGUMUMAN, JSON.stringify(updated));
   return updated;
 };
@@ -190,8 +301,22 @@ export const saveUMKM = (item: UMKMItem): UMKMItem[] => {
   return updated;
 };
 
+export const updateUMKM = (id: string, updates: Partial<UMKMItem>): UMKMItem[] => {
+  const current = getStoredUMKM();
+  const updated = current.map(u => u.id === id ? { ...u, ...updates } : u);
+  localStorage.setItem(STORAGE_KEYS.UMKM, JSON.stringify(updated));
+  return updated;
+};
+
+export const deleteUMKM = (id: string): UMKMItem[] => {
+  const current = getStoredUMKM();
+  const updated = current.filter(u => u.id !== id);
+  localStorage.setItem(STORAGE_KEYS.UMKM, JSON.stringify(updated));
+  return updated;
+};
+
 // Admin Auth
-export const getAdminAuth = (): { isLoggedIn: boolean; role: string; name: string } | null => {
+export const getAdminAuth = (): { isLoggedIn: boolean; user: AdminUser | null } | null => {
   try {
     const data = localStorage.getItem(STORAGE_KEYS.ADMIN_AUTH);
     return data ? JSON.parse(data) : null;
@@ -200,7 +325,7 @@ export const getAdminAuth = (): { isLoggedIn: boolean; role: string; name: strin
   }
 };
 
-export const setAdminAuth = (auth: { isLoggedIn: boolean; role: string; name: string } | null) => {
+export const setAdminAuth = (auth: { isLoggedIn: boolean; user: AdminUser | null } | null) => {
   if (auth) {
     localStorage.setItem(STORAGE_KEYS.ADMIN_AUTH, JSON.stringify(auth));
   } else {
@@ -213,22 +338,23 @@ export const isAdminLoggedIn = (): boolean => {
   return !!auth?.isLoggedIn;
 };
 
-export const setAdminSession = (loggedIn: boolean) => {
-  if (loggedIn) {
-    setAdminAuth({ isLoggedIn: true, role: 'Administrator Desa', name: 'Petugas PTSP Warung Menteng' });
-  } else {
-    setAdminAuth(null);
-  }
+export const getCurrentAdmin = (): AdminUser | null => {
+  const auth = getAdminAuth();
+  return auth?.user || null;
+};
+
+export const setAdminSession = (user: AdminUser) => {
+  setAdminAuth({ isLoggedIn: true, user });
 };
 
 export const clearAdminSession = () => {
   setAdminAuth(null);
 };
 
-export const checkAdminLogin = (u: string, p: string): boolean => {
-  return (
-    (u === 'akhdan' && p === 'FTIK888') ||
-    (u === 'admin' && p === 'desa2026') ||
-    (u === 'kades' && p === 'menteng2026')
-  );
+export const hasAdminRole = (requiredRoles: AdminRole[]): boolean => {
+  const user = getCurrentAdmin();
+  return user ? requiredRoles.includes(user.role) : false;
 };
+
+// Re-export types for convenience
+export type { AdminUser, AdminRole } from '../types';
