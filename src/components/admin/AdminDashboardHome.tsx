@@ -26,6 +26,7 @@ import {
   getStoredLaporan, 
   getStoredBerita, 
   getStoredUMKM,
+  getCurrentAdmin,
   getStoredKontakDarurat,
   saveKontakDarurat,
   deleteKontakDarurat,
