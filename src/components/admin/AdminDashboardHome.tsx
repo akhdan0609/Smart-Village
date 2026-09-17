@@ -311,12 +311,12 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
               <span>Tambah ke Galeri</span>
             </button>
             <button 
-              onClick={() => openKontakModal()}
+              onClick={() => handleQuickAction('admin-kontak-darurat')}
               className="px-4 py-2.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
             >
               <PhoneCall className="w-4 h-4" />
               <Shield className="w-4 h-4" />
-              <span>Tambah Kontak Darurat</span>
+              <span>Kelola Kontak Darurat</span>
             </button>
           </div>
         </div>

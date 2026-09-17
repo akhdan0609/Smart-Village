@@ -19,7 +19,8 @@ import {
   ChevronRight, 
   ShieldCheck,
   Settings,
-  BarChart2
+  BarChart2,
+  Phone
 } from 'lucide-react';
 import { PageRoute, AdminRole, AdminMenuItem } from '../../types';
 import { getCurrentAdmin, hasAdminRole } from '../../utils/storage';
@@ -82,6 +83,13 @@ const allMenuItems: AdminMenuItem[] = [
     ]
   },
   { 
+    id: 'kontak-darurat-group', 
+    label: 'Kontak Darurat', 
+    icon: 'Phone', 
+    route: 'admin-kontak-darurat', 
+    roles: ['super_admin', 'admin_1', 'admin_2'] 
+  },
+  { 
     id: 'settings', 
     label: 'Pengaturan', 
     icon: 'Settings', 
@@ -109,6 +117,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ShieldCheck,
   Settings,
   BarChart2,
+  Phone,
 };
 
 const roleLabels: Record<AdminRole, string> = {
