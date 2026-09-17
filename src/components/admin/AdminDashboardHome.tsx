@@ -129,6 +129,40 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
     onNavigate(page);
   };
 
+  const stats = [
+    { 
+      title: 'Pengajuan Surat Masuk', 
+      value: suratList.length, 
+      subtitle: `${suratList.filter(s => s && s.status === 'Diajukan').length} Perlu Verifikasi`,
+      icon: <FileText className="w-5 h-5 text-emerald-600" />,
+      color: 'text-emerald-600',
+      bgColor: 'bg-emerald-100',
+    },
+    { 
+      title: 'Aspirasi & Pengaduan', 
+      value: laporanList.length, 
+      subtitle: `${laporanList.filter(l => l && l.status === 'Menunggu').length} Belum Diberi Tanggapan`,
+      icon: <MessageSquare className="w-5 h-5 text-rose-600" />,
+      color: 'text-rose-600',
+      bgColor: 'bg-rose-100',
+    },
+    { 
+      title: 'Artikel Berita Terbit', 
+      value: beritaList.length, 
+      subtitle: 'Publikasi Resmi Web Desa',
+      icon: <Newspaper className="w-5 h-5 text-blue-600" />,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-100',
+    },
+    { 
+      title: 'Produk UMKM Terdaftar', 
+      value: umkmList.length, 
+      subtitle: 'Siap Promosi ke Pembeli',
+      icon: <ShoppingBag className="w-5 h-5 text-amber-600" />,
+      color: 'text-amber-600',
+      bgColor: 'bg-amber-100',
+    },
+  ];
   const openKontakModal = (kontak?: any) => {
     if (kontak) {
       setEditingKontak(kontak);
@@ -199,7 +233,7 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
     setIsSavingKontak(false);
   };
 
-  const handleDeleteKontak = (id: string) => {
+    const handleDeleteKontak = (id: string) => {
     if (!canDeleteKontak) return;
     if (confirm('Yakin ingin menghapus kontak darurat ini?')) {
       deleteKontakDarurat(id);
@@ -207,42 +241,7 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
     }
   };
 
-  const handleQuickAction = (page: PageRoute) => {
-    onNavigate(page);
-  };
-    { 
-      title: 'Pengajuan Surat Masuk', 
-      value: suratList.length, 
-      subtitle: `${suratList.filter(s => s && s.status === 'Diajukan').length} Perlu Verifikasi`,
-      icon: <FileText className="w-5 h-5 text-emerald-600" />,
-      color: 'text-emerald-600',
-      bgColor: 'bg-emerald-100',
-    },
-    { 
-      title: 'Aspirasi & Pengaduan', 
-      value: laporanList.length, 
-      subtitle: `${laporanList.filter(l => l && l.status === 'Menunggu').length} Belum Diberi Tanggapan`,
-      icon: <MessageSquare className="w-5 h-5 text-rose-600" />,
-      color: 'text-rose-600',
-      bgColor: 'bg-rose-100',
-    },
-    { 
-      title: 'Artikel Berita Terbit', 
-      value: beritaList.length, 
-      subtitle: 'Publikasi Resmi Web Desa',
-      icon: <Newspaper className="w-5 h-5 text-blue-600" />,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
-    },
-    { 
-      title: 'Produk UMKM Terdaftar', 
-      value: umkmList.length, 
-      subtitle: 'Siap Promosi ke Pembeli',
-      icon: <ShoppingBag className="w-5 h-5 text-amber-600" />,
-      color: 'text-amber-600',
-      bgColor: 'bg-amber-100',
-    },
-  ];
+   
 
   return (
     <AdminLayout

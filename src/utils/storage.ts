@@ -13,6 +13,7 @@ const STORAGE_KEYS = {
   BERITA: 'desa_wm_berita_v2',
   PENGUMUMAN: 'desa_wm_pengumuman_v1',
   UMKM: 'desa_wm_umkm_v1',
+  KONTAK_DARURAT: 'desa_wm_kontak_darurat_v1',
   ADMIN_AUTH: 'desa_wm_admin_auth_v1'
 };
 
@@ -304,7 +305,29 @@ export const deleteUMKM = (id: string): UMKMItem[] => {
   localStorage.setItem(STORAGE_KEYS.UMKM, JSON.stringify(updated));
   return updated;
 };
+// Kontak Darurat
+export const getStoredKontakDarurat = (): any[] => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.KONTAK_DARURAT);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+};
 
+export const saveKontakDarurat = (item: any): any[] => {
+  const current = getStoredKontakDarurat();
+  const updated = [item, ...current];
+  localStorage.setItem(STORAGE_KEYS.KONTAK_DARURAT, JSON.stringify(updated));
+  return updated;
+};
+
+export const deleteKontakDarurat = (id: string): any[] => {
+  const current = getStoredKontakDarurat();
+  const updated = current.filter(item => item.id !== id);
+  localStorage.setItem(STORAGE_KEYS.KONTAK_DARURAT, JSON.stringify(updated));
+  return updated;
+};
 // Admin Auth
 export const getAdminAuth = (): { isLoggedIn: boolean; user: AdminUser | null } | null => {
   try {
