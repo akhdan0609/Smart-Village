@@ -13,7 +13,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80')`
+          backgroundImage: `url(Suasana_Desa_Beranda.jpg)`, // Replace with the actual path to your image
         }}
       />
 
