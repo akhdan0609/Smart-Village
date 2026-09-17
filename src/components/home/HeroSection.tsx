@@ -1,6 +1,7 @@
 import React from 'react';
 import { Compass } from 'lucide-react';
 import { PageRoute } from '../../types';
+import suasanaDesaBeranda from '../../assets/images/Suasana_Desa_Beranda.jpeg';
 
 interface HeroSectionProps {
   onNavigate: (page: PageRoute, params?: any) => void;
@@ -13,7 +14,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(Suasana_Desa_Beranda.jpg)`, // Replace with the actual path to your image
+          backgroundImage: `url(${suasanaDesaBeranda})`,
         }}
       />
 
