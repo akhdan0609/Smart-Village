@@ -1,6 +1,6 @@
 // Types definition for Website Desa Warung Menteng
 
-export type AdminRole = 'super_admin' | 'admin_1' | 'admin_2' | 'admin_3';
+export type AdminRole = 'super_admin' | 'admin_1' | 'admin_2';
 
 export type PageRoute = 
   | 'beranda'

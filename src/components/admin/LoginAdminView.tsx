@@ -10,16 +10,14 @@ interface LoginAdminProps {
 
 const roleOptions = [
   { id: 'super_admin', label: 'Super Admin', desc: 'Akses penuh ke seluruh sistem', icon: Crown, color: 'bg-amber-600' },
-  { id: 'admin_1', label: 'Admin 1 (Profil Desa)', desc: 'Beranda & Profil Desa (Tentang, Sejarah, Pemerintahan, Anggaran)', icon: Users, color: 'bg-emerald-600' },
-  { id: 'admin_2', label: 'Admin 2 (Potensi & Pelayanan)', desc: 'Potensi Desa & Pelayanan Surat', icon: UserCheck, color: 'bg-blue-600' },
-  { id: 'admin_3', label: 'Admin 3 (Humas)', desc: 'Press Release & Galeri Foto', icon: UserCog, color: 'bg-purple-600' },
+  { id: 'admin_1', label: 'Admin 1 (Profil & Potensi)', desc: 'Beranda, Profil Desa & Potensi Desa', icon: Users, color: 'bg-emerald-600' },
+  { id: 'admin_2', label: 'Admin 2 (Pelayanan & Humas)', desc: 'Pelayanan Surat, Press Release & Galeri', icon: UserCheck, color: 'bg-blue-600' },
 ];
 
 const credentials: Record<string, { username: string; password: string }> = {
   super_admin: { username: 'superadmin', password: 'super2026' },
   admin_1: { username: 'admin1', password: 'admin1desa' },
   admin_2: { username: 'admin2', password: 'admin2desa' },
-  admin_3: { username: 'admin3', password: 'admin3desa' },
 };
 
 export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNavigate }) => {

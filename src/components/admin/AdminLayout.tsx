@@ -38,7 +38,7 @@ const allMenuItems: AdminMenuItem[] = [
     label: 'Dashboard', 
     icon: 'LayoutDashboard', 
     route: 'admin-dashboard', 
-    roles: ['super_admin', 'admin_1', 'admin_2', 'admin_3'] 
+    roles: ['super_admin', 'admin_1', 'admin_2'] 
   },
   { 
     id: 'profil-group', 
@@ -56,12 +56,12 @@ const allMenuItems: AdminMenuItem[] = [
     id: 'potensi-group', 
     label: 'Potensi Desa', 
     icon: 'TreePine', 
-    roles: ['super_admin', 'admin_2'],
+    roles: ['super_admin', 'admin_1'],
     children: [
-      { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_2'] },
-      { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_2'] },
-      { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_2'] },
-      { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_2'] },
+      { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
+      { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1'] },
+      { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
+      { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -75,10 +75,10 @@ const allMenuItems: AdminMenuItem[] = [
     id: 'humas-group', 
     label: 'Humas & Dokumentasi', 
     icon: 'Newspaper', 
-    roles: ['super_admin', 'admin_3'],
+    roles: ['super_admin', 'admin_2'],
     children: [
-      { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_3'] },
-      { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_3'] },
+      { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_2'] },
+      { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_2'] },
     ]
   },
   { 
@@ -113,16 +113,14 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const roleLabels: Record<AdminRole, string> = {
   super_admin: 'Super Admin',
-  admin_1: 'Admin Profil Desa',
-  admin_2: 'Admin Potensi & Pelayanan',
-  admin_3: 'Admin Humas',
+  admin_1: 'Admin Profil & Potensi',
+  admin_2: 'Admin Pelayanan & Humas',
 };
 
 const roleColors: Record<AdminRole, string> = {
   super_admin: 'bg-amber-600',
   admin_1: 'bg-emerald-600',
   admin_2: 'bg-blue-600',
-  admin_3: 'bg-purple-600',
 };
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ 
@@ -320,8 +318,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       )}
 
       {/* Main Content */}
-      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
-        <div className="p-6 sm:p-8 pt-8">
+      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'} relative z-10 overflow-x-hidden`}>
+        <div className="max-w-7xl mx-auto w-full p-6 sm:p-8 pt-8">
           {children}
         </div>
       </main>

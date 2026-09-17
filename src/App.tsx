@@ -255,18 +255,18 @@ export default function App() {
       case 'admin-profil-sejarah':
       case 'admin-profil-pemerintahan':
       case 'admin-profil-anggaran':
-        return isAdmin && getCurrentAdmin()?.role !== 'admin_2' && getCurrentAdmin()?.role !== 'admin_3' ? (
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <ProfilDesaAdmin />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - POTENSI DESA (Admin 2 & Super Admin)
+      // ADMIN - POTENSI DESA (Admin 1 & Super Admin)
       case 'admin-potensi-akomodasi':
       case 'admin-potensi-umkm':
       case 'admin-potensi-budaya':
       case 'admin-potensi-budidaya':
-        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_3' ? (
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <PotensiDesaAdmin />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
@@ -274,16 +274,16 @@ export default function App() {
 
       // ADMIN - PELAYANAN (Admin 2 & Super Admin)
       case 'admin-pelayanan':
-        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_3' ? (
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_2') ? (
           <PelayananAdmin />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - HUMAS (Admin 3 & Super Admin)
+      // ADMIN - HUMAS (Admin 2 & Super Admin)
       case 'admin-humas-press':
       case 'admin-humas-galeri':
-        return isAdmin && getCurrentAdmin()?.role !== 'admin_1' && getCurrentAdmin()?.role !== 'admin_2' ? (
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_2') ? (
           <HumasAdmin />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />

@@ -33,7 +33,7 @@ const ADMIN_USERS: Record<string, { password: string; user: AdminUser }> = {
     user: {
       id: 'a1-1',
       username: 'admin1',
-      name: 'Admin Profil Desa',
+      name: 'Admin Profil & Potensi',
       role: 'admin_1',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin1'
     }
@@ -43,19 +43,9 @@ const ADMIN_USERS: Record<string, { password: string; user: AdminUser }> = {
     user: {
       id: 'a2-1',
       username: 'admin2',
-      name: 'Admin Potensi & Pelayanan',
+      name: 'Admin Pelayanan & Humas',
       role: 'admin_2',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin2'
-    }
-  },
-  'admin3': {
-    password: 'admin3desa',
-    user: {
-      id: 'a3-1',
-      username: 'admin3',
-      name: 'Admin Humas & Dokumentasi',
-      role: 'admin_3',
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin3'
     }
   },
   // Legacy credentials
