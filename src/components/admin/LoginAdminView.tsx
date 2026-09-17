@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, Eye, EyeOff, Users, UserCheck, UserCog, Crown } from 'lucide-react';
+import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, Eye, EyeOff, Users, UserCheck, UserCog } from 'lucide-react';
 import { checkAdminLogin, setAdminSession, AdminUser } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
@@ -9,19 +9,17 @@ interface LoginAdminProps {
 }
 
 const roleOptions = [
-  { id: 'super_admin', label: 'Super Admin', desc: 'Akses penuh ke seluruh sistem (CRUD lengkap)', icon: Crown, color: 'bg-amber-600' },
   { id: 'admin_1', label: 'Admin 1 (Full Access)', desc: 'Akses penuh ke semua menu: Profil, Potensi, Pelayanan, Humas (CRUD lengkap)', icon: Users, color: 'bg-emerald-600' },
   { id: 'admin_2', label: 'Admin 2 (Contributor)', desc: 'Hanya bisa menambah data baru (Create). Edit & Hapus dinonaktifkan.', icon: UserCheck, color: 'bg-blue-600' },
 ];
 
 const credentials: Record<string, { username: string; password: string }> = {
-  super_admin: { username: 'superadmin', password: 'super2026' },
   admin_1: { username: 'admin1', password: 'admin1desa' },
   admin_2: { username: 'admin2', password: 'admin2desa' },
 };
 
 export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNavigate }) => {
-  const [selectedRole, setSelectedRole] = useState<AdminUser['role']>('super_admin');
+  const [selectedRole, setSelectedRole] = useState<AdminUser['role']>('admin_1');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

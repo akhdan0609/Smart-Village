@@ -73,6 +73,7 @@ import { ProfilDesaAdmin } from './components/admin/ProfilDesaAdmin';
 import { PotensiDesaAdmin } from './components/admin/PotensiDesaAdmin';
 import { PelayananAdmin } from './components/admin/PelayananAdmin';
 import { HumasAdmin } from './components/admin/HumasAdmin';
+import { AdminSettings } from './components/admin/AdminSettings';
 import { isAdminLoggedIn, getCurrentAdmin } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
