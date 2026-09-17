@@ -171,18 +171,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
   return (
     <div className="min-h-screen bg-slate-100 flex">
-      {/* Mobile Overlay */}
-      {isMobile && !sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-black/50" 
-          onClick={() => setSidebarOpen(false)} 
-        />
-      )}
 
       {/* Sidebar */}
       <aside 
         className={`
-          ${isMobile ? 'fixed inset-y-0 left-0 z-50' : 'relative lg:relative'}
+          fixed inset-y-0 left-0 z-50
           h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
           ${sidebarOpen ? 'w-64' : 'w-20'}
         `}
@@ -327,7 +320,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       )}
 
       {/* Main Content */}
-      <main className={`flex-1 ${isMobile ? '' : sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'} transition-all duration-300`}>
+      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
         <div className="p-6 sm:p-8 pt-8">
           {children}
         </div>
