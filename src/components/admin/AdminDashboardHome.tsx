@@ -15,16 +15,25 @@ import {
   CheckCircle,
   AlertTriangle,
   TrendingUp,
+  PhoneCall,
+  X,
+  Loader2,
+  Shield,
+  Trash2,
 } from 'lucide-react';
 import { 
   getStoredPengajuanSurat, 
   getStoredLaporan, 
   getStoredBerita, 
-  getStoredUMKM 
+  getStoredUMKM,
+  getStoredKontakDarurat,
+  saveKontakDarurat,
+  deleteKontakDarurat,
 } from '../../utils/storage';
 import { AdminLayout } from './AdminLayout';
 import { DataTable } from './components';
-import { PageRoute } from '../../types';
+import { PageRoute, AdminRole } from '../../types';
+import { ImageUpload } from './components/ImageUpload';
 
 interface StatCardProps {
   title: string;
@@ -84,21 +93,123 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
   const [laporanList, setLaporanList] = useState<any[]>([]);
   const [beritaList, setBeritaList] = useState<any[]>([]);
   const [umkmList, setUmkmList] = useState<any[]>([]);
+  const [kontakDaruratList, setKontakDaruratList] = useState<any[]>([]);
+  const [showKontakModal, setShowKontakModal] = useState(false);
+  const [editingKontak, setEditingKontak] = useState<any | null>(null);
+  const [kontakForm, setKontakForm] = useState({
+    namaKontak: '',
+    instansi: '',
+    kategori: '',
+    nomorTelepon: '',
+    nomorWA: '',
+    alamatPos: '',
+    siaga: '',
+    namaPetugas: '',
+    deskripsi: '',
+    fotoUrl: '',
+  });
+  const [isSavingKontak, setIsSavingKontak] = useState(false);
 
   const loadData = () => {
     setSuratList((getStoredPengajuanSurat() || []).filter(Boolean));
     setLaporanList((getStoredLaporan() || []).filter(Boolean));
     setBeritaList((getStoredBerita() || []).filter(Boolean));
     setUmkmList((getStoredUMKM() || []).filter(Boolean));
+    setKontakDaruratList((getStoredKontakDarurat() || []).filter(Boolean));
   };
 
   useEffect(() => { loadData(); }, []);
+
+  const currentAdmin = getCurrentAdmin();
+  const isAdmin1 = currentAdmin?.role === 'admin_1';
+  const isAdmin2 = currentAdmin?.role === 'admin_2';
+  const canDeleteKontak = isAdmin1 || currentAdmin?.role === 'super_admin';
 
   const handleQuickAction = (page: PageRoute) => {
     onNavigate(page);
   };
 
-  const stats = [
+  const openKontakModal = (kontak?: any) => {
+    if (kontak) {
+      setEditingKontak(kontak);
+      setKontakForm({
+        namaKontak: kontak.namaKontak || '',
+        instansi: kontak.instansi || '',
+        kategori: kontak.kategori || '',
+        nomorTelepon: kontak.nomorTelepon || '',
+        nomorWA: kontak.nomorWA || '',
+        alamatPos: kontak.alamatPos || '',
+        siaga: kontak.siaga || '',
+        namaPetugas: kontak.namaPetugas || '',
+        deskripsi: kontak.deskripsi || '',
+        fotoUrl: kontak.fotoUrl || '',
+      });
+    } else {
+      setEditingKontak(null);
+      setKontakForm({
+        namaKontak: '',
+        instansi: '',
+        kategori: '',
+        nomorTelepon: '',
+        nomorWA: '',
+        alamatPos: '',
+        siaga: '',
+        namaPetugas: '',
+        deskripsi: '',
+        fotoUrl: '',
+      });
+    }
+    setShowKontakModal(true);
+  };
+
+  const closeKontakModal = () => {
+    setShowKontakModal(false);
+    setEditingKontak(null);
+    setKontakForm({
+      namaKontak: '',
+      instansi: '',
+      kategori: '',
+      nomorTelepon: '',
+      nomorWA: '',
+      alamatPos: '',
+      siaga: '',
+      namaPetugas: '',
+      deskripsi: '',
+      fotoUrl: '',
+    });
+  };
+
+  const handleSaveKontak = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!kontakForm.namaKontak || !kontakForm.instansi || !kontakForm.nomorTelepon) return;
+    
+    setIsSavingKontak(true);
+    await new Promise(r => setTimeout(r, 500));
+    
+    const newKontak = {
+      ...kontakForm,
+      id: editingKontak?.id || `kontak-${Date.now()}`,
+      createdAt: editingKontak?.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    
+    saveKontakDarurat(newKontak);
+    closeKontakModal();
+    loadData();
+    setIsSavingKontak(false);
+  };
+
+  const handleDeleteKontak = (id: string) => {
+    if (!canDeleteKontak) return;
+    if (confirm('Yakin ingin menghapus kontak darurat ini?')) {
+      deleteKontakDarurat(id);
+      loadData();
+    }
+  };
+
+  const handleQuickAction = (page: PageRoute) => {
+    onNavigate(page);
+  };
     { 
       title: 'Pengajuan Surat Masuk', 
       value: suratList.length, 
@@ -198,6 +309,14 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
             >
               <Plus className="w-4 h-4" />
               <span>Tambah ke Galeri</span>
+            </button>
+            <button 
+              onClick={() => openKontakModal()}
+              className="px-4 py-2.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <Shield className="w-4 h-4" />
+              <span>Tambah Kontak Darurat</span>
             </button>
           </div>
         </div>

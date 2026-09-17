@@ -41,10 +41,46 @@ interface AdminLayoutProps {
 // Mobile menu items for hamburger menu
 const mobileMenuItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, route: 'admin-dashboard' },
-  { id: 'profil', label: 'Profil Desa', icon: Building2, route: 'admin-profil-tentang', hasChildren: true },
-  { id: 'potensi', label: 'Potensi Desa', icon: TreePine, route: 'admin-potensi-akomodasi', hasChildren: true },
+  { 
+    id: 'profil', 
+    label: 'Profil Desa', 
+    icon: Building2, 
+    route: 'admin-profil-tentang', 
+    hasChildren: true,
+    children: [
+      { id: 'profil-tentang', label: 'Profil Resmi Desa', icon: FileText, route: 'admin-profil-tentang' },
+      { id: 'profil-sejarah', label: 'Sejarah Desa', icon: Landmark, route: 'admin-profil-sejarah' },
+      { id: 'profil-pemerintahan', label: 'Pemerintahan Desa', icon: Users, route: 'admin-profil-pemerintahan' },
+      { id: 'profil-demografi', label: 'Demografi Kependudukan', icon: Users, route: 'admin-profil-demografi' },
+      { id: 'profil-lembaga', label: 'Lembaga Kemasyarakatan', icon: Users, route: 'admin-profil-lembaga' },
+      { id: 'profil-anggaran', label: 'Anggaran Desa (APBDes)', icon: DollarSign, route: 'admin-profil-anggaran' },
+    ]
+  },
+  { 
+    id: 'potensi', 
+    label: 'Potensi Desa', 
+    icon: TreePine, 
+    route: 'admin-potensi-akomodasi', 
+    hasChildren: true,
+    children: [
+      { id: 'potensi-akomodasi', label: 'Akomodasi Desa', icon: Building2, route: 'admin-potensi-akomodasi' },
+      { id: 'potensi-umkm', label: 'UMKM Desa', icon: ShoppingBag, route: 'admin-potensi-umkm' },
+      { id: 'potensi-budaya', label: 'Budaya & Adat Istiadat', icon: Music, route: 'admin-potensi-budaya' },
+      { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: Fish, route: 'admin-potensi-budidaya' },
+    ]
+  },
   { id: 'pelayanan', label: 'Pelayanan & Surat', icon: Mail, route: 'admin-pelayanan' },
-  { id: 'humas', label: 'Humas & Dokumentasi', icon: Newspaper, route: 'admin-humas-press', hasChildren: true },
+  { 
+    id: 'humas', 
+    label: 'Humas & Dokumentasi', 
+    icon: Newspaper, 
+    route: 'admin-humas-press', 
+    hasChildren: true,
+    children: [
+      { id: 'humas-press', label: 'Press Release', icon: Newspaper, route: 'admin-humas-press' },
+      { id: 'humas-galeri', label: 'Galeri Foto (Dokumentasi)', icon: Image, route: 'admin-humas-galeri' },
+    ]
+  },
   { id: 'settings', label: 'Pengaturan', icon: Settings, route: 'admin-settings' },
 ];
 
@@ -160,6 +196,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   const [isMobile, setIsMobile] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   useGlobalAnimations(activePage);
@@ -187,6 +224,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
   const handleDropdownClick = (menuId: string) => {
     setOpenDropdown(openDropdown === menuId ? null : menuId);
+  };
+
+  const handleMobileDropdownClick = (menuId: string) => {
+    setMobileOpenDropdown(mobileOpenDropdown === menuId ? null : menuId);
   };
 
   const isDropdownActive = (menuId: string) => {
@@ -402,23 +443,69 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
               <X className="w-6 h-6" />
             </button>
           </div>
-          <nav className="p-4 space-y-2" role="navigation" aria-label="Mobile admin navigation">
+          <nav className="p-4 space-y-1" role="navigation" aria-label="Mobile admin navigation">
             {mobileMenuItems.map((menu) => {
-              const isActive = menu.route === activePage || (menu.hasChildren && menu.children?.some(c => c.route === activePage));
+              const hasChildren = menu.children && menu.children.length > 0;
+              const isActive = hasChildren
+                ? menu.children.some(c => c.route === activePage)
+                : menu.route === activePage;
               const Icon = menu.icon;
+              const isDropdownOpen = mobileOpenDropdown === menu.id;
+
+              if (hasChildren) {
+                return (
+                  <div key={menu.id} className="group">
+                    <button
+                      onClick={() => handleMobileDropdownClick(menu.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
+                        isActive
+                          ? 'bg-emerald-50 text-emerald-800'
+                          : 'text-slate-700 hover:bg-slate-50'
+                      }`}
+                      aria-expanded={isDropdownOpen}
+                    >
+                      <Icon className="w-5 h-5 shrink-0" />
+                      <span className="flex-1 text-left">{menu.label}</span>
+                      <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-90' : ''}`} />
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="mt-1 ml-8 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                        {menu.children!.map((child) => {
+                          const childActive = child.route === activePage;
+                          const ChildIcon = child.icon;
+                          return (
+                            <button
+                              key={child.id}
+                              onClick={() => child.route && handleNavClick(child.route)}
+                              className={`w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                                childActive
+                                  ? 'bg-emerald-50 text-emerald-800'
+                                  : 'text-slate-600 hover:bg-slate-50'
+                              }`}
+                            >
+                              <ChildIcon className={`w-4 h-4 shrink-0 ${childActive ? 'text-emerald-700' : 'text-slate-400'}`} />
+                              <span>{child.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <button
                   key={menu.id}
                   onClick={() => menu.route && handleNavClick(menu.route)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
-                    isActive 
-                      ? 'bg-emerald-50 text-emerald-800' 
+                    isActive
+                      ? 'bg-emerald-50 text-emerald-800'
                       : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   <Icon className="w-5 h-5 shrink-0" />
                   <span className="flex-1 text-left">{menu.label}</span>
-                  {menu.hasChildren && <ChevronRight className="w-4 h-4 text-slate-400" />}
                 </button>
               );
             })}
