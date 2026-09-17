@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LayoutDashboard, 
   Home, 
@@ -133,8 +133,16 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 }) => {
   const user = getCurrentAdmin();
   const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const [isMobile, setIsMobile] = React.useState(false);
   
   useGlobalAnimations(activePage);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const filteredMenus = allMenuItems.filter(item => 
     user && item.roles.includes(user.role)
@@ -145,7 +153,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
   const handleNavClick = (route: PageRoute) => {
     onNavigate(route);
-    if (window.innerWidth < 1024) setSidebarOpen(false);
+    if (isMobile) setSidebarOpen(false);
   };
 
   const getActiveRoute = (page: PageRoute) => {
@@ -164,18 +172,20 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   return (
     <div className="min-h-screen bg-slate-100 flex">
       {/* Mobile Overlay */}
-      {!sidebarOpen && window.innerWidth < 1024 && (
+      {isMobile && !sidebarOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden" 
+          className="fixed inset-0 z-40 bg-black/50" 
           onClick={() => setSidebarOpen(false)} 
         />
       )}
 
       {/* Sidebar */}
       <aside 
-        className={`fixed lg:relative z-50 h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col ${
-          sidebarOpen ? 'w-64' : 'w-20'
-        } lg:w-64`}
+        className={`
+          ${isMobile ? 'fixed inset-y-0 left-0 z-50' : 'relative lg:relative'}
+          h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
+          ${sidebarOpen ? 'w-64' : 'w-20'}
+        `}
       >
         {/* Logo & Brand */}
         <div className={`flex items-center gap-3 p-4 border-b border-slate-200 ${!sidebarOpen ? 'justify-center' : ''}`}>
@@ -305,11 +315,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         )}
       </aside>
 
-      {/* Expanded Sidebar Button (Collapsed) */}
-      {!sidebarOpen && (
+      {/* Expanded Sidebar Button (Collapsed) - Mobile only */}
+      {isMobile && !sidebarOpen && (
         <button
           onClick={() => setSidebarOpen(true)}
-          className="fixed lg:relative z-50 bottom-6 left-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+          className="fixed z-50 bottom-6 left-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
           aria-label="Expand sidebar"
         >
           <ChevronRight className="w-6 h-6" />
@@ -317,7 +327,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       )}
 
       {/* Main Content */}
-      <main className={`flex-1 lg:ml-64 transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
+      <main className={`flex-1 ${isMobile ? '' : sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'} transition-all duration-300`}>
         <div className="p-6 sm:p-8 pt-8">
           {children}
         </div>
