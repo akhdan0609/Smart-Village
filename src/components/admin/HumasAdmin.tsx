@@ -36,7 +36,12 @@ const defaultGaleri: BeritaItem[] = [
 
 type HumasTab = 'press' | 'galeri';
 
-export const HumasAdmin: React.FC = () => {
+interface HumasAdminProps {
+  onNavigate: (page: PageRoute) => void;
+  onLogout: () => void;
+}
+
+export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) => {
   const [activeTab, setActiveTab] = useState<HumasTab>('press');
   const [pressList, setPressList] = useState<PengumumanItem[]>([]);
   const [galeriList, setGaleriList] = useState<BeritaItem[]>([]);
@@ -173,8 +178,8 @@ export const HumasAdmin: React.FC = () => {
   return (
     <AdminLayout
       activePage={activeTab === 'press' ? 'admin-humas-press' : 'admin-humas-galeri'}
-      onLogout={() => {}}
-      onNavigate={() => {}}
+      onLogout={onLogout}
+      onNavigate={onNavigate}
     >
       <div className="space-y-8">
         {/* Header */}

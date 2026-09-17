@@ -74,7 +74,12 @@ const roleStatsConfig = {
   ],
 };
 
-export const AdminDashboardHome: React.FC = () => {
+interface AdminDashboardHomeProps {
+  onNavigate: (page: PageRoute) => void;
+  onLogout: () => void;
+}
+
+export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNavigate, onLogout }) => {
   const [suratList, setSuratList] = useState<any[]>([]);
   const [laporanList, setLaporanList] = useState<any[]>([]);
   const [beritaList, setBeritaList] = useState<any[]>([]);
@@ -89,10 +94,8 @@ export const AdminDashboardHome: React.FC = () => {
 
   useEffect(() => { loadData(); }, []);
 
-  const getRoleStats = () => {
-    const user = { role: 'super_admin' as const }; // Will be replaced with actual user from context
-    // For now, return super_admin stats - in real implementation, get from context
-    return roleStatsConfig.super_admin;
+  const handleQuickAction = (page: PageRoute) => {
+    onNavigate(page);
   };
 
   const stats = [
@@ -133,8 +136,8 @@ export const AdminDashboardHome: React.FC = () => {
   return (
     <AdminLayout
       activePage="admin-dashboard"
-      onLogout={() => {}}
-      onNavigate={() => {}}
+      onLogout={onLogout}
+      onNavigate={onNavigate}
     >
       <div className="space-y-8">
         {/* Header */}
@@ -168,19 +171,31 @@ export const AdminDashboardHome: React.FC = () => {
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
           <h3 className="text-base font-extrabold text-slate-900">Aksi Cepat Pengelolaan</h3>
           <div className="flex flex-wrap gap-3">
-            <button className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <button 
+              onClick={() => handleQuickAction('admin-pelayanan')}
+              className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
               <FileText className="w-4 h-4" />
               <span>Proses Surat Masuk</span>
             </button>
-            <button className="px-4 py-2.5 bg-teal-700 hover:bg-teal-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <button 
+              onClick={() => handleQuickAction('admin-humas-press')}
+              className="px-4 py-2.5 bg-teal-700 hover:bg-teal-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
               <Plus className="w-4 h-4" />
               <span>Tulis Berita Baru</span>
             </button>
-            <button className="px-4 py-2.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <button 
+              onClick={() => handleQuickAction('admin-potensi-umkm')}
+              className="px-4 py-2.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
               <Plus className="w-4 h-4" />
               <span>Daftarkan UMKM Baru</span>
             </button>
-            <button className="px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <button 
+              onClick={() => handleQuickAction('admin-humas-galeri')}
+              className="px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
               <Plus className="w-4 h-4" />
               <span>Tambah ke Galeri</span>
             </button>

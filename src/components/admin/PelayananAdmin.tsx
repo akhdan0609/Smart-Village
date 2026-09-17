@@ -38,7 +38,12 @@ const statusColors: Record<string, string> = {
   'Siap Diambil': 'bg-emerald-100 text-emerald-800',
 };
 
-export const PelayananAdmin: React.FC = () => {
+interface PelayananAdminProps {
+  onNavigate: (page: PageRoute) => void;
+  onLogout: () => void;
+}
+
+export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLogout }) => {
   const [suratList, setSuratList] = useState<PengajuanSurat[]>([]);
   const [selectedSurat, setSelectedSurat] = useState<PengajuanSurat | null>(null);
   const [suratStatus, setSuratStatus] = useState<'Diajukan' | 'Diproses' | 'Selesai' | 'Ditolak'>('Diproses');
@@ -111,8 +116,8 @@ export const PelayananAdmin: React.FC = () => {
   return (
     <AdminLayout
       activePage="admin-pelayanan"
-      onLogout={() => {}}
-      onNavigate={() => {}}
+      onLogout={onLogout}
+      onNavigate={onNavigate}
     >
       <div className="space-y-8">
         {/* Header */}

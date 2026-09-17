@@ -200,7 +200,12 @@ const tabConfigs: Record<TabType, TabConfig> = {
   },
 };
 
-export const PotensiDesaAdmin: React.FC = () => {
+interface PotensiDesaAdminProps {
+  onNavigate: (page: PageRoute) => void;
+  onLogout: () => void;
+}
+
+export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, onLogout }) => {
   const [activeTab, setActiveTab] = useState<TabType>('akomodasi');
   const [data, setData] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -300,8 +305,8 @@ export const PotensiDesaAdmin: React.FC = () => {
   return (
     <AdminLayout
       activePage={`admin-potensi-${activeTab}`}
-      onLogout={() => {}}
-      onNavigate={() => {}}
+      onLogout={onLogout}
+      onNavigate={onNavigate}
     >
       <div className="space-y-8">
         {/* Header */}

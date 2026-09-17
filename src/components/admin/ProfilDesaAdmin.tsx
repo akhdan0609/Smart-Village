@@ -69,7 +69,12 @@ const defaultContent: StaticContentItem[] = [
   },
 ];
 
-export const ProfilDesaAdmin: React.FC = () => {
+interface ProfilDesaAdminProps {
+  onNavigate: (page: PageRoute) => void;
+  onLogout: () => void;
+}
+
+export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, onLogout }) => {
   const [activeTab, setActiveTab] = useState<'tentang' | 'sejarah' | 'pemerintahan' | 'anggaran'>('tentang');
   const [contentList, setContentList] = useState<StaticContentItem[]>([]);
   const [isEditing, setIsEditing] = useState<string | null>(null);
@@ -127,8 +132,8 @@ export const ProfilDesaAdmin: React.FC = () => {
   return (
     <AdminLayout
       activePage={`admin-profil-${activeTab}`}
-      onLogout={() => {}}
-      onNavigate={() => {}}
+      onLogout={onLogout}
+      onNavigate={onNavigate}
     >
       <div className="space-y-8">
         {/* Header */}
