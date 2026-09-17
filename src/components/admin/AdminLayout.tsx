@@ -141,6 +141,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   const user = getCurrentAdmin();
   const [sidebarOpen, setSidebarOpen] = React.useState(true);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [expandedMenus, setExpandedMenus] = React.useState<Set<string>>(new Set());
   
   useGlobalAnimations(activePage);
 
@@ -233,23 +234,40 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             const Icon = iconMap[menu.icon] || LayoutDashboard;
 
             if (hasChildren) {
+              const isExpanded = expandedMenus.has(menu.id);
+              const shouldShowChildren = isExpanded || isActive;
+
+              const handleParentClick = (e: React.MouseEvent) => {
+                e.preventDefault();
+                setExpandedMenus(prev => {
+                  const next = new Set(prev);
+                  if (next.has(menu.id)) {
+                    next.delete(menu.id);
+                  } else {
+                    next.add(menu.id);
+                  }
+                  return next;
+                });
+              };
+
               return (
                 <div key={menu.id} className="group">
                   <button
+                    onClick={handleParentClick}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                      isActive 
+                      isActive || isExpanded
                         ? 'bg-emerald-50 text-emerald-800' 
                         : 'text-slate-700 hover:bg-slate-50'
                     } ${!sidebarOpen && 'justify-center'}`}
-                    aria-expanded={isActive}
+                    aria-expanded={isExpanded || isActive}
                   >
-                    <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
+                    <Icon className={`w-5 h-5 shrink-0 ${isActive || isExpanded ? 'text-emerald-700' : 'text-slate-500'}`} />
                     {sidebarOpen && <span className="flex-1 text-left">{menu.label}</span>}
                     {sidebarOpen && (
-                      <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform ${isActive ? 'rotate-90' : ''}`} />
+                      <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
                     )}
                   </button>
-                  {sidebarOpen && isActive && (
+                  {sidebarOpen && shouldShowChildren && (
                     <div className="mt-1 ml-9 space-y-1 animate-in slide-in-from-top-2 duration-200">
                       {menu.children!.map((child) => {
                         const childActive = child.route === activePage;
