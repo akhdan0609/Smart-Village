@@ -18,7 +18,7 @@ import {
 import { PageRoute } from '../../types';
 import { KKNDivisionView } from './KKNDivisionView';
 import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
-import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
+import kknActivityUmkm from '../../assets/images/Bimbingan_UMKM_KKN.jpeg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
 import kknProkerBudaya from '../../assets/images/Banggabudaya_KKN.jpeg';
 import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
