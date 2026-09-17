@@ -59,7 +59,7 @@ export const KKN_MEMBERS: KKNMember[] = [
   // BPH (Badan Pengurus Harian)
   {
     id: 'bph-1',
-    name: 'Fajri Maulana',
+    name: 'Fajry Maulana',
     role: 'Ketua',
     division: 'BPH',
     photo: avatarFajry,

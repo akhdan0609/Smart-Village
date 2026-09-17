@@ -12,7 +12,6 @@ import Bimbingan_UMKM_KKN from '../../assets/images/Bimbingan_UMKM_KKN.jpeg';
 import Edukasi_Penipuan_KKN from '../../assets/images/Edukasi_penipuan_KKN.jpeg';
 import Gotong_Royong_KKN from '../../assets/images/Gotong_Royong_KKN.jpeg';
 import cek_kesehatan_kkn from '../../assets/images/Cek_kesehatan_KKN.jpeg';
-import Posyandu_KKN from '../../assets/images/Posyandu_KKN.jpeg';
 import Senam_KKN from '../../assets/images/Senam_KKN.jpeg';
 import Ngajar_Ngaji_KKN from '../../assets/images/Ngajar_ngaji_KKN.jpeg';
 import Jumat_Berkisah_KKN from "../../assets/images/Jum'at_berkisah_KKN.jpeg";
@@ -52,8 +51,8 @@ export const KKNGaleriView: React.FC<KKNGaleriViewProps> = ({ onNavigate }) => {
     },
     {
       id: 5,
-      src: Posyandu_KKN,
-      title: 'Posyiandu'
+      src: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=700&q=80',
+      title: 'Pembuatan Website Desa dan Pengisian Konten informasi dari website Desa Warung Menteng'
     },
     {
       id: 6,
