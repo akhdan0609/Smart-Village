@@ -36,9 +36,10 @@ export const FormModal: React.FC<FormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150" onClick={onClose}>
       <form 
         onSubmit={onSubmit} 
+        onClick={(e) => e.stopPropagation()}
         className={`bg-white rounded-3xl w-full ${sizeClasses[size]} p-6 sm:p-8 space-y-5 animate-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto`}
       >
         <div className="flex justify-between items-start">

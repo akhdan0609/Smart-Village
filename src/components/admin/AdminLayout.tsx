@@ -173,7 +173,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       {/* Sidebar */}
       <aside 
         className={`
-          fixed inset-y-0 left-0 z-50
+          fixed inset-y-0 left-0 z-40
           h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
           ${sidebarOpen ? 'w-64' : 'w-20'}
         `}
@@ -298,7 +298,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         {sidebarOpen && (
           <button
             onClick={() => setSidebarOpen(false)}
-            className="mx-3 mb-3 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition absolute bottom-0 left-1/2 -translate-x-1/2"
+            className="mx-3 mb-3 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition absolute bottom-3 left-1/2 -translate-x-1/2 z-50"
             aria-label="Collapse sidebar"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -310,7 +310,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       {isMobile && !sidebarOpen && (
         <button
           onClick={() => setSidebarOpen(true)}
-          className="fixed z-50 bottom-6 left-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+          className="fixed z-40 bottom-6 left-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
           aria-label="Expand sidebar"
         >
           <ChevronRight className="w-6 h-6" />

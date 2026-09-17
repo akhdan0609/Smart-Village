@@ -299,7 +299,7 @@ export default function App() {
       <Navbar activePage={activePage} onNavigate={handleNavigate} />
       
       <main className="flex-grow">
-        <div id="app-page-wrapper" className="will-change-transform">
+        <div id="app-page-wrapper">
           {renderContent()}
         </div>
       </main>
