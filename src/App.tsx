@@ -73,6 +73,7 @@ import { ProfilDesaAdmin } from './components/admin/ProfilDesaAdmin';
 import { PotensiDesaAdmin } from './components/admin/PotensiDesaAdmin';
 import { PelayananAdmin } from './components/admin/PelayananAdmin';
 import { HumasAdmin } from './components/admin/HumasAdmin';
+import { AdminSettings } from './components/admin/AdminSettings';
 import { isAdminLoggedIn, getCurrentAdmin } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
@@ -285,6 +286,14 @@ export default function App() {
       case 'admin-humas-galeri':
         return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
           <HumasAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - SETTINGS (Admin 1, Admin 2 & Super Admin)
+      case 'admin-settings':
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+          <AdminSettings onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );

@@ -86,7 +86,7 @@ const allMenuItems: AdminMenuItem[] = [
     label: 'Pengaturan', 
     icon: 'Settings', 
     route: 'admin-settings', 
-    roles: ['super_admin', 'admin_1'] 
+    roles: ['super_admin', 'admin_1', 'admin_2'] 
   },
 ];
 
