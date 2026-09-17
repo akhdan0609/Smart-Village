@@ -49,7 +49,7 @@ import Pembagian_hadiah_KKN from '../../assets/images/Pembagian_hadiah_KKN.jpeg'
 import Edukasi_KKN from '../../assets/images/Edukasi_KKN.jpeg';
 import Sertif_pemateri_KKN from '../../assets/images/Sertif_pemateri_KKN.jpeg';
 import Pengajaran_KKN from '../../assets/images/Pengajaran_KKN.jpeg';
-import babinkaptibmas_kkn from '../../assets/images/babinkaptibmas_kkn.jpeg';
+import babinkaptibmas_kkn from '../../assets/images/babinkaptibmas_KKN.jpeg';
 import Liwetan_Sekdes_KKN from '../../assets/images/Liwetan_Sekdes_KKN.jpeg';
 import Sosialisasi_KKN from '../../assets/images/Sosialisasi_KKN.jpeg';
 import Menjalin_Komunikasi_KKN from '../../assets/images/Menjalin_Komunikasi_KKN.jpeg';
