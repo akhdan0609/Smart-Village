@@ -20,6 +20,7 @@ import { TextEditor } from './components/TextEditor';
 import { ImageUpload } from './components/ImageUpload';
 import { DataTable, Column } from './components/DataTable';
 import { PageRoute, DestinasiItem, UMKMItem, BudayaItem, PerikananItem } from '../../types';
+import { getCurrentAdmin } from '../../utils/storage';
 
 const iconMap = {
   Building2,
@@ -206,6 +207,11 @@ interface PotensiDesaAdminProps {
 }
 
 export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, onLogout }) => {
+  const currentAdmin = getCurrentAdmin();
+  const isContributor = currentAdmin?.role === 'admin_2';
+  const canEdit = !isContributor;
+  const canDelete = !isContributor;
+
   const [activeTab, setActiveTab] = useState<TabType>('akomodasi');
   const [data, setData] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -233,6 +239,7 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
   }, [activeTab]);
 
   const openAddModal = () => {
+    if (!canEdit) return;
     setEditingItem(null);
     const emptyForm: Record<string, any> = {};
     config.formFields.forEach(f => {
@@ -246,6 +253,7 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
   };
 
   const openEditModal = (item: any) => {
+    if (!canEdit) return;
     setEditingItem(item);
     const formData: Record<string, any> = {};
     config.formFields.forEach(f => {
@@ -261,6 +269,7 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
   };
 
   const handleSave = async () => {
+    if (!canEdit) return;
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
     
@@ -291,6 +300,7 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
   };
 
   const handleDelete = (id: string) => {
+    if (!canDelete) return;
     if (confirm('Yakin ingin menghapus data ini?')) {
       setData(prev => prev.filter(item => item.id !== id));
       localStorage.setItem(config.storageKey, JSON.stringify(data.filter((d: any) => d.id !== id)));
@@ -360,6 +370,8 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
             keyField="id"
             onEdit={openEditModal}
             onDelete={handleDelete}
+            canEdit={canEdit}
+            canDelete={canDelete}
             searchable={true}
             searchFields={config.formFields.filter(f => f.type !== 'image' && f.type !== 'tags').map(f => f.key)}
             emptyMessage={`Belum ada data ${config.label.toLowerCase()}`}

@@ -17,6 +17,7 @@ import { FormModal } from './components/FormModal';
 import { TextEditor } from './components/TextEditor';
 import { ImageUpload } from './components/ImageUpload';
 import { PageRoute } from '../../types';
+import { getCurrentAdmin } from '../../utils/storage';
 
 interface StaticContentItem {
   id: string;
@@ -75,6 +76,10 @@ interface ProfilDesaAdminProps {
 }
 
 export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, onLogout }) => {
+  const currentAdmin = getCurrentAdmin();
+  const isContributor = currentAdmin?.role === 'admin_2';
+  const canEdit = !isContributor;
+
   const [activeTab, setActiveTab] = useState<'tentang' | 'sejarah' | 'pemerintahan' | 'anggaran'>('tentang');
   const [contentList, setContentList] = useState<StaticContentItem[]>([]);
   const [isEditing, setIsEditing] = useState<string | null>(null);
@@ -99,6 +104,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
   const currentContent = contentList.find(c => c.id === activeTab) || defaultContent[0];
 
   const handleSave = async (id: string) => {
+    if (!canEdit) return;
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
     setContentList(prev => prev.map(c => 
@@ -111,6 +117,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
   };
 
   const startEdit = (item: StaticContentItem) => {
+    if (!canEdit) return;
     setIsEditing(item.id);
     setEditContent(item.content);
     setEditImage(item.imageUrl || '');
@@ -220,6 +227,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 <div className="text-xs text-slate-500">
                   Terakhir diperbarui: {new Date(currentContent.updatedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })} oleh {currentContent.updatedBy}
                 </div>
+                {canEdit && (
                 <button
                   onClick={() => startEdit(currentContent)}
                   className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"
@@ -227,6 +235,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                   <Edit className="w-4 h-4" />
                   <span>Edit Konten</span>
                 </button>
+              )}
               </div>
             </div>
           )}

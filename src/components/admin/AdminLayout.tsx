@@ -44,24 +44,24 @@ const allMenuItems: AdminMenuItem[] = [
     id: 'profil-group', 
     label: 'Profil Desa', 
     icon: 'Building2', 
-    roles: ['super_admin', 'admin_1'],
+    roles: ['super_admin', 'admin_1', 'admin_2'],
     children: [
-      { id: 'profil-tentang', label: 'Tentang Desa', icon: 'FileText', route: 'admin-profil-tentang', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-sejarah', label: 'Sejarah Desa', icon: 'Landmark', route: 'admin-profil-sejarah', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-pemerintahan', label: 'Pemerintahan', icon: 'Users', route: 'admin-profil-pemerintahan', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-anggaran', label: 'Anggaran Desa', icon: 'DollarSign', route: 'admin-profil-anggaran', roles: ['super_admin', 'admin_1'] },
+      { id: 'profil-tentang', label: 'Tentang Desa', icon: 'FileText', route: 'admin-profil-tentang', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'profil-sejarah', label: 'Sejarah Desa', icon: 'Landmark', route: 'admin-profil-sejarah', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'profil-pemerintahan', label: 'Pemerintahan', icon: 'Users', route: 'admin-profil-pemerintahan', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'profil-anggaran', label: 'Anggaran Desa', icon: 'DollarSign', route: 'admin-profil-anggaran', roles: ['super_admin', 'admin_1', 'admin_2'] },
     ]
   },
   { 
     id: 'potensi-group', 
     label: 'Potensi Desa', 
     icon: 'TreePine', 
-    roles: ['super_admin', 'admin_1'],
+    roles: ['super_admin', 'admin_1', 'admin_2'],
     children: [
-      { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_1'] },
+      { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_1', 'admin_2'] },
     ]
   },
   { 
@@ -69,16 +69,16 @@ const allMenuItems: AdminMenuItem[] = [
     label: 'Pelayanan & Surat', 
     icon: 'Mail', 
     route: 'admin-pelayanan', 
-    roles: ['super_admin', 'admin_2'] 
+    roles: ['super_admin', 'admin_1', 'admin_2'] 
   },
   { 
     id: 'humas-group', 
     label: 'Humas & Dokumentasi', 
     icon: 'Newspaper', 
-    roles: ['super_admin', 'admin_2'],
+    roles: ['super_admin', 'admin_1', 'admin_2'],
     children: [
-      { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_2'] },
-      { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_2'] },
+      { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_1', 'admin_2'] },
+      { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_1', 'admin_2'] },
     ]
   },
   { 
@@ -86,7 +86,7 @@ const allMenuItems: AdminMenuItem[] = [
     label: 'Pengaturan', 
     icon: 'Settings', 
     route: 'admin-settings', 
-    roles: ['super_admin'] 
+    roles: ['super_admin', 'admin_1'] 
   },
 ];
 
@@ -113,8 +113,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const roleLabels: Record<AdminRole, string> = {
   super_admin: 'Super Admin',
-  admin_1: 'Admin Profil & Potensi',
-  admin_2: 'Admin Pelayanan & Humas',
+  admin_1: 'Admin 1 (Full Access)',
+  admin_2: 'Admin 2 (Contributor)',
 };
 
 const roleColors: Record<AdminRole, string> = {

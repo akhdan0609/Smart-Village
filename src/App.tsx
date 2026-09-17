@@ -250,41 +250,41 @@ export default function App() {
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - PROFIL DESA (Admin 1 & Super Admin)
+      // ADMIN - PROFIL DESA (Admin 1, Admin 2 & Super Admin)
       case 'admin-profil-tentang':
       case 'admin-profil-sejarah':
       case 'admin-profil-pemerintahan':
       case 'admin-profil-anggaran':
-        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
-          <ProfilDesaAdmin />
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+          <ProfilDesaAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - POTENSI DESA (Admin 1 & Super Admin)
+      // ADMIN - POTENSI DESA (Admin 1, Admin 2 & Super Admin)
       case 'admin-potensi-akomodasi':
       case 'admin-potensi-umkm':
       case 'admin-potensi-budaya':
       case 'admin-potensi-budidaya':
-        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
-          <PotensiDesaAdmin />
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+          <PotensiDesaAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - PELAYANAN (Admin 2 & Super Admin)
+      // ADMIN - PELAYANAN (Admin 1, Admin 2 & Super Admin)
       case 'admin-pelayanan':
-        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_2') ? (
-          <PelayananAdmin />
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+          <PelayananAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - HUMAS (Admin 2 & Super Admin)
+      // ADMIN - HUMAS (Admin 1, Admin 2 & Super Admin)
       case 'admin-humas-press':
       case 'admin-humas-galeri':
-        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_2') ? (
-          <HumasAdmin />
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+          <HumasAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );

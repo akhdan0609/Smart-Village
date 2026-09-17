@@ -19,7 +19,11 @@ import {
 import { AdminLayout } from './AdminLayout';
 import { DataTable, Column } from './components/DataTable';
 import { FormModal } from './components/FormModal';
-import { getStoredPengajuanSurat, updatePengajuanSurat } from '../../utils/storage';
+import { 
+  getStoredPengajuanSurat, 
+  updatePengajuanSurat,
+  getCurrentAdmin
+} from '../../utils/storage';
 import { PageRoute, PengajuanSurat } from '../../types';
 
 const statusOptions = [
@@ -44,6 +48,11 @@ interface PelayananAdminProps {
 }
 
 export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLogout }) => {
+  const currentAdmin = getCurrentAdmin();
+  const isContributor = currentAdmin?.role === 'admin_2';
+  const canEdit = !isContributor;
+  const canDelete = !isContributor;
+
   const [suratList, setSuratList] = useState<PengajuanSurat[]>([]);
   const [selectedSurat, setSelectedSurat] = useState<PengajuanSurat | null>(null);
   const [suratStatus, setSuratStatus] = useState<'Diajukan' | 'Diproses' | 'Selesai' | 'Ditolak'>('Diproses');
@@ -73,7 +82,7 @@ export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLo
 
   const handleUpdateSurat = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedSurat) return;
+    if (!selectedSurat || !canEdit) return;
     
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
@@ -89,6 +98,7 @@ export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLo
   };
 
   const openModal = (item: PengajuanSurat) => {
+    if (!canEdit) return;
     setSelectedSurat(item);
     setSuratStatus(item.status as any);
     setSuratCatatan(item.catatanPetugas || '');
@@ -172,7 +182,9 @@ export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLo
             data={filteredSurat}
             columns={columns}
             keyField="id"
-            onEdit={openModal}
+            onEdit={canEdit ? openModal : undefined}
+            canEdit={canEdit}
+            canDelete={canDelete}
             searchable={false}
             emptyMessage="Tidak ada pengajuan surat yang sesuai filter"
           />

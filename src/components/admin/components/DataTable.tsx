@@ -22,6 +22,8 @@ export interface DataTableProps<T> {
   striped?: boolean;
   hoverable?: boolean;
   className?: string;
+  canEdit?: boolean;
+  canDelete?: boolean;
 }
 
 export function DataTable<T extends { [key: string]: any }>({
@@ -37,6 +39,8 @@ export function DataTable<T extends { [key: string]: any }>({
   striped = true,
   hoverable = true,
   className = '',
+  canEdit = true,
+  canDelete = true,
 }: DataTableProps<T>) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [sortConfig, setSortConfig] = React.useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
@@ -75,7 +79,7 @@ export function DataTable<T extends { [key: string]: any }>({
     }));
   };
 
-  const hasActions = onEdit || onDelete || onView;
+  const hasActions = (onView || (onEdit && canEdit) || (onDelete && canDelete));
 
   return (
     <div className={`bg-white rounded-3xl border border-slate-200 shadow-sm ${className}`}>
@@ -135,39 +139,39 @@ export function DataTable<T extends { [key: string]: any }>({
                       {col.render ? col.render(item, index) : String(item[col.key] || '')}
                     </td>
                   ))}
-                  {hasActions && (
-                    <td className="p-3 text-center">
-                      <div className="flex items-center justify-center gap-1.5">
-                        {onView && (
-                          <button
-                            onClick={() => onView(item)}
-                            className="p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition"
-                            title="Lihat"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
-                        )}
-                        {onEdit && (
-                          <button
-                            onClick={() => onEdit(item)}
-                            className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
-                            title="Edit"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </button>
-                        )}
-                        {onDelete && (
-                          <button
-                            onClick={() => onDelete(item)}
-                            className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
-                            title="Hapus"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    </td>
-                  )}
+{hasActions && (
+                        <td className="p-3 text-center">
+                          <div className="flex items-center justify-center gap-1.5">
+                            {onView && (
+                              <button
+                                onClick={() => onView(item)}
+                                className="p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition"
+                                title="Lihat"
+                              >
+                                <Eye className="w-4 h-4" />
+                              </button>
+                            )}
+                            {onEdit && canEdit && (
+                              <button
+                                onClick={() => onEdit(item)}
+                                className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
+                                title="Edit"
+                              >
+                                <Edit className="w-4 h-4" />
+                              </button>
+                            )}
+                            {onDelete && canDelete && (
+                              <button
+                                onClick={() => onDelete(item)}
+                                className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
+                                title="Hapus"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      )}
                 </tr>
               ))
             )}

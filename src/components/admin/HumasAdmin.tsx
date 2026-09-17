@@ -20,7 +20,7 @@ import { TextEditor } from './components/TextEditor';
 import { ImageUpload } from './components/ImageUpload';
 import { DataTable, Column } from './components/DataTable';
 import { PageRoute, PengumumanItem, BeritaItem } from '../../types';
-import { getStoredBerita, saveBerita, updateBerita, deleteBerita, getStoredPengumuman, savePengumuman, updatePengumuman, deletePengumuman } from '../../utils/storage';
+import { getStoredBerita, saveBerita, updateBerita, deleteBerita, getStoredPengumuman, savePengumuman, updatePengumuman, deletePengumuman, getCurrentAdmin } from '../../utils/storage';
 
 const pressCategories = ['Pengumuman Resmi', 'Kebijakan Desa', 'Acara & Kegiatan', 'Penghargaan', 'Lainnya'];
 
@@ -42,6 +42,11 @@ interface HumasAdminProps {
 }
 
 export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) => {
+  const currentAdmin = getCurrentAdmin();
+  const isContributor = currentAdmin?.role === 'admin_2';
+  const canEdit = !isContributor;
+  const canDelete = !isContributor;
+
   const [activeTab, setActiveTab] = useState<HumasTab>('press');
   const [pressList, setPressList] = useState<PengumumanItem[]>([]);
   const [galeriList, setGaleriList] = useState<BeritaItem[]>([]);
@@ -62,6 +67,7 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
   }, [activeTab]);
 
   const openAddModal = () => {
+    if (!canEdit) return;
     setEditingItem(null);
     const emptyForm: Record<string, any> = {
       kategori: activeTab === 'press' ? 'Pengumuman Resmi' : 'Kegiatan Warga',
@@ -73,6 +79,7 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
   };
 
   const openEditModal = (item: any) => {
+    if (!canEdit) return;
     setEditingItem(item);
     setFormData({ ...item });
     setImagePreview(item.fotoUrl || item.lampiran || null);
@@ -80,6 +87,7 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
   };
 
   const handleSave = async () => {
+    if (!canEdit) return;
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
     
@@ -120,6 +128,7 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
   };
 
   const handleDelete = (id: string) => {
+    if (!canDelete) return;
     if (confirm('Yakin ingin menghapus data ini?')) {
       if (activeTab === 'press') {
         deletePengumuman(id);
@@ -240,6 +249,8 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
             keyField="id"
             onEdit={openEditModal}
             onDelete={handleDelete}
+            canEdit={canEdit}
+            canDelete={canDelete}
             searchable={true}
             searchFields={activeTab === 'press' ? ['nomorSurat', 'judul', 'kategori', 'penanggungJawab'] : ['judul', 'kategori', 'ringkasan']}
             emptyMessage={`Belum ada ${activeTab === 'press' ? 'pengumuman' : 'foto kegiatan'}`}

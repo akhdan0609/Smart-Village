@@ -9,9 +9,9 @@ interface LoginAdminProps {
 }
 
 const roleOptions = [
-  { id: 'super_admin', label: 'Super Admin', desc: 'Akses penuh ke seluruh sistem', icon: Crown, color: 'bg-amber-600' },
-  { id: 'admin_1', label: 'Admin 1 (Profil & Potensi)', desc: 'Beranda, Profil Desa & Potensi Desa', icon: Users, color: 'bg-emerald-600' },
-  { id: 'admin_2', label: 'Admin 2 (Pelayanan & Humas)', desc: 'Pelayanan Surat, Press Release & Galeri', icon: UserCheck, color: 'bg-blue-600' },
+  { id: 'super_admin', label: 'Super Admin', desc: 'Akses penuh ke seluruh sistem (CRUD lengkap)', icon: Crown, color: 'bg-amber-600' },
+  { id: 'admin_1', label: 'Admin 1 (Full Access)', desc: 'Akses penuh ke semua menu: Profil, Potensi, Pelayanan, Humas (CRUD lengkap)', icon: Users, color: 'bg-emerald-600' },
+  { id: 'admin_2', label: 'Admin 2 (Contributor)', desc: 'Hanya bisa menambah data baru (Create). Edit & Hapus dinonaktifkan.', icon: UserCheck, color: 'bg-blue-600' },
 ];
 
 const credentials: Record<string, { username: string; password: string }> = {

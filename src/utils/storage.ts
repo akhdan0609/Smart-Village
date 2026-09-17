@@ -33,7 +33,7 @@ const ADMIN_USERS: Record<string, { password: string; user: AdminUser }> = {
     user: {
       id: 'a1-1',
       username: 'admin1',
-      name: 'Admin Profil & Potensi',
+      name: 'Admin 1 (Full Access)',
       role: 'admin_1',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin1'
     }
@@ -43,7 +43,7 @@ const ADMIN_USERS: Record<string, { password: string; user: AdminUser }> = {
     user: {
       id: 'a2-1',
       username: 'admin2',
-      name: 'Admin Pelayanan & Humas',
+      name: 'Admin 2 (Contributor)',
       role: 'admin_2',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin2'
     }
