@@ -49,6 +49,9 @@ import Pembagian_hadiah_KKN from '../../assets/images/Pembagian_hadiah_KKN.jpeg'
 import Edukasi_KKN from '../../assets/images/Edukasi_KKN.jpeg';
 import Sertif_pemateri_KKN from '../../assets/images/Sertif_pemateri_KKN.jpeg';
 import Pengajaran_KKN from '../../assets/images/Pengajaran_KKN.jpeg';
+import babinkaptibmas_kkn from '../../assets/images/babinkaptibmas_kkn.jpeg';
+import Liwetan_Sekdes_KKN from '../../assets/images/Liwetan_Sekdes_KKN.jpeg';
+import Sosialisasi_KKN from '../../assets/images/Sosialisasi_KKN.jpeg';
 
 interface ModalImage {
   src: string;
@@ -100,17 +103,17 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
       caption: 'Koordinasi dan keakraban bersama warga RW 04 Desa Warung Menteng.'
     },
     {
-      src: kknSekdes,
+      src: babinkaptibmas_kkn,
       title: 'Koordinasi dengan Sekretaris Desa',
       caption: 'Pendalaman informasi kelembagaan desa bersama Sekretaris Desa.'
     },
     {
-      src: kknActivityUmkm,
+      src: Liwetan_Sekdes_KKN,
       title: 'Sinergi Warga',
       caption: 'Pemberdayaan dan gotong royong bersama pelaku ekonomi lokal.'
     },
     {
-      src: kknTeamMedia,
+      src: Sosialisasi_KKN,
       title: 'Pelepasan & Perpisahan',
       caption: 'Momen haru berpamitan dengan seluruh pamong dan keluarga asuh desa.'
     }
