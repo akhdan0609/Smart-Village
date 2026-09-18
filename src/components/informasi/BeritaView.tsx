@@ -621,30 +621,30 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
               </div>
             </div>
 
-            {/* WIDGET 2: KOMENTAR (MATCHES SCREENSHOT) */}
+            {/* WIDGET 2: KRITIK & SARAN (MATCHES SCREENSHOT) */}
             <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs space-y-4">
               {/* Header with Speech Bubble */}
               <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
                 <MessageSquare className="w-5 h-5 text-emerald-800" />
-                <span>Komentar</span>
+                <span>Kritik & Saran</span>
               </div>
 
               {/* Privacy Notice Box in Light Green */}
               <div className="bg-emerald-50 border border-emerald-200/70 rounded-xl p-3.5 flex items-start gap-2.5 text-xs text-emerald-900">
                 <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
-                  Fitur komentar hanya dapat dilihat oleh pemilik komentar dan admin.
+                  Fitur kritik & saran hanya dapat dilihat oleh penulis dan admin.
                 </p>
               </div>
 
-              {/* Action Button: Lihat Komentar */}
+              {/* Action Button: Lihat Kritik & Saran */}
               <button
                 onClick={() => setShowCommentsModal(true)}
                 className="w-full p-3 rounded-xl border border-slate-200 hover:border-emerald-700 hover:bg-emerald-50/50 flex items-center justify-between text-xs font-bold text-slate-700 hover:text-emerald-900 transition cursor-pointer group"
               >
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-slate-400 group-hover:text-emerald-800 transition" />
-                  <span>Lihat Komentar</span>
+                  <span>Lihat Kritik & Saran</span>
                 </div>
                 <ChevronNext className="w-4 h-4 text-slate-400 group-hover:text-emerald-800 transition" />
               </button>
@@ -808,14 +808,14 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
 
             <div className="flex items-center gap-2.5 text-slate-900 font-bold text-lg">
               <MessageSquare className="w-5 h-5 text-emerald-800" />
-              <span>Daftar Komentar Warga</span>
+              <span>Daftar Kritik & Saran Warga</span>
             </div>
 
             {/* Notice Box */}
             <div className="bg-emerald-50 border border-emerald-200/70 rounded-xl p-3.5 flex items-start gap-2.5 text-xs text-emerald-900">
               <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                Fitur komentar hanya dapat dilihat oleh pemilik komentar dan admin. Komentar yang tampil telah melalui verifikasi kesantunan.
+                Fitur kritik & saran hanya dapat dilihat oleh penulis dan admin. Kritik & saran yang tampil telah melalui verifikasi kesantunan.
               </p>
             </div>
 
@@ -834,7 +834,7 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
 
             {/* Comment submission form */}
             <form onSubmit={(e) => handleAddComment(e, 'general')} className="space-y-2.5 pt-3 border-t border-slate-100">
-              <div className="text-xs font-bold text-slate-800">Kirim Komentar Baru</div>
+              <div className="text-xs font-bold text-slate-800">Kirim Kritik & Saran Baru</div>
               <input
                 type="text"
                 required
@@ -848,13 +848,13 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
                 rows={2}
                 value={isiKomentar}
                 onChange={e => setIsiKomentar(e.target.value)}
-                placeholder="Tuliskan komentar atau pertanyaan Anda..."
+                placeholder="Tuliskan kritik & saran atau pertanyaan Anda..."
                 className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700"
               />
               <div className="flex items-center justify-between pt-1">
                 {commentSuccess && (
                   <span className="text-xs text-emerald-700 font-semibold flex items-center gap-1">
-                    <Check className="w-3.5 h-3.5" /> Komentar terkirim!
+                    <Check className="w-3.5 h-3.5" /> Kritik & Saran terkirim!
                   </span>
                 )}
                 <button
