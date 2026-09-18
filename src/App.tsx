@@ -300,9 +300,9 @@ export default function App() {
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );
 
-      // ADMIN - LAPORAN PENDUDUK (Admin 1, Admin 2 & Super Admin)
+      // ADMIN - LAPORAN PENDUDUK (Admin 2 & Super Admin only)
       case 'admin-laporan-penduduk':
-        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1' || getCurrentAdmin()?.role === 'admin_2') ? (
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_2') ? (
           <LaporanPendudukAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />

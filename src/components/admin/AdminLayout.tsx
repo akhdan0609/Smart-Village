@@ -70,7 +70,7 @@ const allMenuItems: AdminMenuItem[] = [
     label: 'Laporan Kependudukan', 
     icon: 'BarChart2', 
     route: 'admin-laporan-penduduk', 
-    roles: ['super_admin', 'admin_1', 'admin_2'] 
+    roles: ['super_admin', 'admin_2'] 
   },
   { 
     id: 'pelayanan-group', 
