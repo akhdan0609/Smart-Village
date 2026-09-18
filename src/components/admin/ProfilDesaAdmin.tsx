@@ -96,8 +96,7 @@ interface RincianAnggaranItem {
 interface DokumenAnggaranItem {
   id: string;
   nama: string;
-  tipe: string;
-  ukuran: string;
+  fileUrl?: string;
   tahun: string;
   deskripsi: string;
 }
@@ -137,7 +136,7 @@ interface AnggaranData {
 interface ModalField {
   key: string;
   label: string;
-  type: 'text' | 'textarea' | 'select' | 'image';
+  type: 'text' | 'textarea' | 'select' | 'image' | 'file';
   required?: boolean;
   placeholder?: string;
   options?: { label: string; value: string }[];
@@ -414,16 +413,12 @@ const defaultAnggaran: AnggaranData = {
         {
           id: 'dk-1',
           nama: 'Peraturan Desa tentang APBDes 2026',
-          tipe: 'PDF',
-          ukuran: '11,2 MB',
           tahun: '2026',
           deskripsi: 'Peraturan Desa tentang Anggaran Pendapatan dan Belanja Desa Tahun Anggaran 2026.',
         },
         {
           id: 'dk-2',
           nama: 'Rencana APBDes 2026',
-          tipe: 'PDF',
-          ukuran: '980 KB',
           tahun: '2026',
           deskripsi: 'Rencana kerja anggaran pendapatan dan belanja desa beserta rincian program kerja tahun 2026.',
         },
@@ -465,24 +460,18 @@ const defaultAnggaran: AnggaranData = {
         {
           id: 'dk-1',
           nama: 'Peraturan Desa tentang APBDes 2025',
-          tipe: 'PDF',
-          ukuran: '11,2 MB',
           tahun: '2025',
           deskripsi: 'Peraturan Desa Warung Menteng No. 04 Tahun 2024 tentang APBDes Tahun Anggaran 2025.',
         },
         {
           id: 'dk-2',
           nama: 'Rencana APBDes 2025',
-          tipe: 'PDF',
-          ukuran: '980 KB',
           tahun: '2025',
           deskripsi: 'Rencana kerja anggaran pendapatan dan belanja desa beserta rincian program kerja tahun 2025.',
         },
         {
           id: 'dk-3',
           nama: 'Laporan Realisasi APBDes 2024',
-          tipe: 'PDF',
-          ukuran: '1,1 MB',
           tahun: '2024',
           deskripsi: 'Laporan pertanggungjawaban realisasi penyerapan anggaran pendapatan dan belanja desa tahun 2024.',
         },
@@ -548,6 +537,116 @@ type ModalEntity =
   | 'dokumen'
   | 'rencana'
   | 'realisasi';
+
+const PdfFileUpload: React.FC<{
+  value: string;
+  onChange: (url: string) => void;
+}> = ({ value, onChange }) => {
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (file: File) => {
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      setError('File harus berupa PDF');
+      return;
+    }
+    setError(null);
+    setIsUploading(true);
+    setFileName(file.name);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      onChange(e.target?.result as string);
+      setIsUploading(false);
+    };
+    reader.onerror = () => {
+      setIsUploading(false);
+      setError('Gagal membaca file');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleFileSelect(file);
+    e.target.value = '';
+  };
+
+  const handleRemove = () => {
+    setFileName(null);
+    onChange('');
+    setError(null);
+  };
+
+  return (
+    <div>
+      {value ? (
+        <div className="flex items-center justify-between gap-3 p-3 rounded-xl border border-emerald-200 bg-emerald-50">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+              <FileCheck2 className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold text-slate-800 truncate">{fileName || 'File PDF terlampir'}</p>
+              <p className="text-[10px] text-slate-500">Tanpa batas ukuran file</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 shrink-0">
+            <a
+              href={value}
+              download={fileName || 'dokumen.pdf'}
+              className="p-2 text-slate-500 hover:text-emerald-700 hover:bg-emerald-100 rounded-lg transition"
+              title="Unduh PDF"
+            >
+              <Save className="w-4 h-4" />
+            </a>
+            <button
+              type="button"
+              onClick={handleRemove}
+              className="p-2 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
+              title="Hapus file"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div
+          onClick={() => fileInputRef.current?.click()}
+          className="flex items-center gap-3 p-4 rounded-xl border-2 border-dashed border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 cursor-pointer transition"
+        >
+          <div className="w-9 h-9 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center shrink-0">
+            <FileCheck2 className="w-4 h-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-slate-700">Klik untuk upload file PDF</p>
+            <p className="text-[10px] text-slate-400 mt-0.5">Hanya PDF • Tanpa batas ukuran file</p>
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/pdf,.pdf"
+            onChange={handleInputChange}
+            className="hidden"
+          />
+        </div>
+      )}
+      {isUploading && (
+        <div className="mt-2 p-2 bg-slate-50 border border-slate-200 text-slate-600 rounded-xl text-xs flex items-center gap-1.5">
+          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+          <span>Membaca file...</span>
+        </div>
+      )}
+      {error && (
+        <div className="mt-2 p-2 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs flex items-center gap-1.5">
+          <X className="w-3.5 h-3.5 shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, onLogout }) => {
   const currentAdmin = getCurrentAdmin();
@@ -849,8 +948,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
       title: 'Dokumen Anggaran',
       fields: [
         { key: 'nama', label: 'Nama Dokumen', type: 'text', required: true, placeholder: 'Peraturan Desa tentang APBDes 2026' },
-        { key: 'tipe', label: 'Tipe File', type: 'text', placeholder: 'PDF' },
-        { key: 'ukuran', label: 'Ukuran File', type: 'text', placeholder: '11,2 MB' },
+        { key: 'fileUrl', label: 'Upload File PDF', type: 'file', placeholder: 'Pilih berkas PDF (tanpa batas ukuran)' },
         { key: 'tahun', label: 'Tahun', type: 'text', placeholder: '2026' },
         { key: 'deskripsi', label: 'Deskripsi', type: 'textarea', rows: 3 },
       ],
@@ -891,6 +989,11 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 value={formData[field.key] || ''}
                 onChange={(v) => handleInputChange(field.key, v)}
                 previewSize="md"
+              />
+            ) : field.type === 'file' ? (
+              <PdfFileUpload
+                value={formData[field.key] || ''}
+                onChange={(v) => handleInputChange(field.key, v)}
               />
             ) : field.type === 'select' ? (
               <select
@@ -1455,10 +1558,20 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                     </div>
                     <div className="min-w-0">
                       <h5 className="text-xs font-semibold text-slate-800 truncate">{doc.nama}</h5>
-                      <p className="text-[10px] text-slate-400">{doc.tipe} • {doc.ukuran} • {doc.tahun}</p>
+                      <p className="text-[10px] text-slate-400">{doc.fileUrl ? 'PDF • ' : ''}{doc.tahun}{doc.deskripsi ? ` • ${doc.deskripsi}` : ''}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
+                    {doc.fileUrl && (
+                      <a
+                        href={doc.fileUrl}
+                        download={`${doc.nama || 'dokumen'}.pdf`}
+                        className="p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition"
+                        title="Unduh PDF"
+                      >
+                        <FileCheck2 className="w-4 h-4" />
+                      </a>
+                    )}
                     <button
                       onClick={() => openEditModal('dokumen', doc)}
                       disabled={!canEdit}
