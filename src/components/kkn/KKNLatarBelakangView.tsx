@@ -282,7 +282,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
 
               {/* Narrative Text */}
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify max-w-xl">
-                Kuliah Kerja Nyata (KKN) WIGATA DHARMA merupakan wujud nyata pengabdian mahasiswa kepada masyarakat. Selama 60 hari, kami hadir di Desa Warung Menteng untuk belajar, berbagi, dan berkolaborasi bersama masyarakat desa. Banyak momen kebersamaan, tantangan, kerja sama, serta kebersamaan yang akan selalu kami kenang.
+                Kuliah Kerja Nyata (KKN) WIGATA DHARMA merupakan wujud nyata pengabdian mahasiswa kepada masyarakat. Selama 54 hari, kami hadir di Desa Warung Menteng untuk belajar, berbagi, dan berkolaborasi bersama masyarakat desa. Banyak momen kebersamaan, tantangan, kerja sama, serta kebersamaan yang akan selalu kami kenang.
               </p>
 
               {/* Info Badges (Durasi KKN & Lokasi) */}
@@ -403,7 +403,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
 
               {/* Story Paragraph 4 */}
               <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed text-justify">
-                Selama 60 hari, kami tidak hanya bekerja, tetapi juga belajar banyak hal dari masyarakat. Kami belajar tentang gotong royong, kesederhanaan, kekeluargaan, dan bagaimana hidup selaras dengan alam. Banyak momen berkesan yang kami alami, mulai dari kegiatan formal hingga obrolan santai di sore hari bersama warga.
+                Selama 54 hari, kami tidak hanya bekerja, tetapi juga belajar banyak hal dari masyarakat. Kami belajar tentang gotong royong, kesederhanaan, kekeluargaan, dan bagaimana hidup selaras dengan alam. Banyak momen berkesan yang kami alami, mulai dari kegiatan formal hingga obrolan santai di sore hari bersama warga.
               </p>
 
               {/* Story Paragraph 5 */}

@@ -472,7 +472,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
             <span>Anggota KKN Kelompok Wigata Dharma</span>
           </h2>
           <p className="text-xs text-slate-500 font-medium">
-            Desa Warung Menteng - Kec. Cipeundeuy, Kab. Bogor
+            Desa Warung Menteng - Kec. Cijeruk, Kab. Bogor
           </p>
         </div>
 
