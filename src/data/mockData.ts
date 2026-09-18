@@ -824,44 +824,34 @@ Melalui digitalisasi ini, produk andalan Desa Warung Menteng seperti kopi lereng
 // DATA INFORMASI DESA - PENGUMUMAN
 export const PENGUMUMAN_LIST: PengumumanItem[] = [
   {
-    id: 'peng-1',
-    nomorSurat: '140/08/PEM/WM/VIII/2026',
-    judul: 'Jadwal Penyaluran Bantuan Langsung Tunai Dana Desa (BLT-DD) Triwulan III',
-    tanggal: '30 Agustus 2026',
-    berlakuHingga: '10 September 2026',
-    kategori: 'Bansos',
-    isi: 'Diberitahukan kepada seluruh Keluarga Penerima Manfaat (KPM) BLT Dana Desa bahwa penyaluran bantuan periode Juli-Agustus-September 2026 akan dilaksanakan pada hari Rabu, 04 September 2026 pukul 08.30 WIB di Aula Kantor Desa Warung Menteng. Wajib membawa e-KTP dan Kartu Keluarga asli.',
-    penanggungJawab: 'Kasi Kesejahteraan (Ustadz Ahmad Fauzi)'
+    id: 'press-1',
+    nomorSurat: 'PR/01/WM/PEM/VII/2024',
+    judul: 'Launching Website Desa Warung Menteng: Inovasi Digital Layanan Publik Berbasis Transparansi',
+    tanggal: '15 Juli 2024',
+    berlakuHingga: '31 Desember 2024',
+    kategori: 'Pemerintahan',
+    isi: 'Pemerintah Desa Warung Menteng resmi meluncurkan website resmi desa (www.warungmenteng.desa.id) sebagai wujud komitmen transparansi dan kemudahan akses layanan publik bagi masyarakat. Website ini dilengkapi fitur pengajuan surat keterangan online, tracking status permohonan real-time, e-formulir administrasi kependudukan, hingga portal transparansi anggaran desa (APBDes) yang terbuka untuk diakses publik.',
+    penanggungJawab: 'Kepala Desa Warung Menteng'
   },
   {
-    id: 'peng-2',
-    nomorSurat: '440/12/KES/WM/VIII/2026',
-    judul: 'Pelaksanaan Pekan Imunisasi Nasional (PIN) Polio & Posyandu Lansia Serentak',
-    tanggal: '26 Agustus 2026',
-    berlakuHingga: '05 September 2026',
-    kategori: 'Kesehatan',
-    isi: 'Dihimbau kepada para orang tua yang memiliki balita usia 0-7 tahun untuk membawa putra-putrinya ke Posyandu terdekat guna mendapatkan tetes imunisasi polio tambahan gratis demi melindungi anak dari kelumpuhan.',
-    penanggungJawab: 'Bidan Desa & Pokja IV PKK'
+    id: 'press-2',
+    nomorSurat: 'PR/02/WM/KEM/VIII/2024',
+    judul: 'Pembukaan dan Penutupan Kegiatan KKN Mahasiswa: Kolaborasi Akademisi dan Masyarakat Membangun Keberdayaan Desa',
+    tanggal: '15 Agustus 2024',
+    berlakuHingga: '31 Agustus 2024',
+    kategori: 'Pemberdayaan Masyarakat',
+    isi: 'Kegiatan KKN Mahasiswa Universitas Nasional bertempat di Desa Warung Menteng berhasil dilaksanakan dengan program unggulan pemberdayaan masyarakat, pembangunan infrastruktur, dan peningkatan kapasitas SDM desa. Program difokuskan pada tiga pilar: (1) Pemberdayaan Ekonomi Masyarakat, (2) Peningkatan Kapasitas SDM melalui literasi digital, (3) Pembangunan Infrastruktur pendukung kesejahteraan.',
+    penanggungJawab: 'Kaur Kesejahteraan & Keberdayaan Masyarakat'
   },
   {
-    id: 'peng-3',
-    nomorSurat: '300/05/TRANTIB/WM/VIII/2026',
-    judul: 'Kerja Bakti Massal Kebersihan Saluran Irigasi Menghadapi Musim Penghujan',
-    tanggal: '20 Agustus 2026',
-    berlakuHingga: '01 September 2026',
-    kategori: 'Kerja Bakti',
-    isi: 'Seluruh Ketua RT dan RW dihimbau menggerakkan warganya untuk melaksanakan kerja bakti pembersihan selokan, gorong-gorong, dan pemangkasan dahan pohon yang berisiko patah di sepanjang jalan desa pada Minggu pagi pukul 07.00 WIB.',
-    penanggungJawab: 'Kasi Pemerintahan & Babinsa'
-  },
-  {
-    id: 'peng-4',
-    nomorSurat: '470/19/LAY/WM/VIII/2026',
-    judul: 'Pemberlakuan Layanan Pengajuan Surat Keterangan Online 24 Jam',
-    tanggal: '10 Agustus 2026',
-    berlakuHingga: 'Permanen',
-    kategori: 'Layanan',
-    isi: 'Kini warga Desa Warung Menteng dapat mengajukan surat keterangan (SKU, SKTM, Pengantar SKCK, Domisili, dll.) secara mandiri melalui website desa ini tanpa perlu antre panjang di kantor desa.',
-    penanggungJawab: 'Sekretaris Desa (Asep Saepuloh)'
+    id: 'press-3',
+    nomorSurat: 'PR/03/WM/KEG/VIII/2024',
+    judul: 'Pekan Olahraga Desa Warung Menteng 2024: Semangat Olahraga Mengukuhkan Silaturahmi dan Kesehatan Masyarakat',
+    tanggal: '25 Agustus 2024',
+    berlakuHingga: '31 Agustus 2024',
+    kategori: 'Kegiatan Desa',
+    isi: 'Pekan Olahraga Desa (PORDES) 2024 digelar meriah dengan partisipasi 500+ warga seluruh dusun, meliputi cabang sepak bola, voli, badminton, lari estafet, dan lomba tradisional egrang dan tarik tambang. Acara berlangsung 3 hari (26-28 Agustus 2024) dengan 12 tim mewakili 6 dusun.',
+    penanggungJawab: 'Sekretaris Desa Warung Menteng'
   }
 ];
 

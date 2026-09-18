@@ -60,7 +60,7 @@ const daftarPressRelease: PressReleaseItem[] = [
       tanggal: '15 Agustus 2024',
       penulis: 'Dedi Kurniawan, S.Pd.',
       jabatan: 'Kaur Kesejahteraan & Keberdayaan Masyarakat',
-      kategori: 'Keberdayaan Masyarakat',
+      kategori: 'Pemberdayaan Masyarakat',
       ringkasan: 'Kegiatan KKN Mahasiswa Universitas Nasional bertempat di Desa Warung Menteng berhasil dilaksanakan dengan program unggulan pemberdayaan masyarakat, pembangunan infrastruktur, dan peningkatan kapasitas SDM desa.',
       isiLengkap: [
         'WARUNG MENTENG — Pemerintah Desa Warung Menteng bersama Mahasiswa KKN Universitas Nasional resmi membuka dan menutup rangkaian kegiatan Kuliah Kerja Nyata (KKN) Periode Juli-Agustus 2024 yang bertempat di Desa Warung Menteng.',
@@ -93,7 +93,7 @@ const daftarPressRelease: PressReleaseItem[] = [
     }
   ];
 
-  const kategoriList = ['Semua', 'Pelayanan Publik & Tata Kelola', 'Ekonomi & Ketahanan Pangan', 'Infrastruktur & Pembangunan'];
+  const kategoriList = ['Semua', 'Pemerintahan', 'Pemberdayaan Masyarakat', 'Kegiatan Desa'];
 
   const filteredReleases = daftarPressRelease.filter(item => {
     const matchKat = selectedKategori === 'Semua' || item.kategori === selectedKategori;
