@@ -88,6 +88,7 @@ export type PageRoute =
   | 'admin-humas-press'
   | 'admin-humas-galeri'
   | 'admin-kontak-darurat'
+  | 'admin-laporan-penduduk'
   | 'admin-settings';
 
 export type UMKMKategori = 'makanan-minuman' | 'kerajinan' | 'produk-lainnya';
