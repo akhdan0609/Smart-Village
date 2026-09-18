@@ -242,6 +242,30 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
               </div>
             )}
           </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.history.back()}
+              className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 shadow-lg flex items-center justify-center hover:bg-slate-200 transition"
+              aria-label="Kembali ke halaman sebelumnya"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="w-10 h-10 rounded-xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+              aria-label={sidebarOpen ? "Tutup sidebar" : "Buka sidebar"}
+            >
+              {sidebarOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
         {(sidebarOpen || !isMobile) && user && (
           <div className="px-4 py-3 border-b border-slate-100">
