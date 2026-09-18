@@ -60,9 +60,13 @@ const defaultData: DemographicData[] = [
   { id: 'pend-3', kategori: 'pendidikan', label: 'SD/Sederajat', lakiLaki: 285, perempuan: 265, total: 550, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
   { id: 'pend-4', kategori: 'pendidikan', label: 'SMP/Sederajat', lakiLaki: 180, perempuan: 175, total: 355, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
   { id: 'pend-5', kategori: 'pendidikan', label: 'SMA/Sederajat', lakiLaki: 165, perempuan: 170, total: 335, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'pend-6', kategori: 'pendidikan', label: 'Diploma I/II/III', lakiLaki: 45, perempuan: 50, total: 95, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'pend-7', kategori: 'pendidikan', label: 'Diploma IV/S1', lakiLaki: 55, perempuan: 60, total: 115, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'pend-8', kategori: 'pendidikan', label: 'S2/S3', lakiLaki: 8, perempuan: 10, total: 18, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-6', kategori: 'pendidikan', label: 'Diploma I', lakiLaki: 40, perempuan: 45, total: 85, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-7', kategori: 'pendidikan', label: 'Diploma II', lakiLaki: 35, perempuan: 40, total: 75, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-8', kategori: 'pendidikan', label: 'Diploma III', lakiLaki: 30, perempuan: 35, total: 65, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-9', kategori: 'pendidikan', label: 'Diploma IV', lakiLaki: 25, perempuan: 30, total: 55, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-10', kategori: 'pendidikan', label: 'Sarjana', lakiLaki: 20, perempuan: 25, total: 45, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-11', kategori: 'pendidikan', label: 'Magister', lakiLaki: 10, perempuan: 12, total: 22, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'pend-12', kategori: 'pendidikan', label: 'Doktor', lakiLaki: 5, perempuan: 6, total: 11, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
   // Agama
   { id: 'agama-1', kategori: 'agama', label: 'Islam', lakiLaki: 1250, perempuan: 1280, total: 2530, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
   { id: 'agama-2', kategori: 'agama', label: 'Kristen Protestan', lakiLaki: 45, perempuan: 48, total: 93, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
@@ -87,7 +91,8 @@ const umurLabels = [
 
 const pendidikanLabels = [
   'Tidak/Belum Sekolah', 'Belum Tamat SD', 'SD/Sederajat', 'SMP/Sederajat',
-  'SMA/Sederajat', 'Diploma I/II/III', 'Diploma IV/S1', 'S2/S3'
+  'SMA/Sederajat', 'Diploma I', 'Diploma II', 'Diploma III', 'Diploma IV',
+  'Sarjana', 'Magister', 'Doktor'
 ];
 
 const agamaLabels = [
