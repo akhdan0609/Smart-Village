@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, Eye, EyeOff, Users, UserCheck, UserCog } from 'lucide-react';
-import { checkAdminLogin, setAdminSession, AdminUser } from '../../utils/storage';
+import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { checkAdminLogin, setAdminSession } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
 interface LoginAdminProps {
@@ -8,31 +8,12 @@ interface LoginAdminProps {
   onNavigate: (page: PageRoute) => void;
 }
 
-const roleOptions = [
-  { id: 'admin_1', label: 'Admin 1 (Full Access)', desc: 'Akses penuh ke semua menu: Profil, Potensi, Pelayanan, Humas (CRUD lengkap)', icon: Users, color: 'bg-emerald-600' },
-  { id: 'admin_2', label: 'Admin 2 (Contributor)', desc: 'Hanya bisa menambah data baru (Create). Edit & Hapus dinonaktifkan.', icon: UserCheck, color: 'bg-blue-600' },
-];
-
-const credentials: Record<string, { username: string; password: string }> = {
-  admin_1: { username: 'admin1', password: 'admin1desa' },
-  admin_2: { username: 'admin2', password: 'admin2desa' },
-};
-
 export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNavigate }) => {
-  const [selectedRole, setSelectedRole] = useState<AdminUser['role']>('admin_1');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleRoleSelect = (role: AdminUser['role']) => {
-    setSelectedRole(role);
-    const cred = credentials[role];
-    setUsername(cred.username);
-    setPassword(cred.password);
-    setErrorMsg('');
-  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,12 +26,6 @@ export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNa
     await new Promise(resolve => setTimeout(resolve, 800));
     
     if (user) {
-      // Verify role matches selection
-      if (user.role !== selectedRole) {
-        setErrorMsg(`Akun ini memiliki peran ${user.role}, bukan ${selectedRole}`);
-        setIsLoading(false);
-        return;
-      }
       setAdminSession(user);
       onLoginSuccess();
     } else {
@@ -59,14 +34,12 @@ export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNa
     setIsLoading(false);
   };
 
-  const selectedRoleInfo = roleOptions.find(r => r.id === selectedRole)!;
-
   return (
     <div className="py-14 bg-slate-100 min-h-[80vh] flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl space-y-6">
         <div className="text-center space-y-2">
-          <div className={`w-16 h-16 rounded-2xl ${selectedRoleInfo.color} text-white flex items-center justify-center mx-auto shadow-md`}>
-            <selectedRoleInfo.icon className="w-8 h-8" />
+          <div className="w-16 h-16 rounded-2xl bg-emerald-700 text-white flex items-center justify-center mx-auto shadow-md">
+            <ShieldCheck className="w-8 h-8 text-emerald-200" />
           </div>
           <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full">
             Portal Khusus Aparatur
@@ -77,31 +50,6 @@ export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNa
           <p className="text-xs text-slate-500">
             Sistem Informasi Pengelolaan Persuratan, Aspirasi Warga, & Publikasi Konten Desa Warung Menteng
           </p>
-        </div>
-
-        {/* Role Selector */}
-        <div className="space-y-3">
-          <label className="text-xs font-bold text-slate-700 block mb-2">Pilih Peran Login:</label>
-          <div className="grid grid-cols-2 gap-2">
-            {roleOptions.map((role) => (
-              <button
-                key={role.id}
-                type="button"
-                onClick={() => handleRoleSelect(role.id as AdminUser['role'])}
-                className={`p-3 rounded-xl border-2 text-left transition-all ${
-                  selectedRole === role.id
-                    ? `border-${role.color.replace('bg-', '')}-500 bg-${role.color.replace('bg-', '')}-50`
-                    : 'border-slate-200 hover:border-emerald-300 hover:bg-slate-50'
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-lg ${role.color} text-white flex items-center justify-center mb-2`}>
-                  <role.icon className="w-4 h-4" />
-                </div>
-                <span className="text-xs font-bold text-slate-900 block">{role.label}</span>
-                <span className="text-[10px] text-slate-500">{role.desc}</span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {errorMsg && (
@@ -157,12 +105,6 @@ export const LoginAdminView: React.FC<LoginAdminProps> = ({ onLoginSuccess, onNa
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
-          </div>
-
-          <div className="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 space-y-0.5 border border-slate-100">
-            <p className="font-bold text-slate-700">Kredensial untuk peran <span className="font-mono text-emerald-800">{selectedRoleInfo.label}</span>:</p>
-            <p>Username: <code className="bg-slate-200 px-1 rounded font-bold text-slate-800">{credentials[selectedRole].username}</code></p>
-            <p>Password: <code className="bg-slate-200 px-1 rounded font-bold text-slate-800">{credentials[selectedRole].password}</code></p>
           </div>
 
           <button
