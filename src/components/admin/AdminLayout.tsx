@@ -159,13 +159,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const filteredMenus = allMenuItems.filter(item => 
-    user && item.roles.includes(user.role)
-  ).map(item => ({
-    ...item,
-    children: item.children?.filter(child => user && child.roles.includes(user.role)) || []
-  }));
-
+  // Auto-close sidebar on mobile after navigation
   const handleNavClick = (route: PageRoute) => {
     onNavigate(route);
     if (isMobile) setSidebarOpen(false);
@@ -179,6 +173,13 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     return false;
   };
 
+  const filteredMenus = allMenuItems.filter(item => 
+    user && item.roles.includes(user.role)
+  ).map(item => ({
+    ...item,
+    children: item.children?.filter(child => user && child.roles.includes(user.role)) || []
+  }));
+
   const IconComponent = (iconName: string) => {
     const Comp = iconMap[iconName] || LayoutDashboard;
     return <Comp className="w-5 h-5" />;
@@ -186,11 +187,19 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
   return (
     <div className="min-h-screen bg-slate-100 flex">
+      {/* Mobile Overlay */}
+      {isMobile && sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black/50" 
+          onClick={() => setSidebarOpen(false)} 
+          aria-hidden="true"
+        />
+      )}
 
       {/* Sidebar */}
       <aside 
         className={`
-          fixed inset-y-0 left-0 z-40
+          ${isMobile ? 'fixed inset-y-0 left-0 z-50' : 'relative lg:relative'}
           h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
           ${sidebarOpen ? 'w-64' : 'w-20'}
         `}
@@ -211,7 +220,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         </div>
 
         {/* User Info */}
-        {sidebarOpen && user && (
+        {(sidebarOpen || !isMobile) && user && (
           <div className="px-4 py-3 border-b border-slate-100">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0">
@@ -344,7 +353,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       {isMobile && !sidebarOpen && (
         <button
           onClick={() => setSidebarOpen(true)}
-          className="fixed z-40 bottom-6 left-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+          className="fixed z-50 bottom-6 right-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
           aria-label="Expand sidebar"
         >
           <ChevronRight className="w-6 h-6" />
@@ -352,8 +361,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       )}
 
       {/* Main Content */}
-      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'} relative z-10 overflow-x-hidden`}>
-        <div className="max-w-7xl mx-auto w-full p-6 sm:p-8 pt-8">
+      <main className={`flex-1 transition-all duration-300 ${isMobile ? '' : (sidebarOpen ? 'ml-64' : 'ml-20')} relative z-10 overflow-x-hidden`}>
+        <div className="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 pt-6">
           {children}
         </div>
       </main>
