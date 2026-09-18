@@ -199,7 +199,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       {/* Sidebar */}
       <aside 
         className={`
-          ${isMobile ? 'fixed inset-y-0 left-0 z-50' : 'relative lg:relative'}
+          ${isMobile ? 'fixed inset-y-0 left-0 z-50 w-[90vw] max-w-sm' : 'relative lg:relative'}
           h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
           ${sidebarOpen ? 'w-64' : 'w-20'}
         `}
@@ -362,7 +362,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
       {/* Main Content */}
       <main className={`flex-1 transition-all duration-300 ${isMobile ? '' : (sidebarOpen ? 'ml-64' : 'ml-20')} relative z-10 overflow-x-hidden`}>
-        <div className="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 pt-6">
+        <div className="max-w-7xl mx-auto w-full p-3 sm:p-4 lg:p-6 pt-4">
           {children}
         </div>
       </main>
