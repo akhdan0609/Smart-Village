@@ -130,12 +130,8 @@ export const KontakDaruratAdmin: React.FC<KontakDaruratAdminProps> = ({ onNaviga
       namaKontak: '',
       instansi: '',
       kategori: 'Kesehatan',
-      nomorTelepon: '',
       nomorWA: '',
-      alamatPos: '',
       siaga: '24 Jam',
-      namaPetugas: '',
-      deskripsi: '',
       fotoUrl: '',
     });
     setImagePreview(null);
@@ -152,7 +148,7 @@ export const KontakDaruratAdmin: React.FC<KontakDaruratAdminProps> = ({ onNaviga
 
   const handleSave = async () => {
     if (!canEdit) return;
-    if (!formData.namaKontak || !formData.instansi || !formData.nomorTelepon) return;
+    if (!formData.namaKontak || !formData.instansi) return;
     
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
@@ -205,12 +201,8 @@ export const KontakDaruratAdmin: React.FC<KontakDaruratAdminProps> = ({ onNaviga
     { key: 'namaKontak', label: 'Nama Kontak', type: 'text', required: true, placeholder: 'Ambulans / Polisi / Damkar' },
     { key: 'instansi', label: 'Instansi', type: 'text', required: true, placeholder: 'Puskesmas / Polsek / Damkar' },
     { key: 'kategori', label: 'Kategori', type: 'select', required: true, options: kategoriOptions.map(c => ({ value: c, label: c })) },
-    { key: 'nomorTelepon', label: 'Nomor Telepon', type: 'text', required: true, placeholder: '119 / 110 / 113' },
     { key: 'nomorWA', label: 'Nomor WhatsApp (62xxx)', type: 'text', placeholder: '6281234567890' },
-    { key: 'alamatPos', label: 'Alamat Pos', type: 'text', placeholder: 'Jl. Raya Cijeruk No. 1' },
     { key: 'siaga', label: 'Jam Siaga', type: 'select', required: true, options: siagaOptions.map(c => ({ value: c, label: c })) },
-    { key: 'namaPetugas', label: 'Nama Petugas', type: 'text', placeholder: 'Bidan Siti / Bripka Budi' },
-    { key: 'deskripsi', label: 'Deskripsi', type: 'textarea', required: true, placeholder: 'Deskripsi layanan...' },
     { key: 'fotoUrl', label: 'Gambar / Logo', type: 'image' },
   ];
 
