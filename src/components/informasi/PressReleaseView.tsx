@@ -33,60 +33,62 @@ export const PressReleaseView: React.FC = () => {
   const [selectedKategori, setSelectedKategori] = useState('Semua');
   const [activeItem, setActiveItem] = useState<PressReleaseItem | null>(null);
 
-  const daftarPressRelease: PressReleaseItem[] = [
+const daftarPressRelease: PressReleaseItem[] = [
     {
       id: 'pr-001',
       nomorRilis: 'PR/01/WM/PEM/VII/2024',
-      judul: 'Pemerintah Desa Warung Menteng Luncurkan Program Transformasi Pelayanan Administrasi Digital Terpadu',
+      judul: 'Launching Website Desa Warung Menteng: Inovasi Digital Layanan Publik Berbasis Transparansi',
       tanggal: '15 Juli 2024',
       penulis: 'H. Mulyadi, S.AP.',
       jabatan: 'Kepala Desa Warung Menteng',
-      kategori: 'Pelayanan Publik & Tata Kelola',
-      ringkasan: 'Langkah strategis Pemdes Warung Menteng memangkas birokrasi dan mempermudah pengurusan dokumen surat keterangan warga secara daring bebas biaya.',
+      kategori: 'Pemerintahan',
+      ringkasan: 'Pemerintah Desa Warung Menteng resmi meluncurkan website resmi desa sebagai wujud komitmen transparansi dan kemudahan akses layanan publik bagi masyarakat.',
       isiLengkap: [
-        'WARUNG MENTENG, BOGOR — Pemerintah Desa Warung Menteng resmi meluncurkan portal integrasi sistem informasi dan pelayanan publik desa berbasis digital. Langkah modernisasi ini ditujukan guna mempercepat pengurusan dokumen administrasi warga, dari pengajuan surat keterangan domisili, SKU, SKTM, pengantar KTP, mutasi kependudukan hingga rekomendasi formulir pernikahan model N1-N4.',
-        'Kepala Desa Warung Menteng menegaskan bahwa seluruh proses administrasi pelayanan desa berprinsip melayani dengan ramah, transparan, dan tanpa pungutan biaya sepeser pun (Rp 0).',
-        '"Kami berkomitmen membawa Desa Warung Menteng menjadi desa mandiri, transparan, dan melek digital tanpa meninggalkan kearifan lokal kerukunan warga lereng Salak," ungkap Kades dalam sambutan peresmian.',
-        'Sistem ini juga dilengkapi fasilitas pengecekan status permohonan secara mandiri menggunakan kode registrasi unik yang dikirimkan langsung kepada warga pemohon.'
+        'WARUNG MENTENG, BOGOR — Pemerintah Desa Warung Menteng resmi meluncurkan website resmi desa (www.warungmenteng.desa.id) sebagai manifestasi komitmen transparansi dan transformasi digital layanan publik.',
+        'Website ini dilengkapi fitur-fitur inovatif: pengajuan surat keterangan online, tracking status permohonan real-time, e-formulir administrasi kependudukan, hingga portal transparansi anggaran desa (APBDes) yang terbuka untuk diakses publik.',
+        'Kepala Desa Warung Menteng, H. Mulyadi, S.AP., menegaskan bahwa website ini menjadi bukti nyata komitmen Pemdes dalam mewujudkan Good Governance dan Smart Village. "Kami ingin masyarakat mudah mengakses informasi dan layanan tanpa harus datang ke kantor desa berulang kali," ujar Kades.',
+        'Website ini juga dilengkapi fitur aksesibilitas untuk difabel, mode gelap/terang, dan responsif di berbagai perangkat. Masyarakat dapat mengajukan surat keterangan domisili, SKCK, SKTM, hingga rekomendasi pernikahan hanya dengan beberapa klik dari smartphone mereka.'
       ],
-      fotoUrl: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
-      lampiranDokumen: 'Surat_Edaran_Kades_No_04_Tahun_2024.pdf',
+      fotoUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      lampiranDokumen: 'Surat_Keputusan_Kades_No_001_Tahun_2024_Tentang_Launching_Website.pdf',
       dibaca: 1240
     },
     {
       id: 'pr-002',
-      nomorRilis: 'PR/02/WM/EKO/VIII/2024',
-      judul: 'Siaran Pers: Penguatan Ekosistem Budidaya Perikanan Air Deras dan Hilirisasi Produk Lokal Khas Desa',
-      tanggal: '02 Agustus 2024',
-      penulis: 'Dedi Kurniawan, S.Pt.',
-      jabatan: 'Kaur Perencanaan & Ekonomi Desa',
-      kategori: 'Ekonomi & Ketahanan Pangan',
-      ringkasan: 'Kolaborasi Pemdes bersama Kelompok Pembudidaya Ikan (Pokdakan) Tirta Menteng dalam perluasan pasar benih ikan nila dan olahan hasil bumi lereng Gunung Salak.',
+      nomorRilis: 'PR/02/WM/KEM/VIII/2024',
+      judul: 'Pembukaan dan Penutupan Kegiatan KKN Mahasiswa: Kolaborasi Akademisi dan Masyarakat Membangun Keberdayaan Desa',
+      tanggal: '15 Agustus 2024',
+      penulis: 'Dedi Kurniawan, S.Pd.',
+      jabatan: 'Kaur Kesejahteraan & Keberdayaan Masyarakat',
+      kategori: 'Keberdayaan Masyarakat',
+      ringkasan: 'Kegiatan KKN Mahasiswa Universitas Nasional bertempat di Desa Warung Menteng berhasil dilaksanakan dengan program unggulan pemberdayaan masyarakat, pembangunan infrastruktur, dan peningkatan kapasitas SDM desa.',
       isiLengkap: [
-        'WARUNG MENTENG — Bertempat di Balai Desa Warung Menteng, Pemerintah Desa bersama Pokdakan Tirta Menteng dan KWT Melati mengumumkan program penguatan klaster budidaya perikanan air deras dan diversifikasi produk unggulan lokal.',
-        'Dengan memanfaatkan kelimpahan sumber mata air pegunungan yang jernih, Desa Warung Menteng menargetkan kapasitas produksi benih nila merah dan gurame mencapai 50.000 ekor per siklus untuk mensuplai pasar Jabodetabek.',
-        'Di samping itu, Pemdes memberikan fasilitasi pelatihan kemasan higienis dan legalitas P-IRT bagi produk kopi robusta, keripik salak, dan anyaman bambu khas dusun.'
+        'WARUNG MENTENG — Pemerintah Desa Warung Menteng bersama Mahasiswa KKN Universitas Nasional resmi membuka dan menutup rangkaian kegiatan Kuliah Kerja Nyata (KKN) Periode Juli-Agustus 2024 yang bertempat di Desa Warung Menteng.',
+        'Program KKN kali ini difokuskan pada tiga pilar utama: (1) Pemberdayaan Ekonomi Masyarakat melalui pelatihan pengolahan hasil pertanian dan UMKM digital, (2) Peningkatan Kapasitas SDM melalui pendampingan literasi digital warga dan pendampingan administrasi kelurahan, (3) Pembangunan Infrastruktur pendukung kesejahteraan seperti renovasi posyandu dan perbaikan jalan usaha tani.',
+        'Dalam sambutan penutupan, Kepala Desa Warung Menteng, H. Mulyadi, S.AP., mengapresiasi dedikasi mahasiswa KKN yang selama 45 hari bermukim dan bekerja sama dengan masyarakat. "KKN ini bukan sekadar tugas kuliah, tapi investasi nyata untuk keberdayaan desa kita," ujar Kades.',
+        'Sebagai bentuk apresiasi, Pemerintah Desa menyerahkan piagam penghargaan kepada 25 mahasiswa KKN serta menyerahkan bantuan alat pertanian dan paket UMKM digital kepada 15 kelompok tani dan UMKM desa.'
       ],
-      fotoUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
-      lampiranDokumen: 'Laporan_Ketahanan_Pangan_Desa_2024.pdf',
+      fotoUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+      lampiranDokumen: 'Laporan_Akhir_KKN_Periode_Juli_Agustus_2024.pdf',
       dibaca: 890
     },
     {
       id: 'pr-003',
-      nomorRilis: 'PR/03/WM/PEMB/VIII/2024',
-      judul: 'Transparansi Realisasi Dana Desa Tahap II: Pembangunan Rabat Beton Jalan Usaha Tani Dusun II & Sarana Air Bersih',
-      tanggal: '20 Agustus 2024',
+      nomorRilis: 'PR/03/WM/KEG/VIII/2024',
+      judul: 'Pekan Olahraga Desa Warung Menteng 2024: Semangat Olahraga Mengukuhkan Silaturahmi dan Kesehatan Masyarakat',
+      tanggal: '25 Agustus 2024',
       penulis: 'Ahmad Fauzi, S.E.',
       jabatan: 'Sekretaris Desa Warung Menteng',
-      kategori: 'Infrastruktur & Pembangunan',
-      ringkasan: 'Laporan terbuka penyaluran Dana Desa APBDes 2024 untuk peningkatan aksesibilitas pertanian dan pipanisasi gravitasi air bersih warga.',
+      kategori: 'Kegiatan Desa',
+      ringkasan: 'Pekan Olahraga Desa (PORDES) 2024 digelar meriah dengan partisipasi 500+ warga seluruh dusun, meliputi cabang sepak bola, voli, badminton, lari estafet, dan lomba tradisional egrang dan tarik tambang.',
       isiLengkap: [
-        'WARUNG MENTENG — Pemerintah Desa Warung Menteng mempublikasikan rincian realisasi fisik pembangunan infrastruktur Dana Desa (DD) Tahap II Tahun Anggaran 2024.',
-        'Pekerjaan fisik mencakup pengecoran rabat beton jalan usaha tani sepanjang 650 meter di Dusun II Menteng Pasir serta pembangunan reservoir bak penampungan air bersih dan pipanisasi 1.200 meter untuk melayani 140 KK.',
-        'Masyarakat dipersilakan mengawasi dan mengakses buku transparansi APBDes di papan informasi balai desa maupun melalui kanal website resmi desa.'
+        'WARUNG MENTENG — Pekan Olahraga Desa (PORDES) 2024 resmi dibuka oleh Kepala Desa Warung Menteng, H. Mulyadi, S.AP., di Lapangan Balai Desa Warung Menteng pada Senin, 26 Agustus 2024.',
+        'Acara berlangsung selama 3 hari (26-28 Agustus 2024) dengan partisipasi 12 tim mewakili 6 dusun. Cabang olahraga yang dilombakan: Sepak Bola (Putra/Putri), Voli (Putra/Putri), Badminton (Ganda Campuran), Lari Estafet 4x100m, serta Lomba Tradisional (Egrang, Tarik Tambang, Balap Karung).',
+        'Ketua Pelaksana PORDES 2024, Ahmad Fauzi, S.E., menyampaikan bahwa acara ini bertujuan mempererat silaturahmi antar warga, menggalakkan pola hidup sehat melalui olahraga, serta menggalang semangat kebersamaan antar generasi di Desa Warung Menteng.',
+        'Puncak acara di hari ketiga diisi dengan malam puncak dan pemberian hadiah kepada juara 1-3 setiap cabang, serta hadiah spesial untuk "Tim Terfavorit" dan "Supporter Terbaik". Hadiah disponsori oleh BUMDes Warung Menteng, BPD, dan sponsor lokal (Koperasi Desa, Toko Kelontong Pak Budi, Warung Makan Bu Siti).'
       ],
-      fotoUrl: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
-      lampiranDokumen: 'Buku_Transparansi_APBDes_2024.pdf',
+      fotoUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=80',
+      lampiranDokumen: 'Surat_Keputusan_Kades_No_012_Tahun_2024_Tentang_PORDES_2024.pdf',
       dibaca: 1430
     }
   ];
