@@ -185,10 +185,20 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     return <Comp className="w-5 h-5" />;
   };
 
+  // Compute sidebar className
+  const sidebarClassName = 
+    'fixed inset-y-0 left-0 z-50 ' +
+    (isMobile ? 'w-[90vw] max-w-sm transform transition-transform duration-300 ease-in-out' : '') +
+    ' h-full bg-white border-r border-slate-200 flex flex-col ' +
+    (sidebarOpen ? 'w-64 translate-x-0' : 'w-20 -translate-x-full');
+
+  const mainClassName = 'flex-1 transition-all duration-300 relative z-10 overflow-x-hidden ' +
+    (sidebarOpen ? 'ml-64' : 'ml-20');
+
   return (
     <div className="min-h-screen bg-slate-100 flex">
-      {/* Mobile Overlay */}
-      {isMobile && sidebarOpen && (
+      {/* Mobile/Tablet Overlay */}
+      {sidebarOpen && (
         <div 
           className="fixed inset-0 z-40 bg-black/50" 
           onClick={() => setSidebarOpen(false)} 
@@ -198,26 +208,38 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
       {/* Sidebar */}
       <aside 
-        className={`
-          ${isMobile ? 'fixed inset-y-0 left-0 z-50 w-[90vw] max-w-sm transform transition-transform duration-300 ease-in-out' : 'relative lg:relative'}
-          h-full bg-white border-r border-slate-200 flex flex-col
-          ${sidebarOpen ? 'w-64 translate-x-0' : 'w-20 -translate-x-full'}
-          ${isMobile ? '' : 'relative lg:relative'}
-        `}
+        className={sidebarClassName}
       >
-        {/* Logo & Brand */}
-        <div className={`flex items-center gap-3 p-4 border-b border-slate-200 ${!sidebarOpen ? 'justify-center' : ''}`}>
-          <div className="w-10 h-10 rounded-xl bg-emerald-700 flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-emerald-200" />
-          </div>
-          {sidebarOpen && (
-            <div className="overflow-hidden">
-              <h1 className="text-xs font-black text-slate-900 font-['Playfair_Display',serif] leading-tight">
-                Desa Warung Menteng
-              </h1>
-              <p className="text-[10px] text-slate-500 truncate">Panel Administrator</p>
+        {/* Sidebar Header with Hamburger Toggle */}
+        <div className="flex items-center justify-between p-4 border-b border-slate-200">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-700 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 text-emerald-200" />
             </div>
-          )}
+            {sidebarOpen && (
+              <div className="overflow-hidden">
+                <h1 className="text-xs font-black text-slate-900 font-['Playfair_Display',serif] leading-tight">
+                  Desa Warung Menteng
+                </h1>
+                <p className="text-[10px] text-slate-500 truncate">Panel Administrator</p>
+              </div>
+            )}
+          </div>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="w-10 h-10 rounded-xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+            aria-label={sidebarOpen ? "Tutup sidebar" : "Buka sidebar"}
+          >
+            {sidebarOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
 
         {/* User Info */}
@@ -338,47 +360,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           </button>
         </div>
 
-        {/* Toggle Button (Desktop) */}
-        {!isMobile && sidebarOpen && (
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="mx-3 mb-3 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition absolute bottom-3 left-1/2 -translate-x-1/2 z-50"
-            aria-label="Collapse sidebar"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-        )}
       </aside>
-      <main className={`flex-1 transition-all duration-300 ${isMobile ? '' : (sidebarOpen ? 'ml-64' : 'ml-20')} relative z-10 overflow-x-hidden`}>
-        {/* Mobile Header with Hamburger */}
-        {isMobile && (
-          <header className="fixed top-0 left-0 right-0 z-30 bg-white border-b border-slate-200">
-            <div className="flex items-center justify-between h-14 px-4">
-              <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="w-10 h-10 rounded-xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
-                aria-label={sidebarOpen ? "Tutup sidebar" : "Buka sidebar"}
-              >
-                {sidebarOpen ? (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
-              </button>
-              <div className="flex-1 text-center">
-                <h1 className="text-xs font-bold text-slate-900 font-['Playfair_Display',serif] truncate">
-                  Desa Warung Menteng
-                </h1>
-                <p className="text-[10px] text-slate-500">Panel Administrator</p>
-              </div>
-              <div className="w-10" />
-            </div>
-          </header>
-        )}
+
+      {/* Main Content */}
+      <main className={mainClassName}>
         <div className="max-w-7xl mx-auto w-full p-3 sm:p-4 lg:p-6 pt-4">
           {children}
         </div>
