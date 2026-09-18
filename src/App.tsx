@@ -88,11 +88,31 @@ export default function App() {
   // Mengaktifkan animasi Anime.js & WAAPI menyeluruh di setiap halaman dan scroll
   useGlobalAnimations(activePage);
 
+  // Menulis entry history saat mount pertama agar tombol back/forward berfungsi
+  useEffect(() => {
+    history.replaceState({ page: 'beranda', params: {} }, '');
+  }, []);
+
+  // Mendengarkan tombol back/forward perangkat untuk kembali ke halaman sebelumnya
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const state = event.state as { page?: PageRoute; params?: any } | null;
+      if (state?.page) {
+        setActivePage(state.page);
+        setNavParams(state.params || {});
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   useEffect(() => {
     setIsAdmin(isAdminLoggedIn());
   }, []);
 
   const handleNavigate = (page: PageRoute, params?: any) => {
+    history.pushState({ page, params: params || {} }, '');
     setActivePage(page);
     setNavParams(params || {});
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -101,12 +121,15 @@ export default function App() {
   const handleLoginSuccess = () => {
     setIsAdmin(true);
     const currentAdmin = getCurrentAdmin();
-    setActivePage(currentAdmin?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard');
+    const target = currentAdmin?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard';
+    history.pushState({ page: target, params: {} }, '');
+    setActivePage(target);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLogout = () => {
     setIsAdmin(false);
+    history.pushState({ page: 'beranda', params: {} }, '');
     setActivePage('beranda');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
