@@ -22,7 +22,7 @@ import {
   ChevronRight as ChevronNext
 } from 'lucide-react';
 import { BeritaItem } from '../../types';
-import { getStoredBerita } from '../../utils/storage';
+import { getStoredBerita, getStoredKritikSaran, saveKritikSaran } from '../../utils/storage';
 import heroBannerImg from '../../assets/images/berita_hero_panorama_1788954557336.jpg';
 
 interface BeritaViewProps {
@@ -47,21 +47,41 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
   const [copiedLink, setCopiedLink] = useState(false);
 
   // Komentar state with persistence
-  const [comments, setComments] = useState<{ [id: string]: Array<{ nama: string; komentar: string; waktu: string; approved?: boolean }> }>({
-    'berita-stunting': [
-      { nama: 'Ibu Ratna (Kader Posyandu RW 04)', komentar: 'Program PMT olahan ikan nila sangat disukai anak-anak balita. Terima kasih Pemdes Warung Menteng!', waktu: '12 Agustus 2025', approved: true },
-      { nama: 'Bpk. Herman (Ketua RT 02)', komentar: 'Semoga angka stunting di desa kita terus ditekan hingga benar-benar nihil.', waktu: '13 Agustus 2025', approved: true }
-    ],
-    'berita-musdes': [
-      { nama: 'Kang Asep Supriadi', komentar: 'Mohon usulan perbaikan drainase di RW 03 dapat diakomodir di RKPDes 2026.', waktu: '9 Agustus 2025', approved: true }
-    ],
-    'berita-jalan': [
-      { nama: 'Pak Ujang (Warga Kp. Cijeruk)', komentar: 'Alhamdulillah akhirnya jalan beton masuk kampung, mobilitas panen salak jadi lancar.', waktu: '6 Agustus 2025', approved: true }
-    ],
-    'general': [
-      { nama: 'Siti Aminah', komentar: 'Apresiasi keterbukaan informasi publik desa yang sangat rapi dan informatif.', waktu: '10 Agustus 2025', approved: true },
-      { nama: 'Dedi Kusnadi', komentar: 'Semoga kegiatan sanggar seni pemuda terus dibina dan diwadahi.', waktu: '4 Agustus 2025', approved: true }
-    ]
+  const [comments, setComments] = useState<{ [id: string]: Array<{ nama: string; komentar: string; waktu: string; approved?: boolean; balasanAdmin?: string; balasanWaktu?: string; petugasPenanggap?: string }> }>(() => {
+    const keyed: { [id: string]: Array<{ nama: string; komentar: string; waktu: string; approved?: boolean; balasanAdmin?: string; balasanWaktu?: string; petugasPenanggap?: string }> } = {
+      'berita-stunting': [
+        { nama: 'Ibu Ratna (Kader Posyandu RW 04)', komentar: 'Program PMT olahan ikan nila sangat disukai anak-anak balita. Terima kasih Pemdes Warung Menteng!', waktu: '12 Agustus 2025', approved: true },
+        { nama: 'Bpk. Herman (Ketua RT 02)', komentar: 'Semoga angka stunting di desa kita terus ditekan hingga benar-benar nihil.', waktu: '13 Agustus 2025', approved: true }
+      ],
+      'berita-musdes': [
+        { nama: 'Kang Asep Supriadi', komentar: 'Mohon usulan perbaikan drainase di RW 03 dapat diakomodir di RKPDes 2026.', waktu: '9 Agustus 2025', approved: true }
+      ],
+      'berita-jalan': [
+        { nama: 'Pak Ujang (Warga Kp. Cijeruk)', komentar: 'Alhamdulillah akhirnya jalan beton masuk kampung, mobilitas panen salak jadi lancar.', waktu: '6 Agustus 2025', approved: true }
+      ],
+      'general': [
+        { nama: 'Siti Aminah', komentar: 'Apresiasi keterbukaan informasi publik desa yang sangat rapi dan informatif.', waktu: '10 Agustus 2025', approved: true },
+        { nama: 'Dedi Kusnadi', komentar: 'Semoga kegiatan sanggar seni pemuda terus dibina dan diwadahi.', waktu: '4 Agustus 2025', approved: true }
+      ]
+    };
+    try {
+      const stored = getStoredKritikSaran();
+      if (stored.length) {
+        stored.forEach(it => {
+          if (!keyed[it.targetId]) keyed[it.targetId] = [];
+          keyed[it.targetId].push({
+            nama: it.nama,
+            komentar: it.isi,
+            waktu: it.waktu,
+            approved: it.approved,
+            balasanAdmin: it.balasanAdmin,
+            balasanWaktu: it.balasanWaktu,
+            petugasPenanggap: it.petugasPenanggap,
+          });
+        });
+      }
+    } catch { /* ignore */ }
+    return keyed;
   });
 
   const [namaKomentar, setNamaKomentar] = useState('');
@@ -142,6 +162,17 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
         }
       ]
     });
+
+    try {
+      saveKritikSaran({
+        id: `ks-${Date.now()}`,
+        targetId: idKey,
+        nama: namaKomentar.trim(),
+        isi: isiKomentar.trim(),
+        waktu: 'Baru saja',
+        approved: true,
+      });
+    } catch { /* ignore */ }
 
     setNamaKomentar('');
     setIsiKomentar('');
@@ -749,6 +780,15 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
                         <span className="text-[10px] text-slate-400 font-normal">{c.waktu}</span>
                       </div>
                       <p className="text-slate-600 leading-relaxed">{c.komentar}</p>
+                      {c.balasanAdmin && (
+                        <div className="mt-2 ml-2 p-2.5 bg-emerald-50 border border-emerald-200 rounded-lg">
+                          <p className="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
+                            <ShieldCheck className="w-3 h-3" />
+                            Balasan Admin Desa {c.balasanWaktu ? `• ${c.balasanWaktu}` : ''}
+                          </p>
+                          <p className="text-xs text-emerald-900 mt-1 leading-relaxed">{c.balasanAdmin}</p>
+                        </div>
+                      )}
                     </div>
                   ))
                 )}
@@ -821,13 +861,22 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
 
             {/* List of comments */}
             <div className="space-y-3 max-h-72 overflow-y-auto pr-1 divide-y divide-slate-100">
-              {Object.values(comments).flat().map((c: { nama: string; komentar: string; waktu: string; approved?: boolean }, idx: number) => (
+              {Object.values(comments).flat().map((c: { nama: string; komentar: string; waktu: string; approved?: boolean; balasanAdmin?: string; balasanWaktu?: string }, idx: number) => (
                 <div key={idx} className="pt-3 first:pt-0 space-y-1">
                   <div className="flex items-center justify-between text-xs font-bold text-slate-800">
                     <span>{c.nama}</span>
                     <span className="text-[10px] text-slate-400 font-normal">{c.waktu}</span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">{c.komentar}</p>
+                  {c.balasanAdmin && (
+                    <div className="mt-1.5 ml-2 p-2.5 bg-emerald-50 border border-emerald-200 rounded-lg">
+                      <p className="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
+                        <ShieldCheck className="w-3 h-3" />
+                        Balasan Admin Desa {c.balasanWaktu ? `• ${c.balasanWaktu}` : ''}
+                      </p>
+                      <p className="text-xs text-emerald-900 mt-1 leading-relaxed">{c.balasanAdmin}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

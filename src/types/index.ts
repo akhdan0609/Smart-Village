@@ -87,6 +87,7 @@ export type PageRoute =
   | 'admin-pelayanan'
   | 'admin-humas-press'
   | 'admin-humas-galeri'
+  | 'admin-humas-kritik-saran'
   | 'admin-kontak-darurat'
   | 'admin-laporan-penduduk'
   | 'admin-settings';
@@ -415,5 +416,17 @@ export interface PressReleaseItem {
   status: 'draft' | 'published' | 'archived';
   createdAt: string;
   updatedAt: string;
+}
+
+export interface KritikSaranItem {
+  id: string;
+  targetId: string;
+  nama: string;
+  isi: string;
+  waktu: string;
+  approved: boolean;
+  balasanAdmin?: string;
+  balasanWaktu?: string;
+  petugasPenanggap?: string;
 }
 

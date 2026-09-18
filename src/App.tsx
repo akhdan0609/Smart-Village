@@ -73,6 +73,7 @@ import { ProfilDesaAdmin } from './components/admin/ProfilDesaAdmin';
 import { PotensiDesaAdmin } from './components/admin/PotensiDesaAdmin';
 import { PelayananAdmin } from './components/admin/PelayananAdmin';
 import { HumasAdmin } from './components/admin/HumasAdmin';
+import { KritikSaranAdmin } from './components/admin/KritikSaranAdmin';
 import { KontakDaruratAdmin } from './components/admin/KontakDaruratAdmin';
 import { LaporanPendudukAdmin } from './components/admin/LaporanPendudukAdmin';
 import { AdminSettings } from './components/admin/AdminSettings';
@@ -288,6 +289,14 @@ export default function App() {
       case 'admin-humas-galeri':
         return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <HumasAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - KRITIK & SARAN (Admin 1 & Super Admin only)
+      case 'admin-humas-kritik-saran':
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
+          <KritikSaranAdmin onLogout={handleLogout} onNavigate={handleNavigate} />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );

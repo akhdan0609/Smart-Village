@@ -20,7 +20,8 @@ import {
   ShieldCheck,
   Settings,
   BarChart2,
-  Phone
+  Phone,
+  MessageSquare
 } from 'lucide-react';
 import { PageRoute, AdminRole, AdminMenuItem } from '../../types';
 import { getCurrentAdmin, hasAdminRole } from '../../utils/storage';
@@ -87,6 +88,7 @@ const allMenuItems: AdminMenuItem[] = [
     children: [
       { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_1'] },
+      { id: 'humas-kritik-saran', label: 'Kritik & Saran', icon: 'MessageSquare', route: 'admin-humas-kritik-saran', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -125,6 +127,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Settings,
   BarChart2,
   Phone,
+  MessageSquare,
 };
 
 const roleLabels: Record<AdminRole, string> = {

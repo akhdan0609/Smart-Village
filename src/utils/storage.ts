@@ -1,4 +1,4 @@
-import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem, AdminUser, AdminRole } from '../types';
+import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem, AdminUser, AdminRole, KritikSaranItem } from '../types';
 import { 
   INITIAL_PERMOHONAN_SURAT, 
   INITIAL_LAPORAN_WARGA, 
@@ -14,6 +14,7 @@ const STORAGE_KEYS = {
   PENGUMUMAN: 'desa_wm_pengumuman_v1',
   UMKM: 'desa_wm_umkm_v1',
   KONTAK_DARURAT: 'desa_wm_kontak_darurat_v1',
+  KRITIK_SARAN: 'desa_wm_kritik_saran_v1',
   ADMIN_AUTH: 'desa_wm_admin_auth_v1'
 };
 
@@ -367,6 +368,50 @@ export const clearAdminSession = () => {
 export const hasAdminRole = (requiredRoles: AdminRole[]): boolean => {
   const user = getCurrentAdmin();
   return user ? requiredRoles.includes(user.role) : false;
+};
+
+// Kritik & Saran
+const DEFAULT_KRITIK_SARAN: KritikSaranItem[] = [
+  { id: 'ks-1', targetId: 'general', nama: 'Siti Aminah', isi: 'Apresiasi keterbukaan informasi publik desa yang sangat rapi dan informatif.', waktu: '10 Agustus 2025', approved: true },
+  { id: 'ks-2', targetId: 'general', nama: 'Dedi Kusnadi', isi: 'Semoga kegiatan sanggar seni pemuda terus dibina dan diwadahi.', waktu: '4 Agustus 2025', approved: true },
+  { id: 'ks-3', targetId: 'berita-stunting', nama: 'Ibu Ratna (Kader Posyandu RW 04)', isi: 'Program PMT olahan ikan nila sangat disukai anak-anak balita. Terima kasih Pemdes Warung Menteng!', waktu: '12 Agustus 2025', approved: true },
+  { id: 'ks-4', targetId: 'berita-stunting', nama: 'Bpk. Herman (Ketua RT 02)', isi: 'Semoga angka stunting di desa kita terus ditekan hingga benar-benar nihil.', waktu: '13 Agustus 2025', approved: true },
+  { id: 'ks-5', targetId: 'berita-musdes', nama: 'Kang Asep Supriadi', isi: 'Mohon usulan perbaikan drainase di RW 03 dapat diakomodir di RKPDes 2026.', waktu: '9 Agustus 2025', approved: true },
+  { id: 'ks-6', targetId: 'berita-jalan', nama: 'Pak Ujang (Warga Kp. Cijeruk)', isi: 'Alhamdulillah akhirnya jalan beton masuk kampung, mobilitas panen salak jadi lancar.', waktu: '6 Agustus 2025', approved: true },
+];
+
+export const getStoredKritikSaran = (): KritikSaranItem[] => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.KRITIK_SARAN);
+    if (!data) {
+      localStorage.setItem(STORAGE_KEYS.KRITIK_SARAN, JSON.stringify(DEFAULT_KRITIK_SARAN));
+      return DEFAULT_KRITIK_SARAN;
+    }
+    return JSON.parse(data);
+  } catch {
+    return DEFAULT_KRITIK_SARAN;
+  }
+};
+
+export const saveKritikSaran = (item: KritikSaranItem): KritikSaranItem[] => {
+  const current = getStoredKritikSaran();
+  const updated = [item, ...current];
+  localStorage.setItem(STORAGE_KEYS.KRITIK_SARAN, JSON.stringify(updated));
+  return updated;
+};
+
+export const updateKritikSaran = (id: string, updates: Partial<KritikSaranItem>): KritikSaranItem[] => {
+  const current = getStoredKritikSaran();
+  const updated = current.map(item => item.id === id ? { ...item, ...updates } : item);
+  localStorage.setItem(STORAGE_KEYS.KRITIK_SARAN, JSON.stringify(updated));
+  return updated;
+};
+
+export const deleteKritikSaran = (id: string): KritikSaranItem[] => {
+  const current = getStoredKritikSaran();
+  const updated = current.filter(item => item.id !== id);
+  localStorage.setItem(STORAGE_KEYS.KRITIK_SARAN, JSON.stringify(updated));
+  return updated;
 };
 
 // Re-export types for convenience
