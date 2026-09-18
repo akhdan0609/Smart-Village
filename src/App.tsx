@@ -129,8 +129,8 @@ export default function App() {
 
   const handleLogout = () => {
     setIsAdmin(false);
-    history.pushState({ page: 'beranda', params: {} }, '');
-    setActivePage('beranda');
+    history.pushState({ page: 'login-admin', params: {} }, '');
+    setActivePage('login-admin');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
