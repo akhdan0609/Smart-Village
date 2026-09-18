@@ -225,12 +225,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isKKNPage = activePage.startsWith('kkn');
   const isBeritaPage = activePage.startsWith('berita-') || activePage.startsWith('informasi-');
   const isKontakDaruratPage = activePage === 'kontak-darurat' || activePage.startsWith('kontak-darurat');
+  const isAdminOrLoginPage = activePage === 'login-admin' || activePage.startsWith('admin-');
 
-  // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, KKN, dan Kontak Darurat
-  const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isKontakDaruratPage;
+  // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, KKN, Kontak Darurat, halaman admin, dan login admin
+  const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isKontakDaruratPage || isAdminOrLoginPage;
 
-  // Sembunyikan fitur kontak darurat pada Profil Desa, Potensi Desa, Pelayanan, KKN, dan Berita
-  const hideKontakDarurat = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isBeritaPage;
+  // Sembunyikan fitur kontak darurat pada Profil Desa, Potensi Desa, Pelayanan, KKN, Berita, halaman admin, dan login admin
+  const hideKontakDarurat = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isBeritaPage || isAdminOrLoginPage;
 
   const searchResults = searchQuery.trim() === ''
     ? searchDirectory.slice(0, 8)
