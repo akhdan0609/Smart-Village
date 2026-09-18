@@ -146,8 +146,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   activePage 
 }) => {
   const user = getCurrentAdmin();
-  const [sidebarOpen, setSidebarOpen] = React.useState(true);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
   const [expandedMenus, setExpandedMenus] = React.useState<Set<string>>(new Set());
   
   useGlobalAnimations(activePage);
@@ -199,9 +199,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       {/* Sidebar */}
       <aside 
         className={`
-          ${isMobile ? 'fixed inset-y-0 left-0 z-50 w-[90vw] max-w-sm' : 'relative lg:relative'}
-          h-full bg-white border-r border-slate-200 transition-all duration-300 flex flex-col
-          ${sidebarOpen ? 'w-64' : 'w-20'}
+          ${isMobile ? 'fixed inset-y-0 left-0 z-50 w-[90vw] max-w-sm transform transition-transform duration-300 ease-in-out' : 'relative lg:relative'}
+          h-full bg-white border-r border-slate-200 flex flex-col
+          ${sidebarOpen ? 'w-64 translate-x-0' : 'w-20 -translate-x-full'}
+          ${isMobile ? '' : 'relative lg:relative'}
         `}
       >
         {/* Logo & Brand */}
@@ -338,7 +339,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         </div>
 
         {/* Toggle Button (Desktop) */}
-        {sidebarOpen && (
+        {!isMobile && sidebarOpen && (
           <button
             onClick={() => setSidebarOpen(false)}
             className="mx-3 mb-3 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition absolute bottom-3 left-1/2 -translate-x-1/2 z-50"
@@ -348,20 +349,36 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           </button>
         )}
       </aside>
-
-      {/* Expanded Sidebar Button (Collapsed) - Mobile only */}
-      {isMobile && !sidebarOpen && (
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="fixed z-50 bottom-6 right-6 w-12 h-12 rounded-2xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
-          aria-label="Expand sidebar"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-      )}
-
-      {/* Main Content */}
       <main className={`flex-1 transition-all duration-300 ${isMobile ? '' : (sidebarOpen ? 'ml-64' : 'ml-20')} relative z-10 overflow-x-hidden`}>
+        {/* Mobile Header with Hamburger */}
+        {isMobile && (
+          <header className="fixed top-0 left-0 right-0 z-30 bg-white border-b border-slate-200">
+            <div className="flex items-center justify-between h-14 px-4">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="w-10 h-10 rounded-xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
+                aria-label={sidebarOpen ? "Tutup sidebar" : "Buka sidebar"}
+              >
+                {sidebarOpen ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+              <div className="flex-1 text-center">
+                <h1 className="text-xs font-bold text-slate-900 font-['Playfair_Display',serif] truncate">
+                  Desa Warung Menteng
+                </h1>
+                <p className="text-[10px] text-slate-500">Panel Administrator</p>
+              </div>
+              <div className="w-10" />
+            </div>
+          </header>
+        )}
         <div className="max-w-7xl mx-auto w-full p-3 sm:p-4 lg:p-6 pt-4">
           {children}
         </div>
