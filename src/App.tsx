@@ -100,7 +100,8 @@ export default function App() {
 
   const handleLoginSuccess = () => {
     setIsAdmin(true);
-    setActivePage('admin-dashboard');
+    const currentAdmin = getCurrentAdmin();
+    setActivePage(currentAdmin?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

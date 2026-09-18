@@ -108,7 +108,7 @@ export function DataTable<T extends { [key: string]: any }>({
                   className={`p-3 font-bold ${col.sortable ? 'cursor-pointer select-none hover:bg-slate-200' : ''} ${idx === 0 ? 'rounded-l-xl' : ''} ${idx === columns.length - 1 && !hasActions ? 'rounded-r-xl' : ''} ${col.className || ''}`}
                   onClick={() => handleSort(col.key)}
                 >
-                  <div className="flex items-center gap-1">
+                  <div className={`flex items-center gap-1 ${col.className?.includes('text-right') ? 'justify-end' : col.className?.includes('text-center') ? 'justify-center' : ''}`}>
                     <span>{col.header}</span>
                     {col.sortable && sortConfig?.key === col.key && (
                       sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />

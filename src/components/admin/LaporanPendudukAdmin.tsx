@@ -220,9 +220,9 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
 
   const columns: Column<DemographicData>[] = [
     { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div> },
-    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-right font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div> },
-    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-right font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div> },
-    { key: 'total', header: 'Total', render: (item: any) => <div className="text-right font-bold text-slate-900">{item.total.toLocaleString()}</div> },
+    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="font-semibold text-blue-600 text-right">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right' },
+    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="font-semibold text-pink-600 text-right">{item.perempuan.toLocaleString()}</div>, className: 'text-right' },
+    { key: 'total', header: 'Total', render: (item: any) => <div className="font-bold text-slate-900 text-right">{item.total.toLocaleString()}</div>, className: 'text-right' },
   ];
 
   const formFields = [
