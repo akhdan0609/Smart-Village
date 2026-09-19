@@ -10,9 +10,6 @@ import {
   ShieldCheck, 
   X, 
   ZoomIn, 
-  Instagram, 
-   
-  Mail,
   ArrowLeft,
   Calendar,
   Layers,
@@ -33,7 +30,6 @@ import kknHeroGroup from '../../assets/images/Anggota_KKN.jpeg';
 import kknActivityUmkm from '../../assets/images/kkn_activity_umkm_1788604303052.jpg';
 import kknProkerWebsite from '../../assets/images/kkn_proker_website_1788606042072.jpg';
 import kknTeamMedia from '../../assets/images/kkn_team_media_1788605216631.jpg';
-import kknLogo from '../../assets/images/logo.png';
 import kknPembukaan from '../../assets/images/Pembukaan_KKN.jpeg';
 import kknRw06 from '../../assets/images/RW06_KKN.jpeg';
 import kknRw07 from '../../assets/images/RW07_KKN.jpeg';
@@ -570,71 +566,6 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
           </div>
         </div>
       )}
-
-      {/* FOOTER KHUSUS KKN WIGATA DHARMA */}
-      <footer className="bg-[#06301f] text-white py-6 px-4 sm:px-8 mt-12 border-t border-emerald-900/60 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          
-          {/* Left: Logo & Kelompok Info */}
-          <div className="flex items-center gap-3 text-left">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-md shrink-0 border border-amber-300/60 overflow-hidden">
-              <img
-                src={kknLogo}
-                alt="Logo KKN Wigata Dharma"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <div>
-              <h4 className="font-bold text-sm tracking-wide text-white">
-                Kelompok KKN WIGATA DHARMA
-              </h4>
-              <p className="text-xs text-emerald-200/90">
-                Mahasiswa Universitas Nahdlatul Ulama Indonesia (UNUSIA)
-              </p>
-              <p className="text-[11px] text-emerald-300/80">
-                Tahun 2026
-              </p>
-            </div>
-          </div>
-
-          {/* Center: Cursive / Calligraphic Slogan */}
-          <div className="text-center">
-            <p className="text-base sm:text-lg italic font-serif text-emerald-100 tracking-wide">
-              “Bersama Warga, Membangun Warung Menteng”
-            </p>
-          </div>
-
-          {/* Right: Social Media Icon Circles */}
-          <div className="flex items-center gap-2.5">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-4 h-4" />
-            </a>
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="TikTok"
-            >
-              <span className="text-xs font-bold font-sans">d</span>
-            </a>
-            <a
-              href="mailto:kkn.wigatadharma@gmail.com"
-              className="w-9 h-9 rounded-full bg-[#0a422b] hover:bg-[#0f5438] text-white flex items-center justify-center border border-emerald-800/60 transition"
-              aria-label="Email"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-          </div>
-
-        </div>
-      </footer>
 
     </div>
   );

@@ -393,7 +393,7 @@ export default function App() {
         </div>
       </main>
 
-      {activePage !== 'login-admin' && <Footer onNavigate={handleNavigate} />}
+      {activePage !== 'login-admin' && <Footer activePage={activePage} onNavigate={handleNavigate} />}
     </div>
   );
 }

@@ -10,9 +10,6 @@ import {
   CheckCircle2, 
   ArrowRight, 
   X, 
-  Instagram, 
-   
-  Mail, 
   User
 } from 'lucide-react';
 import { PageRoute } from '../../types';
@@ -28,7 +25,6 @@ import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg'
 import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
-import kknLogo from '../../assets/images/logo.png';
 
 export interface KKNMember {
   id: string;
@@ -284,13 +280,6 @@ export const KKN_MEMBERS: KKNMember[] = [
     instagram: 'aisyah_al_atas'
   }
 ];
-
-// TikTok Vector Icon
-const TikTokIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.3 6.3 0 0 0 1.94-4.49V8.78a8.21 8.21 0 0 0 4.83 1.57V6.9a4.84 4.84 0 0 1-1-.21z"/>
-  </svg>
-);
 
 interface KKNViewProps {
   onNavigate?: (page: PageRoute) => void;
@@ -737,71 +726,6 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
         </div>
       </section>
-
-      {/* 4. FOOTER BANNER KKN WIGATA DHARMA */}
-      <footer className="bg-[#064e3b] text-white mt-8 border-t border-emerald-900/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5">
-            
-            {/* Left Brand Identity */}
-            <div className="flex items-center gap-3 text-center md:text-left">
-              <div className="w-11 h-11 rounded-full bg-white border-2 border-emerald-300 overflow-hidden shadow-md shrink-0">
-                <img
-                  src={kknLogo}
-                  alt="Logo KKN Wigata Dharma"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="space-y-0.5">
-                <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">
-                  Kelompok KKN WIGATA DHARMA
-                </h4>
-                <p className="text-[11px] text-emerald-100/90 font-medium">
-                  Mahasiswa Universitas Nahdlatul Ulama Indonesia (UNUSIA)
-                </p>
-                <span className="text-[10px] text-amber-300/90 font-semibold block">
-                  Tahun 2026
-                </span>
-              </div>
-            </div>
-
-            {/* Center Cursive Quote */}
-            <div className="text-center italic font-serif text-emerald-100 text-sm sm:text-base tracking-wide px-2">
-              &ldquo;Bersama Warga, Membangun Warung Menteng&rdquo;
-            </div>
-
-            {/* Right Social Media & Contacts */}
-            <div className="flex items-center gap-2">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram KKN"
-                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="TikTok KKN"
-                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
-              >
-                <TikTokIcon className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="mailto:kkn.warungmenteng@gmail.com"
-                aria-label="Email KKN"
-                className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition shadow-2xs"
-              >
-                <Mail className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </footer>
 
       {/* ========================================================================= */}
       {/* MODALS SECTION */}
