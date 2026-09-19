@@ -80,9 +80,15 @@ import { AdminSettings } from './components/admin/AdminSettings';
 import { isAdminLoggedIn, getCurrentAdmin } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
+const getInitialState = () => {
+  const state = history.state as { page?: PageRoute; params?: any } | null;
+  return { page: state?.page ?? 'beranda', params: state?.params ?? {} };
+};
+
 export default function App() {
-  const [activePage, setActivePage] = useState<PageRoute>('beranda');
-  const [navParams, setNavParams] = useState<any>({});
+  const [{ page: initialPage, params: initialParams }] = useState(getInitialState);
+  const [activePage, setActivePage] = useState<PageRoute>(initialPage);
+  const [navParams, setNavParams] = useState<any>(initialParams);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   // Mengaktifkan animasi Anime.js & WAAPI menyeluruh di setiap halaman dan scroll
@@ -90,7 +96,9 @@ export default function App() {
 
   // Menulis entry history saat mount pertama agar tombol back/forward berfungsi
   useEffect(() => {
-    history.replaceState({ page: 'beranda', params: {} }, '');
+    if (!history.state?.page) {
+      history.replaceState({ page: activePage, params: navParams }, '');
+    }
   }, []);
 
   // Mendengarkan tombol back/forward perangkat untuk kembali ke halaman sebelumnya
