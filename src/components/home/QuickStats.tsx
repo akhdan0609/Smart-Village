@@ -6,7 +6,7 @@ export const QuickStats: React.FC = () => {
     {
       icon: BookOpen,
       title: 'Luas Wilayah',
-      value: '2,86 km²'
+      value: '228 ha'
     },
     {
       icon: Users,

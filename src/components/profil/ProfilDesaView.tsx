@@ -147,7 +147,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               </div>
               <div>
                 <span className="text-[11px] text-slate-500 font-medium block">Luas Wilayah</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block">2,86 km²</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 block">228 ha</span>
               </div>
             </div>
 

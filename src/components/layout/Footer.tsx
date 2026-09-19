@@ -160,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://wa.me/+6288291253033"
+                href="https://wa.me/+6281546412012"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp Desa"
@@ -285,12 +285,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <a 
-                  href="https://wa.me/+6288291253033" 
+                  href="https://wa.me/+6281546412012" 
                   target="_blank" 
                   rel="noreferrer" 
                   className="hover:text-white transition"
                 >
-                  +62 882-9125-3033
+                  +62 815-4641-2012
                 </a>
               </li>
             </ul>
