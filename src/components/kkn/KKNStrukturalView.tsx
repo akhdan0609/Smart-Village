@@ -374,15 +374,15 @@ export const KKNStrukturalView: React.FC = () => {
           </div>
         </div>
 
-        {/* Pembimbing & Penasihat Section */}
+        {/* Dosen Pembimbing Section */}
         <div className="space-y-4">
           <h3 className="text-xl font-bold text-slate-900 border-b border-slate-200 pb-2 flex items-center gap-2">
             <Award className="w-5 h-5 text-emerald-700" />
-            <span>Pembimbing & Penasihat Lapangan</span>
+            <span>Dosen Pembimbing</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {pembinaDPL.map((p, idx) => (
+            {pembinaDPL.filter((p) => p.peran.includes('Dosen Pembimbing')).map((p, idx) => (
               <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex items-center gap-5">
                 <img
                   src={p.fotoUrl}
