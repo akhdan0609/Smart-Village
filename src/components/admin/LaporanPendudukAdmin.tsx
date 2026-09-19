@@ -119,52 +119,93 @@ const kategoriLabels = {
   agama: 'Jumlah Penduduk Menurut Agama',
 };
 
+const CHART_COLORS = [
+  '#0369a1', '#db2777', '#059669', '#f59e0b', '#7c3aed', '#0891b2',
+  '#e11d48', '#65a30d', '#d97706', '#4f46e5', '#c026d3', '#0d9488',
+  '#b45309', '#2563eb', '#be123c', '#14b8a6',
+];
+
+const polar = (cx: number, cy: number, r: number, angleDeg: number) => {
+  const rad = (angleDeg * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+};
+
+const annularSector = (cx: number, cy: number, rOuter: number, rInner: number, startAngle: number, endAngle: number) => {
+  const p1 = polar(cx, cy, rOuter, startAngle);
+  const p2 = polar(cx, cy, rOuter, endAngle);
+  const p3 = polar(cx, cy, rInner, endAngle);
+  const p4 = polar(cx, cy, rInner, startAngle);
+  const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+  return `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)} L ${p3.x.toFixed(2)} ${p3.y.toFixed(2)} A ${rInner} ${rInner} 0 ${largeArc} 0 ${p4.x.toFixed(2)} ${p4.y.toFixed(2)} Z`;
+};
+
 const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ data, title }) => {
   if (data.length === 0) return null;
-  const max = Math.max(...data.map(d => Math.max(d.lakiLaki, d.perempuan)), 1);
+
+  const grandTotal = data.reduce((sum, d) => sum + d.total, 0);
+  const CX = 70;
+  const CY = 70;
+  const R_OUTER = 62;
+  const R_INNER = 42;
+
+  let angle = -90;
+  const segments = data.map((d, i) => {
+    const sweep = (d.total / grandTotal) * 360;
+    const start = angle;
+    const end = angle + sweep;
+    angle = end;
+    return {
+      ...d,
+      color: CHART_COLORS[i % CHART_COLORS.length],
+      path: data.length === 1
+        ? annularSector(CX, CY, R_OUTER, R_INNER, 0, 359.9)
+        : annularSector(CX, CY, R_OUTER, R_INNER, start, end),
+    };
+  });
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5">
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-emerald-700" />
-          Grafik {title}
-        </h3>
-        <div className="flex items-center gap-3 text-[11px] font-semibold">
-          <span className="flex items-center gap-1.5 text-blue-600">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Laki-laki
-          </span>
-          <span className="flex items-center gap-1.5 text-pink-600">
-            <span className="w-2.5 h-2.5 rounded-full bg-pink-500" /> Perempuan
-          </span>
-        </div>
-      </div>
-      <div className="space-y-3">
-        {data.map(d => (
-          <div key={d.id} className="flex items-center gap-3">
-            <span className="w-28 sm:w-32 shrink-0 text-[11px] font-medium text-slate-600 truncate">
-              {d.label}
+      <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 mb-4">
+        <BarChart2 className="w-4 h-4 text-emerald-700" />
+        Grafik {title}
+      </h3>
+
+      <div className="flex flex-col md:flex-row items-center gap-6">
+        {/* Donut */}
+        <div className="relative shrink-0">
+          <svg width="180" height="180" viewBox="0 0 140 140" aria-label={`Grafik ${title}`} role="img">
+            {data.length === 1 ? (
+              <circle cx={CX} cy={CY} r={(R_OUTER + R_INNER) / 2}
+                fill="none" stroke={CHART_COLORS[0]} strokeWidth={R_OUTER - R_INNER} />
+            ) : (
+              segments.map(s => (
+                <path key={s.id} d={s.path} fill={s.color}>
+                  <title>{`${s.label}: ${s.total.toLocaleString()} (${((s.total / grandTotal) * 100).toFixed(1)}%)`}</title>
+                </path>
+              ))
+            )}
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <span className="text-xl font-black text-slate-900 tabular-nums leading-none">
+              {grandTotal.toLocaleString()}
             </span>
-            <div className="flex-1 space-y-1">
-              <div className="flex items-center gap-2">
-                <div className="flex-1 h-2.5 rounded-full bg-blue-100 overflow-hidden">
-                  <div className="h-full rounded-full bg-blue-500" style={{ width: `${Math.max((d.lakiLaki / max) * 100, 2)}%` }} />
-                </div>
-                <span className="w-10 text-right text-[11px] font-bold text-blue-700 tabular-nums">
-                  {d.lakiLaki.toLocaleString()}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex-1 h-2.5 rounded-full bg-pink-100 overflow-hidden">
-                  <div className="h-full rounded-full bg-pink-500" style={{ width: `${Math.max((d.perempuan / max) * 100, 2)}%` }} />
-                </div>
-                <span className="w-10 text-right text-[11px] font-bold text-pink-700 tabular-nums">
-                  {d.perempuan.toLocaleString()}
-                </span>
-              </div>
-            </div>
+            <span className="text-[10px] font-semibold text-slate-500 mt-1 uppercase tracking-wide">Total</span>
           </div>
-        ))}
+        </div>
+
+        {/* Legend */}
+        <div className="flex-1 w-full grid grid-cols-2 lg:grid-cols-3 gap-2">
+          {segments.map(s => (
+            <div key={s.id} className="flex items-center gap-2 text-[11px]">
+              <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+              <span className="flex-1 min-w-0 truncate text-slate-600 font-medium">{s.label}</span>
+              <span className="font-bold text-slate-900 tabular-nums shrink-0">{s.total.toLocaleString()}</span>
+              <span className="text-slate-400 tabular-nums w-9 text-right shrink-0">
+                {((s.total / grandTotal) * 100).toFixed(1)}%
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
