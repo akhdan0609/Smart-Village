@@ -222,11 +222,11 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
     setFormData(prev => ({ ...prev, [key]: value }));
   };
 
-  const columns: Column<DemographicData>[] = [
-    { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div> },
-    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="font-semibold text-blue-600 text-right">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right' },
-    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="font-semibold text-pink-600 text-right">{item.perempuan.toLocaleString()}</div>, className: 'text-right' },
-    { key: 'total', header: 'Total', render: (item: any) => <div className="font-bold text-slate-900 text-right">{item.total.toLocaleString()}</div>, className: 'text-right' },
+const columns: Column<DemographicData>[] = [
+    { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
+    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-right font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-right font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'total', header: 'Total', render: (item: any) => <div className="text-right font-bold text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-right p-2' },
   ];
 
   const formFields = [
@@ -346,8 +346,8 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
 
           {/* Total per kategori */}
           {filteredData.length > 0 && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-4 p-4">
-              <div className="flex items-center justify-between mb-2">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2">
+              <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                   Total {kategoriLabels[activeTab]}
                 </span>
@@ -355,13 +355,13 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
                   {filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-blue-600">Laki-laki:</span>
-                <span className="text-blue-600 font-medium">
+              <div className="flex items-center gap-1">
+                <span className="text-xs font-bold text-blue-500">L:</span>
+                <span className="text-blue-500 font-medium">
                   {filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}
                 </span>
-                <span className="text-xs font-bold text-pink-500">Perempuan:</span>
-                <span className="text-pink-500 font-medium">
+                <span className="text-xs font-bold text-pink-400">P:</span>
+                <span className="text-pink-400 font-medium">
                   {filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}
                 </span>
               </div>
