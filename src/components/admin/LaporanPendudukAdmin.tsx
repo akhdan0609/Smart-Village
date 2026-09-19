@@ -341,32 +341,16 @@ const columns: Column<DemographicData>[] = [
               searchable={true}
               searchFields={['label']}
               emptyMessage={`Belum ada data ${kategoriLabels[activeTab].toLowerCase()}`}
+              footer={{
+                label: `Total ${kategoriLabels[activeTab]}`,
+                values: {
+                  lakiLaki: <div className="text-right font-bold text-blue-600">{filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}</div>,
+                  perempuan: <div className="text-right font-bold text-pink-600">{filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}</div>,
+                  total: <div className="text-right font-bold text-emerald-600">{filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}</div>,
+                },
+              }}
             />
           </div>
-
-          {/* Total per kategori */}
-          {filteredData.length > 0 && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Total {kategoriLabels[activeTab]}
-                </span>
-                <span className="text-xs font-semibold text-emerald-600">
-                  {filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-xs font-bold text-blue-500">L:</span>
-                <span className="text-blue-500 font-medium">
-                  {filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}
-                </span>
-                <span className="text-xs font-bold text-pink-400">P:</span>
-                <span className="text-pink-400 font-medium">
-                  {filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}
-                </span>
-              </div>
-            </div>
-          )}
 
         {/* Modal */}
         <FormModal

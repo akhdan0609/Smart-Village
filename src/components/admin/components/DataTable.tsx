@@ -24,6 +24,10 @@ export interface DataTableProps<T> {
   className?: string;
   canEdit?: boolean;
   canDelete?: boolean;
+  footer?: {
+    label: string;
+    values: Record<string, React.ReactNode>;
+  };
 }
 
 export function DataTable<T extends { [key: string]: any }>({
@@ -41,6 +45,7 @@ export function DataTable<T extends { [key: string]: any }>({
   className = '',
   canEdit = true,
   canDelete = true,
+  footer,
 }: DataTableProps<T>) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [sortConfig, setSortConfig] = React.useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
@@ -174,6 +179,16 @@ export function DataTable<T extends { [key: string]: any }>({
                       )}
                 </tr>
               ))
+            )}
+            {footer && filteredData.length > 0 && (
+              <tr className="bg-slate-50 font-bold text-slate-900">
+                {columns.map((col, idx) => (
+                  <td key={col.key} className={`p-3 ${col.className || ''}`}>
+                    {idx === 0 ? footer.label : (footer.values[col.key] ?? '')}
+                  </td>
+                ))}
+                {hasActions && <td className="p-3" />}
+              </tr>
             )}
           </tbody>
         </table>
