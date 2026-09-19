@@ -58,6 +58,7 @@ import { KKNLatarBelakangView } from './components/kkn/KKNLatarBelakangView';
 import { KKNProgramKerjaView } from './components/kkn/KKNProgramKerjaView';
 import { KKNVisiMisiView } from './components/kkn/KKNVisiMisiView';
 import { KKNStrukturalView } from './components/kkn/KKNStrukturalView';
+import { KKNStrukturDivisiBagan } from './components/kkn/KKNStrukturDivisiBagan';
 import { KKNGaleriView } from './components/kkn/KKNGaleriView';
 import { KKNDivisionView } from './components/kkn/KKNDivisionView';
 import { KKNProgramDetailView } from './components/kkn/KKNProgramDetailView';
@@ -258,7 +259,13 @@ export default function App() {
       case 'kkn-visi-misi':
         return <KKNVisiMisiView />;
       case 'kkn-struktural':
-        return <KKNStrukturalView />;
+        return <KKNStrukturalView onNavigate={handleNavigate} />;
+      case 'kkn-bagan-acara':
+        return <KKNStrukturDivisiBagan divisi="ACARA" onNavigate={handleNavigate} />;
+      case 'kkn-bagan-humas':
+        return <KKNStrukturDivisiBagan divisi="HUMAS" onNavigate={handleNavigate} />;
+      case 'kkn-bagan-media':
+        return <KKNStrukturDivisiBagan divisi="MEDIA" onNavigate={handleNavigate} />;
       case 'kkn-galeri':
         return <KKNGaleriView onNavigate={handleNavigate} />;
       case 'kkn-proker-1':

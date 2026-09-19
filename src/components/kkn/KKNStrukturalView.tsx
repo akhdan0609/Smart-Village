@@ -9,10 +9,12 @@ import {
   MapPin, 
   Layers,
   Sparkles,
-  Network
+  Network,
+  ArrowRight
 } from 'lucide-react';
+import type { PageRoute } from '../../types';
 
-interface AnggotaTim {
+export interface AnggotaTim {
   nama: string;
   peran: string;
   divisi: 'BPH' | 'ACARA' | 'HUMAS' | 'MEDIA';
@@ -21,23 +23,22 @@ interface AnggotaTim {
   fotoUrl: string;
 }
 
-export const KKNStrukturalView: React.FC = () => {
-  const pembinaDPL = [
-    {
-      nama: 'Dr. Muhammad Afifi, M.H.',
-      peran: 'Dosen Pembimbing Lapangan (DPL)',
-      instansi: 'Universitas Nahdlatul Ulama Indonesia (UNUSIA)',
-      fotoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      nama: 'H. Mulyadi, S.AP.',
-      peran: 'Kepala Desa & Penasihat Lapangan',
-      instansi: 'Pemerintah Desa Warung Menteng',
-      fotoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
-    }
-  ];
+export const pembinaDPL = [
+  {
+    nama: 'Dr. Muhammad Afifi, M.H.',
+    peran: 'Dosen Pembimbing Lapangan (DPL)',
+    instansi: 'Universitas Nahdlatul Ulama Indonesia (UNUSIA)',
+    fotoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    nama: 'H. Mulyadi, S.AP.',
+    peran: 'Kepala Desa & Penasihat Lapangan',
+    instansi: 'Pemerintah Desa Warung Menteng',
+    fotoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+  }
+];
 
-  const strukturBPH: AnggotaTim[] = [
+  export const strukturBPH: AnggotaTim[] = [
     {
       nama: 'Fajry Maulana',
       peran: 'Ketua',
@@ -88,7 +89,7 @@ export const KKNStrukturalView: React.FC = () => {
     }
   ];
 
-  const strukturAcara: AnggotaTim[] = [
+  export const strukturAcara: AnggotaTim[] = [
     {
       nama: 'Munhamir Nadzir',
       peran: 'Koordinator Acara',
@@ -147,22 +148,22 @@ export const KKNStrukturalView: React.FC = () => {
     }
   ];
 
-  const strukturHumas: AnggotaTim[] = [
-    {
-      nama: 'Muhammad Arifin Fadhillah',
-      peran: 'Koordinator HUMAS',
-      divisi: 'HUMAS',
-      prodi: 'Ilmu Hukum (UNUSIA)',
-      tugas: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
-      fotoUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
-    },
+  export const strukturHumas: AnggotaTim[] = [
     {
       nama: 'Muhammad Ramadhan Giri Wardana',
-      peran: 'Anggota HUMAS',
+      peran: 'Koordinator HUMAS',
       divisi: 'HUMAS',
       prodi: 'Ilmu Hukum (UNUSIA)',
       tugas: 'Komunikasi yang baik adalah kunci membangun hubungan yang kuat dan kepercayaan yang tulus.',
       fotoUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      nama: 'Muhammad Arifin Fadhillah',
+      peran: 'Anggota HUMAS',
+      divisi: 'HUMAS',
+      prodi: 'Ilmu Hukum (UNUSIA)',
+      tugas: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
+      fotoUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
     },
     {
       nama: 'Siti Khoiroh',
@@ -182,7 +183,7 @@ export const KKNStrukturalView: React.FC = () => {
     }
   ];
 
-  const strukturMedia: AnggotaTim[] = [
+  export const strukturMedia: AnggotaTim[] = [
     {
       nama: 'Qomarudin Tokan',
       peran: 'Koordinator MEDIA',
@@ -209,10 +210,15 @@ export const KKNStrukturalView: React.FC = () => {
     }
   ];
 
+interface KKNStrukturalViewProps {
+  onNavigate?: (page: PageRoute) => void;
+}
+
+export const KKNStrukturalView: React.FC<KKNStrukturalViewProps> = ({ onNavigate }) => {
+
   return (
     <div className="bg-slate-50 min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
-        
         {/* Header Banner */}
         <div className="bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-950 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
@@ -316,27 +322,27 @@ export const KKNStrukturalView: React.FC = () => {
                 {/* Bus Level 3 -> 4 */}
                 <div className="w-full h-0.5 bg-emerald-600/50 rounded-full" />
 
-                {/* ===== LEVEL 4: KOORDINATOR DIVISI ===== */}
-                <div className="flex justify-center gap-24 sm:gap-32">
+                {/* ===== LEVEL 4: DIVISI (klik untuk lihat bagan) ===== */}
+                <div className="flex justify-center gap-6 sm:gap-10 flex-wrap">
                   {([
-                    { nama: strukturAcara[0].nama, peran: 'Koordinator Acara', div: 'Divisi Acara' },
-                    { nama: strukturHumas[0].nama, peran: 'Koordinator Humas', div: 'Divisi Humas' },
-                    { nama: strukturMedia[0].nama, peran: 'Koordinator Media', div: 'Divisi Media' },
+                    { label: 'Divisi Acara', route: 'kkn-bagan-acara' as PageRoute },
+                    { label: 'Divisi Humas', route: 'kkn-bagan-humas' as PageRoute },
+                    { label: 'Divisi Media', route: 'kkn-bagan-media' as PageRoute },
                   ]).map((d, idx) => (
                     <div key={idx} className="flex flex-col items-center">
                       <div className="w-0.5 h-5 bg-emerald-600/50" />
-                      <div className="bg-gradient-to-b from-emerald-800/10 to-white rounded-2xl border-2 border-emerald-700/40 p-3 sm:p-4 shadow-sm w-40 sm:w-48">
-                        <img
-                          src={[strukturAcara, strukturHumas, strukturMedia][idx][0].fotoUrl}
-                          alt={d.nama}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-emerald-600 mx-auto mb-1.5"
-                        />
-                        <span className="block text-[10px] font-extrabold text-emerald-900 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full inline-block mx-auto">
-                          {d.div}
+                      <button
+                        onClick={() => onNavigate && onNavigate(d.route)}
+                        className="group bg-white hover:bg-emerald-50 rounded-2xl border-2 border-emerald-700/40 p-4 shadow-sm w-44 sm:w-56 transition-all hover:border-emerald-600 hover:shadow-md cursor-pointer"
+                      >
+                        <span className="block text-center text-base sm:text-lg font-extrabold text-emerald-900 group-hover:text-emerald-700">
+                          {d.label}
                         </span>
-                        <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{d.nama}</h4>
-                        <p className="text-[10px] text-emerald-700 font-semibold mt-0.5">{d.peran}</p>
-                      </div>
+                        <span className="mt-1.5 flex items-center justify-center gap-1 text-[11px] font-semibold text-emerald-700 group-hover:text-emerald-600">
+                          Lihat Bagan Organisasi
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      </button>
                     </div>
                   ))}
                 </div>
