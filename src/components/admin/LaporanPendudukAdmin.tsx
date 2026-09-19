@@ -119,6 +119,57 @@ const kategoriLabels = {
   agama: 'Jumlah Penduduk Menurut Agama',
 };
 
+const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ data, title }) => {
+  if (data.length === 0) return null;
+  const max = Math.max(...data.map(d => Math.max(d.lakiLaki, d.perempuan)), 1);
+
+  return (
+    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5">
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+          <BarChart2 className="w-4 h-4 text-emerald-700" />
+          Grafik {title}
+        </h3>
+        <div className="flex items-center gap-3 text-[11px] font-semibold">
+          <span className="flex items-center gap-1.5 text-blue-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Laki-laki
+          </span>
+          <span className="flex items-center gap-1.5 text-pink-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-pink-500" /> Perempuan
+          </span>
+        </div>
+      </div>
+      <div className="space-y-3">
+        {data.map(d => (
+          <div key={d.id} className="flex items-center gap-3">
+            <span className="w-28 sm:w-32 shrink-0 text-[11px] font-medium text-slate-600 truncate">
+              {d.label}
+            </span>
+            <div className="flex-1 space-y-1">
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-2.5 rounded-full bg-blue-100 overflow-hidden">
+                  <div className="h-full rounded-full bg-blue-500" style={{ width: `${Math.max((d.lakiLaki / max) * 100, 2)}%` }} />
+                </div>
+                <span className="w-10 text-right text-[11px] font-bold text-blue-700 tabular-nums">
+                  {d.lakiLaki.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-2.5 rounded-full bg-pink-100 overflow-hidden">
+                  <div className="h-full rounded-full bg-pink-500" style={{ width: `${Math.max((d.perempuan / max) * 100, 2)}%` }} />
+                </div>
+                <span className="w-10 text-right text-[11px] font-bold text-pink-700 tabular-nums">
+                  {d.perempuan.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 interface LaporanPendudukAdminProps {
   onNavigate: (page: PageRoute) => void;
   onLogout: () => void;
@@ -351,6 +402,9 @@ const columns: Column<DemographicData>[] = [
               }}
             />
           </div>
+
+        {/* Grafik per tabel */}
+        <DemografiChart data={filteredData} title={kategoriLabels[activeTab]} />
 
         {/* Modal */}
         <FormModal

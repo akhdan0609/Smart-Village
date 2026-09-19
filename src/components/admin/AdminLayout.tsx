@@ -15,7 +15,6 @@ import {
   Newspaper, 
   Image, 
   LogOut, 
-  ChevronLeft, 
   ChevronRight, 
   ShieldCheck,
   Settings,
@@ -246,13 +245,6 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             )}
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => window.history.back()}
-              className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 shadow-lg flex items-center justify-center hover:bg-slate-200 transition"
-              aria-label="Kembali ke halaman sebelumnya"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="w-10 h-10 rounded-xl bg-emerald-700 text-white shadow-lg flex items-center justify-center hover:bg-emerald-800 transition"
