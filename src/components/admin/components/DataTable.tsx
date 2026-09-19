@@ -110,7 +110,7 @@ export function DataTable<T extends { [key: string]: any }>({
                 return (
                   <th
                     key={col.key}
-                    className={`p-3 font-bold ${col.sortable ? 'cursor-pointer select-none hover:bg-slate-200' : ''} ${idx === 0 ? 'rounded-l-xl' : ''} ${idx === columns.length - 1 && !hasActions ? 'rounded-r-xl' : ''} ${col.className || ''} ${col.headerClassName || ''}`}
+                    className={`px-4 py-3 font-bold ${col.sortable ? 'cursor-pointer select-none hover:bg-slate-200' : ''} ${idx === 0 ? 'rounded-l-xl' : ''} ${idx === columns.length - 1 && !hasActions ? 'rounded-r-xl' : ''} ${col.className || ''} ${col.headerClassName || ''}`}
                     onClick={() => handleSort(col.key)}
                   >
                     <div className={`flex items-center gap-1 ${headerTail.includes('text-right') ? 'justify-end' : headerTail.includes('text-center') ? 'justify-center' : ''}`}>
@@ -123,7 +123,7 @@ export function DataTable<T extends { [key: string]: any }>({
                 );
               })}
               {hasActions && (
-                <th className="p-3 font-bold rounded-r-xl text-center">Aksi</th>
+                <th className="px-4 py-3 font-bold rounded-r-xl text-center">Aksi</th>
               )}
             </tr>
           </thead>
@@ -141,12 +141,12 @@ export function DataTable<T extends { [key: string]: any }>({
                   className={`hover:bg-slate-50 transition ${striped && index % 2 === 1 ? 'bg-slate-50/50' : ''}`}
                 >
                   {columns.map((col, idx) => (
-                    <td key={col.key} className={`p-3 ${col.className || ''}`}>
+                    <td key={col.key} className={`px-4 py-3 ${col.className || ''}`}>
                       {col.render ? col.render(item, index) : String(item[col.key] || '')}
                     </td>
                   ))}
 {hasActions && (
-                        <td className="p-3 text-center">
+                        <td className="px-4 py-3 text-center">
                           <div className="flex items-center justify-center gap-1.5">
                             {onView && (
                               <button

@@ -329,8 +329,7 @@ const columns: Column<DemographicData>[] = [
         </div>
 
         {/* Data Table */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm">
-<DataTable
+        <DataTable
               data={filteredData}
               columns={columns}
               keyField="id"
@@ -341,13 +340,13 @@ const columns: Column<DemographicData>[] = [
               searchable={true}
               searchFields={['label']}
               fitContent={true}
+              className="max-w-4xl mx-auto"
               emptyMessage={`Belum ada data ${kategoriLabels[activeTab].toLowerCase()}`}
             />
-          </div>
 
           {/* Total per kategori */}
           {filteredData.length > 0 && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2 max-w-4xl mx-auto">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                   Total {kategoriLabels[activeTab]}
