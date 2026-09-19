@@ -282,7 +282,7 @@ export const KKNProgramKerjaView: React.FC<KKNProgramKerjaViewProps> = ({ onNavi
 
             {/* Slogan */}
             <p className="mt-3 text-sm sm:text-base italic font-serif text-emerald-200 tracking-wide">
-              &ldquo;Bersama Warga, Membangun Desa&rdquo;
+              &ldquo;Bersama Mahasiswa, Membangun Desa&rdquo;
             </p>
 
             {/* Amber Action Button */}
