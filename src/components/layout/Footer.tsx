@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
 
             <div className="flex items-center gap-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/wigatadharma?stkn=Y3g1ZHJvZWxydG4y"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram KKN"
@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
                 <Instagram className="w-3.5 h-3.5" />
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/@kknwigatadharma?_r=1&_t=ZS-99jBH5V8Izo"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="TikTok KKN"
@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
                 <TikTokIcon className="w-3.5 h-3.5" />
               </a>
               <a
-                href="mailto:kkn.warungmenteng@gmail.com"
+                href="mailto:kknwd2026@gmail.com"
                 aria-label="Email KKN"
                 className="w-8 h-8 rounded-full border border-white/60 hover:bg-white/15 text-white flex items-center justify-center transition"
               >
