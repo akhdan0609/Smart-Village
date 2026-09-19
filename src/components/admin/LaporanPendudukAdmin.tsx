@@ -15,6 +15,7 @@ import {
   Upload,
   Filter,
   Search,
+  Box
 } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { FormModal } from './components/FormModal';
@@ -81,6 +82,7 @@ const kategoriOptions = [
   { value: 'umur', label: 'Umur', icon: Users },
   { value: 'pendidikan', label: 'Pendidikan', icon: GraduationCap },
   { value: 'agama', label: 'Agama', icon: Church },
+  { value: 'bangunan', label: 'Bangunan', icon: Box }
 ];
 
 const umurLabels = [
@@ -111,12 +113,14 @@ const kategoriIcons = {
   umur: Users,
   pendidikan: GraduationCap,
   agama: Church,
+  bangunan: Box
 };
 
 const kategoriLabels = {
   umur: 'Jumlah Penduduk Menurut Umur',
   pendidikan: 'Jumlah Penduduk Menurut Pendidikan',
   agama: 'Jumlah Penduduk Menurut Agama',
+  bangunan: 'Jumlah Bangunan'
 };
 
 const CHART_COLORS = [
