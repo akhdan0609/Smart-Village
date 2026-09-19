@@ -223,10 +223,10 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
   };
 
 const columns: Column<DemographicData>[] = [
-    { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900 whitespace-nowrap">{item.label}</div>, className: 'whitespace-nowrap min-w-[180px]' },
-    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-center text-sm font-semibold tabular-nums text-blue-600 whitespace-nowrap">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center whitespace-nowrap min-w-[104px]', headerClassName: 'text-sm' },
-    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-center text-sm font-semibold tabular-nums text-pink-600 whitespace-nowrap">{item.perempuan.toLocaleString()}</div>, className: 'text-center whitespace-nowrap min-w-[104px]', headerClassName: 'text-sm' },
-    { key: 'total', header: 'Total', render: (item: any) => <div className="text-center text-sm font-bold tabular-nums text-slate-900 whitespace-nowrap">{item.total.toLocaleString()}</div>, className: 'text-center whitespace-nowrap min-w-[96px]', headerClassName: 'text-sm' },
+    { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
+    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-right font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-right font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'total', header: 'Total', render: (item: any) => <div className="text-right font-bold text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-right p-2' },
   ];
 
   const formFields = [
@@ -329,7 +329,8 @@ const columns: Column<DemographicData>[] = [
         </div>
 
         {/* Data Table */}
-        <DataTable
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm">
+<DataTable
               data={filteredData}
               columns={columns}
               keyField="id"
@@ -339,14 +340,13 @@ const columns: Column<DemographicData>[] = [
               canDelete={canDelete}
               searchable={true}
               searchFields={['label']}
-              fitContent={true}
-              className="max-w-4xl mx-auto"
               emptyMessage={`Belum ada data ${kategoriLabels[activeTab].toLowerCase()}`}
             />
+          </div>
 
           {/* Total per kategori */}
           {filteredData.length > 0 && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2 max-w-4xl mx-auto">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-2 p-2">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                   Total {kategoriLabels[activeTab]}
