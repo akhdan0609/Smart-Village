@@ -17,6 +17,7 @@ import { PageRoute } from '../../types';
 
 import heroPanoramaImg from '../../assets/images/profil_hero_panorama_1789112047188.jpg';
 import gapuraDesaImg from '../../assets/images/profil_gapura_desa_1789112062623.jpg';
+import { getCoverImage } from '../../utils/storage';
 
 interface ProfilDesaViewProps {
   onNavigate: (page: PageRoute) => void;
@@ -24,6 +25,7 @@ interface ProfilDesaViewProps {
 
 export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) => {
   const [selectedYear, setSelectedYear] = useState<string>('2024');
+  const profilCover = getCoverImage('profil', heroPanoramaImg);
 
   // Budget data per year
   const budgetData: Record<string, { pendapatan: string; belanja: string; pembiayaan: string }> = {
@@ -53,7 +55,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
       <div className="relative w-full h-64 sm:h-72 lg:h-80 overflow-hidden shadow-xs">
         {/* Landscape Panorama Image */}
         <img 
-          src={heroPanoramaImg} 
+          src={profilCover} 
           alt="Panorama Desa Warung Menteng" 
           className="w-full h-full object-cover object-center scale-105"
         />

@@ -2,19 +2,22 @@ import React from 'react';
 import { Compass } from 'lucide-react';
 import { PageRoute } from '../../types';
 import suasanaDesaBeranda from '../../assets/images/Suasana_Desa_Beranda.jpeg';
+import { getCoverImage } from '../../utils/storage';
 
 interface HeroSectionProps {
   onNavigate: (page: PageRoute, params?: any) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+  const berandaCover = getCoverImage('beranda', suasanaDesaBeranda);
+
   return (
     <section className="beranda-hero-section relative overflow-hidden w-full min-h-[440px] sm:min-h-[520px] flex items-center">
       {/* Background Image: Scenic Mountain Village Terraces */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${suasanaDesaBeranda})`,
+          backgroundImage: `url(${berandaCover})`,
         }}
       />
 

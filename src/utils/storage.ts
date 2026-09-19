@@ -15,7 +15,8 @@ const STORAGE_KEYS = {
   UMKM: 'desa_wm_umkm_v1',
   KONTAK_DARURAT: 'desa_wm_kontak_darurat_v1',
   KRITIK_SARAN: 'desa_wm_kritik_saran_v1',
-  ADMIN_AUTH: 'desa_wm_admin_auth_v1'
+  ADMIN_AUTH: 'desa_wm_admin_auth_v1',
+  COVERS: 'desa_wm_cover_v1'
 };
 
 // Admin Users Database
@@ -416,3 +417,37 @@ export const deleteKritikSaran = (id: string): KritikSaranItem[] => {
 
 // Re-export types for convenience
 export type { AdminUser, AdminRole } from '../types';
+
+// Sampul / Background Halaman User
+export type CoverKey = 'beranda' | 'profil' | 'potensi' | 'pelayanan' | 'humas';
+
+export type CoverSettings = Partial<Record<CoverKey, string>>;
+
+export const COVER_KEYS: CoverKey[] = ['beranda', 'profil', 'potensi', 'pelayanan', 'humas'];
+
+export const getCoverSettings = (): CoverSettings => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.COVERS);
+    return data ? JSON.parse(data) : {};
+  } catch {
+    return {};
+  }
+};
+
+export const getCoverImage = (key: CoverKey, fallback: string): string => {
+  const covers = getCoverSettings();
+  return covers[key] || fallback;
+};
+
+export const setCoverImage = (key: CoverKey, value: string): CoverSettings => {
+  const covers = getCoverSettings();
+  if (value) {
+    covers[key] = value;
+  } else {
+    delete covers[key];
+  }
+  localStorage.setItem(STORAGE_KEYS.COVERS, JSON.stringify(covers));
+  return covers;
+};
+
+export const resetCoverImage = (key: CoverKey): CoverSettings => setCoverImage(key, '');

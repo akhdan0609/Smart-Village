@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import potensiHeroBanner from '../../assets/images/potensi_hero_banner_1788325154234.jpg';
+import { getCoverImage } from '../../utils/storage';
 
 interface PotensiDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -27,6 +28,7 @@ interface ItemCardData {
 }
 
 export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) => {
+  const potensiCover = getCoverImage('potensi', potensiHeroBanner);
   const handleNav = (page: PageRoute, params?: any) => {
     if (onNavigate) {
       onNavigate(page, params);
@@ -307,7 +309,7 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
       {/* 1. TOP HERO BANNER (Montage Landscape with Farmer, Cows, Village Gate, Coffee, Bamboo, Dancers) */}
       <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-slate-900 select-none">
         <img
-          src={potensiHeroBanner}
+          src={potensiCover}
           alt="Panorama Potensi Desa Warung Menteng"
           className="w-full h-full object-cover object-center"
         />

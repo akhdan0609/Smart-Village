@@ -24,6 +24,7 @@ import {
 import { BeritaItem } from '../../types';
 import { getStoredBerita, getStoredKritikSaran, saveKritikSaran } from '../../utils/storage';
 import heroBannerImg from '../../assets/images/berita_hero_panorama_1788954557336.jpg';
+import { getCoverImage } from '../../utils/storage';
 
 interface BeritaViewProps {
   selectedBeritaId?: string;
@@ -31,6 +32,7 @@ interface BeritaViewProps {
 }
 
 export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavigate }) => {
+  const humasCover = getCoverImage('humas', heroBannerImg);
   const [beritaList, setBeritaList] = useState<BeritaItem[]>([]);
   const [selectedKategori, setSelectedKategori] = useState<string>('Semua');
   const [searchQuery, setSearchQuery] = useState('');
@@ -217,7 +219,7 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
       <div className="relative w-full bg-slate-900 overflow-hidden min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] flex items-center">
         {/* Background Image */}
         <img 
-          src={heroBannerImg} 
+          src={humasCover} 
           alt="Lanskap Desa Warung Menteng"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />

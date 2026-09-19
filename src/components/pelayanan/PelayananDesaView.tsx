@@ -17,12 +17,14 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import pelayananHeroImage from '../../assets/images/pelayanan_hero_kantor_desa_1788325727506.jpg';
+import { getCoverImage } from '../../utils/storage';
 
 interface PelayananDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
 }
 
 export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate }) => {
+  const pelayananCover = getCoverImage('pelayanan', pelayananHeroImage);
   const handleNav = (page: PageRoute, params?: any) => {
     if (onNavigate) {
       onNavigate(page, params);
@@ -99,7 +101,7 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       <div className="relative w-full overflow-hidden bg-slate-950">
         <div className="relative w-full min-h-[420px] sm:min-h-[460px] md:min-h-[480px] flex items-center">
           <img
-            src={pelayananHeroImage}
+            src={pelayananCover}
             alt="Kantor Desa Warung Menteng"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
