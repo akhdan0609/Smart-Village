@@ -119,12 +119,6 @@ const kategoriLabels = {
   agama: 'Jumlah Penduduk Menurut Agama',
 };
 
-const CHART_COLORS = [
-  '#0369a1', '#db2777', '#059669', '#f59e0b', '#7c3aed', '#0891b2',
-  '#e11d48', '#65a30d', '#d97706', '#4f46e5', '#c026d3', '#0d9488',
-  '#b45309', '#2563eb', '#be123c', '#14b8a6',
-];
-
 const polar = (cx: number, cy: number, r: number, angleDeg: number) => {
   const rad = (angleDeg * Math.PI) / 180;
   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
@@ -142,22 +136,28 @@ const annularSector = (cx: number, cy: number, rOuter: number, rInner: number, s
 const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ data, title }) => {
   if (data.length === 0) return null;
 
-  const grandTotal = data.reduce((sum, d) => sum + d.total, 0);
+  const totalL = data.reduce((sum, d) => sum + d.lakiLaki, 0);
+  const totalP = data.reduce((sum, d) => sum + d.perempuan, 0);
+  const grandTotal = totalL + totalP;
   const CX = 70;
   const CY = 70;
   const R_OUTER = 62;
-  const R_INNER = 42;
+  const R_INNER = 40;
+
+  const genderSegments = [
+    { id: 'laki-laki', label: 'Laki-laki', value: totalL, color: '#3b82f6' },
+    { id: 'perempuan', label: 'Perempuan', value: totalP, color: '#ec4899' },
+  ];
 
   let angle = -90;
-  const segments = data.map((d, i) => {
-    const sweep = (d.total / grandTotal) * 360;
+  const segments = genderSegments.map(s => {
+    const sweep = (s.value / grandTotal) * 360;
     const start = angle;
     const end = angle + sweep;
     angle = end;
     return {
-      ...d,
-      color: CHART_COLORS[i % CHART_COLORS.length],
-      path: data.length === 1
+      ...s,
+      path: s.value === grandTotal
         ? annularSector(CX, CY, R_OUTER, R_INNER, 0, 359.9)
         : annularSector(CX, CY, R_OUTER, R_INNER, start, end),
     };
@@ -165,46 +165,40 @@ const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ 
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5">
-      <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 mb-4">
+      <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 mb-2">
         <BarChart2 className="w-4 h-4 text-emerald-700" />
         Grafik {title}
       </h3>
 
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        {/* Donut */}
+      <div className="flex flex-col items-center">
         <div className="relative shrink-0">
-          <svg width="180" height="180" viewBox="0 0 140 140" aria-label={`Grafik ${title}`} role="img">
-            {data.length === 1 ? (
-              <circle cx={CX} cy={CY} r={(R_OUTER + R_INNER) / 2}
-                fill="none" stroke={CHART_COLORS[0]} strokeWidth={R_OUTER - R_INNER} />
-            ) : (
-              segments.map(s => (
-                <path key={s.id} d={s.path} fill={s.color}>
-                  <title>{`${s.label}: ${s.total.toLocaleString()} (${((s.total / grandTotal) * 100).toFixed(1)}%)`}</title>
-                </path>
-              ))
-            )}
+          <svg width="200" height="200" viewBox="0 0 140 140" aria-label={`Grafik ${title}`} role="img">
+            {segments.map(s => (
+              <path key={s.id} d={s.path} fill={s.color}>
+                <title>{`${s.label}: ${s.value.toLocaleString()} (${((s.value / grandTotal) * 100).toFixed(1)}%)`}</title>
+              </path>
+            ))}
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-xl font-black text-slate-900 tabular-nums leading-none">
-              {grandTotal.toLocaleString()}
-            </span>
-            <span className="text-[10px] font-semibold text-slate-500 mt-1 uppercase tracking-wide">Total</span>
+            <div className="flex gap-3 mb-0.5 text-[10px] font-semibold text-slate-400">
+              <span className="w-14 text-center">Laki-laki</span>
+              <span className="w-14 text-center">Perempuan</span>
+              <span className="w-14 text-center">Total</span>
+            </div>
+            <div className="flex gap-3 text-sm font-extrabold tabular-nums">
+              <span className="w-14 text-center text-blue-600">{totalL.toLocaleString()}</span>
+              <span className="w-14 text-center text-pink-600">{totalP.toLocaleString()}</span>
+              <span className="w-14 text-center text-slate-900">{grandTotal.toLocaleString()}</span>
+            </div>
           </div>
         </div>
-
-        {/* Legend */}
-        <div className="flex-1 w-full grid grid-cols-2 lg:grid-cols-3 gap-2">
-          {segments.map(s => (
-            <div key={s.id} className="flex items-center gap-2 text-[11px]">
-              <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-              <span className="flex-1 min-w-0 truncate text-slate-600 font-medium">{s.label}</span>
-              <span className="font-bold text-slate-900 tabular-nums shrink-0">{s.total.toLocaleString()}</span>
-              <span className="text-slate-400 tabular-nums w-9 text-right shrink-0">
-                {((s.total / grandTotal) * 100).toFixed(1)}%
-              </span>
-            </div>
-          ))}
+        <div className="flex items-center gap-5 mt-2 text-[11px] font-semibold text-slate-500">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> {((totalL / grandTotal) * 100).toFixed(1)}%
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-pink-500" /> {((totalP / grandTotal) * 100).toFixed(1)}%
+          </span>
         </div>
       </div>
     </div>
