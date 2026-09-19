@@ -715,11 +715,12 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
 
             <div>
               <button
-                onClick={() => setActiveModal('struktur')}
-                className="w-full bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold py-2 px-3 rounded-xl border border-slate-300 shadow-2xs flex items-center justify-center gap-1.5 transition cursor-pointer"
+                onClick={() => onNavigate ? onNavigate('kkn-struktural') : setActiveModal('struktur')}
+                className="w-full bg-[#064e3b] hover:bg-[#043d2c] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
               >
-                <Users className="w-3.5 h-3.5 text-emerald-700" />
-                <span>20 Mahasiswa & DPL</span>
+                <Users className="w-3.5 h-3.5 text-emerald-300" />
+                <span>Lihat Bagan Organisasi</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>

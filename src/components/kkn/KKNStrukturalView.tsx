@@ -8,7 +8,8 @@ import {
   Phone, 
   MapPin, 
   Layers,
-  Sparkles
+  Sparkles,
+  Network
 } from 'lucide-react';
 
 interface AnggotaTim {
@@ -228,6 +229,147 @@ export const KKNStrukturalView: React.FC = () => {
             
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
               Susunan organisasi mahasiswa Kuliah Kerja Nyata (KKN) Tematik di Desa Warung Menteng, di bawah bimbingan DPL dan pengawasan Pemerintah Desa.
+            </p>
+          </div>
+        </div>
+
+        {/* ============ BAGAN STRUKTUR ORGANISASI ============ */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-bold text-slate-900 border-b border-slate-200 pb-2 flex items-center gap-2">
+            <Network className="w-5 h-5 text-emerald-700" />
+            <span>Bagan Struktur Organisasi KKN Wigata Dharma</span>
+          </h3>
+
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto pb-4">
+              <div className="min-w-[860px] max-w-4xl mx-auto flex flex-col items-center">
+
+                {/* ===== LEVEL 1: PEMBIMBING & PENASIHAT ===== */}
+                <div className="flex justify-center gap-8">
+                  {pembinaDPL.map((p, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="bg-gradient-to-b from-emerald-800/5 to-white rounded-2xl border-2 border-emerald-700/30 p-3 sm:p-4 shadow-xs w-56 sm:w-64 mx-auto">
+                        <div className="flex flex-col items-center gap-2">
+                          <img
+                            src={p.fotoUrl}
+                            alt={p.nama}
+                            className="w-14 h-14 rounded-full object-cover border-2 border-emerald-600 shadow-xs"
+                          />
+                          <div className="space-y-0.5">
+                            <span className="block text-[10px] font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full">
+                              {p.peran}
+                            </span>
+                            <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm leading-snug">{p.nama}</h4>
+                            <p className="text-[10px] text-slate-500 leading-tight">{p.instansi}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Connector Level 1 -> 2 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-0.5 h-6 bg-emerald-600/50" />
+                  <div className="w-96 sm:w-[420px] h-0.5 bg-emerald-600/50 relative">
+                    <span className="absolute left-1/2 -top-0 -translate-x-1/2 w-0.5 h-0.5 block" />
+                  </div>
+                  <div className="flex justify-center gap-16 sm:gap-24">
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                  </div>
+                </div>
+
+                {/* ===== LEVEL 2: KETUA & WAKIL KETUA ===== */}
+                <div className="flex justify-center gap-16 sm:gap-24">
+                  {strukturBPH.slice(0, 2).map((m, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="bg-white rounded-2xl border-2 border-emerald-800/40 p-3 sm:p-4 shadow-sm w-44 sm:w-52">
+                        <img
+                          src={m.fotoUrl}
+                          alt={m.nama}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-emerald-600 mx-auto mb-1.5"
+                        />
+                        <span className="block text-[10px] font-extrabold text-emerald-900 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full inline-block mx-auto">
+                          {m.peran}
+                        </span>
+                        <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{m.nama}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Connector Level 2 -> 3 (BPH) */}
+                <div className="flex flex-col items-center">
+                  <div className="w-0.5 h-6 bg-emerald-600/50" />
+                  <div className="w-[560px] sm:w-4/5 h-0.5 bg-emerald-600/50 relative">
+                    <span className="absolute left-1/2 -translate-x-1/2 -top-[1px] w-0.5 h-px bg-emerald-600/50" />
+                  </div>
+                  <div className="flex justify-center gap-12 sm:gap-16 w-[560px] sm:w-4/5">
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                  </div>
+                </div>
+
+                {/* ===== LEVEL 3: BAGIAN PENGURUS HARIAN (BPH) ===== */}
+                <div className="flex justify-center gap-12 sm:gap-16">
+                  {strukturBPH.slice(2, 6).map((m, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="bg-white rounded-2xl border-2 border-slate-300/80 p-3 sm:p-4 shadow-sm w-40 sm:w-48">
+                        <span className="block text-[10px] font-extrabold text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full inline-block mx-auto">
+                          {m.peran}
+                        </span>
+                        <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{m.nama}</h4>
+                        <p className="text-[10px] text-slate-400 mt-0.5">BPH</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Connector Level 3 -> 4 (Divisi) */}
+                <div className="flex flex-col items-center">
+                  <div className="w-0.5 h-6 bg-emerald-600/50" />
+                  <div className="w-[560px] sm:w-3/4 h-0.5 bg-emerald-600/50 relative">
+                    <span className="absolute left-1/2 -translate-x-1/2 -top-[1px] w-0.5 h-px bg-emerald-600/50" />
+                  </div>
+                  <div className="flex justify-center gap-24 sm:gap-32 w-[560px] sm:w-3/4">
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
+                  </div>
+                </div>
+
+                {/* ===== LEVEL 4: KOORDINATOR DIVISI ===== */}
+                <div className="flex justify-center gap-24 sm:gap-32">
+                  {([
+                    { nama: strukturAcara[0].nama, peran: 'Koordinator Acara', div: 'Divisi Acara' },
+                    { nama: strukturHumas[0].nama, peran: 'Koordinator Humas', div: 'Divisi Humas' },
+                    { nama: strukturMedia[0].nama, peran: 'Koordinator Media', div: 'Divisi Media' },
+                  ]).map((d, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="bg-gradient-to-b from-emerald-800/10 to-white rounded-2xl border-2 border-emerald-700/40 p-3 sm:p-4 shadow-sm w-40 sm:w-48">
+                        <img
+                          src={[strukturAcara, strukturHumas, strukturMedia][idx][0].fotoUrl}
+                          alt={d.nama}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-emerald-600 mx-auto mb-1.5"
+                        />
+                        <span className="block text-[10px] font-extrabold text-emerald-900 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full inline-block mx-auto">
+                          {d.div}
+                        </span>
+                        <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{d.nama}</h4>
+                        <p className="text-[10px] text-emerald-700 font-semibold mt-0.5">{d.peran}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </div>
+
+            <p className="text-center text-[11px] text-slate-400 pt-2 border-t border-slate-100">
+              Struktur kepengurusan KKN Kelompok Wigata Dharma &mdash; Universitas Nahdlatul Ulama Indonesia (UNUSIA) 2026
             </p>
           </div>
         </div>
