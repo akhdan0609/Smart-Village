@@ -184,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Latar Belakang KKN', desc: 'Latar belakang pengabdian mahasiswa di Warung Menteng', page: 'kkn-latar-belakang' as PageRoute, tag: 'KKN' },
     { title: 'Album Kami KKN', desc: 'Album foto dokumentasi kegiatan KKN Wigata Dharma', page: 'kkn-galeri' as PageRoute, tag: 'KKN' },
     // Kontak Darurat
-    { title: 'Kontak Darurat 24 Jam', desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' },
+    { title: 'Kontak Darurat 24 Jam', desc: 'Damkar, BPBD, Bhabinkamtibmas, Babinsa, dan Bidan Desa', page: 'kontak-darurat' as PageRoute, tag: 'Darurat' },
     // Akomodasi / Wisata individual
     ...AKOMODASI_LIST.map(item => ({
       title: item.nama,

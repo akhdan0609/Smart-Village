@@ -7,26 +7,22 @@ import {
   AlertTriangle, 
   Info, 
   Flame, 
-  PlusSquare, 
   Shield, 
   Landmark, 
   UserCheck, 
   Home, 
-  Zap,
   CheckCircle2,
   MessageCircle
 } from 'lucide-react';
 
 // Hero Panorama & Emergency Images
 import kknHeroPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
-import daruratAmbulans from '../../assets/images/darurat_ambulans_1788607275359.jpg';
 import daruratPolisi from '../../assets/images/darurat_polisi_1788607291417.jpg';
 import daruratDamkar from '../../assets/images/darurat_damkar_1788607305696.jpg';
 import daruratBpbd from '../../assets/images/darurat_bpbd_1788607319133.jpg';
 import daruratSatpolPp from '../../assets/images/darurat_satpol_pp_1788607334637.jpg';
 import daruratBabinsa from '../../assets/images/darurat_babinsa_1788607347386.jpg';
 import daruratBidanDesa from '../../assets/images/darurat_bidan_desa_1788607359724.jpg';
-import daruratPlkbListrik from '../../assets/images/darurat_plkb_listrik_1788607373650.jpg';
 
 interface EmergencyContact {
   id: string;
@@ -41,16 +37,6 @@ interface EmergencyContact {
 
 export const KontakDaruratView: React.FC = () => {
   const contacts: EmergencyContact[] = [
-    {
-      id: 'ambulans',
-      name: 'Ambulans Siaga',
-      instansi: 'Layanan Kesehatan Desa Warung Menteng',
-      phone: '0811-2233-4455',
-      phoneRaw: '081122334455',
-      waRaw: '6281122334455',
-      image: daruratAmbulans,
-      badgeIcon: <PlusSquare className="w-4 h-4 text-emerald-800" />
-    },
     {
       id: 'babinkamtibmas',
       name: 'Babinkamtibmas',
@@ -110,16 +96,6 @@ export const KontakDaruratView: React.FC = () => {
       waRaw: '6281513665832',
       image: daruratBidanDesa,
       badgeIcon: <Home className="w-4 h-4 text-emerald-800" />
-    },
-    {
-      id: 'plkb',
-      name: 'PLKB',
-      instansi: 'BKKBN Cijeruk',
-      phone: '0858-9900-1133',
-      phoneRaw: '085899001133',
-      waRaw: '6285899001133',
-      image: daruratPlkbListrik,
-      badgeIcon: <Zap className="w-4 h-4 text-emerald-800" />
     }
   ];
 
@@ -257,7 +233,7 @@ export const KontakDaruratView: React.FC = () => {
           </p>
         </div>
 
-        {/* 5. 8 EMERGENCY CONTACT CARDS (2 ROWS OF 4 COLS) */}
+        {/* 5. 6 EMERGENCY CONTACT CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-1">
           {contacts.map((contact) => (
             <div

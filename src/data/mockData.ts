@@ -1279,7 +1279,7 @@ export const INITIAL_LAPORAN_WARGA: LaporanWarga[] = [
   }
 ];
 
-// DATA KONTAK DARURAT (8 KATEGORI LENGKAP YANG DIMINTA USER)
+// DATA KONTAK DARURAT (6 KATEGORI AKTIF)
 export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   {
     id: 'dar-1',
@@ -1296,19 +1296,6 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
   },
   {
     id: 'dar-2',
-    namaLayanan: 'Ambulans Siaga',
-    instansi: 'Layanan Kesehatan Desa Warung Menteng',
-    kategori: 'Medis & Kesehatan',
-    nomorTelepon: '0811-2233-4455',
-    nomorWA: '6281122334455',
-    alamatPos: 'Garasi Siaga Kantor Desa Warung Menteng',
-    siaga: '24 Jam Non-Stop',
-    namaPetugas: 'Pak Jajang (Driver Siaga 1) / Pak Hendra (Driver Siaga 2)',
-    deskripsi: 'Layanan antar jemput pasien gawat darurat, ibu melahirkan, rujukan RSUD Ciawi / PMI Bogor gratis bagi warga Desa Warung Menteng.',
-    iconName: 'Ambulance'
-  },
-  {
-    id: 'dar-3',
     namaLayanan: 'Bhabinkamtibmas',
     instansi: 'Polsek Cijeruk',
     kategori: 'Keamanan & Ketertiban',
@@ -1371,19 +1358,6 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
     namaPetugas: 'Bidan Rina Marlina, S.Tr.Keb.',
     deskripsi: 'Pertolongan persalinan darurat 24 jam, konsultasi kesehatan ibu dan anak, penanganan pendarahan pasca salin, imunisasi darurat.',
     iconName: 'HeartPulse'
-  },
-  {
-    id: 'dar-8',
-    namaLayanan: 'PLKB',
-    instansi: 'BKKBN Cijeruk',
-    kategori: 'Pamong Desa',
-    nomorTelepon: '0858-9900-1133',
-    nomorWA: '6285899001133',
-    alamatPos: 'Balai Penyuluhan KB Cijeruk',
-    siaga: 'Senin - Jumat: 08.00 - 16.00 WIB',
-    namaPetugas: 'Ibu Ratna Dewi, S.K.M.',
-    deskripsi: 'Konsultasi program KB, pendampingan keluarga berisiko stunting, calon pengantin (Elsimil), dan ketahanan keluarga sejahtera.',
-    iconName: 'Users'
   }
 ];
 

@@ -49,11 +49,11 @@ export const QuickAccess: React.FC<QuickAccessProps> = ({ onNavigate }) => {
     },
     {
       title: 'Kontak Darurat 24 Jam',
-      desc: 'Ambulans desa, Damkar, BPBD, Bhabinkamtibmas, Babinsa, dan Bidan Desa.',
+      desc: 'Damkar, BPBD, Bhabinkamtibmas, Babinsa, dan Bidan Desa.',
       route: 'kontak-darurat' as PageRoute,
       icon: PhoneCall,
       color: 'bg-rose-600 text-white',
-      badge: 'Siaga 8 Instansi',
+      badge: 'Siaga 6 Instansi',
       badgeColor: 'bg-rose-100 text-rose-800'
     },
     {
