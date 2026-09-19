@@ -244,9 +244,9 @@ export const KKNStrukturalView: React.FC = () => {
             <div className="overflow-x-auto pb-4">
               <div className="min-w-[860px] max-w-4xl mx-auto flex flex-col items-center">
 
-                {/* ===== LEVEL 1: PEMBIMBING & PENASIHAT ===== */}
-                <div className="flex justify-center gap-8">
-                  {pembinaDPL.map((p, idx) => (
+                {/* ===== LEVEL 1: PEMBIMBING KKN ===== */}
+                <div className="flex justify-center">
+                  {pembinaDPL.filter((p) => p.peran.includes('Dosen Pembimbing')).map((p, idx) => (
                     <div key={idx} className="text-center">
                       <div className="bg-gradient-to-b from-emerald-800/5 to-white rounded-2xl border-2 border-emerald-700/30 p-3 sm:p-4 shadow-xs w-56 sm:w-64 mx-auto">
                         <div className="flex flex-col items-center gap-2">

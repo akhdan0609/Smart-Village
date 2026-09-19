@@ -831,7 +831,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
               </div>
 
               <p>
-                Dengan semangat <em>&ldquo;Bersama Warga, Membangun Warung Menteng&rdquo;</em>, tim KKN beranggotakan 21 mahasiswa lintas program studi berkolaborasi secara intensif bersama Kepala Desa, perangkat desa, tokoh agama, ketua RT/RW, dan generasi pemuda Karang Taruna.
+                Dengan semangat <em>&ldquo;Bersama Warga, Membangun Desa&rdquo;</em>, tim KKN beranggotakan 21 mahasiswa lintas program studi berkolaborasi secara intensif bersama Kepala Desa, perangkat desa, tokoh agama, ketua RT/RW, dan generasi pemuda Karang Taruna.
               </p>
             </div>
 

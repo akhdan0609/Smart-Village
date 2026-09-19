@@ -68,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
             </div>
 
             <div className="text-center italic font-serif text-emerald-100 text-sm sm:text-base tracking-wide px-2">
-              &ldquo;Bersama Warga, Membangun Warung Menteng&rdquo;
+              &ldquo;Bersama Warga, Membangun Desa&rdquo;
             </div>
 
             <div className="flex items-center gap-2">
