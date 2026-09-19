@@ -330,19 +330,43 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
 
         {/* Data Table */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm">
-          <DataTable
-            data={filteredData}
-            columns={columns}
-            keyField="id"
-            onEdit={openEditModal}
-            onDelete={handleDelete}
-            canEdit={canEdit}
-            canDelete={canDelete}
-            searchable={true}
-            searchFields={['label']}
-            emptyMessage={`Belum ada data ${kategoriLabels[activeTab].toLowerCase()}`}
-          />
-        </div>
+<DataTable
+              data={filteredData}
+              columns={columns}
+              keyField="id"
+              onEdit={openEditModal}
+              onDelete={handleDelete}
+              canEdit={canEdit}
+              canDelete={canDelete}
+              searchable={true}
+              searchFields={['label']}
+              emptyMessage={`Belum ada data ${kategoriLabels[activeTab].toLowerCase()}`}
+            />
+          </div>
+
+          {/* Total per kategori */}
+          {filteredData.length > 0 && (
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm mt-4 p-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Total {kategoriLabels[activeTab]}
+                </span>
+                <span className="text-xs font-semibold text-emerald-600">
+                  {filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-blue-600">Laki-laki:</span>
+                <span className="text-blue-600 font-medium">
+                  {filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}
+                </span>
+                <span className="text-xs font-bold text-pink-500">Perempuan:</span>
+                <span className="text-pink-500 font-medium">
+                  {filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          )}
 
         {/* Modal */}
         <FormModal
