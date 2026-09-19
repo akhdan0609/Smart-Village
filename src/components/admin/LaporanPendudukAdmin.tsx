@@ -224,9 +224,9 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
 
 const columns: Column<DemographicData>[] = [
     { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
-    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-right font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right p-2' },
-    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-right font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-right p-2' },
-    { key: 'total', header: 'Total', render: (item: any) => <div className="text-right font-bold text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-center text-sm font-semibold tabular-nums text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2', headerClassName: 'text-sm' },
+    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-center text-sm font-semibold tabular-nums text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2', headerClassName: 'text-sm' },
+    { key: 'total', header: 'Total', render: (item: any) => <div className="text-center text-sm font-bold tabular-nums text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-center p-2', headerClassName: 'text-sm' },
   ];
 
   const formFields = [

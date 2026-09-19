@@ -7,6 +7,7 @@ export interface Column<T> {
   render?: (item: T, index: number) => React.ReactNode;
   sortable?: boolean;
   className?: string;
+  headerClassName?: string;
 }
 
 export interface DataTableProps<T> {
@@ -102,20 +103,23 @@ export function DataTable<T extends { [key: string]: any }>({
         <table className="w-full text-left text-xs">
           <thead>
             <tr className="bg-slate-100 text-slate-700 border-b border-slate-200">
-              {columns.map((col, idx) => (
-                <th
-                  key={col.key}
-                  className={`p-3 font-bold ${col.sortable ? 'cursor-pointer select-none hover:bg-slate-200' : ''} ${idx === 0 ? 'rounded-l-xl' : ''} ${idx === columns.length - 1 && !hasActions ? 'rounded-r-xl' : ''} ${col.className || ''}`}
-                  onClick={() => handleSort(col.key)}
-                >
-                  <div className={`flex items-center gap-1 ${col.className?.includes('text-right') ? 'justify-end' : col.className?.includes('text-center') ? 'justify-center' : ''}`}>
-                    <span>{col.header}</span>
-                    {col.sortable && sortConfig?.key === col.key && (
-                      sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
-                    )}
-                  </div>
-                </th>
-              ))}
+              {columns.map((col, idx) => {
+                const headerTail = `${col.className || ''} ${col.headerClassName || ''}`;
+                return (
+                  <th
+                    key={col.key}
+                    className={`p-3 font-bold ${col.sortable ? 'cursor-pointer select-none hover:bg-slate-200' : ''} ${idx === 0 ? 'rounded-l-xl' : ''} ${idx === columns.length - 1 && !hasActions ? 'rounded-r-xl' : ''} ${col.className || ''} ${col.headerClassName || ''}`}
+                    onClick={() => handleSort(col.key)}
+                  >
+                    <div className={`flex items-center gap-1 ${headerTail.includes('text-right') ? 'justify-end' : headerTail.includes('text-center') ? 'justify-center' : ''}`}>
+                      <span>{col.header}</span>
+                      {col.sortable && sortConfig?.key === col.key && (
+                        sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                      )}
+                    </div>
+                  </th>
+                );
+              })}
               {hasActions && (
                 <th className="p-3 font-bold rounded-r-xl text-center">Aksi</th>
               )}
