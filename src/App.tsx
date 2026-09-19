@@ -112,6 +112,9 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: PageRoute, params?: any) => {
+    if (page === 'login-admin' && isAdmin) {
+      page = getCurrentAdmin()?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard';
+    }
     history.pushState({ page, params: params || {} }, '');
     setActivePage(page);
     setNavParams(params || {});
