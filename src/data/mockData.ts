@@ -1358,6 +1358,30 @@ export const KONTAK_DARURAT_LIST: KontakDaruratItem[] = [
     namaPetugas: 'Bidan Rina Marlina, S.Tr.Keb.',
     deskripsi: 'Pertolongan persalinan darurat 24 jam, konsultasi kesehatan ibu dan anak, penanganan pendarahan pasca salin, imunisasi darurat.',
     iconName: 'HeartPulse'
+  },
+  {
+    id: 'dar-8',
+    namaLayanan: 'Sekretaris Desa',
+    instansi: 'Pemerintah Desa Warung Menteng',
+    kategori: 'Layanan Desa',
+    nomorTelepon: '0815-4641-2012',
+    nomorWA: '+6281546412012',
+    siaga: 'Jam Kerja Layanan Desa',
+    namaPetugas: 'Sekretaris Desa Warung Menteng',
+    deskripsi: 'Layanan informasi dan administrasi surat-menyurat Pemerintah Desa Warung Menteng.',
+    iconName: 'Users'
+  },
+  {
+    id: 'dar-9',
+    namaLayanan: 'Humas',
+    instansi: 'Pemerintah Desa Warung Menteng',
+    kategori: 'Layanan Desa',
+    nomorTelepon: '0882-9125-3033',
+    nomorWA: '+6288291253033',
+    siaga: 'Jam Kerja Layanan Desa',
+    namaPetugas: 'Humas Desa Warung Menteng',
+    deskripsi: 'Layanan informasi publik, komunikasi dan dokumentasi kegiatan Desa Warung Menteng.',
+    iconName: 'Users'
   }
 ];
 

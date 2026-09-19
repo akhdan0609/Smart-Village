@@ -96,6 +96,26 @@ export const KontakDaruratView: React.FC = () => {
       waRaw: '6281513665832',
       image: daruratBidanDesa,
       badgeIcon: <Home className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'sekretaris-desa',
+      name: 'Sekretaris Desa',
+      instansi: 'Pemerintah Desa Warung Menteng',
+      phone: '0815-4641-2012',
+      phoneRaw: '081546412012',
+      waRaw: '6281546412012',
+      image: daruratPolisi,
+      badgeIcon: <Users className="w-4 h-4 text-emerald-800" />
+    },
+    {
+      id: 'humas-desa',
+      name: 'Humas',
+      instansi: 'Pemerintah Desa Warung Menteng',
+      phone: '0882-9125-3033',
+      phoneRaw: '08829125033',
+      waRaw: '6288291253033',
+      image: daruratBabinsa,
+      badgeIcon: <Users className="w-4 h-4 text-emerald-800" />
     }
   ];
 
