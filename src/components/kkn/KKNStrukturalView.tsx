@@ -244,10 +244,10 @@ export const KKNStrukturalView: React.FC = () => {
             <div className="overflow-x-auto pb-4">
               <div className="min-w-[860px] max-w-4xl mx-auto flex flex-col items-center">
 
-                {/* ===== LEVEL 1: PEMBIMBING KKN ===== */}
+                {/* ===== LEVEL 1: DOSEN PEMBIMBING ===== */}
                 <div className="flex justify-center">
                   {pembinaDPL.filter((p) => p.peran.includes('Dosen Pembimbing')).map((p, idx) => (
-                    <div key={idx} className="text-center">
+                    <div key={idx} className="flex flex-col items-center">
                       <div className="bg-gradient-to-b from-emerald-800/5 to-white rounded-2xl border-2 border-emerald-700/30 p-3 sm:p-4 shadow-xs w-56 sm:w-64 mx-auto">
                         <div className="flex flex-col items-center gap-2">
                           <img
@@ -264,26 +264,19 @@ export const KKNStrukturalView: React.FC = () => {
                           </div>
                         </div>
                       </div>
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                     </div>
                   ))}
                 </div>
 
-                {/* Connector Level 1 -> 2 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-0.5 h-6 bg-emerald-600/50" />
-                  <div className="w-96 sm:w-[420px] h-0.5 bg-emerald-600/50 relative">
-                    <span className="absolute left-1/2 -top-0 -translate-x-1/2 w-0.5 h-0.5 block" />
-                  </div>
-                  <div className="flex justify-center gap-16 sm:gap-24">
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                  </div>
-                </div>
+                {/* Bus Level 1 -> 2 */}
+                <div className="w-full h-0.5 bg-emerald-600/50 rounded-full" />
 
                 {/* ===== LEVEL 2: KETUA & WAKIL KETUA ===== */}
                 <div className="flex justify-center gap-16 sm:gap-24">
                   {strukturBPH.slice(0, 2).map((m, idx) => (
-                    <div key={idx} className="text-center">
+                    <div key={idx} className="flex flex-col items-center">
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                       <div className="bg-white rounded-2xl border-2 border-emerald-800/40 p-3 sm:p-4 shadow-sm w-44 sm:w-52">
                         <img
                           src={m.fotoUrl}
@@ -295,28 +288,19 @@ export const KKNStrukturalView: React.FC = () => {
                         </span>
                         <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{m.nama}</h4>
                       </div>
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                     </div>
                   ))}
                 </div>
 
-                {/* Connector Level 2 -> 3 (BPH) */}
-                <div className="flex flex-col items-center">
-                  <div className="w-0.5 h-6 bg-emerald-600/50" />
-                  <div className="w-[560px] sm:w-4/5 h-0.5 bg-emerald-600/50 relative">
-                    <span className="absolute left-1/2 -translate-x-1/2 -top-[1px] w-0.5 h-px bg-emerald-600/50" />
-                  </div>
-                  <div className="flex justify-center gap-12 sm:gap-16 w-[560px] sm:w-4/5">
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                  </div>
-                </div>
+                {/* Bus Level 2 -> 3 */}
+                <div className="w-full h-0.5 bg-emerald-600/50 rounded-full" />
 
                 {/* ===== LEVEL 3: BAGIAN PENGURUS HARIAN (BPH) ===== */}
                 <div className="flex justify-center gap-12 sm:gap-16">
                   {strukturBPH.slice(2, 6).map((m, idx) => (
-                    <div key={idx} className="text-center">
+                    <div key={idx} className="flex flex-col items-center">
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                       <div className="bg-white rounded-2xl border-2 border-slate-300/80 p-3 sm:p-4 shadow-sm w-40 sm:w-48">
                         <span className="block text-[10px] font-extrabold text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full inline-block mx-auto">
                           {m.peran}
@@ -324,22 +308,13 @@ export const KKNStrukturalView: React.FC = () => {
                         <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm mt-1 leading-snug">{m.nama}</h4>
                         <p className="text-[10px] text-slate-400 mt-0.5">BPH</p>
                       </div>
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                     </div>
                   ))}
                 </div>
 
-                {/* Connector Level 3 -> 4 (Divisi) */}
-                <div className="flex flex-col items-center">
-                  <div className="w-0.5 h-6 bg-emerald-600/50" />
-                  <div className="w-[560px] sm:w-3/4 h-0.5 bg-emerald-600/50 relative">
-                    <span className="absolute left-1/2 -translate-x-1/2 -top-[1px] w-0.5 h-px bg-emerald-600/50" />
-                  </div>
-                  <div className="flex justify-center gap-24 sm:gap-32 w-[560px] sm:w-3/4">
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                    <span className="w-0.5 h-5 bg-emerald-600/50 block" />
-                  </div>
-                </div>
+                {/* Bus Level 3 -> 4 */}
+                <div className="w-full h-0.5 bg-emerald-600/50 rounded-full" />
 
                 {/* ===== LEVEL 4: KOORDINATOR DIVISI ===== */}
                 <div className="flex justify-center gap-24 sm:gap-32">
@@ -348,7 +323,8 @@ export const KKNStrukturalView: React.FC = () => {
                     { nama: strukturHumas[0].nama, peran: 'Koordinator Humas', div: 'Divisi Humas' },
                     { nama: strukturMedia[0].nama, peran: 'Koordinator Media', div: 'Divisi Media' },
                   ]).map((d, idx) => (
-                    <div key={idx} className="text-center">
+                    <div key={idx} className="flex flex-col items-center">
+                      <div className="w-0.5 h-5 bg-emerald-600/50" />
                       <div className="bg-gradient-to-b from-emerald-800/10 to-white rounded-2xl border-2 border-emerald-700/40 p-3 sm:p-4 shadow-sm w-40 sm:w-48">
                         <img
                           src={[strukturAcara, strukturHumas, strukturMedia][idx][0].fotoUrl}
