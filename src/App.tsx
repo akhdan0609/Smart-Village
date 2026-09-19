@@ -77,7 +77,8 @@ import { KritikSaranAdmin } from './components/admin/KritikSaranAdmin';
 import { KontakDaruratAdmin } from './components/admin/KontakDaruratAdmin';
 import { LaporanPendudukAdmin } from './components/admin/LaporanPendudukAdmin';
 import { AdminSettings } from './components/admin/AdminSettings';
-import { isAdminLoggedIn, getCurrentAdmin } from './utils/storage';
+import { SampulHalamanAdmin } from './components/admin/SampulHalamanAdmin';
+import { isAdminLoggedIn, getCurrentAdmin, CoverKey } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
 const getInitialState = () => {
@@ -356,6 +357,23 @@ export default function App() {
       case 'admin-settings':
         return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <AdminSettings onLogout={handleLogout} onNavigate={handleNavigate} />
+        ) : (
+          <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+        );
+
+      // ADMIN - SAMPUL HALAMAN (Super Admin & Admin 1)
+      case 'admin-cover-beranda':
+      case 'admin-cover-profil':
+      case 'admin-cover-potensi':
+      case 'admin-cover-pelayanan':
+      case 'admin-cover-humas':
+        return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
+          <SampulHalamanAdmin
+            coverKey={activePage.replace('admin-cover-', '') as CoverKey}
+            activePage={activePage}
+            onLogout={handleLogout}
+            onNavigate={handleNavigate}
+          />
         ) : (
           <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
         );

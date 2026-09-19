@@ -90,7 +90,12 @@ export type PageRoute =
   | 'admin-humas-kritik-saran'
   | 'admin-kontak-darurat'
   | 'admin-laporan-penduduk'
-  | 'admin-settings';
+  | 'admin-settings'
+  | 'admin-cover-beranda'
+  | 'admin-cover-profil'
+  | 'admin-cover-potensi'
+  | 'admin-cover-pelayanan'
+  | 'admin-cover-humas';
 
 export type UMKMKategori = 'makanan-minuman' | 'kerajinan' | 'produk-lainnya';
 
