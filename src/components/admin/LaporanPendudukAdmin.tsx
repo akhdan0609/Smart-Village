@@ -436,9 +436,9 @@ const columns: Column<DemographicData>[] = [
               footer={{
                 label: `Total ${kategoriLabels[activeTab]}`,
                 values: {
-                  lakiLaki: <div className="text-right font-bold text-blue-600">{filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}</div>,
-                  perempuan: <div className="text-right font-bold text-pink-600">{filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}</div>,
-                  total: <div className="text-right font-bold text-emerald-600">{filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}</div>,
+                  lakiLaki: <div className="text-center font-bold text-blue-600">{filteredData.reduce((sum, d) => sum + d.lakiLaki, 0).toLocaleString()}</div>,
+                  perempuan: <div className="text-center font-bold text-pink-600">{filteredData.reduce((sum, d) => sum + d.perempuan, 0).toLocaleString()}</div>,
+                  total: <div className="text-center font-bold text-emerald-600">{filteredData.reduce((sum, d) => sum + d.total, 0).toLocaleString()}</div>,
                 },
               }}
             />
