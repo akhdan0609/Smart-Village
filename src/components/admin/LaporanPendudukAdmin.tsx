@@ -119,87 +119,52 @@ const kategoriLabels = {
   agama: 'Jumlah Penduduk Menurut Agama',
 };
 
-const polar = (cx: number, cy: number, r: number, angleDeg: number) => {
-  const rad = (angleDeg * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-};
-
-const annularSector = (cx: number, cy: number, rOuter: number, rInner: number, startAngle: number, endAngle: number) => {
-  const p1 = polar(cx, cy, rOuter, startAngle);
-  const p2 = polar(cx, cy, rOuter, endAngle);
-  const p3 = polar(cx, cy, rInner, endAngle);
-  const p4 = polar(cx, cy, rInner, startAngle);
-  const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-  return `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)} L ${p3.x.toFixed(2)} ${p3.y.toFixed(2)} A ${rInner} ${rInner} 0 ${largeArc} 0 ${p4.x.toFixed(2)} ${p4.y.toFixed(2)} Z`;
-};
-
 const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ data, title }) => {
   if (data.length === 0) return null;
-
-  const totalL = data.reduce((sum, d) => sum + d.lakiLaki, 0);
-  const totalP = data.reduce((sum, d) => sum + d.perempuan, 0);
-  const grandTotal = totalL + totalP;
-  const CX = 70;
-  const CY = 70;
-  const R_OUTER = 62;
-  const R_INNER = 40;
-
-  const genderSegments = [
-    { id: 'laki-laki', label: 'Laki-laki', value: totalL, color: '#3b82f6' },
-    { id: 'perempuan', label: 'Perempuan', value: totalP, color: '#ec4899' },
-  ];
-
-  let angle = -90;
-  const segments = genderSegments.map(s => {
-    const sweep = (s.value / grandTotal) * 360;
-    const start = angle;
-    const end = angle + sweep;
-    angle = end;
-    return {
-      ...s,
-      path: s.value === grandTotal
-        ? annularSector(CX, CY, R_OUTER, R_INNER, 0, 359.9)
-        : annularSector(CX, CY, R_OUTER, R_INNER, start, end),
-    };
-  });
+  const max = Math.max(...data.map(d => Math.max(d.lakiLaki, d.perempuan)), 1);
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5">
-      <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 mb-2">
-        <BarChart2 className="w-4 h-4 text-emerald-700" />
-        Grafik {title}
-      </h3>
-
-      <div className="flex flex-col items-center">
-        <div className="relative shrink-0">
-          <svg width="200" height="200" viewBox="0 0 140 140" aria-label={`Grafik ${title}`} role="img">
-            {segments.map(s => (
-              <path key={s.id} d={s.path} fill={s.color}>
-                <title>{`${s.label}: ${s.value.toLocaleString()} (${((s.value / grandTotal) * 100).toFixed(1)}%)`}</title>
-              </path>
-            ))}
-          </svg>
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="flex gap-3 mb-0.5 text-[10px] font-semibold text-slate-400">
-              <span className="w-14 text-center">Laki-laki</span>
-              <span className="w-14 text-center">Perempuan</span>
-              <span className="w-14 text-center">Total</span>
-            </div>
-            <div className="flex gap-3 text-sm font-extrabold tabular-nums">
-              <span className="w-14 text-center text-blue-600">{totalL.toLocaleString()}</span>
-              <span className="w-14 text-center text-pink-600">{totalP.toLocaleString()}</span>
-              <span className="w-14 text-center text-slate-900">{grandTotal.toLocaleString()}</span>
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+          <BarChart2 className="w-4 h-4 text-emerald-700" />
+          Grafik {title}
+        </h3>
+        <div className="flex items-center gap-3 text-[11px] font-semibold">
+          <span className="flex items-center gap-1.5 text-blue-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Laki-laki
+          </span>
+          <span className="flex items-center gap-1.5 text-pink-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-pink-500" /> Perempuan
+          </span>
+        </div>
+      </div>
+      <div className="space-y-3">
+        {data.map(d => (
+          <div key={d.id} className="flex items-center gap-3">
+            <span className="w-28 sm:w-32 shrink-0 text-[11px] font-medium text-slate-600 truncate">
+              {d.label}
+            </span>
+            <div className="flex-1 space-y-1">
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-2.5 rounded-full bg-blue-100 overflow-hidden">
+                  <div className="h-full rounded-full bg-blue-500" style={{ width: `${Math.max((d.lakiLaki / max) * 100, 2)}%` }} />
+                </div>
+                <span className="w-10 text-right text-[11px] font-bold text-blue-700 tabular-nums">
+                  {d.lakiLaki.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-2.5 rounded-full bg-pink-100 overflow-hidden">
+                  <div className="h-full rounded-full bg-pink-500" style={{ width: `${Math.max((d.perempuan / max) * 100, 2)}%` }} />
+                </div>
+                <span className="w-10 text-right text-[11px] font-bold text-pink-700 tabular-nums">
+                  {d.perempuan.toLocaleString()}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-5 mt-2 text-[11px] font-semibold text-slate-500">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> {((totalL / grandTotal) * 100).toFixed(1)}%
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-pink-500" /> {((totalP / grandTotal) * 100).toFixed(1)}%
-          </span>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -310,9 +275,9 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
 
 const columns: Column<DemographicData>[] = [
     { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
-    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-right font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-right p-2' },
-    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-right font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-right p-2' },
-    { key: 'total', header: 'Total', render: (item: any) => <div className="text-right font-bold text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-right p-2' },
+    { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-center font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2' },
+    { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-center font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2' },
+    { key: 'total', header: 'Total', render: (item: any) => <div className="text-center font-bold text-slate-900">{item.total.toLocaleString()}</div>, className: 'text-center p-2' },
   ];
 
   const formFields = [
