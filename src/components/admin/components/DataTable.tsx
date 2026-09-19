@@ -25,6 +25,7 @@ export interface DataTableProps<T> {
   className?: string;
   canEdit?: boolean;
   canDelete?: boolean;
+  fitContent?: boolean;
 }
 
 export function DataTable<T extends { [key: string]: any }>({
@@ -42,6 +43,7 @@ export function DataTable<T extends { [key: string]: any }>({
   className = '',
   canEdit = true,
   canDelete = true,
+  fitContent = false,
 }: DataTableProps<T>) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [sortConfig, setSortConfig] = React.useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
@@ -100,7 +102,7 @@ export function DataTable<T extends { [key: string]: any }>({
       )}
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs">
+        <table className={`text-left text-xs ${fitContent ? 'w-max mx-auto table-auto' : 'w-full'}`}>
           <thead>
             <tr className="bg-slate-100 text-slate-700 border-b border-slate-200">
               {columns.map((col, idx) => {
