@@ -160,7 +160,7 @@ export const KKNGaleriView: React.FC<KKNGaleriViewProps> = ({ onNavigate }) => {
                 Peringatan:
               </h3>
               <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed text-justify">
-                Album ini berisi dokumentasi kegiatan KKN Kelompok Wigata Dharma di Desa Warung Menteng. Dilarang menggunakan, menyalin, atau menyebarkan foto-foto ini untuk kepentingan pribadi, komersial, atau tindakan yang melanggar hak cipta tanpa izin dari pihak terkait. Penggunaan yang <strong className="font-extrabold text-slate-900">tidak bertanggung jawab</strong> dapat dikenai sanksi sesuai peraturan yang berlaku.
+                Album ini berisi dokumentasi kegiatan KKN Kelompok Wigata Dharma di Desa Warung Menteng. Dilarang menggunakan, menyalin, atau menyebarkan foto-foto ini untuk kepentingan pribadi, komersial, atau tindakan yang melanggar hak cipta tanpa izin dari pihak terkait. Penggunaan yang tidak bertanggung jawab dapat dikenai sanksi sesuai peraturan perundang - undangan yang berlaku.
               </p>
             </div>
 
