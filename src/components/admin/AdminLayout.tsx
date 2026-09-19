@@ -170,10 +170,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Auto-close sidebar on mobile after navigation
+  // Auto-close sidebar after navigation
   const handleNavClick = (route: PageRoute) => {
     onNavigate(route);
-    if (isMobile) setSidebarOpen(false);
+    setSidebarOpen(false);
   };
 
   const getActiveRoute = (page: PageRoute) => {
