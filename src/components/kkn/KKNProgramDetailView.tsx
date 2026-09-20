@@ -129,7 +129,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
       'Mengenalkan kesenian dan seni budaya lokal kepada generasi muda',
       'Mendukung pengrajin kerajinan budaya khas desa'
     ],
-    target: 'Siswa-siswi Sekolah Dasar negri Lengis',
+    target: 'Siswa-siswi SDN Lengis',
     schedule: 'Minggu ke-3 di hari senin tanggal 31 Agustus 2026 jam 09.30 s.d. 11.53 (Kegiatan Sekolah)',
     photos: [
       {
