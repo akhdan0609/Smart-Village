@@ -83,8 +83,22 @@ import { isAdminLoggedIn, getCurrentAdmin, CoverKey } from './utils/storage';
 import { useGlobalAnimations } from './hooks/useGlobalAnimations';
 
 const getInitialState = () => {
+  // Utamakan halaman terakhir yang disimpan di localStorage (paling andal untuk refresh)
+  try {
+    const saved = localStorage.getItem('desa_wm_nav_state_v1');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed?.page) return { page: parsed.page, params: parsed.params ?? {} };
+    }
+  } catch {
+    // abaikan
+  }
+  // Fallback ke history state (untuk tombol back/forward)
   const state = history.state as { page?: PageRoute; params?: any } | null;
-  return { page: state?.page ?? 'beranda', params: state?.params ?? {} };
+  if (state?.page) {
+    return { page: state.page, params: state.params ?? {} };
+  }
+  return { page: 'beranda', params: {} };
 };
 
 export default function App() {
@@ -136,6 +150,7 @@ export default function App() {
       page = getCurrentAdmin()?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard';
     }
     history.pushState({ page, params: params || {} }, '');
+    localStorage.setItem('desa_wm_nav_state_v1', JSON.stringify({ page, params: params || {} }));
     setActivePage(page);
     setNavParams(params || {});
     window.scrollTo({ top: 0, behavior: 'smooth' });
