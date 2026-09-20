@@ -10,6 +10,7 @@ import {
   Maximize2
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 // Authentic Staff Portraits
 import kadesImg from '../../assets/images/kades_zaenal_1789452415267.jpg';
@@ -216,12 +217,16 @@ interface PemerintahanDesaViewProps {
 }
 
 export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
+  const pemerintahanCover = getCoverImage('profil-pemerintahan', panoramaHeroImg);
+  const pemerintahanTitle = getCoverText('profil-pemerintahan', 'title', 'Pemerintahan Desa');
+  const pemerintahanSubtitle = getCoverText('profil-pemerintahan', 'subtitle', 'Struktur organisasi, perangkat desa, dan tata kelola pemerintahan Desa Warung Menteng.');
+  
   const [selectedOfficial, setSelectedOfficial] = useState<OfficialProfile | null>(null);
 
   return (
     <div className="bg-[#f0f4f1] min-h-screen pb-16 font-['Plus_Jakarta_Sans',sans-serif]">
       {/* ================= HERO & HEADER SECTION ================= */}
-      <div className="relative overflow-hidden pt-8 pb-10 sm:pb-12 bg-cover bg-center" style={{ backgroundImage: `url(${panoramaHeroImg})` }}>
+      <div className="relative overflow-hidden pt-8 pb-10 sm:pb-12 bg-cover bg-center" style={{ backgroundImage: `url(${pemerintahanCover})` }}>
         {/* Soft light overlay with green tints matching the reference image */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-[#f0f4f1]" />
         
@@ -237,13 +242,13 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                 <span>Profil Desa</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0e3e2f] tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
-                Struktur Organisasi
-              </h1>
+<h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0e3e2f] tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
+  {pemerintahanTitle}
+</h1>
               
               <div className="flex items-center gap-3 pt-0.5">
                 <p className="text-base sm:text-xl font-bold text-[#14533e]">
-                  Pemerintahan Desa Warung Menteng
+                  {pemerintahanSubtitle}
                 </p>
               </div>
               <div className="w-48 h-1 bg-[#16533c] rounded-full" />

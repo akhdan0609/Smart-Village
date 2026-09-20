@@ -20,6 +20,8 @@ import {
   Sparkles
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { getCoverImage, getCoverText } from '../../utils/storage';
+import heroPanoramaImg from '../../assets/images/profil_hero_panorama_1789112047188.jpg';
 
 interface AnggaranDesaViewProps {
   onNavigate?: (page: PageRoute) => void;
@@ -70,6 +72,10 @@ const DOKUMEN_LIST: DokumenItem[] = [
 ];
 
 export const AnggaranDesaView: React.FC<AnggaranDesaViewProps> = ({ onNavigate }) => {
+  const anggaranCover = getCoverImage('profil-anggaran', heroPanoramaImg);
+  const anggaranTitle = getCoverText('profil-anggaran', 'title', 'Anggaran Desa');
+  const anggaranSubtitle = getCoverText('profil-anggaran', 'subtitle', 'Transparansi pengelolaan keuangan desa untuk pembangunan yang lebih baik');
+  
   const [activeModal, setActiveModal] = useState<
     'apbdes' | 'pendapatan' | 'belanja' | 'rencana' | 'realisasi' | null
   >(null);
@@ -129,7 +135,7 @@ Dokumen ini diunduh secara resmi melalui Portal Transparansi Desa Warung Menteng
       {/* 1. HERO HEADER WITH MOUNTAIN PANORAMA */}
       <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden bg-slate-900">
         <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85"
+          src={anggaranCover}
           alt="Panorama Alam Desa Warung Menteng di Kaki Gunung Salak"
           className="w-full h-full object-cover object-center brightness-95 transform scale-105"
         />
@@ -148,9 +154,7 @@ Dokumen ini diunduh secara resmi melalui Portal Transparansi Desa Warung Menteng
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center space-y-2.5 pb-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-sm font-['Playfair_Display',serif]">
-            Anggaran Desa
-          </h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-sm font-\[\047Playfair_Display\047,serif\]">{anggaranTitle}</h1>
 
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs sm:text-sm text-emerald-100 font-medium">
@@ -164,9 +168,7 @@ Dokumen ini diunduh secara resmi melalui Portal Transparansi Desa Warung Menteng
             <span className="text-white font-semibold">Anggaran Desa</span>
           </div>
 
-          <p className="text-xs sm:text-sm md:text-base text-slate-100/90 max-w-2xl leading-relaxed pt-1">
-            Transparansi pengelolaan keuangan desa untuk pembangunan yang lebih baik
-          </p>
+          <p className="text-xs sm:text-sm md:text-base text-slate-100/90 max-w-2xl leading-relaxed pt-1">{anggaranSubtitle}</p>
         </div>
       </div>
 
@@ -1101,3 +1103,5 @@ Dokumen ini diunduh secara resmi melalui Portal Transparansi Desa Warung Menteng
     </div>
   );
 };
+
+

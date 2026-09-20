@@ -17,12 +17,14 @@ import {
   Check
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 // Images for cultural heritage sites
 import makamEyangImg from '../../assets/images/makam_eyang_menteng_1788955428651.jpg';
 import rumahAdatImg from '../../assets/images/rumah_adat_sunda_1788955442032.jpg';
 import batuPeringatanImg from '../../assets/images/batu_peringatan_desa_1788955460192.jpg';
 import tradisiBudayaImg from '../../assets/images/tradisi_budaya_lokal_1788955478016.jpg';
+import heroPanoramaImg from '../../assets/images/profil_hero_panorama_1789112047188.jpg';
 
 interface SejarahDesaViewProps {
   onNavigate?: (page: PageRoute) => void;
@@ -40,6 +42,10 @@ interface HeritageItem {
 }
 
 export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) => {
+  const sejarahCover = getCoverImage('profil-sejarah', heroPanoramaImg);
+  const sejarahTitle = getCoverText('profil-sejarah', 'title', 'Sejarah Desa');
+  const sejarahSubtitle = getCoverText('profil-sejarah', 'subtitle', 'Menelusuri jejak sejarah pembentukan dan perkembangan Desa Warung Menteng.');
+  
   const [selectedHeritage, setSelectedHeritage] = useState<HeritageItem | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -190,7 +196,7 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
               <span>Profil Desa</span>
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-emerald-600/70" />
-            <span className="font-semibold text-slate-900">Sejarah Desa</span>
+            <span className="font-semibold text-slate-900">{sejarahTitle}</span>
           </nav>
 
           {/* Main Title & Quote Header Row */}
@@ -204,26 +210,26 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
                   <Landmark className="w-6 h-6 text-white" />
                 </div>
                 {/* Large Title */}
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#064e3b] tracking-tight">
-                  Sejarah Desa
-                </h1>
+<h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#064e3b] tracking-tight">
+  {sejarahTitle}
+</h1>
               </div>
 
               {/* Subtitle with small green underline */}
               <div className="space-y-1.5 pl-0.5">
                 <div className="w-8 h-1 bg-[#064e3b] rounded-full" />
-                <p className="italic text-xs sm:text-sm text-slate-600 font-normal">
-                  Jejak masa lalu, fondasi untuk masa depan
-                </p>
+<p className="italic text-xs sm:text-sm text-slate-600 font-normal">
+  {sejarahSubtitle}
+</p>
               </div>
             </div>
 
             {/* Right Summary Quote with Green Vertical Divider Bar */}
             <div className="flex items-start gap-4 max-w-lg md:pl-6">
               <div className="w-1 self-stretch bg-emerald-600 rounded-full shrink-0 min-h-[52px]" />
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
-                Desa Warung Menteng memiliki perjalanan panjang yang penuh perjuangan, mulai dari masa pembentukan, perkembangan, hingga menjadi desa yang maju dan mandiri seperti sekarang.
-              </p>
+<p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+  {sejarahSubtitle}
+</p>
             </div>
 
           </div>
