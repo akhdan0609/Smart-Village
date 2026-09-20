@@ -100,11 +100,16 @@ const agamaLabels = [
   'Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Buddha', 'Konghucu', 'Lainnya'
 ];
 
+const bangunanLabels = [
+  'Hunian Layak', 'Hunian Tidak Layak', 'Bangunan Ruko/Usaha'
+];
+
 const getLabelOptions = (kategori: string) => {
   switch (kategori) {
     case 'umur': return umurLabels.map(l => ({ value: l, label: l }));
     case 'pendidikan': return pendidikanLabels.map(l => ({ value: l, label: l }));
     case 'agama': return agamaLabels.map(l => ({ value: l, label: l }));
+    case 'bangunan': return bangunanLabels.map(l => ({ value: l, label: l }));
     default: return [];
   }
 };
@@ -318,7 +323,11 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
     setFormData(prev => ({ ...prev, [key]: value }));
   };
 
-const columns: Column<DemographicData>[] = [
+const columns: Column<DemographicData>[] = activeTab === 'bangunan' ? [
+    { key: 'label', header: 'Layak Huni', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
+    { key: 'lakiLaki', header: 'Tidak Layak Huni', render: (item: any) => <div className="text-center font-semibold text-red-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2' },
+    { key: 'perempuan', header: 'Bangunan Ruko', render: (item: any) => <div className="text-center font-semibold text-emerald-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2' },
+  ] : [
     { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
     { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-center font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2' },
     { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-center font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2' },
