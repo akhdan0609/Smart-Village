@@ -126,8 +126,8 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('staf') === 'true' || params.get('staff') === 'true') {
-      setActivePage('admin-login');
-      history.replaceState({ page: 'admin-login', params: {} }, '');
+      setActivePage('login-admin');
+      history.replaceState({ page: 'login-admin', params: {} }, '');
     }
   }, []);
 
