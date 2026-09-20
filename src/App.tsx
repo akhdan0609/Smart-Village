@@ -121,6 +121,16 @@ export default function App() {
     setIsAdmin(isAdminLoggedIn());
   }, []);
 
+  // Saat aplikasi pertama dimuat, jika URL mengandung parameter ?staf=true,
+  // otomatis arahkan langsung ke halaman login admin (Portal Login Staf).
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('staf') === 'true') {
+      setActivePage('admin-login');
+      history.replaceState({ page: 'admin-login', params: {} }, '');
+    }
+  }, []);
+
   const handleNavigate = (page: PageRoute, params?: any) => {
     if (page === 'login-admin' && isAdmin) {
       page = getCurrentAdmin()?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard';
