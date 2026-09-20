@@ -147,12 +147,7 @@ export const BudayaAdatView: React.FC<BudayaAdatViewProps> = ({ onNavigate }) =>
                 </div>
               )}
 
-              {activeItem.kontak && (
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between text-xs">
-                  <span className="text-slate-500">Narahubung / Pengelola Sanggar:</span>
-                  <span className="font-bold text-emerald-800">{activeItem.kontak}</span>
-                </div>
-              )}
+              
             </div>
 
             <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-2">
