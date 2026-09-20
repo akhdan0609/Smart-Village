@@ -19,5 +19,6 @@ export const BudayaAdatDetailView: React.FC<BudayaAdatDetailViewProps> = ({ item
     seeAllLabel="Lihat Semua (15) &rarr;"
     contactLabel="Narahubung / Pengelola Sanggar"
     onNavigate={onNavigate}
+    hideContact
   />
 );

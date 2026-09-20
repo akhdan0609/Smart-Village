@@ -32,6 +32,7 @@ interface PotensiDetailViewProps {
   seeAllLabel: string;
   contactLabel: string;
   onNavigate: (page: PageRoute, params?: any) => void;
+  hideContact?: boolean;
 }
 
 export const PotensiDetailView: React.FC<PotensiDetailViewProps> = ({
@@ -44,6 +45,7 @@ export const PotensiDetailView: React.FC<PotensiDetailViewProps> = ({
   seeAllLabel,
   contactLabel = 'Kontak / Pengelola',
   onNavigate,
+  hideContact = false,
 }) => {
   const currentItem: PotensiCardItem = items.find(item => item.id === itemId) || items[0];
 
@@ -228,52 +230,57 @@ export const PotensiDetailView: React.FC<PotensiDetailViewProps> = ({
                 </h1>
               </div>
 
-              {/* Quick Info Contact Card */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50/80 border border-emerald-200/90 rounded-2xl p-4 sm:p-5">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">
-                      {contactLabel}
-                    </span>
-                    <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                      {formatDisplayPhone(currentItem.kontak || '-')}
+              {/* Description & Full Detail */}
+              {!hideContact ? (
+                <>
+                  {/* Quick Info Contact Card */}
+                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50/80 border border-emerald-200/90 rounded-2xl p-4 sm:p-5">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">
+                          {contactLabel}
+                        </span>
+                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
+                          {formatDisplayPhone(currentItem.kontak || '-')}
+                        </div>
+                      </div>
+                      {currentItem.jamOperasional && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-600 text-white">
+                          <Clock className="w-3 h-3" />
+                          Buka: {currentItem.jamOperasional}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3">
+                      {waLink ? (
+                        <a
+                          href={waLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition shadow-xs active:scale-[0.98]"
+                        >
+                          <MessageCircle className="w-4 h-4 fill-white" />
+                          <span>Hubungi via WhatsApp</span>
+                        </a>
+                      ) : (
+                        <div className="w-full inline-flex items-center justify-center gap-2 bg-white text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl shadow-xs">
+                          <Info className="w-4 h-4 text-emerald-700" />
+                          <span>{currentItem.kontak}</span>
+                        </div>
+                      )}
+
+                      {currentItem.lokasi && (
+                        <div className="w-full inline-flex items-center gap-2 bg-white text-slate-800 border border-slate-300 font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl shadow-2xs">
+                          <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
+                          <span className="line-clamp-2">{currentItem.lokasi}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                  {currentItem.jamOperasional && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-600 text-white">
-                      <Clock className="w-3 h-3" />
-                      Buka: {currentItem.jamOperasional}
-                    </span>
-                  )}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3">
-                  {waLink ? (
-                    <a
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition shadow-xs active:scale-[0.98]"
-                    >
-                      <MessageCircle className="w-4 h-4 fill-white" />
-                      <span>Hubungi via WhatsApp</span>
-                    </a>
-                  ) : (
-                    <div className="w-full inline-flex items-center justify-center gap-2 bg-white text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl shadow-xs">
-                      <Info className="w-4 h-4 text-emerald-700" />
-                      <span>{currentItem.kontak}</span>
-                    </div>
-                  )}
-
-                  {currentItem.lokasi && (
-                    <div className="w-full inline-flex items-center gap-2 bg-white text-slate-800 border border-slate-300 font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl shadow-2xs">
-                      <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
-                      <span className="line-clamp-2">{currentItem.lokasi}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+                </>
+              ) : null}
 
               {/* Description & Full Detail */}
               <div className="space-y-2">
@@ -413,7 +420,7 @@ export const PotensiDetailView: React.FC<PotensiDetailViewProps> = ({
                     {other.nama}
                   </div>
                   <div className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
-                    {other.lokasi || other.kontak}
+                    {other.lokasi || (!hideContact ? other.kontak : '')}
                   </div>
                 </div>
                 <span className="text-[10px] font-bold text-emerald-700 mt-1.5 flex items-center gap-0.5">
