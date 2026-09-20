@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RotateCcw, CheckCircle, Image as ImageIcon, Eye, Type, RotateCcw as RotateIcon } from 'lucide-react';
+import { RotateCcw, CheckCircle, Send, Image as ImageIcon, Eye, Type, RotateCcw as RotateIcon } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { ImageUpload } from './components/ImageUpload';
 import { PageRoute } from '../../types';
@@ -77,6 +77,8 @@ export const SampulHalamanAdmin: React.FC<SampulHalamanAdminProps> = ({ coverKey
   const [savedTextKey, setSavedTextKey] = useState<CoverTextKey | null>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isResettingText, setIsResettingText] = useState<CoverTextKey | null>(null);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [published, setPublished] = useState(false);
   const [clickedNav, setClickedNav] = useState<PageRoute | null>(null);
 
   const flashSaved = (key: CoverKey) => {
@@ -109,6 +111,22 @@ export const SampulHalamanAdmin: React.FC<SampulHalamanAdminProps> = ({ coverKey
       setIsResetting(false);
       flashSaved(key);
     }, 400);
+  };
+
+  const handlePublish = () => {
+    setIsPublishing(true);
+    // Force write current texts to storage so the published state is guaranteed on the user page.
+    const next = getCoverSettings();
+    const nextTexts = getCoverTextSettings();
+    setCovers(next);
+    setCoverTexts(nextTexts);
+    setTimeout(() => {
+      setIsPublishing(false);
+      setPublished(true);
+      flashSavedText('title');
+      flashSavedText('subtitle');
+      setTimeout(() => setPublished(false), 2000);
+    }, 800);
   };
 
   const handleResetText = (key: CoverKey, textKey: CoverTextKey) => {
@@ -245,6 +263,25 @@ export const SampulHalamanAdmin: React.FC<SampulHalamanAdminProps> = ({ coverKey
             </div>
 
             <div className="flex flex-wrap items-center gap-3 border-t border-slate-100 pt-5">
+              <button
+                type="button"
+                onClick={handlePublish}
+                disabled={isPublishing}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-60 text-white text-sm font-extrabold rounded-xl transition shadow-sm"
+              >
+                {isPublishing ? (
+                  <Send className="w-4 h-4 animate-pulse" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
+                {isPublishing ? 'Mempublikasikan...' : 'Simpan & Publikasikan'}
+              </button>
+              {published && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-2 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl">
+                  <CheckCircle className="w-4 h-4" />
+                  Perubahan dipublikasikan
+                </span>
+              )}
               <button
                 type="button"
                 onClick={() => handleResetText(coverKey, 'title')}
