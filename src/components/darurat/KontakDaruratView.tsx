@@ -24,6 +24,8 @@ import daruratSatpolPp from '../../assets/images/darurat_satpol_pp_1788607334637
 import daruratBabinsa from '../../assets/images/darurat_babinsa_1788607347386.jpg';
 import daruratBidanDesa from '../../assets/images/darurat_bidan_desa_1788607359724.jpg';
 
+import { getCoverImage, getCoverText } from '../../utils/storage';
+
 interface EmergencyContact {
   id: string;
   name: string;
@@ -119,6 +121,10 @@ export const KontakDaruratView: React.FC = () => {
     }
   ];
 
+  const daruratCover = getCoverImage('darurat', kknHeroPanorama);
+  const daruratTitle = getCoverText('darurat', 'title', 'Kontak Darurat Desa Warung Menteng');
+  const daruratSubtitle = getCoverText('darurat', 'subtitle', 'Layanan penting yang dapat dihubungi saat membutuhkan bantuan atau pertolongan segera.');
+
   return (
     <div className="min-h-screen bg-white text-slate-800 font-sans pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
@@ -128,7 +134,7 @@ export const KontakDaruratView: React.FC = () => {
           
           {/* Panoramic background image */}
           <img
-            src={kknHeroPanorama}
+            src={daruratCover}
             alt="Pemandangan Asri Desa Warung Menteng"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -151,12 +157,12 @@ export const KontakDaruratView: React.FC = () => {
 
               {/* Heading */}
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight drop-shadow-sm">
-                Kontak Darurat<br />Desa Warung Menteng
+                {daruratTitle}
               </h1>
 
               {/* Subtitle */}
               <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed max-w-xl">
-                Layanan penting yang dapat dihubungi saat membutuhkan bantuan atau pertolongan segera.
+                {daruratSubtitle}
               </p>
             </div>
 

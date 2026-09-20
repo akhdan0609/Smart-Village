@@ -103,8 +103,11 @@ const allMenuItems: AdminMenuItem[] = [
     id: 'kontak-darurat-group', 
     label: 'Kontak Darurat', 
     icon: 'Phone', 
-    route: 'admin-kontak-darurat', 
-    roles: ['super_admin', 'admin_1'] 
+    roles: ['super_admin', 'admin_1'],
+    children: [
+      { id: 'kontak-darurat-main', label: 'Kontak Darurat', icon: 'Phone', route: 'admin-kontak-darurat', roles: ['super_admin', 'admin_1'] },
+      { id: 'kontak-darurat-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-darurat', roles: ['super_admin', 'admin_1'] },
+    ]
   },
   { 
     id: 'settings', 

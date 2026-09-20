@@ -374,6 +374,7 @@ export default function App() {
       case 'admin-cover-potensi':
       case 'admin-cover-pelayanan':
       case 'admin-cover-humas':
+      case 'admin-cover-darurat':
         return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <SampulHalamanAdmin
             coverKey={activePage.replace('admin-cover-', '') as CoverKey}

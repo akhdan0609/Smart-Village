@@ -419,7 +419,7 @@ export const deleteKritikSaran = (id: string): KritikSaranItem[] => {
 export type { AdminUser, AdminRole } from '../types';
 
 // Sampul / Background Halaman User
-export type CoverKey = 'beranda' | 'profil' | 'potensi' | 'pelayanan' | 'humas';
+export type CoverKey = 'beranda' | 'profil' | 'potensi' | 'pelayanan' | 'humas' | 'darurat';
 
 export type CoverSettings = Partial<Record<CoverKey, string>>;
 
@@ -427,7 +427,7 @@ export type CoverTextKey = 'title' | 'subtitle';
 
 export type CoverTextSettings = Partial<Record<CoverKey, Partial<Record<CoverTextKey, string>>>>;
 
-export const COVER_KEYS: CoverKey[] = ['beranda', 'profil', 'potensi', 'pelayanan', 'humas'];
+export const COVER_KEYS: CoverKey[] = ['beranda', 'profil', 'potensi', 'pelayanan', 'humas', 'darurat'];
 
 export const getCoverSettings = (): CoverSettings => {
   try {

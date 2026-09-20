@@ -43,6 +43,12 @@ const COVER_META: Record<CoverKey, { label: string; desc: string; target: PageRo
     target: 'informasi-berita',
     targetLabel: 'Humas & Informasi',
   },
+  darurat: {
+    label: 'Sampul Halaman Kontak Darurat',
+    desc: 'Banner di bagian atas halaman Kontak Darurat (hero kontak darurat Desa Warung Menteng).',
+    target: 'kontak-darurat',
+    targetLabel: 'Kontak Darurat',
+  },
 };
 
 const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
@@ -65,6 +71,10 @@ const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
   humas: {
     title: 'Hubungan Masyarakat Desa',
     subtitle: 'Pusat publikasi resmi Hubungan Masyarakat (HUMAS), siaran pers, dokumentasi warta, dan transparansi kebijakan Desa Warung Menteng.'
+  },
+  darurat: {
+    title: 'Kontak Darurat Desa',
+    subtitle: 'Layanan penting yang dapat dihubungi saat membutuhkan bantuan atau pertolongan segera di Desa Warung Menteng.'
   },
 };
 
