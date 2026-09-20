@@ -105,7 +105,7 @@ export default function App() {
   const [{ page: initialPage, params: initialParams }] = useState(getInitialState);
   const [activePage, setActivePage] = useState<PageRoute>(initialPage);
   const [navParams, setNavParams] = useState<any>(initialParams);
-  const [isAdmin, setIsAdmin] = useState<boolean>(() => isAdminLoggedIn());
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   // Mengaktifkan animasi Anime.js & WAAPI menyeluruh di setiap halaman dan scroll
   useGlobalAnimations(activePage);
@@ -160,7 +160,6 @@ export default function App() {
     setIsAdmin(true);
     const currentAdmin = getCurrentAdmin();
     const target = currentAdmin?.role === 'admin_2' ? 'admin-laporan-penduduk' : 'admin-dashboard';
-    localStorage.setItem('desa_wm_nav_state_v1', JSON.stringify({ page: target, params: {} }));
     history.pushState({ page: target, params: {} }, '');
     setActivePage(target);
     window.scrollTo({ top: 0, behavior: 'smooth' });
