@@ -308,13 +308,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
             >
               Hotline Darurat
             </button>
-            <span className="text-slate-600">|</span>
-            <button
-              onClick={handleLogin}
-              className="text-slate-400 hover:text-emerald-300 transition cursor-pointer"
-            >
-              Portal Login Staf
-            </button>
           </div>
         </div>
       </div>
