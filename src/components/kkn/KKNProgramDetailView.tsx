@@ -123,7 +123,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
     badge: 'Pelestarian Budaya Lokal',
     tagline: 'Menumbuhkan kecintaan generasi muda terhadap budaya daerah.',
     description: 'Mengajak generasi muda untuk mencintai dan melestarikan budaya daerah melalui kegiatan edukatif dan kreatif seperti pengenalan seni, tradisi, dan permainan tradisional.',
-    longDescription: 'Peserta KKN mengadakan sosialisasi "Aku Cinta Budaya" di SDN Lengis. Kegiatan ini merupakan Proker Pertama Divisi Pendidikan dengan Prodi SPI sebagai penanggung jawab (PJ).',
+    longDescription: 'Peserta KKN mengadakan sosialisasi "Aku bangga Budaya" di SDN Lengis. Kegiatan ini merupakan Proker Pertama Divisi Pendidikan dengan Prodi SPI sebagai penanggung jawab (PJ).',
     goals: [
       'Menghidupkan kembali permainan tradisional Sunda',
       'Mengenalkan kesenian dan seni budaya lokal kepada generasi muda',
