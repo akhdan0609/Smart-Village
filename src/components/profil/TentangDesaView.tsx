@@ -35,6 +35,7 @@ import {
   Download
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 // Asset Images
 import heroBannerImg from '../../assets/images/tentang_desa_hero_1789110414479.jpg';
@@ -50,6 +51,10 @@ interface TentangDesaViewProps {
 }
 
 export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) => {
+  const tentangCover = getCoverImage('profil-tentang', heroBannerImg);
+  const tentangTitle = getCoverText('profil-tentang', 'title', 'Tentang Desa');
+  const tentangSubtitle = getCoverText('profil-tentang', 'subtitle', 'Mengenal Desa Warung Menteng lebih dekat - sejarah, visi, misi, dan struktur organisasi.');
+  
   // Modals state
   const [modalSejarahOpen, setModalSejarahOpen] = useState(false);
   const [modalPetaOpen, setModalPetaOpen] = useState(false);
@@ -96,7 +101,7 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
       <div className="relative w-full overflow-hidden bg-emerald-950 min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex items-center">
         {/* Background Panorama Image */}
         <img
-          src={heroBannerImg}
+          src={tentangCover}
           alt="Pemandangan Alam Desa Warung Menteng"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -117,13 +122,12 @@ export const TentangDesaView: React.FC<TentangDesaViewProps> = ({ onNavigate }) 
 
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0e3e2f] tracking-tight leading-[1.15]">
-                Tentang Desa<br />
-                Warung Menteng
+                {tentangTitle}
               </h1>
 
               {/* Description Paragraph */}
               <p className="text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
-                Desa Warung Menteng adalah desa yang berada di Kecamatan Cijeruk, Kabupaten Bogor. Desa ini memiliki potensi alam, budaya, dan masyarakat yang hidup rukun dalam keberagaman.
+                {tentangSubtitle}
               </p>
 
               {/* Primary Action Button */}

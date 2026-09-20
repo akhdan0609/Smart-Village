@@ -383,9 +383,19 @@ export default function App() {
       // ADMIN - SAMPUL HALAMAN (Super Admin & Admin 1)
       case 'admin-cover-beranda':
       case 'admin-cover-profil':
+      case 'admin-cover-profil-tentang':
+      case 'admin-cover-profil-sejarah':
+      case 'admin-cover-profil-pemerintahan':
+      case 'admin-cover-profil-anggaran':
       case 'admin-cover-potensi':
+      case 'admin-cover-potensi-akomodasi':
+      case 'admin-cover-potensi-umkm':
+      case 'admin-cover-potensi-budaya':
+      case 'admin-cover-potensi-budidaya':
       case 'admin-cover-pelayanan':
       case 'admin-cover-humas':
+      case 'admin-cover-humas-press':
+      case 'admin-cover-humas-galeri':
       case 'admin-cover-darurat':
         return isAdmin && (getCurrentAdmin()?.role === 'super_admin' || getCurrentAdmin()?.role === 'admin_1') ? (
           <SampulHalamanAdmin

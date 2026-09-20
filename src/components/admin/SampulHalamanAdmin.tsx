@@ -20,16 +20,64 @@ const COVER_META: Record<CoverKey, { label: string; desc: string; target: PageRo
     targetLabel: 'Beranda',
   },
   profil: {
-    label: 'Sampul Halaman Profil Desa',
-    desc: 'Banner di bagian atas halaman Profil Desa (tentang, sejarah, pemerintahan, anggaran).',
+    label: 'Sampul Halaman Profil Desa (Umum)',
+    desc: 'Banner default untuk halaman Profil Desa (fallback).',
     target: 'profil-desa',
     targetLabel: 'Profil Desa',
   },
+  'profil-tentang': {
+    label: 'Sampul Halaman Tentang Desa',
+    desc: 'Banner di bagian atas halaman Tentang Desa.',
+    target: 'profil-tentang',
+    targetLabel: 'Tentang Desa',
+  },
+  'profil-sejarah': {
+    label: 'Sampul Halaman Sejarah Desa',
+    desc: 'Banner di bagian atas halaman Sejarah Desa.',
+    target: 'profil-sejarah',
+    targetLabel: 'Sejarah Desa',
+  },
+  'profil-pemerintahan': {
+    label: 'Sampul Halaman Pemerintahan',
+    desc: 'Banner di bagian atas halaman Pemerintahan Desa.',
+    target: 'profil-pemerintahan',
+    targetLabel: 'Pemerintahan',
+  },
+  'profil-anggaran': {
+    label: 'Sampul Halaman Anggaran Desa',
+    desc: 'Banner di bagian atas halaman Anggaran Desa.',
+    target: 'profil-anggaran',
+    targetLabel: 'Anggaran Desa',
+  },
   potensi: {
-    label: 'Sampul Halaman Potensi Desa',
-    desc: 'Banner di bagian atas halaman Potensi Desa (destinasi, UMKM, budaya, budidaya).',
+    label: 'Sampul Halaman Potensi Desa (Umum)',
+    desc: 'Banner default untuk halaman Potensi Desa (fallback).',
     target: 'potensi-desa',
     targetLabel: 'Potensi Desa',
+  },
+  'potensi-akomodasi': {
+    label: 'Sampul Halaman Akomodasi',
+    desc: 'Banner di bagian atas halaman Akomodasi Wisata.',
+    target: 'potensi-akomodasi',
+    targetLabel: 'Akomodasi',
+  },
+  'potensi-umkm': {
+    label: 'Sampul Halaman UMKM',
+    desc: 'Banner di bagian atas halaman UMKM Desa.',
+    target: 'potensi-umkm',
+    targetLabel: 'UMKM',
+  },
+  'potensi-budaya': {
+    label: 'Sampul Halaman Budaya & Adat',
+    desc: 'Banner di bagian atas halaman Budaya & Adat.',
+    target: 'potensi-budaya',
+    targetLabel: 'Budaya & Adat',
+  },
+  'potensi-budidaya': {
+    label: 'Sampul Halaman Budidaya Perikanan',
+    desc: 'Banner di bagian atas halaman Budidaya Perikanan.',
+    target: 'potensi-budidaya',
+    targetLabel: 'Budidaya Perikanan',
   },
   pelayanan: {
     label: 'Sampul Halaman Pelayanan',
@@ -38,10 +86,22 @@ const COVER_META: Record<CoverKey, { label: string; desc: string; target: PageRo
     targetLabel: 'Pelayanan',
   },
   humas: {
-    label: 'Sampul Halaman Humas',
-    desc: 'Banner di bagian atas halaman Humas & Informasi (berita, press release, galeri).',
+    label: 'Sampul Halaman Humas (Umum)',
+    desc: 'Banner default untuk halaman Humas & Informasi (fallback).',
     target: 'informasi-berita',
     targetLabel: 'Humas & Informasi',
+  },
+  'humas-press': {
+    label: 'Sampul Halaman Press Release',
+    desc: 'Banner di bagian atas halaman Press Release.',
+    target: 'berita-press-release',
+    targetLabel: 'Press Release',
+  },
+  'humas-galeri': {
+    label: 'Sampul Halaman Galeri Foto',
+    desc: 'Banner di bagian atas halaman Galeri Foto.',
+    target: 'berita-galeri',
+    targetLabel: 'Galeri Foto',
   },
   darurat: {
     label: 'Sampul Halaman Kontak Darurat',
@@ -60,9 +120,41 @@ const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
     title: 'Profil Desa',
     subtitle: 'Mengenal Desa Warung Menteng lebih dekat'
   },
+  'profil-tentang': {
+    title: 'Tentang Desa',
+    subtitle: 'Mengenal Desa Warung Menteng lebih dekat - sejarah, visi, misi, dan struktur organisasi.'
+  },
+  'profil-sejarah': {
+    title: 'Sejarah Desa',
+    subtitle: 'Menelusuri jejak sejarah pembentukan dan perkembangan Desa Warung Menteng.'
+  },
+  'profil-pemerintahan': {
+    title: 'Pemerintahan Desa',
+    subtitle: 'Struktur organisasi, perangkat desa, dan tata kelola pemerintahan Desa Warung Menteng.'
+  },
+  'profil-anggaran': {
+    title: 'Anggaran Desa',
+    subtitle: 'Transparansi pengelolaan dana desa, APBDes, dan realisasi anggaran pembangunan.'
+  },
   potensi: {
     title: 'Potensi Desa',
     subtitle: 'Desa Warung Menteng memiliki kekayaan alam, budaya, serta sumber daya lokal yang melimpah dan terus berkembang untuk kesejahteraan masyarakat.'
+  },
+  'potensi-akomodasi': {
+    title: 'Akomodasi Wisata',
+    subtitle: 'Berbagai pilihan penginapan nyaman dan bermakna di kaki Gunung Salak.'
+  },
+  'potensi-umkm': {
+    title: 'UMKM Desa',
+    subtitle: 'Produk unggulan masyarakat Desa Warung Menteng yang bernilai ekonomi dan budaya.'
+  },
+  'potensi-budaya': {
+    title: 'Budaya & Adat',
+    subtitle: 'Warisan budaya, tradisi, dan kesenian yang dilestarikan masyarakat Desa Warung Menteng.'
+  },
+  'potensi-budidaya': {
+    title: 'Budidaya Perikanan',
+    subtitle: 'Potensi perikanan dan budidaya air tawar yang menguatkan pangan lokal.'
   },
   pelayanan: {
     title: 'Pelayanan Desa',
@@ -71,6 +163,14 @@ const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
   humas: {
     title: 'Hubungan Masyarakat Desa',
     subtitle: 'Pusat publikasi resmi Hubungan Masyarakat (HUMAS), siaran pers, dokumentasi warta, dan transparansi kebijakan Desa Warung Menteng.'
+  },
+  'humas-press': {
+    title: 'Press Release',
+    subtitle: 'Siaran pers resmi, pengumuman, dan informasi terkini dari Pemerintah Desa Warung Menteng.'
+  },
+  'humas-galeri': {
+    title: 'Galeri Foto',
+    subtitle: 'Koleksi dokumentasi kegiatan, pembangunan, dan momen-momen berharga Desa Warung Menteng.'
   },
   darurat: {
     title: 'Kontak Darurat Desa',
