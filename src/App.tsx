@@ -122,12 +122,12 @@ export default function App() {
   }, []);
 
   // Saat aplikasi pertama dimuat, jika URL mengandung parameter ?staf=true atau ?staff=true,
-  // otomatis arahkan langsung ke halaman login admin (Portal Login Staf).
+  // otomatis arahkan langsung ke halaman Portal Khusus Aparatur (Masuk Admin Desa).
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('staf') === 'true' || params.get('staff') === 'true') {
-      setActivePage('login-admin');
-      history.replaceState({ page: 'login-admin', params: {} }, '');
+      setActivePage('staff-portal');
+      history.replaceState({ page: 'staff-portal', params: {} }, '');
     }
   }, []);
 
@@ -294,6 +294,8 @@ export default function App() {
         return <KontakDaruratView />;
 
       // ADMIN
+      case 'staff-portal':
+        return <LoginAdminView onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />;
       case 'login-admin':
         return isAdmin ? (
           <AdminDashboardHome onLogout={handleLogout} onNavigate={handleNavigate} />

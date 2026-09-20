@@ -99,7 +99,8 @@ export type PageRoute =
   | 'admin-cover-potensi'
   | 'admin-cover-pelayanan'
   | 'admin-cover-humas'
-  | 'admin-cover-darurat';
+  | 'admin-cover-darurat'
+  | 'staff-portal';
 
 export type UMKMKategori = 'makanan-minuman' | 'kerajinan' | 'produk-lainnya';
 
