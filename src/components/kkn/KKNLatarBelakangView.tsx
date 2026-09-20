@@ -149,7 +149,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
     {
       id: 'proker-2',
       icon: MessageSquare,
-      title: 'Edukasi Cyber Bullying',
+      title: 'Sosialisasi Anti Cyber Bullying',
       description: 'Memberikan edukasi kepada siswa tentang bahaya cyber bullying, etika digital, dan cara menggunakan internet dengan bijak agar tercipta lingkungan digital yang aman dan positif.',
       photos: [
         {
@@ -172,7 +172,7 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
     {
       id: 'proker-3',
       icon: Sparkles,
-      title: 'Bangga Budaya',
+      title: 'Aku Bangga Budaya',
       description: 'Mengajak generasi muda untuk mencintai dan melestarikan budaya daerah melalui kegiatan edukatif dan kreatif seperti pengenalan seni, tradisi, dan permainan tradisional.',
       photos: [
         {

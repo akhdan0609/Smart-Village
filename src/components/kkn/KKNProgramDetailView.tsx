@@ -85,17 +85,17 @@ const PROKER_DETAILS: ProkerDetail[] = [
     id: 'proker-2',
     route: 'kkn-proker-2' as PageRoute,
     icon: MessageSquare,
-    title: 'Edukasi Cyber Bullying',
+    title: 'Sosialisasi Anti Cyber Bullying',
     badge: 'Edukasi & Kesadaran Digital',
     tagline: 'Menciptakan lingkungan digital yang aman dan positif bagi generasi muda.',
     description: 'Memberikan edukasi kepada siswa tentang bahaya cyber bullying, etika digital, dan cara menggunakan internet dengan bijak agar tercipta lingkungan digital yang aman dan positif.',
-    longDescription: 'Peserta KKN melaksanakan sosialisasi "Cyber Bullying" di MTs Arrosyid II sebagai bagian dari Proker Divisi Pendidikan PJ FTIK.',
+    longDescription: 'Peserta KKN mengadakan sosialisasi "Cyber Bullying" di MTs Ar-Rosyid II sebagai bagian dari Proker Divisi Pendidikan PJ FTIK.',
     goals: [
       'Meningkatkan kesadaran siswa akan bahaya cyber bullying',
       'Menanamkan etika digital dan perilaku bijak bermedia sosial',
       'Mendorong budaya saling menjaga di lingkungan digital'
     ],
-    target: 'Siswa Siswi kelas 9 Sekolah MTS Ar-Rosyid 2 Desa Warung Menteng',
+    target: 'Siswa Siswi kelas 9 Sekolah MTS Ar-Rosyid II Desa Warung Menteng',
     schedule: 'Minggu ke-4 di hari rabu tanggal 9 September 2026 jam 08.30 s.d. 10.15 (Kegiatan Sekolah)',
     photos: [
       {
@@ -119,11 +119,11 @@ const PROKER_DETAILS: ProkerDetail[] = [
     id: 'proker-3',
     route: 'kkn-proker-3' as PageRoute,
     icon: Sparkles,
-    title: 'Bangga Budaya',
+    title: 'Aku Bangga Budaya',
     badge: 'Pelestarian Budaya Lokal',
     tagline: 'Menumbuhkan kecintaan generasi muda terhadap budaya daerah.',
     description: 'Mengajak generasi muda untuk mencintai dan melestarikan budaya daerah melalui kegiatan edukatif dan kreatif seperti pengenalan seni, tradisi, dan permainan tradisional.',
-    longDescription: 'Peserta KKN melaksanakan sosialisasi "Aku Cinta Budaya" di SDN Lengis. Kegiatan ini merupakan Proker Pertama Divisi Pendidikan dengan Prodi SPI sebagai penanggung jawab (PJ).',
+    longDescription: 'Peserta KKN mengadakan sosialisasi "Aku Cinta Budaya" di SDN Lengis. Kegiatan ini merupakan Proker Pertama Divisi Pendidikan dengan Prodi SPI sebagai penanggung jawab (PJ).',
     goals: [
       'Menghidupkan kembali permainan tradisional Sunda',
       'Mengenalkan kesenian dan seni budaya lokal kepada generasi muda',
@@ -157,7 +157,7 @@ const PROKER_DETAILS: ProkerDetail[] = [
     badge: 'Sosialisasi & Perlindungan',
     tagline: 'Menumbuhkan lingkungan desa yang aman, ramah anak, dan bebas kekerasan.',
     description: 'Meningkatkan kesadaran masyarakat tentang pentingnya pencegahan kekerasan dan pelecehan seksual di lingkungan sekitar melalui sosialisasi dan diskusi interaktif.',
-    longDescription: 'Peserta KKN melaksanakan sosialisasi "Anti Pelecehan Seksual" di SMK As-Syukur sebagai bagian dari Proker Divisi Pendidikan dengan Prodi Ilmu Hukum sebagai PJ.',
+    longDescription: 'Peserta KKN mengadakan sosialisasi "Anti Pelecehan Seksual" di SMK As-Syukur sebagai bagian dari Proker Divisi Pendidikan dengan Prodi Ilmu Hukum sebagai PJ.',
     goals: [
       'Meningkatkan kesadaran masyarakat akan perlindungan anak & perempuan',
       'Menyediakan ruang diskusi dan konsultasi bagi warga',
