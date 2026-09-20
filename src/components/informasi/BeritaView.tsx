@@ -24,7 +24,7 @@ import {
 import { BeritaItem } from '../../types';
 import { getStoredBerita, getStoredKritikSaran, saveKritikSaran } from '../../utils/storage';
 import heroBannerImg from '../../assets/images/berita_hero_panorama_1788954557336.jpg';
-import { getCoverImage } from '../../utils/storage';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface BeritaViewProps {
   selectedBeritaId?: string;
@@ -33,6 +33,8 @@ interface BeritaViewProps {
 
 export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavigate }) => {
   const humasCover = getCoverImage('humas', heroBannerImg);
+  const humasTitle = getCoverText('humas', 'title', 'Hubungan Masyarakat Desa');
+  const humasSubtitle = getCoverText('humas', 'subtitle', 'Pusat publikasi resmi Hubungan Masyarakat (HUMAS), siaran pers, dokumentasi warta, dan transparansi kebijakan Desa Warung Menteng.');
   const [beritaList, setBeritaList] = useState<BeritaItem[]>([]);
   const [selectedKategori, setSelectedKategori] = useState<string>('Semua');
   const [searchQuery, setSearchQuery] = useState('');
@@ -237,7 +239,7 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
           </svg>
         </div>
 
-        {/* Hero Content Container */}
+{/* Hero Content Container */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 sm:py-16">
           <div className="max-w-2xl space-y-3">
             {/* Breadcrumb */}
@@ -248,18 +250,18 @@ export const BeritaView: React.FC<BeritaViewProps> = ({ selectedBeritaId, onNavi
               >
                 Beranda
               </button>
-              <span className="text-slate-400 font-semibold">&gt;</span>
-              <span className="text-white font-semibold">Hubungan Masyarakat</span>
+              <span className="text-slate-400 font-bold">{'>'}</span>
+              <span className="text-white font-semibold">{humasTitle}</span>
             </nav>
 
             {/* Main Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Hubungan Masyarakat Desa
+              {humasTitle}
             </h1>
 
             {/* Description */}
             <p className="text-slate-200 text-xs sm:text-sm lg:text-base font-normal max-w-xl leading-relaxed">
-              Pusat publikasi resmi Hubungan Masyarakat (HUMAS), siaran pers, dokumentasi warta, dan transparansi kebijakan Desa Warung Menteng.
+              {humasSubtitle}
             </p>
           </div>
         </div>

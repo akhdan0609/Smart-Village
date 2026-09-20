@@ -17,7 +17,7 @@ import { PageRoute } from '../../types';
 
 import heroPanoramaImg from '../../assets/images/profil_hero_panorama_1789112047188.jpg';
 import gapuraDesaImg from '../../assets/images/profil_gapura_desa_1789112062623.jpg';
-import { getCoverImage } from '../../utils/storage';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface ProfilDesaViewProps {
   onNavigate: (page: PageRoute) => void;
@@ -26,6 +26,8 @@ interface ProfilDesaViewProps {
 export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) => {
   const [selectedYear, setSelectedYear] = useState<string>('2024');
   const profilCover = getCoverImage('profil', heroPanoramaImg);
+  const profilTitle = getCoverText('profil', 'title', 'Profil Desa');
+  const profilSubtitle = getCoverText('profil', 'subtitle', 'Mengenal Desa Warung Menteng lebih dekat');
 
   // Budget data per year
   const budgetData: Record<string, { pendapatan: string; belanja: string; pembiayaan: string }> = {
@@ -66,7 +68,7 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white space-y-1 sm:space-y-2">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm">
-              Profil Desa
+              {profilTitle}
             </h1>
             
             {/* Breadcrumb */}
@@ -77,13 +79,13 @@ export const ProfilDesaView: React.FC<ProfilDesaViewProps> = ({ onNavigate }) =>
               >
                 Beranda
               </button>
-              <span className="text-slate-400 font-bold">&gt;</span>
-              <span className="text-white font-semibold">Profil Desa</span>
+              <span className="text-slate-400 font-bold">{'>'}</span>
+              <span className="text-white font-semibold">{profilTitle}</span>
             </div>
 
             {/* Subtitle */}
             <p className="text-xs sm:text-sm text-slate-200 font-normal pt-0.5">
-              Mengenal Desa Warung Menteng lebih dekat
+              {profilSubtitle}
             </p>
           </div>
         </div>

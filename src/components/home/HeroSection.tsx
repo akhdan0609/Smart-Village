@@ -2,7 +2,7 @@ import React from 'react';
 import { Compass } from 'lucide-react';
 import { PageRoute } from '../../types';
 import suasanaDesaBeranda from '../../assets/images/Suasana_Desa_Beranda.jpeg';
-import { getCoverImage } from '../../utils/storage';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface HeroSectionProps {
   onNavigate: (page: PageRoute, params?: any) => void;
@@ -10,6 +10,8 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const berandaCover = getCoverImage('beranda', suasanaDesaBeranda);
+  const title = getCoverText('beranda', 'title', 'Desa Warung Menteng');
+  const subtitle = getCoverText('beranda', 'subtitle', 'Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat yang ramah.');
 
   return (
     <section className="beranda-hero-section relative overflow-hidden w-full min-h-[440px] sm:min-h-[520px] flex items-center">
@@ -36,13 +38,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
 
           {/* Main Title: Desa Warung Menteng */}
           <h1 className="beranda-hero-title text-4xl sm:text-6xl font-extrabold text-[#064e3b] tracking-tight leading-[1.05] drop-shadow-xs will-change-transform">
-            Desa Warung <br />
-            Menteng
+            {title.split(' ')[0]} <br />
+            {title.split(' ').slice(1).join(' ')}
           </h1>
 
           {/* Subtitle Description */}
           <p className="beranda-hero-desc text-slate-800 text-sm sm:text-base leading-relaxed font-medium max-w-md will-change-transform">
-            Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat yang ramah.
+            {subtitle}
           </p>
 
           {/* Action Button: Jelajahi Desa Kami */}

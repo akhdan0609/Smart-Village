@@ -423,6 +423,10 @@ export type CoverKey = 'beranda' | 'profil' | 'potensi' | 'pelayanan' | 'humas';
 
 export type CoverSettings = Partial<Record<CoverKey, string>>;
 
+export type CoverTextKey = 'title' | 'subtitle';
+
+export type CoverTextSettings = Partial<Record<CoverKey, Partial<Record<CoverTextKey, string>>>>;
+
 export const COVER_KEYS: CoverKey[] = ['beranda', 'profil', 'potensi', 'pelayanan', 'humas'];
 
 export const getCoverSettings = (): CoverSettings => {
@@ -451,3 +455,48 @@ export const setCoverImage = (key: CoverKey, value: string): CoverSettings => {
 };
 
 export const resetCoverImage = (key: CoverKey): CoverSettings => setCoverImage(key, '');
+
+// Cover Text Settings
+export const getCoverTextSettings = (): CoverTextSettings => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.COVERS + '_text');
+    return data ? JSON.parse(data) : {};
+  } catch {
+    return {};
+  }
+};
+
+export const getCoverText = (key: CoverKey, textKey: CoverTextKey, fallback: string): string => {
+  const texts = getCoverTextSettings();
+  return texts[key]?.[textKey] || fallback;
+};
+
+export const setCoverText = (key: CoverKey, textKey: CoverTextKey, value: string): CoverTextSettings => {
+  const texts = getCoverTextSettings();
+  if (!texts[key]) texts[key] = {};
+  if (value) {
+    texts[key][textKey] = value;
+  } else {
+    delete texts[key][textKey];
+    if (Object.keys(texts[key]).length === 0) delete texts[key];
+  }
+  localStorage.setItem(STORAGE_KEYS.COVERS + '_text', JSON.stringify(texts));
+  return texts;
+};
+
+export const resetCoverText = (key: CoverKey, textKey: CoverTextKey): CoverTextSettings => {
+  const texts = getCoverTextSettings();
+  if (texts[key]) {
+    delete texts[key][textKey];
+    if (Object.keys(texts[key]).length === 0) delete texts[key];
+    localStorage.setItem(STORAGE_KEYS.COVERS + '_text', JSON.stringify(texts));
+  }
+  return texts;
+};
+
+export const resetAllCoverText = (key: CoverKey): CoverTextSettings => {
+  const texts = getCoverTextSettings();
+  delete texts[key];
+  localStorage.setItem(STORAGE_KEYS.COVERS + '_text', JSON.stringify(texts));
+  return texts;
+};

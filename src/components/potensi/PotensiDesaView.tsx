@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import potensiHeroBanner from '../../assets/images/potensi_hero_banner_1788325154234.jpg';
-import { getCoverImage } from '../../utils/storage';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface PotensiDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -29,6 +29,8 @@ interface ItemCardData {
 
 export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) => {
   const potensiCover = getCoverImage('potensi', potensiHeroBanner);
+  const potensiTitle = getCoverText('potensi', 'title', 'Potensi Desa');
+  const potensiSubtitle = getCoverText('potensi', 'subtitle', 'Desa Warung Menteng memiliki kekayaan alam, budaya, serta sumber daya lokal yang melimpah dan terus berkembang untuk kesejahteraan masyarakat.');
   const handleNav = (page: PageRoute, params?: any) => {
     if (onNavigate) {
       onNavigate(page, params);
@@ -303,49 +305,49 @@ export const PotensiDesaView: React.FC<PotensiDesaViewProps> = ({ onNavigate }) 
     }
   ];
 
-  return (
+return (
     <div className="bg-[#f8faf9] min-h-screen pb-16">
-      
-      {/* 1. TOP HERO BANNER (Montage Landscape with Farmer, Cows, Village Gate, Coffee, Bamboo, Dancers) */}
-      <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-slate-900 select-none">
-        <img
-          src={potensiCover}
-          alt="Panorama Potensi Desa Warung Menteng"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Soft vignette overlay for readable text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
-            <div className="max-w-xl space-y-2.5 text-white">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-md">
-                Potensi Desa
-              </h1>
-              <p className="text-xs sm:text-sm md:text-base text-slate-100 font-normal leading-relaxed drop-shadow-sm max-w-lg">
-                Desa Warung Menteng memiliki kekayaan alam, budaya, serta sumber daya lokal yang melimpah dan terus berkembang untuk kesejahteraan masyarakat.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+       
+       {/* 1. TOP HERO BANNER (Montage Landscape with Farmer, Cows, Village Gate, Coffee, Bamboo, Dancers) */}
+       <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-slate-900 select-none">
+         <img
+           src={potensiCover}
+           alt="Panorama Potensi Desa Warung Menteng"
+           className="w-full h-full object-cover object-center"
+         />
+         {/* Soft vignette overlay for readable text */}
+         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent flex items-center">
+           <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+             <div className="max-w-xl space-y-2.5 text-white">
+               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-md">
+                 {potensiTitle}
+               </h1>
+               <p className="text-xs sm:text-sm md:text-base text-slate-100 font-normal leading-relaxed drop-shadow-sm max-w-lg">
+                 {potensiSubtitle}
+               </p>
+             </div>
+           </div>
+         </div>
+       </div>
 
-      {/* 2. BREADCRUMBS & SECTION SUBTITLE */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-3">
-        <div className="space-y-0.5">
-          <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-            <button 
-              onClick={() => handleNav('beranda')}
-              className="hover:text-[#0f4d38] transition cursor-pointer"
-            >
-              Beranda
-            </button>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[#0f4d38] font-bold">Potensi Desa</span>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Potensi alam dan ekonomi yang menjadi kekuatan desa
-          </p>
-        </div>
-      </div>
+       {/* 2. BREADCRUMBS & SECTION SUBTITLE */}
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-3">
+         <div className="space-y-0.5">
+           <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+             <button 
+               onClick={() => handleNav('beranda')}
+               className="hover:text-[#0f4d38] transition cursor-pointer"
+             >
+               Beranda
+             </button>
+             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+             <span className="text-[#0f4d38] font-bold">{potensiTitle}</span>
+           </div>
+           <p className="text-xs sm:text-sm text-slate-600">
+             Potensi alam dan ekonomi yang menjadi kekuatan desa
+           </p>
+         </div>
+       </div>
 
       {/* 3. FOUR MAIN POTENSI SECTIONS */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6 pt-3">

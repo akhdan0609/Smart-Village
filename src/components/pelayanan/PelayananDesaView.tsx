@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import pelayananHeroImage from '../../assets/images/pelayanan_hero_kantor_desa_1788325727506.jpg';
-import { getCoverImage } from '../../utils/storage';
+import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface PelayananDesaViewProps {
   onNavigate?: (page: PageRoute, params?: any) => void;
@@ -25,6 +25,8 @@ interface PelayananDesaViewProps {
 
 export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate }) => {
   const pelayananCover = getCoverImage('pelayanan', pelayananHeroImage);
+  const pelayananTitle = getCoverText('pelayanan', 'title', 'Pelayanan Desa');
+  const pelayananSubtitle = getCoverText('pelayanan', 'subtitle', 'Akses berbagai layanan administrasi desa dengan mudah, cepat, dan transparan untuk seluruh warga Desa Warung Menteng.');
   const handleNav = (page: PageRoute, params?: any) => {
     if (onNavigate) {
       onNavigate(page, params);
@@ -112,10 +114,10 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
               {/* Header Title & Subtitle */}
               <div className="max-w-2xl space-y-2 text-white">
                 <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">
-                  Pelayanan Desa
+                  {pelayananTitle}
                 </h1>
                 <p className="text-xs sm:text-sm md:text-base text-emerald-100/90 font-normal leading-relaxed drop-shadow-sm">
-                  Akses berbagai layanan administrasi desa dengan mudah, cepat, dan transparan untuk seluruh warga Desa Warung Menteng.
+                  {pelayananSubtitle}
                 </p>
               </div>
 
@@ -160,7 +162,7 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
               Beranda
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <span className="text-[#0f4d38] font-bold">Pelayanan Desa</span>
+            <span className="text-[#0f4d38] font-bold">{pelayananTitle}</span>
           </div>
           <p className="text-xs sm:text-sm text-slate-600">
             Pusat permohonan surat administrasi dan layanan terpadu warga
