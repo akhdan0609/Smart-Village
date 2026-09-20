@@ -405,7 +405,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-emerald-200 selection:text-emerald-950">
-      {activePage !== 'login-admin' && <Navbar activePage={activePage} onNavigate={handleNavigate} />}
+      {activePage !== 'login-admin' && activePage !== 'staff-portal' && <Navbar activePage={activePage} onNavigate={handleNavigate} />}
       
       <main className="flex-grow">
         <div id="app-page-wrapper">
@@ -413,7 +413,7 @@ export default function App() {
         </div>
       </main>
 
-      {activePage !== 'login-admin' && <Footer activePage={activePage} onNavigate={handleNavigate} />}
+      {activePage !== 'login-admin' && activePage !== 'staff-portal' && <Footer activePage={activePage} onNavigate={handleNavigate} />}
     </div>
   );
 }
