@@ -227,8 +227,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isKontakDaruratPage = activePage === 'kontak-darurat' || activePage.startsWith('kontak-darurat');
   const isAdminOrLoginPage = activePage === 'login-admin' || activePage.startsWith('admin-');
 
-  // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, KKN, Kontak Darurat, halaman admin, dan login admin
-  const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isKontakDaruratPage || isAdminOrLoginPage;
+  // Sembunyikan fitur pencarian pada Profil Desa, Potensi Desa, Pelayanan, Humas/Informasi, KKN, Kontak Darurat, halaman admin, dan login admin
+  const hideSearch = isProfilPage || isPotensiPage || isPelayananPage || isBeritaPage || isKKNPage || isKontakDaruratPage || isAdminOrLoginPage;
 
   // Sembunyikan fitur kontak darurat pada Profil Desa, Potensi Desa, Pelayanan, KKN, Berita, halaman admin, dan login admin
   const hideKontakDarurat = isProfilPage || isPotensiPage || isPelayananPage || isKKNPage || isBeritaPage || isAdminOrLoginPage;
