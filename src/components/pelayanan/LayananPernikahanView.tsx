@@ -54,7 +54,6 @@ export const LayananPernikahanView: React.FC<LayananPernikahanViewProps> = ({
     namaWaliNikah: '',
     hubunganWali: 'Ayah Kandung',
     noWhatsapp: '',
-    dusun: 'Dusun I - Cimenteng',
     rt: '01',
     rw: '01',
     // Khusus Keterangan NA (Numpang Nikah)
@@ -85,7 +84,6 @@ export const LayananPernikahanView: React.FC<LayananPernikahanViewProps> = ({
       namaPemohon: `${formData.namaCalonSuami} & ${formData.namaCalonIstri}`,
       nik: formData.nikCalonSuami || formData.nikCalonIstri,
       noWhatsapp: formData.noWhatsapp,
-      dusun: formData.dusun,
       rtRw: `RT ${formData.rt} / RW ${formData.rw}`,
       keperluan: activeTab === 'sk-na'
         ? `Surat Keterangan NA / Numpang Nikah ke KUA Tujuan: ${formData.kuaTujuan || 'KUA Luar Domisili'} (Rencana Akad: ${formData.tanggalAkad || '-'})`

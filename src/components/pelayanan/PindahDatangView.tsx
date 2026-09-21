@@ -41,7 +41,6 @@ export const PindahDatangView: React.FC<PindahDatangViewProps> = ({
     alasanPindah: 'Pekerjaan / Dinas',
     // Alamat Asal
     alamatAsal: '',
-    dusunAsal: 'Dusun I - Cimenteng',
     rtAsal: '01',
     rwAsal: '01',
     desaAsal: 'Warung Menteng',
@@ -77,7 +76,6 @@ export const PindahDatangView: React.FC<PindahDatangViewProps> = ({
       namaPemohon: formData.namaKepalaKeluarga,
       nik: formData.nikKepalaKeluarga,
       noWhatsapp: formData.noWhatsapp,
-      dusun: isKeluar ? formData.dusunAsal : 'Dusun Penerima (Warung Menteng)',
       rtRw: isKeluar ? `RT ${formData.rtAsal} / RW ${formData.rwAsal}` : 'Wilayah Tujuan Baru',
       keperluan: isKeluar 
         ? `Pindah ke ${formData.desaTujuan}, Kec. ${formData.kecamatanTujuan}, ${formData.kabupatenTujuan} (${formData.alasanPindah})`
@@ -399,19 +397,7 @@ export const PindahDatangView: React.FC<PindahDatangViewProps> = ({
                     </span>
 
                     {activeJenis === 'pindah-keluar' ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">Dusun Asal</label>
-                          <select
-                            value={formData.dusunAsal}
-                            onChange={e => setFormData({ ...formData, dusunAsal: e.target.value })}
-                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
-                          >
-                            <option value="Dusun I - Cimenteng">Dusun I - Cimenteng</option>
-                            <option value="Dusun II - Menteng Pasir">Dusun II - Menteng Pasir</option>
-                            <option value="Dusun III - Menteng Girang">Dusun III - Menteng Girang</option>
-                          </select>
-                        </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-[11px] font-semibold text-slate-600 mb-1">RT / RW Asal</label>
                           <div className="flex gap-2">

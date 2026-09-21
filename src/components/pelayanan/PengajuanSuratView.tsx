@@ -28,7 +28,6 @@ export const PengajuanSuratView: React.FC<PengajuanSuratProps> = ({ defaultSurat
   const [namaLengkap, setNamaLengkap] = useState('');
   const [noKK, setNoKK] = useState('');
   const [nomorWA, setNomorWA] = useState('');
-  const [dusun, setDusun] = useState('Dusun I (Menteng Girang)');
   const [rt, setRt] = useState('001');
   const [rw, setRw] = useState('001');
   const [alamatLengkap, setAlamatLengkap] = useState('');
@@ -58,7 +57,7 @@ export const PengajuanSuratView: React.FC<PengajuanSuratProps> = ({ defaultSurat
       namaPemohon: namaLengkap,
       nik: nik,
       nomorWA: nomorWA,
-      alamat: `${alamatLengkap}, RT ${rt}/RW ${rw}, ${dusun}`,
+      alamat: `${alamatLengkap}, RT ${rt}/RW ${rw}`,
       keperluan: keperluan,
       keteranganTambahan: keteranganTambahan,
       tanggalPengajuan: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
@@ -190,19 +189,7 @@ export const PengajuanSuratView: React.FC<PengajuanSuratProps> = ({ defaultSurat
             </div>
 
             {/* Domisili / Wilayah */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div>
-                <label className="text-xs font-semibold text-slate-700 block mb-1">Wilayah Dusun</label>
-                <select
-                  value={dusun}
-                  onChange={e => setDusun(e.target.value)}
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs"
-                >
-                  <option value="Dusun I (Menteng Girang)">Dusun I (Menteng Girang)</option>
-                  <option value="Dusun II (Menteng Tengah)">Dusun II (Menteng Tengah)</option>
-                  <option value="Dusun III (Menteng Hilir & Cimenteng)">Dusun III (Menteng Hilir & Cimenteng)</option>
-                </select>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1">Nomor RT</label>
                 <input

@@ -16,7 +16,8 @@ const STORAGE_KEYS = {
   KONTAK_DARURAT: 'desa_wm_kontak_darurat_v1',
   KRITIK_SARAN: 'desa_wm_kritik_saran_v1',
   ADMIN_AUTH: 'desa_wm_admin_auth_v1',
-  COVERS: 'desa_wm_cover_v1'
+  COVERS: 'desa_wm_cover_v1',
+  NAV_STATE: 'desa_wm_nav_state_v1'
 };
 
 // Admin Users Database

@@ -45,7 +45,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
     alamatLengkap: '',
     rt: '01',
     rw: '01',
-    dusun: 'Dusun I - Cimenteng',
     noWhatsapp: '',
     // Spesifik Domisili Usaha (SKU)
     namaUsaha: '',
@@ -110,7 +109,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
       namaPemohon: activeJenis === 'sk-kematian' ? `${formData.namaLengkap} (Keluarga Alm. ${formData.namaAlmarhum})` : formData.namaLengkap,
       nik: formData.nik,
       noWhatsapp: formData.noWhatsapp,
-      dusun: formData.dusun,
       rtRw: `RT ${formData.rt} / RW ${formData.rw}`,
       keperluan: activeJenis === 'domisili-usaha' 
         ? `Usaha ${formData.namaUsaha} (${formData.jenisUsaha})` 
@@ -546,22 +544,7 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
-                        Dusun Domisili *
-                      </label>
-                      <select
-                        value={formData.dusun}
-                        onChange={e => setFormData({ ...formData, dusun: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-                      >
-                        <option value="Dusun I - Cimenteng">Dusun I - Cimenteng</option>
-                        <option value="Dusun II - Menteng Pasir">Dusun II - Menteng Pasir</option>
-                        <option value="Dusun III - Menteng Girang">Dusun III - Menteng Girang</option>
-                      </select>
-                    </div>
-
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">
                         RT / RW *
