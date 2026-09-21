@@ -15,6 +15,7 @@ import { PemerintahanDesaView } from './components/profil/PemerintahanDesaView';
 import { LembagaDesaView } from './components/profil/LembagaDesaView';
 import { DemografiDesaView } from './components/profil/DemografiDesaView';
 import { AnggaranDesaView } from './components/profil/AnggaranDesaView';
+import { KepalaDesaSejarahView } from './components/profil/KepalaDesaSejarahView';
 
 // Potensi Views
 import { PotensiDesaView } from './components/potensi/PotensiDesaView';
@@ -196,6 +197,8 @@ export default function App() {
         return <DemografiDesaView />;
       case 'profil-anggaran':
         return <AnggaranDesaView onNavigate={handleNavigate} />;
+      case 'profil-kepala-desa-sejarah':
+        return <KepalaDesaSejarahView onNavigate={handleNavigate} />;
 
       // POTENSI DESA
       case 'potensi-desa':

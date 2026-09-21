@@ -13,6 +13,7 @@ export type PageRoute =
   | 'profil-lembaga'
   | 'profil-demografi'
   | 'profil-anggaran'
+  | 'profil-kepala-desa-sejarah'
   // Potensi Desa
   | 'potensi-desa'
   | 'potensi-destinasi'

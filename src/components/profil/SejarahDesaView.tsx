@@ -14,7 +14,8 @@ import {
   Calendar,
   ShieldCheck,
   Share2,
-  Check
+  Check,
+  Crown
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import { getCoverImage, getCoverText } from '../../utils/storage';
@@ -335,6 +336,30 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
                 <p className="text-xs text-emerald-100/90 pt-0.5">
                   Warisan masa lalu yang menjadi identitas dan kebanggaan desa
                 </p>
+              </div>
+            </div>
+
+            {/* NEW CARD: KEPALA DESA DARI MASA KE MASA */}
+            <div className="px-5 sm:px-6 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border-y border-emerald-200">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0">
+                  <Crown className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#064e3b] tracking-tight leading-tight">
+                    Kepala Desa dari Masa ke Masa
+                  </h3>
+                  <p className="text-xs text-emerald-800/80 pt-0.5">
+                    Daftar kepala desa yang telah memimpin Desa Warung Menteng
+                  </p>
+                </div>
+                <button
+                  onClick={() => onNavigate?.('profil-kepala-desa-sejarah')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#064e3b] hover:bg-[#043e2f] text-white text-xs font-bold rounded-full transition cursor-pointer shadow-xs shrink-0 whitespace-nowrap"
+                >
+                  <span>Lihat Selengkapnya</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
 
