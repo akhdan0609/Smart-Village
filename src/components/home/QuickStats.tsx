@@ -1,27 +1,32 @@
 import React from 'react';
 import { BookOpen, Users, Mountain, Home } from 'lucide-react';
+import { getCoverText } from '../../utils/storage';
 
-export const QuickStats: React.FC = () => {
+interface QuickStatsProps {
+  tentang?: any;
+}
+
+export const QuickStats: React.FC<QuickStatsProps> = ({ tentang }) => {
   const stats = [
     {
       icon: BookOpen,
       title: 'Luas Wilayah',
-      value: '228 ha'
+      value: tentang?.luasWilayah || '228 ha'
     },
     {
       icon: Users,
       title: 'Jumlah Penduduk',
-      value: '8.997 Jiwa'
+      value: tentang?.jumlahPenduduk || '8.997 Jiwa'
     },
     {
       icon: Mountain,
       title: 'Ketinggian',
-      value: '250 – 500 mdpl'
+      value: tentang?.ketinggian || '250 – 500 mdpl'
     },
     {
       icon: Home,
-      title: 'Jumlah Rw/Rt',
-      value: '8/25'
+      title: 'Jumlah RW/RT',
+      value: tentang?.jumlahRwRt || '8/25'
     }
   ];
 

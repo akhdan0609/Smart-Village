@@ -42,6 +42,9 @@ interface TentangDesaData {
   deskripsi: string;
   visi: string;
   misi: string[];
+  luasWilayah: string;
+  ketinggian: string;
+  jumlahRwRt: string;
 }
 
 interface TimelineStepItem {
@@ -193,10 +196,13 @@ const defaultTentang: TentangDesaData = {
   misi: [
     'Meningkatkan kualitas pelayanan publik.',
     'Mengembangkan potensi ekonomi desa.',
-    'Meningkatkan sarana dan prasarana desa.',
+    'Meningkatkan sarana dan prasarena desa.',
     'Melestarikan lingkungan hidup & budaya lokal.',
     'Meningkatkan kesejahteraan masyarakat.',
   ],
+  luasWilayah: '228 ha',
+  ketinggian: '250 – 500 mdpl',
+  jumlahRwRt: '8/25',
 };
 
 const defaultSejarah: SejarahDesaData = {
@@ -1200,10 +1206,44 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
               className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
             />
           </div>
+</div>
         </div>
-      </div>
 
-      {/* Visi & Misi */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Luas Wilayah</label>
+            <input
+              type="text"
+              value={tentang.luasWilayah}
+              onChange={e => setTentang(prev => ({ ...prev, luasWilayah: e.target.value }))}
+              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+              placeholder="Contoh: 228 ha"
+            />
+          </div>
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Ketinggian</label>
+            <input
+              type="text"
+              value={tentang.ketinggian}
+              onChange={e => setTentang(prev => ({ ...prev, ketinggian: e.target.value }))}
+              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+              placeholder="Contoh: 250 – 500 mdpl"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah RW/RT</label>
+          <input
+            type="text"
+            value={tentang.jumlahRwRt}
+            onChange={e => setTentang(prev => ({ ...prev, jumlahRwRt: e.target.value }))}
+            className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+            placeholder="Contoh: 8/25"
+          />
+        </div>
+
+        {/* Visi & Misi */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center gap-2">
           <Target className="w-5 h-5 text-emerald-700" />

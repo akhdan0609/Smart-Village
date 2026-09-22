@@ -1,4 +1,4 @@
-import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem, AdminUser, AdminRole, KritikSaranItem } from '../types';
+import { PermohonanSurat, LaporanWarga, BeritaItem, PengumumanItem, UMKMItem, AdminUser, AdminRole, KritikSaranItem, TentangDesaData } from '../types';
 import { 
   INITIAL_PERMOHONAN_SURAT, 
   INITIAL_LAPORAN_WARGA, 
@@ -523,4 +523,40 @@ export const resetAllCoverText = (key: CoverKey): CoverTextSettings => {
   delete texts[key];
   localStorage.setItem(STORAGE_KEYS.COVERS + '_text', JSON.stringify(texts));
   return texts;
+};
+
+// Tentang Desa
+export const STORAGE_TENTANG = 'desa_wm_tentang_v1';
+
+export const getTentang = (): TentangDesaData => {
+  try {
+    const data = localStorage.getItem(STORAGE_TENTANG);
+    if (data) {
+      const parsed = JSON.parse(data);
+      // Pastikan semua field ada, gunakan default jika tidak
+      return {
+        gambarSampul: parsed.gambarSampul || '',
+        judul: parsed.judul || 'Tentang Desa Warung Menteng',
+        deskripsi: parsed.deskripsi || '',
+        visi: parsed.visi || '',
+        misi: parsed.misi || [],
+        luasWilayah: parsed.luasWilayah || '228 ha',
+        ketinggian: parsed.ketinggian || '250 – 500 mdpl',
+        jumlahRwRt: parsed.jumlahRwRt || '8/25',
+      };
+    }
+  } catch {
+    /* ignore */
+  }
+  // Return default data
+  return {
+    gambarSampul: '',
+    judul: 'Tentang Desa Warung Menteng',
+    deskripsi: '',
+    visi: '',
+    misi: [],
+    luasWilayah: '228 ha',
+    ketinggian: '250 – 500 mdpl',
+    jumlahRwRt: '8/25',
+  };
 };
