@@ -427,24 +427,25 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
               </div>
 
             {/* Card Kepala Desa dari Masa ke Masa - Pojok Kanan Bawah */}
-            <div className="px-5 sm:px-6 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border-t border-emerald-200/80">
-              <div className="flex items-center gap-3">
+            <div className="px-4 sm:px-5 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border-t border-emerald-200/80">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0">
                   <Crown className="w-5 h-5 text-white" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-[#064e3b] tracking-tight leading-tight">
+                <div className="flex-1 min-w-0 w-full sm:w-auto">
+                  <h3 className="text-sm sm:text-base font-extrabold text-[#064e3b] tracking-tight leading-snug break-words">
                     Kepala Desa dari Masa ke Masa
                   </h3>
-                  <p className="text-xs text-emerald-800/80 pt-0.5">
+                  <p className="text-[11px] sm:text-xs text-emerald-800/80 pt-1 leading-relaxed break-words">
                     Daftar kepala desa yang telah memimpin Desa Warung Menteng
                   </p>
                 </div>
                 <button
                   onClick={() => onNavigate?.('profil-kepala-desa-sejarah')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#064e3b] hover:bg-[#043e2f] text-white text-xs font-bold rounded-full transition cursor-pointer shadow-xs shrink-0 whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#064e3b] hover:bg-[#043e2f] text-white text-xs font-bold rounded-full transition cursor-pointer shadow-xs shrink-0 whitespace-nowrap sm:whitespace-nowrap"
                 >
-                  <span>Lihat Selengkapnya</span>
+                  <span className="hidden sm:inline">Lihat Selengkapnya</span>
+                  <span className="sm:hidden">Lihat</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
