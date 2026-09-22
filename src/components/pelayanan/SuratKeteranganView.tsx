@@ -9,13 +9,16 @@ import {
   Download, 
   Clock, 
   ShieldCheck,
-  AlertCircle
+  AlertCircle,
+  Truck,
+  MapPin,
+  FileText as FileTextIcon
 } from 'lucide-react';
 import { saveSuratRequest } from '../../utils/storage';
 import { PageRoute } from '../../types';
 
 interface SuratKeteranganViewProps {
-  initialJenis?: 'domisili-warga' | 'domisili-usaha' | 'sktm' | 'sk-kelahiran' | 'sk-kematian';
+  initialJenis?: 'domisili-warga' | 'domisili-usaha' | 'sktm' | 'sk-kelahiran' | 'sk-kematian' | 'pindah-keluar' | 'pindah-datang';
   onNavigate?: (page: PageRoute, params?: any) => void;
 }
 
@@ -23,7 +26,7 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
   initialJenis = 'domisili-warga',
   onNavigate 
 }) => {
-  const [activeJenis, setActiveJenis] = useState<'domisili-warga' | 'domisili-usaha' | 'sktm' | 'sk-kelahiran' | 'sk-kematian'>(initialJenis);
+  const [activeJenis, setActiveJenis] = useState<'domisili-warga' | 'domisili-usaha' | 'sktm' | 'sk-kelahiran' | 'sk-kematian' | 'pindah-keluar' | 'pindah-datang'>(initialJenis);
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
 
   React.useEffect(() => {
@@ -77,6 +80,61 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
     sebabKematian: 'Sakit Biasa / Usia Lanjut',
     tempatPemakaman: 'TPU Desa Warung Menteng',
     hubunganPelapor: 'Anak Kandung',
+    // Spesifik Pindah Keluar & Pindah Datang (SKPWNI)
+    namaKepalaKeluarga: '',
+    nikKepalaKeluarga: '',
+    noWhatsapp: '',
+    jumlahAnggotaPindah: '1 Orang (Pemohon Sendiri)',
+    alasanPindah: 'Pekerjaan / Dinas',
+    // Alamat Asal
+    alamatAsal: '',
+    rtAsal: '01',
+    rwAsal: '01',
+    desaAsal: 'Warung Menteng',
+    kecamatanAsal: 'Cijeruk',
+    kabupatenAsal: 'Bogor',
+    provinsiAsal: 'Jawa Barat',
+    // Alamat Tujuan
+    alamatTujuan: '',
+    desaTujuan: '',
+    kecamatanTujuan: '',
+    kabupatenTujuan: '',
+    provinsiTujuan: 'Jawa Barat',
+    kodePosTujuan: '',
+    // Data SKPWNI asal (jika pindah datang)
+    nomorSKPWNIAsal: '',
+    tanggalSKPWNIAsal: '',
+    // Spesifik Domisili Usaha (SKU)
+    namaUsaha: '',
+    jenisUsaha: '',
+    alamatUsaha: '',
+    tahunBerdiri: '',
+    // Spesifik SKTM
+    keperluanSKTM: 'Persyaratan Beasiswa Pendidikan',
+    penghasilanBulanan: '< Rp 1.500.000',
+    tanggunganKeluarga: '3 Orang',
+    // Spesifik Surat Keterangan Kelahiran
+    namaBayi: '',
+    jenisKelaminBayi: 'Laki-laki',
+    tempatLahirBayi: 'Bogor',
+    tanggalLahirBayi: '',
+    jamLahirBayi: '08:00',
+    anakKe: '1',
+    namaAyahBayi: '',
+    nikAyahBayi: '',
+    namaIbuBayi: '',
+    nikIbuBayi: '',
+    penolongKelahiran: 'Bidan / Dokter',
+    // Spesifik Surat Keterangan Kematian
+    namaAlmarhum: '',
+    nikAlmarhum: '',
+    jenisKelaminAlmarhum: 'Laki-laki',
+    tanggalMeninggal: '',
+    jamMeninggal: '10:00',
+    tempatMeninggal: 'Rumah Duka (Desa Warung Menteng)',
+    sebabKematian: 'Sakit Biasa / Usia Lanjut',
+    tempatPemakaman: 'TPU Desa Warung Menteng',
+    hubunganPelapor: 'Anak Kandung',
     // Umum
     keperluanSurat: ''
   });
@@ -98,30 +156,61 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
     } else if (activeJenis === 'sk-kematian') {
       jenisSuratLabel = 'Surat Keterangan Kematian';
       kodePrefix = 'SK-MATI';
+    } else if (activeJenis === 'pindah-keluar') {
+      jenisSuratLabel = 'Surat Keterangan Pindah Keluar (SKPWNI)';
+      kodePrefix = 'SKPWNI-OUT';
+    } else if (activeJenis === 'pindah-datang') {
+      jenisSuratLabel = 'Surat Keterangan Pindah Datang (Warga Baru)';
+      kodePrefix = 'SKPWNI-IN';
     }
 
     const regCode = `${kodePrefix}-${Date.now().toString().slice(-6)}`;
 
+    const isKeluar = activeJenis === 'pindah-keluar';
+    const isDatang = activeJenis === 'pindah-datang';
+
     const newDoc = {
       id: `req-${Date.now()}`,
-      nomorRegistrasi: regCode,
-      jenisSurat: jenisSuratLabel,
-      namaPemohon: activeJenis === 'sk-kematian' ? `${formData.namaLengkap} (Keluarga Alm. ${formData.namaAlmarhum})` : formData.namaLengkap,
-      nik: formData.nik,
-      noWhatsapp: formData.noWhatsapp,
-      rtRw: `RT ${formData.rt} / RW ${formData.rw}`,
-      keperluan: activeJenis === 'domisili-usaha' 
-        ? `Usaha ${formData.namaUsaha} (${formData.jenisUsaha})` 
-        : activeJenis === 'sktm' 
-        ? formData.keperluanSKTM 
-        : activeJenis === 'sk-kelahiran'
-        ? `Pencatatan Kelahiran Anak: ${formData.namaBayi} (Anak ke-${formData.anakKe})`
-        : activeJenis === 'sk-kematian'
-        ? `Penerbitan Akta Kematian Alm./Almh. ${formData.namaAlmarhum} (Meninggal ${formData.tanggalMeninggal})`
-        : (formData.keperluanSurat || 'Keterangan Domisili Tempat Tinggal'),
+      nomorRegistrasi: `${kodePrefix}-${Date.now().toString().slice(-6)}`,
+      jenisSurat: isKeluar 
+        ? 'Surat Keterangan Pindah Keluar (SKPWNI)' 
+        : isDatang 
+          ? 'Surat Keterangan Pindah Datang (Warga Baru)' 
+          : activeJenis === 'domisili-usaha' 
+            ? 'Surat Keterangan Domisili Usaha (SKU)' 
+            : activeJenis === 'sktm' 
+              ? 'Surat Keterangan Tidak Mampu (SKTM)' 
+              : activeJenis === 'sk-kelahiran' 
+                ? 'Surat Keterangan Kelahiran' 
+                : activeJenis === 'sk-kematian' 
+                  ? 'Surat Keterangan Kematian' 
+                  : 'Surat Keterangan Domisili Warga',
+      namaPemohon: isKeluar 
+        ? formData.namaKepalaKeluarga 
+        : isDatang 
+          ? formData.namaKepalaKeluarga 
+          : activeJenis === 'sk-kematian' 
+            ? `${formData.namaLengkap} (Keluarga Alm. ${formData.namaAlmarhum})` 
+            : formData.namaLengkap,
+      nik: isKeluar || isDatang ? formData.nikKepalaKeluarga : formData.nik,
+      noWhatsapp: isKeluar || isDatang ? formData.noWhatsapp : formData.noWhatsapp,
+      rtRw: isKeluar ? `RT ${formData.rtAsal} / RW ${formData.rwAsal}` : isDatang ? 'Wilayah Tujuan Baru' : `RT ${formData.rt} / RW ${formData.rw}`,
+      keperluan: isKeluar 
+        ? `Pindah ke ${formData.desaTujuan}, Kec. ${formData.kecamatanTujuan}, ${formData.kabupatenTujuan} (${formData.alasanPindah})` 
+        : isDatang 
+          ? `Pindah Datang dari ${formData.desaAsal}, Kec. ${formData.kecamatanAsal}` 
+          : activeJenis === 'domisili-usaha' 
+            ? `Usaha ${formData.namaUsaha} (${formData.jenisUsaha})` 
+            : activeJenis === 'sktm' 
+              ? formData.keperluanSKTM 
+              : activeJenis === 'sk-kelahiran' 
+                ? `Pencatatan Kelahiran Anak: ${formData.namaBayi} (Anak ke-${formData.anakKe})` 
+                : activeJenis === 'sk-kematian' 
+                  ? `Penerbitan Akta Kematian Alm./Almh. ${formData.namaAlmarhum} (Meninggal ${formData.tanggalMeninggal})` 
+                  : (formData.keperluanSurat || 'Keterangan Domisili Tempat Tinggal'),
       status: 'diajukan' as const,
       tanggalPengajuan: new Date().toISOString().split('T')[0],
-      estimasiSelesai: '1 Hari Kerja'
+      estimasiSelesai: isKeluar || isDatang ? '2 Hari Kerja' : '1 Hari Kerja'
     };
 
     saveSuratRequest(newDoc);
@@ -163,6 +252,22 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
       shortTitle: 'Keterangan Kematian',
       badge: 'SK-MATI',
       desc: 'Menerangkan catatan telah meninggal dunianya warga desa untuk pengurusan Akta Kematian, ahli waris, dan administrasi.'
+    },
+    {
+      id: 'pindah-keluar' as const,
+      title: 'Surat Keterangan Pindah Keluar (SKPWNI)',
+      shortTitle: 'Pindah Keluar (SKPWNI)',
+      badge: 'SKPWNI',
+      desc: 'Surat Keterangan Pindah Warga Negara Indonesia (SKPWNI) keluar dari Desa Warung Menteng ke wilayah lain.',
+      icon: Truck
+    },
+    {
+      id: 'pindah-datang' as const,
+      title: 'Surat Keterangan Pindah Datang (Warga Baru)',
+      shortTitle: 'Pindah Datang',
+      badge: 'SKPWNI',
+      desc: 'Pendaftaran warga pindah datang baru dengan SKPWNI asal ke Desa Warung Menteng.',
+      icon: MapPin
     }
   ];
 
@@ -353,6 +458,56 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <span>Surat Pengantar Kematian dari Ketua RT dan RW setempat</span>
+                </li>
+              </ul>
+            )}
+
+            {activeJenis === 'pindah-keluar' && (
+              <ul className="space-y-3 text-xs text-slate-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Surat Pengantar Pindah dari RT dan RW setempat</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Kartu Keluarga (KK) Asli Desa Warung Menteng</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>KTP-el Asli seluruh anggota keluarga yang ikut pindah</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Alamat lengkap daerah tujuan (termasuk RT/RW, Desa, Kec, Kab)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Pas foto 3x4 (2 lembar) kepala keluarga</span>
+                </li>
+              </ul>
+            )}
+
+            {activeJenis === 'pindah-datang' && (
+              <ul className="space-y-3 text-xs text-slate-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Surat Keterangan Pindah WNI (SKPWNI) Asli dari daerah asal</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Surat Pengantar Penerimaan dari RT dan RW tujuan di Warung Menteng</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>KTP-el pemohon dan anggota keluarga</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Fotokopi Akta Nikah / Akta Cerai (bagi yang berstatus kawin/cerai)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Fotokopi Akta Kelahiran anak yang ikut pindah</span>
                 </li>
               </ul>
             )}
@@ -1053,6 +1208,416 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
                       </div>
                     </div>
                   </div>
+                )}
+
+                {/* Spesifik Bagian Pindah Keluar (SKPWNI) */}
+                {activeJenis === 'pindah-keluar' && (
+                  <>
+                  <div className="space-y-4 pt-3 border-t border-slate-100">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1">
+                      2. Data Kepala Keluarga / Pemohon
+                    </h4>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nama Kepala Keluarga *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Dedi Suhendar"
+                          value={formData.namaKepalaKeluarga}
+                          onChange={e => setFormData({ ...formData, namaKepalaKeluarga: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          NIK Kepala Keluarga *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          maxLength={16}
+                          placeholder="16 Digit NIK"
+                          value={formData.nikKepalaKeluarga}
+                          onChange={e => setFormData({ ...formData, nikKepalaKeluarga: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nomor Kartu Keluarga (KK) *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          maxLength={16}
+                          placeholder="16 Digit No. KK"
+                          value={formData.noKK}
+                          onChange={e => setFormData({ ...formData, noKK: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nomor WhatsApp Pemohon *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="081234567890"
+                          value={formData.noWhatsapp}
+                          onChange={e => setFormData({ ...formData, noWhatsapp: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Jumlah Anggota Ikut Pindah *
+                        </label>
+                        <select
+                          value={formData.jumlahAnggotaPindah}
+                          onChange={e => setFormData({ ...formData, jumlahAnggotaPindah: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        >
+                          <option value="1 Orang (Pemohon Sendiri)">1 Orang (Pemohon Sendiri)</option>
+                          <option value="2 Orang (Suami Istri)">2 Orang (Suami Istri)</option>
+                          <option value="3 Orang (Keluarga Kecil)">3 Orang (Keluarga Kecil)</option>
+                          <option value="4 Orang atau Lebih">4 Orang atau Lebih (Seluruh Keluarga)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Alasan Kepindahan *
+                      </label>
+                      <select
+                        value={formData.alasanPindah}
+                        onChange={e => setFormData({ ...formData, alasanPindah: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                      >
+                        <option value="Pekerjaan / Dinas">Pekerjaan / Pindah Kantor</option>
+                        <option value="Pendidikan / Sekolah">Pendidikan / Sekolah</option>
+                        <option value="Keluarga / Menikah">Mengikuti Pasangan / Menikah</option>
+                        <option value="Perumahan / Rumah Sendiri">Membeli Rumah Baru / Perumahan</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="space-y-4 pt-3 border-t border-slate-100">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1">
+                      3. Rincian Alamat Asal & Alamat Tujuan
+                    </h4>
+
+                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                      <span className="text-xs font-bold text-slate-900 block">
+                        A. Alamat Asal di Warung Menteng
+                      </span>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">RT / RW Asal</label>
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              placeholder="RT 01"
+                              value={formData.rtAsal}
+                              onChange={e => setFormData({ ...formData, rtAsal: e.target.value })}
+                              className="w-1/2 px-2 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                            />
+                            <input
+                              type="text"
+                              placeholder="RW 01"
+                              value={formData.rwAsal}
+                              onChange={e => setFormData({ ...formData, rwAsal: e.target.value })}
+                              className="w-1/2 px-2 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">Alamat Kampung</label>
+                          <input
+                            type="text"
+                            placeholder="Kp. Cimenteng"
+                            value={formData.alamatAsal}
+                            onChange={e => setFormData({ ...formData, alamatAsal: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-emerald-50/50 rounded-2xl border border-emerald-200/60 space-y-3">
+                      <span className="text-xs font-bold text-emerald-950 block">
+                        B. Alamat Lengkap Tujuan Kepindahan
+                      </span>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Desa/Kelurahan Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Desa Sukamaju"
+                            value={formData.desaTujuan}
+                            onChange={e => setFormData({ ...formData, desaTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Kecamatan Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Kec. Caringin"
+                            value={formData.kecamatanTujuan}
+                            onChange={e => setFormData({ ...formData, kecamatanTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Kabupaten/Kota Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Kab. Sukabumi"
+                            value={formData.kabupatenTujuan}
+                            onChange={e => setFormData({ ...formData, kabupatenTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">Alamat Jalan / Komplek / RT & RW Tujuan *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Jl. Pahlawan No. 45 RT 03/04"
+                          value={formData.alamatTujuan}
+                          onChange={e => setFormData({ ...formData, alamatTujuan: e.target.value })}
+                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
+                )}
+
+                {/* Spesifik Bagian Pindah Datang (SKPWNI) */}
+                {activeJenis === 'pindah-datang' && (
+                  <>
+                  <div className="space-y-4 pt-3 border-t border-slate-100">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1">
+                      2. Data Kepala Keluarga / Pemohon
+                    </h4>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nama Kepala Keluarga *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Dedi Suhendar"
+                          value={formData.namaKepalaKeluarga}
+                          onChange={e => setFormData({ ...formData, namaKepalaKeluarga: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          NIK Kepala Keluarga *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          maxLength={16}
+                          placeholder="16 Digit NIK"
+                          value={formData.nikKepalaKeluarga}
+                          onChange={e => setFormData({ ...formData, nikKepalaKeluarga: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nomor Kartu Keluarga (KK) *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          maxLength={16}
+                          placeholder="16 Digit No. KK"
+                          value={formData.noKK}
+                          onChange={e => setFormData({ ...formData, noKK: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Nomor WhatsApp Pemohon *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="081234567890"
+                          value={formData.noWhatsapp}
+                          onChange={e => setFormData({ ...formData, noWhatsapp: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Jumlah Anggota Ikut Pindah *
+                        </label>
+                        <select
+                          value={formData.jumlahAnggotaPindah}
+                          onChange={e => setFormData({ ...formData, jumlahAnggotaPindah: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                        >
+                          <option value="1 Orang (Pemohon Sendiri)">1 Orang (Pemohon Sendiri)</option>
+                          <option value="2 Orang (Suami Istri)">2 Orang (Suami Istri)</option>
+                          <option value="3 Orang (Keluarga Kecil)">3 Orang (Keluarga Kecil)</option>
+                          <option value="4 Orang atau Lebih">4 Orang atau Lebih (Seluruh Keluarga)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Alasan Kepindahan *
+                      </label>
+                      <select
+                        value={formData.alasanPindah}
+                        onChange={e => setFormData({ ...formData, alasanPindah: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+                      >
+                        <option value="Pekerjaan / Dinas">Pekerjaan / Pindah Kantor</option>
+                        <option value="Pendidikan / Sekolah">Pendidikan / Sekolah</option>
+                        <option value="Keluarga / Menikah">Mengikuti Pasangan / Menikah</option>
+                        <option value="Perumahan / Rumah Sendiri">Membeli Rumah Baru / Perumahan</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="space-y-4 pt-3 border-t border-slate-100">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 border-b border-slate-100 pb-1">
+                      3. Rincian Alamat Asal & Alamat Tujuan
+                    </h4>
+
+                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                      <span className="text-xs font-bold text-slate-900 block">
+                        A. Alamat Asal (Luar Daerah)
+                      </span>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">Desa/Kelurahan Asal *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Kel. Menteng"
+                            value={formData.desaAsal}
+                            onChange={e => setFormData({ ...formData, desaAsal: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">Kecamatan Asal *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Menteng"
+                            value={formData.kecamatanAsal}
+                            onChange={e => setFormData({ ...formData, kecamatanAsal: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">Kabupaten/Kota Asal *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Jakarta Pusat"
+                            value={formData.kabupatenAsal}
+                            onChange={e => setFormData({ ...formData, kabupatenAsal: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-emerald-50/50 rounded-2xl border border-emerald-200/60 space-y-3">
+                      <span className="text-xs font-bold text-emerald-950 block">
+                        B. Alamat Tujuan Baru di Warung Menteng
+                      </span>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Desa/Kelurahan Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Desa Warung Menteng"
+                            value={formData.desaTujuan}
+                            onChange={e => setFormData({ ...formData, desaTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Kecamatan Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Kec. Cijeruk"
+                            value={formData.kecamatanTujuan}
+                            onChange={e => setFormData({ ...formData, kecamatanTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-700 mb-1">Kabupaten/Kota Tujuan *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Contoh: Kab. Bogor"
+                            value={formData.kabupatenTujuan}
+                            onChange={e => setFormData({ ...formData, kabupatenTujuan: e.target.value })}
+                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">Alamat Jalan / Komplek / RT & RW Tujuan *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Contoh: Jl. Pahlawan No. 45 RT 03/04"
+                          value={formData.alamatTujuan}
+                          onChange={e => setFormData({ ...formData, alamatTujuan: e.target.value })}
+                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
                 )}
 
                 <div className="pt-3 flex items-center justify-end">

@@ -3,7 +3,6 @@ import {
   FileText, 
   Users, 
   Heart, 
-  Truck, 
   ChevronRight, 
   ShieldCheck, 
   FileCheck2, 
@@ -43,7 +42,9 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
         'Surat Keterangan Domisili Usaha (SKU)',
         'Surat Keterangan Tidak Mampu (SKTM)',
         'Surat Keterangan Kelahiran',
-        'Surat Keterangan Kematian'
+        'Surat Keterangan Kematian',
+        'Surat Pindah Keluar (SKPWNI)',
+        'Surat Keterangan Datang WNI'
       ],
       icon: FileText,
       page: 'pelayanan-surat-keterangan' as PageRoute
@@ -59,17 +60,6 @@ export const PelayananDesaView: React.FC<PelayananDesaViewProps> = ({ onNavigate
       ],
       icon: Heart,
       page: 'pelayanan-layanan-pernikahan' as PageRoute
-    },
-    {
-      id: 'pindah-datang',
-      title: 'PINDAH DATANG',
-      desc: 'Layanan perpindahan penduduk bagi warga yang pindah datang ke atau dari Desa Warung Menteng.',
-      items: [
-        'Surat Pindah Keluar (SKPWNI)',
-        'Surat Keterangan Datang WNI'
-      ],
-      icon: Truck,
-      page: 'pelayanan-pindah-datang' as PageRoute
     }
   ];
 

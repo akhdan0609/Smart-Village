@@ -47,7 +47,7 @@ import { PengajuanSuratView } from './components/pelayanan/PengajuanSuratView';
 import { CekStatusPengajuanView } from './components/pelayanan/CekStatusPengajuanView';
 import { DownloadFormulirView } from './components/pelayanan/DownloadFormulirView';
 import { SuratKeteranganView } from './components/pelayanan/SuratKeteranganView';
-import { PindahDatangView } from './components/pelayanan/PindahDatangView';
+
 import { LayananPernikahanView } from './components/pelayanan/LayananPernikahanView';
 
 // Aspirasi Views
@@ -246,8 +246,6 @@ export default function App() {
         return <PelayananDesaView onNavigate={handleNavigate} />;
       case 'pelayanan-surat-keterangan':
         return <SuratKeteranganView initialJenis={navParams?.initialJenis} onNavigate={handleNavigate} />;
-      case 'pelayanan-pindah-datang':
-        return <PindahDatangView initialJenis={navParams?.initialJenis} onNavigate={handleNavigate} />;
       case 'pelayanan-layanan-pernikahan':
         return <LayananPernikahanView initialTab={navParams?.initialTab} onNavigate={handleNavigate} />;
       case 'pelayanan-informasi':
