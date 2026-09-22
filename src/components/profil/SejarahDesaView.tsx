@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Home, 
   ChevronRight, 
@@ -19,6 +19,16 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import { getCoverImage, getCoverText } from '../../utils/storage';
+
+const loadKepalaDesa = (): any[] => {
+  try {
+    const raw = localStorage.getItem('desa_wm_kepala_desa_v1');
+    if (raw) return JSON.parse(raw) as any[];
+  } catch {
+    /* ignore */
+  }
+  return [];
+};
 
 // Images for cultural heritage sites
 import makamEyangImg from '../../assets/images/makam_eyang_menteng_1788955428651.jpg';
@@ -48,6 +58,12 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
   const sejarahSubtitle = getCoverText('profil-sejarah', 'subtitle', 'Menelusuri jejak sejarah pembentukan dan perkembangan Desa Warung Menteng.');
   
   const [selectedHeritage, setSelectedHeritage] = useState<HeritageItem | null>(null);
+  const [kepalaDesa, setKepalaDesa] = useState<any[]>([]);
+
+  useEffect(() => {
+    const data = loadKepalaDesa();
+    setKepalaDesa(data);
+  }, []);
   const [copied, setCopied] = useState(false);
 
   // 5 Tahapan Penting Perjalanan Sejarah Desa (01 - 05) - Sesuai Gambar
@@ -437,7 +453,10 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
                     Kepala Desa dari Masa ke Masa
                   </h3>
                   <p className="text-[11px] sm:text-xs text-emerald-800/80 pt-1 leading-relaxed break-words">
-                    Daftar kepala desa yang telah memimpin Desa Warung Menteng
+                    {kepalaDesa.length > 0 
+                      ? `${kepalaDesa.length} Kepala Desa tercatat • ${kepalaDesa[0]?.periodeMulai} - ${kepalaDesa[kepalaDesa.length - 1]?.periodeSelesai || 'Sekarang'}`
+                      : 'Daftar kepala desa yang telah memimpin Desa Warung Menteng'
+                    }
                   </p>
                 </div>
                 <button

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Home, 
   Users, 
@@ -12,23 +12,31 @@ import { PageRoute } from '../../types';
 import { getCoverImage, getCoverText } from '../../utils/storage';
 
 interface KepalaDesaItem {
+  id: string;
   nama: string;
-  periode: string;
-  fotoUrl?: string;
+  periodeMulai: string;
+  periodeSelesai: string;
+  fotoUrl: string;
+  deskripsi: string;
 }
 
-const DUMMY_KEPALA_DESA: KepalaDesaItem[] = [
-  { nama: 'Bpk. Siti Aminah', periode: '2018 - 2023', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=siti' },
-  { nama: 'Bpk. Dedi Kusnadi', periode: '2013 - 2018', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=dedi' },
-  { nama: 'Ibu Ratna Sari', periode: '2008 - 2013', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=ratna' },
-  { nama: 'Bpk. Herman Suparman', periode: '2003 - 2008', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=herman' },
-  { nama: 'Ibu Siti Malihah', periode: '1998 - 2003', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=siti2' },
-  { nama: 'Bpk. Joko Widodo', periode: '1993 - 1998', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=joko' },
-  { nama: 'Ibu Endang Kusuma', periode: '1988 - 1993', fotoUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=endang' },
-];
+const loadKepalaDesa = (): any[] => {
+  try {
+    const raw = localStorage.getItem('desa_wm_kepala_desa_v1');
+    if (raw) return JSON.parse(raw) as any[];
+  } catch {
+    /* ignore */
+  }
+  return [];
+};
 
 export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ onNavigate }) => {
-  const kepalaDesa = DUMMY_KEPALA_DESA;
+  const [kepalaDesa, setKepalaDesa] = useState<any[]>([]);
+
+  useEffect(() => {
+    const data = loadKepalaDesa();
+    setKepalaDesa(data);
+  }, []);
   
   const coverImage = getCoverImage('profil-kepala-desa-sejarah', 'https://api.dicebear.com/7.x/avataaars/svg?seed=kepala-desa');
   const coverTitle = getCoverText('profil-kepala-desa-sejarah', 'title', 'Kepala Desa Warung Menteng');
@@ -117,7 +125,7 @@ export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ on
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {kepalaDesa.map((item, idx) => (
             <div 
-              key={idx}
+              key={item.id || idx}
               className="bg-white rounded-3xl border border-slate-200/90 shadow-xs p-6 sm:p-7 hover:shadow-lg transition-shadow cursor-pointer"
             >
               <div className="flex items-start gap-3 mb-4">
@@ -129,14 +137,17 @@ export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ on
                     {item.nama}
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Periode: {item.periode}
+                    Periode: {item.periodeMulai} - {item.periodeSelesai}
+                  </p>
+                  <p className="text-xs text-emerald-800/80 pt-1 leading-relaxed line-clamp-2">
+                    {item.deskripsi}
                   </p>
                 </div>
               </div>
               
               <div className="flex justify-between text-xs text-slate-500">
                 <span className="line-clamp-2">
-                  Kepala desa terbaik untuk kebijaksanaan dan kemajuan Desa Warung Menteng
+                  {item.deskripsi}
                 </span>
                 <ArrowRight className="w-3 h-3 opacity-60" />
               </div>

@@ -24,6 +24,7 @@ import {
   Star,
   ListOrdered,
   Target,
+  Crown,
 } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { FormModal } from './components/FormModal';
@@ -62,9 +63,19 @@ interface HeritageSiteItem {
   kategori: string;
 }
 
+interface KepalaDesaItem {
+  id: string;
+  nama: string;
+  periodeMulai: string;
+  periodeSelesai: string;
+  fotoUrl: string;
+  deskripsi: string;
+}
+
 interface SejarahDesaData {
   timelineSteps: TimelineStepItem[];
   heritageSites: HeritageSiteItem[];
+  kepalaDesa: KepalaDesaItem[];
 }
 
 interface OfficialItem {
@@ -150,6 +161,7 @@ interface ModalField {
 const STORAGE = {
   TENTANG: 'desa_wm_tentang_v1',
   SEJARAH: 'desa_wm_sejarah_v1',
+  KEPALA_DESA: 'desa_wm_kepala_desa_v1',
   PEMERINTAHAN: 'desa_wm_pemerintahan_v1',
   ANGGARAN: 'desa_wm_anggaran_v1',
 };
@@ -269,6 +281,64 @@ const defaultSejarah: SejarahDesaData = {
       lokasi: 'Bale Sawala Budaya, Desa Warung Menteng',
       tahun: 'Turun-temurun',
       kategori: 'Adat & Seni Budaya',
+    },
+  ],
+  kepalaDesa: [
+    {
+      id: 'kd-1',
+      nama: 'H. Mohamad Sanusi',
+      periodeMulai: '1978',
+      periodeSelesai: '1988',
+      fotoUrl: '',
+      deskripsi: 'Kepala Desa pertama pasca pemekaran, memimpin masa transisi menuju desa administratif.',
+    },
+    {
+      id: 'kd-2',
+      nama: 'Suhanda',
+      periodeMulai: '1988',
+      periodeSelesai: '1998',
+      fotoUrl: '',
+      deskripsi: 'Memimpin pembangunan infrastruktur dasar desa.',
+    },
+    {
+      id: 'kd-3',
+      nama: 'H. Ahmad Djunaedi',
+      periodeMulai: '1998',
+      periodeSelesai: '2003',
+      fotoUrl: '',
+      deskripsi: 'Masa pelestarian budaya dan peningkatan infrastruktur dasar.',
+    },
+    {
+      id: 'kd-4',
+      nama: 'Dedi Supriyadi',
+      periodeMulai: '2003',
+      periodeSelesai: '2008',
+      fotoUrl: '',
+      deskripsi: 'Masa pengembangan ekonomi desa dan pemberdayaan masyarakat.',
+    },
+    {
+      id: 'kd-5',
+      nama: 'H. Mamat Sulaeman',
+      periodeMulai: '2008',
+      periodeSelesai: '2013',
+      fotoUrl: '',
+      deskripsi: 'Fokus pada pelestarian budaya dan peningkatan kesejahteraan.',
+    },
+    {
+      id: 'kd-6',
+      nama: 'H. Irfan Setiawan',
+      periodeMulai: '2013',
+      periodeSelesai: '2018',
+      fotoUrl: '',
+      deskripsi: 'Pengembangan infrastruktur jalan dan fasilitas umum.',
+    },
+    {
+      id: 'kd-7',
+      nama: 'A. Zaenal Arifin S.ag',
+      periodeMulai: '2018',
+      periodeSelesai: 'Sekarang',
+      fotoUrl: '',
+      deskripsi: 'Kepala Desa incar, fokus pada digitalisasi layanan dan pemberdayaan ekonomi.',
     },
   ],
 };
@@ -529,6 +599,7 @@ type TabId = 'tentang' | 'sejarah' | 'pemerintahan' | 'anggaran';
 type ModalEntity =
   | 'timeline'
   | 'heritage'
+  | 'kepalaDesa'
   | 'kades'
   | 'sekdes'
   | 'staff'
@@ -657,6 +728,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
 
   const [tentang, setTentang] = useState<TentangDesaData>(() => loadStorage(STORAGE.TENTANG, defaultTentang));
   const [sejarah, setSejarah] = useState<SejarahDesaData>(() => loadStorage(STORAGE.SEJARAH, defaultSejarah));
+  const [kepalaDesa, setKepalaDesa] = useState<KepalaDesaItem[]>(() => loadStorage(STORAGE.KEPALA_DESA, defaultSejarah.kepalaDesa));
   const [pemerintahan, setPemerintahan] = useState<PemerintahanData>(() => loadStorage(STORAGE.PEMERINTAHAN, defaultPemerintahan));
   const [anggaran, setAnggaran] = useState<AnggaranData>(() => loadStorage(STORAGE.ANGGARAN, defaultAnggaran));
 
@@ -749,6 +821,11 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
       const next = { ...pemerintahan, [key]: list };
       setPemerintahan(next);
       saveStorage(STORAGE.PEMERINTAHAN, next);
+    } else if (entity === 'kepalaDesa') {
+      const newItem: KepalaDesaItem = { id: editing?.id || `kd-${Date.now()}`, nama: formData.nama, periodeMulai: formData.periodeMulai, periodeSelesai: formData.periodeSelesai, fotoUrl: formData.fotoUrl || '', deskripsi: formData.deskripsi };
+      const list = editing ? kepalaDesa.map(i => (i.id === editing.id ? newItem : i)) : [...kepalaDesa, newItem];
+      setKepalaDesa(list);
+      saveStorage(STORAGE.KEPALA_DESA, list);
     } else if (entity === 'rincian' || entity === 'dokumen' || entity === 'rencana' || entity === 'realisasi') {
       const tahun = anggaran.tahunList.find(t => t.id === selectedYear);
       if (!tahun) return;
@@ -788,6 +865,10 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
       const next = { ...pemerintahan, kadus: pemerintahan.kadus.filter(i => i.id !== id) };
       setPemerintahan(next);
       saveStorage(STORAGE.PEMERINTAHAN, next);
+    } else if (entity === 'kepalaDesa') {
+      const list = kepalaDesa.filter(i => i.id !== id);
+      setKepalaDesa(list);
+      saveStorage(STORAGE.KEPALA_DESA, list);
     } else if (entity === 'rincian' || entity === 'dokumen' || entity === 'rencana' || entity === 'realisasi') {
       const tahun = anggaran.tahunList.find(t => t.id === selectedYear);
       if (!tahun) return;
@@ -934,6 +1015,16 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
         { key: 'fotoUrl', label: 'Foto Pejabat', type: 'image' },
         { key: 'pendidikan', label: 'Pendidikan Terakhir', type: 'text', placeholder: 'SMA / Sederajat' },
         { key: 'tupoksi', label: 'Tugas Pokok & Fungsi', type: 'textarea', required: true, rows: 5 },
+      ],
+    },
+    kepalaDesa: {
+      title: 'Kepala Desa dari Masa ke Masa',
+      fields: [
+        { key: 'nama', label: 'Nama Kepala Desa', type: 'text', required: true, placeholder: 'H. Mohamad Sanusi' },
+        { key: 'periodeMulai', label: 'Periode Mulai (Tahun)', type: 'text', required: true, placeholder: '1978' },
+        { key: 'periodeSelesai', label: 'Periode Selesai (Tahun)', type: 'text', required: true, placeholder: '1988 / Sekarang' },
+        { key: 'fotoUrl', label: 'Foto Profil', type: 'image' },
+        { key: 'deskripsi', label: 'Deskripsi / Catatan Masa Kepemimpinan', type: 'textarea', required: true, rows: 4 },
       ],
     },
     rincian: {
@@ -1170,6 +1261,75 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 </div>
               ))}
             </div>
+</div>
+      </div>
+    </div>
+
+    {/* Sub-section: Kepala Desa dari Masa ke Masa */}
+    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
+      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div>
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Crown className="w-5 h-5 text-emerald-700" />
+            Kepala Desa dari Masa ke Masa
+          </h2>
+          <p className="text-xs text-slate-500 mt-0.5">Daftar kepala desa yang telah memimpin Desa Warung Menteng</p>
+        </div>
+        <button
+          onClick={() => openAddModal('kepalaDesa')}
+          disabled={!canEdit}
+          className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition disabled:opacity-50 flex items-center gap-1.5"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Tambah Kepala Desa</span>
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {kepalaDesa.map((kd) => (
+          <div key={kd.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition group">
+            <div className="h-36 bg-slate-100 overflow-hidden">
+              {kd.fotoUrl ? (
+                <img src={kd.fotoUrl} alt={kd.nama} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-slate-300">
+                  <Crown className="w-8 h-8 text-emerald-300" />
+                </div>
+              )}
+            </div>
+            <div className="p-4 space-y-2">
+              <span className="inline-block text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-full">
+                {kd.periodeMulai} - {kd.periodeSelesai}
+              </span>
+              <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{kd.nama}</h4>
+              <p className="text-[11px] text-slate-500 line-clamp-2">{kd.deskripsi}</p>
+              <div className="flex items-center gap-1 pt-2 border-t border-slate-100">
+                <button
+                  onClick={() => openEditModal('kepalaDesa', kd)}
+                  disabled={!canEdit}
+                  className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
+                  title="Edit"
+                >
+                  <Edit className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleDelete('kepalaDesa', kd.id)}
+                  disabled={!canEdit}
+                  className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
+                  title="Hapus"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+</div>
+            ))}
+            {kepalaDesa.length === 0 && (
+              <div className="col-span-full text-center py-10 text-slate-500">
+                <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
+                <p className="text-sm font-medium text-slate-700">Belum ada data Kepala Desa</p>
+                <p className="text-xs text-slate-500 mt-1">Klik tombol "Tambah Kepala Desa" untuk memulai</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1503,10 +1663,80 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 </div>
               </div>
             ))}
-          </div>
-        </div>
+</div>
       </div>
-    );
+    </div>
+
+    {/* Sub-section: Kepala Desa dari Masa ke Masa */}
+    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
+      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div>
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Crown className="w-5 h-5 text-emerald-700" />
+            Kepala Desa dari Masa ke Masa
+          </h2>
+          <p className="text-xs text-slate-500 mt-0.5">Daftar kepala desa yang telah memimpin Desa Warung Menteng</p>
+        </div>
+        <button
+          onClick={() => openAddModal('kepalaDesa')}
+          disabled={!canEdit}
+          className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition disabled:opacity-50 flex items-center gap-1.5"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Tambah Kepala Desa</span>
+        </button>
+      </div>
+
+      {kepalaDesa.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {kepalaDesa.map((kd) => (
+            <div key={kd.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition group">
+              <div className="h-36 bg-slate-100 overflow-hidden">
+                {kd.fotoUrl ? (
+                  <img src={kd.fotoUrl} alt={kd.nama} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-300">
+                    <Crown className="w-8 h-8 text-emerald-300" />
+                  </div>
+                )}
+              </div>
+              <div className="p-4 space-y-2">
+                <span className="inline-block text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-full">
+                  {kd.periodeMulai} - {kd.periodeSelesai}
+                </span>
+                <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{kd.nama}</h4>
+                <p className="text-[11px] text-slate-500 line-clamp-2">{kd.deskripsi}</p>
+                <div className="flex items-center gap-1 pt-2 border-t border-slate-100">
+                  <button
+                    onClick={() => openEditModal('kepalaDesa', kd)}
+                    disabled={!canEdit}
+                    className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
+                    title="Edit"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete('kepalaDesa', kd.id)}
+                    disabled={!canEdit}
+                    className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
+                    title="Hapus"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-10 text-slate-500">
+          <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
+          <p className="text-sm font-medium text-slate-700">Belum ada data Kepala Desa</p>
+          <p className="text-xs text-slate-500 mt-1">Klik tombol "Tambah Kepala Desa" untuk memulai</p>
+        </div>
+      )}
+    </div>
+  );
   };
 
   /* ==================================================================== */
