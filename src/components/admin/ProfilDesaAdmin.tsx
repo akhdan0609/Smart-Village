@@ -1545,9 +1545,8 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
       )}
     </div>
   </div>
-
-  /* ==================================================================== */
-  /* RENDER TAB: PEMERINTAHAN DESA                                          */
+) /* ==================================================================== */
+/* RENDER TAB: PEMERINTAHAN DESA                                          */
   /* ==================================================================== */
 
   const OfficialsCard: React.FC<{ item: OfficialItem; level: 'kades' | 'sekdes'; onEdit: () => void }> = ({ item, level, onEdit }) => (
