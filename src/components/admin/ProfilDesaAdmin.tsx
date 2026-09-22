@@ -1321,16 +1321,21 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
-</div>
-            ))}
-            {kepalaDesa.length === 0 && (
-              <div className="col-span-full text-center py-10 text-slate-500">
-                <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
-                <p className="text-sm font-medium text-slate-700">Belum ada data Kepala Desa</p>
-                <p className="text-xs text-slate-500 mt-1">Klik tombol "Tambah Kepala Desa" untuk memulai</p>
-              </div>
-            )}
+            </div>
           </div>
+          ))}
+
+          {kepalaDesa.length === 0 && (
+            <div className="col-span-full text-center py-10 text-slate-500">
+              <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
+              <p className="text-sm font-medium text-slate-700">
+                Belum ada data Kepala Desa
+              </p>
+              <p className="text-xs text-slate-500 mt-1">
+                Klik tombol "Tambah Kepala Desa" untuk memulai
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1663,11 +1668,10 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 </div>
               </div>
             ))}
-</div>
+        </div>
       </div>
-    </div>
 
-    {/* Sub-section: Kepala Desa dari Masa ke Masa */}
+   {/* Sub-section: Kepala Desa dari Masa ke Masa */}
     <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
       <div className="flex items-center justify-between pb-4 border-b border-slate-100">
         <div>
@@ -1735,9 +1739,10 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
           <p className="text-xs text-slate-500 mt-1">Klik tombol "Tambah Kepala Desa" untuk memulai</p>
         </div>
       )}
-    </div>
-  );
-  };
+     </div>
+   </div>
+   );
+ };
 
   /* ==================================================================== */
   /* RENDER TAB: ANGGARAN DESA                                              */
