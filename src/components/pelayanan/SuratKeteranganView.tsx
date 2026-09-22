@@ -83,7 +83,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
     // Spesifik Pindah Keluar & Pindah Datang (SKPWNI)
     namaKepalaKeluarga: '',
     nikKepalaKeluarga: '',
-    noWhatsapp: '',
     jumlahAnggotaPindah: '1 Orang (Pemohon Sendiri)',
     alasanPindah: 'Pekerjaan / Dinas',
     // Alamat Asal
