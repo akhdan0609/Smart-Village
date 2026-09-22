@@ -626,11 +626,10 @@ export const SejarahDesaView: React.FC<SejarahDesaViewProps> = ({ onNavigate }) 
               </div>
             </div>
 
-            <div>
-
-            </div>
+        </div>
+        </div>
       )}
-
+      
     </div>
   );
 };
