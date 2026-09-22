@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronUp, ChevronDown, Search, Filter, MoreVertical, Edit, Trash2, Eye } from 'lucide-react';
 
 export interface Column<T> {
