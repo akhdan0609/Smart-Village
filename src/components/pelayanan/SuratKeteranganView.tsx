@@ -104,37 +104,6 @@ export const SuratKeteranganView: React.FC<SuratKeteranganViewProps> = ({
     // Data SKPWNI asal (jika pindah datang)
     nomorSKPWNIAsal: '',
     tanggalSKPWNIAsal: '',
-    // Spesifik Domisili Usaha (SKU)
-    namaUsaha: '',
-    jenisUsaha: '',
-    alamatUsaha: '',
-    tahunBerdiri: '',
-    // Spesifik SKTM
-    keperluanSKTM: 'Persyaratan Beasiswa Pendidikan',
-    penghasilanBulanan: '< Rp 1.500.000',
-    tanggunganKeluarga: '3 Orang',
-    // Spesifik Surat Keterangan Kelahiran
-    namaBayi: '',
-    jenisKelaminBayi: 'Laki-laki',
-    tempatLahirBayi: 'Bogor',
-    tanggalLahirBayi: '',
-    jamLahirBayi: '08:00',
-    anakKe: '1',
-    namaAyahBayi: '',
-    nikAyahBayi: '',
-    namaIbuBayi: '',
-    nikIbuBayi: '',
-    penolongKelahiran: 'Bidan / Dokter',
-    // Spesifik Surat Keterangan Kematian
-    namaAlmarhum: '',
-    nikAlmarhum: '',
-    jenisKelaminAlmarhum: 'Laki-laki',
-    tanggalMeninggal: '',
-    jamMeninggal: '10:00',
-    tempatMeninggal: 'Rumah Duka (Desa Warung Menteng)',
-    sebabKematian: 'Sakit Biasa / Usia Lanjut',
-    tempatPemakaman: 'TPU Desa Warung Menteng',
-    hubunganPelapor: 'Anak Kandung',
     // Umum
     keperluanSurat: ''
   });
