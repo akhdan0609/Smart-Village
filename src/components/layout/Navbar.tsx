@@ -173,9 +173,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Budaya & Adat Istiadat', desc: 'Upacara Seren Taun Cijeruk, Silat Cimande, Seni Calung', page: 'potensi-budaya' as PageRoute, tag: 'Potensi' },
     { title: 'Budidaya', desc: 'Sentra budidaya kolam air deras nila, mas, dan gurame', page: 'potensi-perikanan' as PageRoute, tag: 'Potensi' },
     // Pelayanan Desa
-    { title: 'Pelayanan Desa', desc: 'Pusat permohonan surat administrasi, kependudukan, nikah, dan pindah datang', page: 'pelayanan-desa' as PageRoute, tag: 'Pelayanan' },
-    { title: 'Surat Keterangan (Domisili, SKU, SKTM)', desc: 'Layanan online surat domisili, usaha, dan tidak mampu', page: 'pelayanan-surat-keterangan' as PageRoute, tag: 'Pelayanan' },
-    { title: 'Pindah Datang (SKPWNI)', desc: 'Surat keterangan pindah keluar dan masuk kependudukan', page: 'pelayanan-pindah-datang' as PageRoute, tag: 'Pelayanan' },
+    { title: 'Pelayanan Desa', desc: 'Pusat permohonan surat administrasi, kependudukan, nikah', page: 'pelayanan-desa' as PageRoute, tag: 'Pelayanan' },
+    { title: 'Surat Keterangan (Domisili, SKU, SKTM, Pindah)', desc: 'Layanan online surat domisili, usaha, tidak mampu, pindah keluar/datang', page: 'pelayanan-surat-keterangan' as PageRoute, tag: 'Pelayanan' },
     { title: 'Layanan Pernikahan (N1 - N4)', desc: 'Surat pengantar nikah desa, formulir N1-N4 dan KUA', page: 'pelayanan-layanan-pernikahan' as PageRoute, tag: 'Pelayanan' },
     // HUMAS
     { title: 'Press Release', desc: 'Siaran pers resmi publikasi kegiatan & kebijakan desa', page: 'berita-press-release' as PageRoute, tag: 'HUMAS' },
@@ -474,17 +473,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }`}
                   >
                     <span>Surat Keterangan</span>
-                    <ArrowRight className="w-3 h-3 text-slate-400" />
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('pelayanan-pindah-datang')}
-                    className={`w-full text-left px-3.5 py-2.5 text-xs rounded-xl flex items-center justify-between transition-colors duration-150 cursor-pointer ${
-                      activePage === 'pelayanan-pindah-datang'
-                        ? 'bg-emerald-50 text-[#0e3e2f] font-semibold'
-                        : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
-                    }`}
-                  >
-                    <span>Pindah Datang</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </button>
                   <button
