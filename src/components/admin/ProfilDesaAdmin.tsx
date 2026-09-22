@@ -29,23 +29,12 @@ import {
 import { AdminLayout } from './AdminLayout';
 import { FormModal } from './components/FormModal';
 import { ImageUpload } from './components/ImageUpload';
-import { PageRoute } from '../../types';
+import { PageRoute, TentangDesaData } from '../../types';
 import { getCurrentAdmin } from '../../utils/storage';
 
 /* ========================================================================= */
 /* TIPE DATA                                                               */
 /* ========================================================================= */
-
-interface TentangDesaData {
-  gambarSampul: string;
-  judul: string;
-  deskripsi: string;
-  visi: string;
-  misi: string[];
-  luasWilayah: string;
-  ketinggian: string;
-  jumlahRwRt: string;
-}
 
 interface TimelineStepItem {
   id: string;

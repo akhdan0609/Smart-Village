@@ -2,6 +2,17 @@
 
 export type AdminRole = 'super_admin' | 'admin_1' | 'admin_2';
 
+export interface TentangDesaData {
+  gambarSampul: string;
+  judul: string;
+  deskripsi: string;
+  visi: string;
+  misi: string[];
+  luasWilayah: string;
+  ketinggian: string;
+  jumlahRwRt: string;
+}
+
 export type PageRoute = 
   | 'beranda'
   // Profil Desa
@@ -40,7 +51,7 @@ export type PageRoute =
   // Pelayanan Desa
   | 'pelayanan-desa'
   | 'pelayanan-surat-keterangan'
-  
+  | 'pelayanan-pindah-datang'
   | 'pelayanan-layanan-pernikahan'
   | 'pelayanan-informasi'
   | 'pelayanan-administrasi'

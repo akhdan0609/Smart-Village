@@ -37,6 +37,12 @@ const COVER_META: Record<CoverKey, { label: string; desc: string; target: PageRo
     target: 'profil-sejarah',
     targetLabel: 'Sejarah Desa',
   },
+  'profil-kepala-desa-sejarah': {
+  label: 'Sampul Halaman Sejarah Kepala Desa',
+  desc: 'Banner di bagian atas halaman sejarah kepala desa dari masa lalu hingga kini.',
+  target: 'profil-kepala-desa-sejarah',
+  targetLabel: 'Sejarah Kepala Desa',
+  },
   'profil-pemerintahan': {
     label: 'Sampul Halaman Pemerintahan',
     desc: 'Banner di bagian atas halaman Pemerintahan Desa.',
@@ -127,6 +133,10 @@ const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
   'profil-sejarah': {
     title: 'Sejarah Desa',
     subtitle: 'Menelusuri jejak sejarah pembentukan dan perkembangan Desa Warung Menteng.'
+  },
+  'profil-kepala-desa-sejarah': {
+  title: 'Kepala Desa Warung Menteng',
+  subtitle: 'Sejarah kepala desa dari masa lalu hingga kini.'
   },
   'profil-pemerintahan': {
     title: 'Pemerintahan Desa',

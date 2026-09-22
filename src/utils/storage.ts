@@ -420,21 +420,22 @@ export const deleteKritikSaran = (id: string): KritikSaranItem[] => {
 export type { AdminUser, AdminRole } from '../types';
 
 // Sampul / Background Halaman User
-export type CoverKey = 
-  | 'beranda' 
-  | 'profil' 
-  | 'profil-tentang' 
-  | 'profil-sejarah' 
-  | 'profil-pemerintahan' 
+export type CoverKey =
+  | 'beranda'
+  | 'profil'
+  | 'profil-tentang'
+  | 'profil-sejarah'
+  | 'profil-kepala-desa-sejarah'
+  | 'profil-pemerintahan'
   | 'profil-anggaran'
-  | 'potensi' 
-  | 'potensi-akomodasi' 
-  | 'potensi-umkm' 
-  | 'potensi-budaya' 
+  | 'potensi'
+  | 'potensi-akomodasi'
+  | 'potensi-umkm'
+  | 'potensi-budaya'
   | 'potensi-budidaya'
-  | 'pelayanan' 
-  | 'humas' 
-  | 'humas-press' 
+  | 'pelayanan'
+  | 'humas'
+  | 'humas-press'
   | 'humas-galeri'
   | 'darurat';
 
@@ -445,12 +446,23 @@ export type CoverTextKey = 'title' | 'subtitle';
 export type CoverTextSettings = Partial<Record<CoverKey, Partial<Record<CoverTextKey, string>>>>;
 
 export const COVER_KEYS: CoverKey[] = [
-  'beranda', 
-  'profil', 'profil-tentang', 'profil-sejarah', 'profil-pemerintahan', 'profil-anggaran',
-  'potensi', 'potensi-akomodasi', 'potensi-umkm', 'potensi-budaya', 'potensi-budidaya',
-  'pelayanan', 
-  'humas', 'humas-press', 'humas-galeri',
-  'darurat'
+  'beranda',
+  'profil',
+  'profil-tentang',
+  'profil-sejarah',
+  'profil-kepala-desa-sejarah',
+  'profil-pemerintahan',
+  'profil-anggaran',
+  'potensi',
+  'potensi-akomodasi',
+  'potensi-umkm',
+  'potensi-budaya',
+  'potensi-budidaya',
+  'pelayanan',
+  'humas',
+  'humas-press',
+  'humas-galeri',
+  'darurat',
 ];
 
 export const getCoverSettings = (): CoverSettings => {

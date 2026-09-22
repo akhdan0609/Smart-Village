@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { animate, waapi } from 'animejs';
 import { HeroSection } from './HeroSection';
 import { QuickStats } from './QuickStats';
@@ -15,7 +15,7 @@ export const BerandaView: React.FC<BerandaViewProps> = ({ onNavigate }) => {
   // Set elemen yang sedang terlihat di viewport saat ini
   const visibleSectionsRef = useRef<Set<string>>(new Set());
 
-  const [tentang, setTentang] = useState<any>(() => getTentang(STORAGE.TENTANG, defaultTentang));
+  const [tentang, setTentang] = useState<any>(() => getTentang());
 
   // Helper untuk mendeteksi layar mobile (< 768px)
   const getIsMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 768 : false);
