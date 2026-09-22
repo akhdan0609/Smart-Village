@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Home, 
   Users, 
@@ -20,23 +20,35 @@ interface KepalaDesaItem {
   deskripsi: string;
 }
 
-const loadKepalaDesa = (): any[] => {
+const DEFAULT_KEPALA_DESA: KepalaDesaItem[] = [
+  { id: 'kd-1', nama: 'H. Mohamad Sanusi', periodeMulai: '1978', periodeSelesai: '1988', fotoUrl: '', deskripsi: 'Kepala Desa pertama pasca pemekaran, memimpin masa transisi menuju desa administratif.' },
+  { id: 'kd-2', nama: 'Suhanda', periodeMulai: '1988', periodeSelesai: '1998', fotoUrl: '', deskripsi: 'Memimpin pembangunan infrastruktur dasar desa.' },
+  { id: 'kd-3', nama: 'H. Ahmad Djunaedi', periodeMulai: '1998', periodeSelesai: '2003', fotoUrl: '', deskripsi: 'Masa pelestarian budaya dan peningkatan infrastruktur dasar.' },
+  { id: 'kd-4', nama: 'Dedi Supriyadi', periodeMulai: '2003', periodeSelesai: '2008', fotoUrl: '', deskripsi: 'Masa pengembangan ekonomi desa dan pemberdayaan masyarakat.' },
+  { id: 'kd-5', nama: 'H. Mamat Sulaeman', periodeMulai: '2008', periodeSelesai: '2013', fotoUrl: '', deskripsi: 'Fokus pada pelestarian budaya dan peningkatan kesejahteraan.' },
+  { id: 'kd-6', nama: 'H. Irfan Setiawan', periodeMulai: '2013', periodeSelesai: '2018', fotoUrl: '', deskripsi: 'Pengembangan infrastruktur jalan dan fasilitas umum.' },
+  { id: 'kd-7', nama: 'A. Zaenal Arifin S.ag', periodeMulai: '2018', periodeSelesai: 'Sekarang', fotoUrl: '', deskripsi: 'Kepala Desa incar, fokus pada digitalisasi layanan dan pemberdayaan ekonomi.' },
+];
+
+const loadKepalaDesa = (): KepalaDesaItem[] => {
   try {
     const raw = localStorage.getItem('desa_wm_kepala_desa_v1');
-    if (raw) return JSON.parse(raw) as any[];
+    if (raw) {
+      const parsed = JSON.parse(raw) as KepalaDesaItem[];
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
   } catch {
     /* ignore */
   }
-  return [];
+  return DEFAULT_KEPALA_DESA;
 };
 
-export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ onNavigate }) => {
-  const [kepalaDesa, setKepalaDesa] = useState<any[]>([]);
+export interface KepalaDesaSejarahViewProps {
+  onNavigate?: (page: PageRoute, params?: any) => void;
+}
 
-  useEffect(() => {
-    const data = loadKepalaDesa();
-    setKepalaDesa(data);
-  }, []);
+export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ onNavigate }) => {
+  const [kepalaDesa] = useState<KepalaDesaItem[]>(() => loadKepalaDesa());
   
   const coverImage = getCoverImage('profil-kepala-desa-sejarah', 'https://api.dicebear.com/7.x/avataaars/svg?seed=kepala-desa');
   const coverTitle = getCoverText('profil-kepala-desa-sejarah', 'title', 'Kepala Desa Warung Menteng');
@@ -111,7 +123,7 @@ export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ on
             <div className="flex items-start gap-3">
               <div className="w-1 self-stretch bg-emerald-600 rounded-full shrink-0 min-h-[52px]" />
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                Kepala desa yang telah memimpin Desa Warung Menteng dari masa lalu hingga kini, mewariskan visi dan misi pembangunan yang lebih baikal
+                Kepala desa yang telah memimpin Desa Warung Menteng dari masa lalu hingga kini, mewariskan visi dan misi pembangunan yang lebih baik.
               </p>
             </div>
           </div>
@@ -119,46 +131,44 @@ export const KepalaDesaSejarahView: React.FC<KepalaDesaSejarahViewProps> = ({ on
       </div>
 
       {/* ======================================================== */}
-      {/* MAIN CONTENT: 7 CARDS KEpALA DESA */}
+      {/* MAIN CONTENT: KEPALA DESA CARDS */}
       {/* ======================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {kepalaDesa.map((item, idx) => (
-            <div 
-              key={item.id || idx}
-              className="bg-white rounded-3xl border border-slate-200/90 shadow-xs p-6 sm:p-7 hover:shadow-lg transition-shadow cursor-pointer"
-            >
-              <div className="flex items-start gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0 flex-shrink-0">
-                  <Crown className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+        {kepalaDesa.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {kepalaDesa.map((item) => (
+              <div 
+                key={item.id}
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-xs p-6 sm:p-7 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0">
+                    <Crown className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-extrabold text-[#064e3b] leading-snug truncate">
+                      {item.nama}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      Periode: {item.periodeMulai} - {item.periodeSelesai}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-extrabold text-[#064e3b] leading-snug">
-                    {item.nama}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    Periode: {item.periodeMulai} - {item.periodeSelesai}
-                  </p>
-                  <p className="text-xs text-emerald-800/80 pt-1 leading-relaxed line-clamp-2">
-                    {item.deskripsi}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex justify-between text-xs text-slate-500">
-                <span className="line-clamp-2">
+                
+                <div className="text-xs text-slate-500 leading-relaxed border-t border-slate-100 pt-3 mt-3">
                   {item.deskripsi}
-                </span>
-                <ArrowRight className="w-3 h-3 opacity-60" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <Crown className="w-16 h-16 mx-auto text-emerald-300 mb-4" />
+            <h2 className="text-xl font-bold text-slate-700 mb-2">Belum Ada Data Kepala Desa</h2>
+            <p className="text-slate-500 mb-6">Data kepala desa belum tersedia.</p>
+          </div>
+        )}
       </div>
     </div>
   );
-}
-
-export interface KepalaDesaSejarahViewProps {
-  onNavigate?: (page: PageRoute, params?: any) => void;
-}
+};
