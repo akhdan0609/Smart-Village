@@ -1068,19 +1068,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'm-pelayanan' ? 'rotate-180 text-[#0e3e2f]' : ''}`} />
               </button>
             </div>
-            {openDropdown === 'm-pelayanan' && (
+{openDropdown === 'm-pelayanan' && (
               <div className="p-1.5 space-y-1 bg-white border-t border-slate-100">
                 <button
                   onClick={() => handleNavClick('pelayanan-surat-keterangan')}
                   className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
                 >
                   Surat Keterangan
-                </button>
-                <button
-                  onClick={() => handleNavClick('pelayanan-pindah-datang')}
-                  className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Pindah Datang
                 </button>
                 <button
                   onClick={() => handleNavClick('pelayanan-layanan-pernikahan')}
