@@ -1194,45 +1194,44 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
               rows={3}
               className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
             />
-          </div>
-</div>
+            </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Luas Wilayah</label>
-            <input
-              type="text"
-              value={tentang.luasWilayah}
-              onChange={e => setTentang(prev => ({ ...prev, luasWilayah: e.target.value }))}
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-              placeholder="Contoh: 228 ha"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Ketinggian</label>
-            <input
-              type="text"
-              value={tentang.ketinggian}
-              onChange={e => setTentang(prev => ({ ...prev, ketinggian: e.target.value }))}
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-              placeholder="Contoh: 250 – 500 mdpl"
-            />
-          </div>
-        </div>
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah RW/RT</label>
+          <label className="text-xs font-bold text-slate-700 block mb-1">Luas Wilayah</label>
           <input
             type="text"
-            value={tentang.jumlahRwRt}
-            onChange={e => setTentang(prev => ({ ...prev, jumlahRwRt: e.target.value }))}
+            value={tentang.luasWilayah}
+            onChange={e => setTentang(prev => ({ ...prev, luasWilayah: e.target.value }))}
             className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-            placeholder="Contoh: 8/25"
+            placeholder="Contoh: 228 ha"
           />
         </div>
+        <div>
+          <label className="text-xs font-bold text-slate-700 block mb-1">Ketinggian</label>
+          <input
+            type="text"
+            value={tentang.ketinggian}
+            onChange={e => setTentang(prev => ({ ...prev, ketinggian: e.target.value }))}
+            className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+            placeholder="Contoh: 250 – 500 mdpl"
+          />
+        </div>
+      </div>
 
-        {/* Visi & Misi */}
+      <div>
+        <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah RW/RT</label>
+        <input
+          type="text"
+          value={tentang.jumlahRwRt}
+          onChange={e => setTentang(prev => ({ ...prev, jumlahRwRt: e.target.value }))}
+          className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
+          placeholder="Contoh: 8/25"
+        />
+      </div>
+
+      {/* Visi & Misi */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center gap-2">
           <Target className="w-5 h-5 text-emerald-700" />
@@ -1290,84 +1289,11 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 </div>
               ))}
             </div>
-</div>
-      </div>
-    </div>
-
-    {/* Sub-section: Kepala Desa dari Masa ke Masa */}
-    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-        <div>
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Crown className="w-5 h-5 text-emerald-700" />
-            Kepala Desa dari Masa ke Masa
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">Daftar kepala desa yang telah memimpin Desa Warung Menteng</p>
-        </div>
-        <button
-          onClick={() => openAddModal('kepalaDesa')}
-          disabled={!canEdit}
-          className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition disabled:opacity-50 flex items-center gap-1.5"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Tambah Kepala Desa</span>
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {kepalaDesa.map((kd) => (
-          <div key={kd.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition group">
-            <div className="h-36 bg-slate-100 overflow-hidden">
-              {kd.fotoUrl ? (
-                <img src={kd.fotoUrl} alt={kd.nama} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-slate-300">
-                  <Crown className="w-8 h-8 text-emerald-300" />
-                </div>
-              )}
-            </div>
-            <div className="p-4 space-y-2">
-              <span className="inline-block text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-full">
-                {kd.periodeMulai} - {kd.periodeSelesai}
-              </span>
-              <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{kd.nama}</h4>
-              <p className="text-[11px] text-slate-500 line-clamp-2">{kd.deskripsi}</p>
-              <div className="flex items-center gap-1 pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => openEditModal('kepalaDesa', kd)}
-                  disabled={!canEdit}
-                  className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
-                  title="Edit"
-                >
-                  <Edit className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleDelete('kepalaDesa', kd.id)}
-                  disabled={!canEdit}
-                  className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
-                  title="Hapus"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
           </div>
-          ))}
-
-          {kepalaDesa.length === 0 && (
-            <div className="col-span-full text-center py-10 text-slate-500">
-              <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
-              <p className="text-sm font-medium text-slate-700">
-                Belum ada data Kepala Desa
-              </p>
-              <p className="text-xs text-slate-500 mt-1">
-                Klik tombol "Tambah Kepala Desa" untuk memulai
-              </p>
-            </div>
-          )}
         </div>
-      </div>
+</div>
     </div>
+  </div>
   );
 
   /* ==================================================================== */
@@ -1765,82 +1691,14 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
                 </div>
               </div>
             ))}
+          </div>
         </div>
       </div>
+    );
+  };
 
-   {/* Sub-section: Kepala Desa dari Masa ke Masa */}
-    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-        <div>
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Crown className="w-5 h-5 text-emerald-700" />
-            Kepala Desa dari Masa ke Masa
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">Daftar kepala desa yang telah memimpin Desa Warung Menteng</p>
-        </div>
-        <button
-          onClick={() => openAddModal('kepalaDesa')}
-          disabled={!canEdit}
-          className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition disabled:opacity-50 flex items-center gap-1.5"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Tambah Kepala Desa</span>
-        </button>
-      </div>
-
-      {kepalaDesa.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {kepalaDesa.map((kd) => (
-            <div key={kd.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition group">
-              <div className="h-36 bg-slate-100 overflow-hidden">
-                {kd.fotoUrl ? (
-                  <img src={kd.fotoUrl} alt={kd.nama} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-300">
-                    <Crown className="w-8 h-8 text-emerald-300" />
-                  </div>
-                )}
-              </div>
-              <div className="p-4 space-y-2">
-                <span className="inline-block text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-full">
-                  {kd.periodeMulai} - {kd.periodeSelesai}
-                </span>
-                <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{kd.nama}</h4>
-                <p className="text-[11px] text-slate-500 line-clamp-2">{kd.deskripsi}</p>
-                <div className="flex items-center gap-1 pt-2 border-t border-slate-100">
-                  <button
-                    onClick={() => openEditModal('kepalaDesa', kd)}
-                    disabled={!canEdit}
-                    className="p-1.5 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition"
-                    title="Edit"
-                  >
-                    <Edit className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDelete('kepalaDesa', kd.id)}
-                    disabled={!canEdit}
-                    className="p-1.5 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
-                    title="Hapus"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-10 text-slate-500">
-          <Crown className="w-12 h-12 mx-auto text-emerald-300 mb-3" />
-          <p className="text-sm font-medium text-slate-700">Belum ada data Kepala Desa</p>
-          <p className="text-xs text-slate-500 mt-1">Klik tombol "Tambah Kepala Desa" untuk memulai</p>
-        </div>
-      )}
-     </div>
-   </div>
-   );
- };
-
+  /* ==================================================================== */
+  /* RENDER TAB: ANGGARAN DESA                                              */
   /* ==================================================================== */
   /* RENDER TAB: ANGGARAN DESA                                              */
   /* ==================================================================== */
