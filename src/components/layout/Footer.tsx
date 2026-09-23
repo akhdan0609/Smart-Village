@@ -300,14 +300,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
 
         {/* Bottom Copyright */}
         <div className="mt-12 pt-6 border-t border-[#094734] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
-          <p>© 2026 Desa Warung Menteng. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => handleNav('kontak-darurat')}
-              className="text-amber-400/90 hover:text-white transition cursor-pointer"
-            >
-              Hotline Darurat
-            </button>
+          <div className="flex items-center gap-2">
+            <p>© 2026 Desa Warung Menteng. All rights reserved.</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-emerald-100/90 opacity-80 text-xs font-medium">
+              Dikembangkan Oleh KKN Wigata Dharma v1.0.0
+            </span>
           </div>
         </div>
       </div>
