@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Users, Mountain } from 'lucide-react';
+import { BookOpen, Users, Mountain, Home } from 'lucide-react';
 import { getCoverText } from '../../utils/storage';
 
 export const QuickStats: React.FC = () => {
@@ -17,14 +17,19 @@ export const QuickStats: React.FC = () => {
     {
       icon: Mountain,
       title: 'Ketinggian',
-      value: getCoverText('profil', 'ketinggian', '250 – 500 mdpl')
+      value: getCoverText('profil', 'ketinggian', '250 – 500 mdpl'),
+    }
+    {
+      icon: Home,
+      title: 'Jumlah RW/RT',
+      value: getCoverText('profil', 'jumlahRwRt', '8/25')
     }
   ];
 
   return (
     <div className="beranda-quick-stats max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20 will-change-transform">
       <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-4 sm:p-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 gap-y-3 sm:gap-y-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 gap-y-3 sm:gap-y-0">
           {stats.map((item, idx) => {
             const Icon = item.icon;
             return (
