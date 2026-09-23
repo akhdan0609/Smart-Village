@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { animate, waapi } from 'animejs';
 import { HeroSection } from './HeroSection';
 import { QuickStats } from './QuickStats';
-import { getTentang } from '../../utils/storage';
 import { HomeBentoGrid } from './HomeBentoGrid';
 import { PageRoute } from '../../types';
 
@@ -14,8 +13,6 @@ export const BerandaView: React.FC<BerandaViewProps> = ({ onNavigate }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   // Set elemen yang sedang terlihat di viewport saat ini
   const visibleSectionsRef = useRef<Set<string>>(new Set());
-
-  const [tentang, setTentang] = useState<any>(() => getTentang());
 
   // Helper untuk mendeteksi layar mobile (< 768px)
   const getIsMobile = () => (typeof window !== 'undefined' ? window.innerWidth < 768 : false);
@@ -223,7 +220,7 @@ export const BerandaView: React.FC<BerandaViewProps> = ({ onNavigate }) => {
       <HeroSection onNavigate={onNavigate} />
 
       {/* 2. Floating Stats Bar (5 statistik) */}
-      <QuickStats tentang={tentang} />
+      <QuickStats />
 
       {/* 3. Bento Grid (4 Cards: Menu, Tentang Desa, Peta Desa, Berita Terbaru) */}
       <HomeBentoGrid onNavigate={onNavigate} />

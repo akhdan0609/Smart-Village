@@ -8,9 +8,6 @@ export interface TentangDesaData {
   deskripsi: string;
   visi: string;
   misi: string[];
-  luasWilayah: string;
-  ketinggian: string;
-  jumlahPenduduk: string;
 }
 
 export type PageRoute = 

@@ -1,39 +1,30 @@
 import React from 'react';
-import { BookOpen, Users, Mountain, Home } from 'lucide-react';
+import { BookOpen, Users, Mountain } from 'lucide-react';
 import { getCoverText } from '../../utils/storage';
 
-interface QuickStatsProps {
-  tentang?: any;
-}
-
-export const QuickStats: React.FC<QuickStatsProps> = ({ tentang }) => {
+export const QuickStats: React.FC = () => {
   const stats = [
     {
       icon: BookOpen,
       title: 'Luas Wilayah',
-      value: tentang?.luasWilayah || '228 ha'
+      value: getCoverText('profil', 'luasWilayah', '228 ha')
     },
     {
       icon: Users,
       title: 'Jumlah Penduduk',
-      value: tentang?.jumlahPenduduk || '8.997 Jiwa'
+      value: getCoverText('profil', 'jumlahPenduduk', '8.997 Jiwa')
     },
     {
       icon: Mountain,
       title: 'Ketinggian',
-      value: tentang?.ketinggian || '250 – 500 mdpl'
-    },
-    {
-      icon: Home,
-      title: 'Jumlah Penduduk',
-      value: tentang?.jumlahPenduduk || '8.997 Jiwa'
+      value: getCoverText('profil', 'ketinggian', '250 – 500 mdpl')
     }
   ];
 
   return (
     <div className="beranda-quick-stats max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20 will-change-transform">
       <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-4 sm:p-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 gap-y-3 sm:gap-y-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 gap-y-3 sm:gap-y-0">
           {stats.map((item, idx) => {
             const Icon = item.icon;
             return (

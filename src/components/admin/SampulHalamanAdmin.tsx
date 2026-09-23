@@ -382,6 +382,43 @@ export const SampulHalamanAdmin: React.FC<SampulHalamanAdminProps> = ({ coverKey
               />
             </div>
 
+            {/* Statistik Desa - Khusus Profil Umum */}
+            {coverKey === 'profil' && (
+              <div className="space-y-4 border-t border-slate-100 pt-4 mt-4">
+                <h4 className="text-sm font-bold text-slate-900 mb-2">Konten Statistik Halaman Beranda</h4>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Jumlah Penduduk</label>
+                  <input
+                    type="text"
+                    value={getText('jumlahPenduduk')}
+                    onChange={(e) => handleTextChange(coverKey, 'jumlahPenduduk', e.target.value)}
+                    placeholder="Contoh: 8.997 Jiwa"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Luas Wilayah</label>
+                  <input
+                    type="text"
+                    value={getText('luasWilayah')}
+                    onChange={(e) => handleTextChange(coverKey, 'luasWilayah', e.target.value)}
+                    placeholder="Contoh: 228 ha"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Ketinggian</label>
+                  <input
+                    type="text"
+                    value={getText('ketinggian')}
+                    onChange={(e) => handleTextChange(coverKey, 'ketinggian', e.target.value)}
+                    placeholder="Contoh: 250 – 500 mdpl"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                  />
+                </div>
+              </div>
+            )}
+
             <div className="flex flex-wrap items-center gap-3 border-t border-slate-100 pt-5">
               <button
                 type="button"

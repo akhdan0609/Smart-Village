@@ -1196,41 +1196,6 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
             />
             </div>
         </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="text-xs font-bold text-slate-700 block mb-1">Luas Wilayah</label>
-          <input
-            type="text"
-            value={tentang.luasWilayah}
-            onChange={e => setTentang(prev => ({ ...prev, luasWilayah: e.target.value }))}
-            className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-            placeholder="Contoh: 228 ha"
-          />
-        </div>
-        <div>
-          <label className="text-xs font-bold text-slate-700 block mb-1">Ketinggian</label>
-          <input
-            type="text"
-            value={tentang.ketinggian}
-            onChange={e => setTentang(prev => ({ ...prev, ketinggian: e.target.value }))}
-            className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-            placeholder="Contoh: 250 – 500 mdpl"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah Penduduk</label>
-        <input
-          type="text"
-          value={tentang.jumlahPenduduk}
-          onChange={e => setTentang(prev => ({ ...prev, jumlahPenduduk: e.target.value }))}
-          className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-          placeholder="Contoh: 8.997 Jiwa"
-        />
-      </div>
-
       {/* Visi & Misi */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center gap-2">

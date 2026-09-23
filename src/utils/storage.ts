@@ -441,7 +441,7 @@ export type CoverKey =
 
 export type CoverSettings = Partial<Record<CoverKey, string>>;
 
-export type CoverTextKey = 'title' | 'subtitle';
+export type CoverTextKey = 'title' | 'subtitle' | 'jumlahPenduduk' | 'luasWilayah' | 'ketinggian';
 
 export type CoverTextSettings = Partial<Record<CoverKey, Partial<Record<CoverTextKey, string>>>>;
 
