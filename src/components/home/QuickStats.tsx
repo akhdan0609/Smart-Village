@@ -18,7 +18,7 @@ export const QuickStats: React.FC = () => {
       icon: Mountain,
       title: 'Ketinggian',
       value: getCoverText('profil', 'ketinggian', '250 – 500 mdpl'),
-    }
+    },
     {
       icon: Home,
       title: 'Jumlah RW/RT',
