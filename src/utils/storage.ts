@@ -554,7 +554,7 @@ export const getTentang = (): TentangDesaData => {
         misi: parsed.misi || [],
         luasWilayah: parsed.luasWilayah || '228 ha',
         ketinggian: parsed.ketinggian || '250 – 500 mdpl',
-        jumlahRwRt: parsed.jumlahRwRt || '8/25',
+        jumlahPenduduk: parsed.jumlahPenduduk || '8.997 Jiwa',
       };
     }
   } catch {
@@ -569,6 +569,6 @@ export const getTentang = (): TentangDesaData => {
     misi: [],
     luasWilayah: '228 ha',
     ketinggian: '250 – 500 mdpl',
-    jumlahRwRt: '8/25',
+    jumlahPenduduk: '8.997 Jiwa',
   };
 };

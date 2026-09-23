@@ -191,7 +191,7 @@ const defaultTentang: TentangDesaData = {
   ],
   luasWilayah: '228 ha',
   ketinggian: '250 – 500 mdpl',
-  jumlahRwRt: '8/25',
+  jumlahPenduduk: '8.997 Jiwa',
 };
 
 const defaultSejarah: SejarahDesaData = {
@@ -1221,13 +1221,13 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
       </div>
 
       <div>
-        <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah RW/RT</label>
+        <label className="text-xs font-bold text-slate-700 block mb-1">Jumlah Penduduk</label>
         <input
           type="text"
-          value={tentang.jumlahRwRt}
-          onChange={e => setTentang(prev => ({ ...prev, jumlahRwRt: e.target.value }))}
+          value={tentang.jumlahPenduduk}
+          onChange={e => setTentang(prev => ({ ...prev, jumlahPenduduk: e.target.value }))}
           className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-          placeholder="Contoh: 8/25"
+          placeholder="Contoh: 8.997 Jiwa"
         />
       </div>
 

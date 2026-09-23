@@ -25,8 +25,8 @@ export const QuickStats: React.FC<QuickStatsProps> = ({ tentang }) => {
     },
     {
       icon: Home,
-      title: 'Jumlah RW/RT',
-      value: tentang?.jumlahRwRt || '8/25'
+      title: 'Jumlah Penduduk',
+      value: tentang?.jumlahPenduduk || '8.997 Jiwa'
     }
   ];
 
