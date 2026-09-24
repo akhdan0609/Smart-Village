@@ -33,6 +33,13 @@ import avatarDefran from '../../assets/images/Defran_KKN.jpeg';
 import avatarIkmal from '../../assets/images/Ikmal_KKN.jpeg';
 import avatarPahlepi from '../../assets/images/Pahlepi_KKN.jpeg';
 import avatarRisna from '../../assets/images/Risna_KKN.jpeg';
+import avatarIyoh from '../../assets/images/Iyoh_KKN.jpeg';
+import avatarNana from '../../assets/images/Nana_KKN.jpeg';
+import avatarGiry from '../../assets/images/Giry_KKN.jpeg';
+import avatarArifin from '../../assets/images/Arifin_KKN.jpeg';
+import avatarYudha from '../../assets/images/Yudha_KKN.jpeg';
+import avatarQomar from '../../assets/images/Qomar_KKN.jpeg';
+import avatarAisyah from '../../assets/images/Aisyah_KKN.jpeg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
 
@@ -237,7 +244,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Koordinator HUMAS',
         quote: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
         prodi: 'Ilmu Hukum',
-        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&auto=format&fit=crop&q=80',
+        photo: avatarArifin,
         gender: 'm'
       },
       {
@@ -247,7 +254,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota HUMAS',
         quote: 'Komunikasi yang baik adalah kunci membangun hubungan yang kuat dan kepercayaan yang tulus.',
         prodi: 'Ilmu Hukum',
-        photo: avatarMale3,
+        photo: avatarGiry,
         gender: 'm'
       },
       {
@@ -257,7 +264,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota HUMAS',
         quote: 'Kreatif dalam ide, komunikatif dalam aksi, berdampak untuk negeri.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80',
+        photo: avatarIyoh,
         gender: 'f'
       },
       {
@@ -267,7 +274,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota HUMAS',
         quote: 'Membangun koneksi, mempererat sinergi, dan mengabdi dengan sepenuh hati.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80',
+        photo: avatarNana,
         gender: 'f'
       }
     ]
@@ -290,7 +297,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Koordinator MEDIA',
         quote: 'Dokumentasi hari ini, menjadi cerita berharga untuk masa depan.',
         prodi: 'Teknik Informatika',
-        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+        photo: avatarQomar,
         gender: 'm'
       },
       {
@@ -300,7 +307,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota MEDIA',
         quote: 'Menyampaikan informasi dengan kreatif, mendokumentasikan momen dengan penuh makna.',
         prodi: 'Teknik Informatika',
-        photo: avatarMale2,
+        photo: avatarYudha,
         gender: 'm'
       },
       {
@@ -310,7 +317,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota MEDIA',
         quote: 'Kreativitas dalam setiap karya, informasi dalam setiap langkah.',
         prodi: 'Ilmu Hukum',
-        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+        photo: avatarAisyah,
         gender: 'f'
       }
     ]
