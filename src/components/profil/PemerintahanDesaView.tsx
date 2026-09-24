@@ -235,8 +235,11 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
     {
       label: 'Sekretariat',
       icon: ClipboardList,
-      members: ['staff-1', 'staff-5', 'staff-6']
-        .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!)
+      members: [
+        STRUKTUR_DATA.sekdes,
+        ...['staff-1', 'staff-5', 'staff-6']
+          .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!)
+      ]
     },
     {
       label: 'Pelaksana Teknis',
@@ -313,131 +316,79 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
 
           {/* Horizontal scroll wrapper for mobile comfort so diagram stays intact */}
           <div className="overflow-x-auto pb-6 -mx-2 px-2">
-            <div className="min-w-[940px] max-w-[1100px] mx-auto flex flex-col items-center">
+            <div className="min-w-[1020px] max-w-[1220px] mx-auto">
 
-              {/* ================= LEVEL 1: KEPALA DESA ================= */}
-              <div className="flex justify-center w-full">
-                <div 
-                  onClick={() => setSelectedOfficial(STRUKTUR_DATA.kades)}
-                  className="relative group cursor-pointer bg-white w-80 sm:w-96 rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-4 overflow-hidden"
-                >
-                  <BotanicalLeafWatermark position="top-left" />
-                  <BotanicalLeafWatermark position="bottom-right" />
-                  
-                  {/* Circular Avatar */}
-                  <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-[3px] border-[#16533c] shadow-xs shrink-0 bg-emerald-50">
-                    <img 
-                      src={STRUKTUR_DATA.kades.fotoUrl} 
-                      alt={STRUKTUR_DATA.kades.nama}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="bg-[#16533c] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-0.5 rounded-full inline-block shadow-2xs mb-1.5">
-                      {STRUKTUR_DATA.kades.roleTag}
+              {/* ================= ROW 1: KEPALA DESA (KIRI) + RAIL KE KANAN ================= */}
+              <div className="flex items-center">
+                {/* Kades Card */}
+                <div className="shrink-0">
+                  <div 
+                    onClick={() => setSelectedOfficial(STRUKTUR_DATA.kades)}
+                    className="relative group cursor-pointer bg-white w-72 sm:w-80 rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-4 overflow-hidden"
+                  >
+                    <BotanicalLeafWatermark position="top-left" />
+                    <BotanicalLeafWatermark position="bottom-right" />
+                    
+                    {/* Circular Avatar */}
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-[3px] border-[#16533c] shadow-xs shrink-0 bg-emerald-50">
+                      <img 
+                        src={STRUKTUR_DATA.kades.fotoUrl} 
+                        alt={STRUKTUR_DATA.kades.nama}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
-                      {STRUKTUR_DATA.kades.nama}
-                    </h3>
-                  </div>
 
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5 text-[#16533c]" />
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="bg-[#16533c] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-0.5 rounded-full inline-block shadow-2xs mb-1.5">
+                        {STRUKTUR_DATA.kades.roleTag}
+                      </div>
+                      <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
+                        {STRUKTUR_DATA.kades.nama}
+                      </h3>
+                    </div>
+
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-3.5 h-3.5 text-[#16533c]" />
+                    </div>
                   </div>
+                </div>
+
+                {/* Horizontal Rail dari Kades ke kanan (selaras di tengah Kartu Kades) */}
+                <div className="relative flex-1 self-center mx-2 sm:mx-4">
+                  <div className="h-0.5 bg-[#16533c] w-full" />
                 </div>
               </div>
 
-              {/* Connector: Kades to Sekdes */}
-              <div className="w-0.5 h-8 sm:h-9 bg-[#16533c]" />
-
-              {/* ================= LEVEL 2: SEKRETARIS DESA ================= */}
-              <div className="flex justify-center w-full">
-                <div 
-                  onClick={() => setSelectedOfficial(STRUKTUR_DATA.sekdes)}
-                  className="relative group cursor-pointer bg-white w-80 sm:w-96 rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-4 overflow-hidden"
-                >
-                  <BotanicalLeafWatermark position="top-left" />
-                  <BotanicalLeafWatermark position="bottom-right" />
-
-                  {/* Circular Avatar */}
-                  <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-[3px] border-[#16533c] shadow-xs shrink-0 bg-emerald-50">
-                    <img 
-                      src={STRUKTUR_DATA.sekdes.fotoUrl} 
-                      alt={STRUKTUR_DATA.sekdes.nama}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="bg-[#16533c] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-0.5 rounded-full inline-block shadow-2xs mb-1.5">
-                      {STRUKTUR_DATA.sekdes.roleTag}
-                    </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
-                      {STRUKTUR_DATA.sekdes.nama}
-                    </h3>
-                  </div>
-
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5 text-[#16533c]" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Connector: Sekdes to Horizontal Branch Bus */}
-              <div className="w-0.5 h-7 sm:h-8 bg-[#16533c]" />
-
-              {/* Horizontal Bus Line spanning all 3 perangkat desa branches */}
-              <div className="w-full px-[6%] relative">
-                <div className="h-0.5 bg-[#16533c] w-full" />
-              </div>
-
-              {/* ================= LEVEL 3: 3 KELOMPOK PERANGKAT DESA ================= */}
-              <div className="w-full grid grid-cols-3 gap-4 sm:gap-6 px-[2%]">
+              {/* ================= ROW 2: 3 KELOMPOK PERANGKAT DESA (CABANG KE KANAN-BAWAH) ================= */}
+              <div className="grid grid-cols-3 gap-3 sm:gap-5 -mt-12">
                 {strukturCabang.map(branch => (
                   <div key={branch.label} className="flex flex-col items-center">
 
-                    {/* Drop Line into Branch Pill */}
+                    {/* Drop Line dari Rail ke Pill Kelompok */}
                     <div className="w-0.5 h-6 bg-[#16533c]" />
 
-                    {/* Branch Pill Badge (Sekretariat / Pelaksana Teknis / Kewilayahan) */}
+                    {/* Pill Kelompok (Sekretariat / Pelaksana Teknis / Kewilayahan) */}
                     <div className="bg-[#16533c] text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-xs whitespace-nowrap">
                       <branch.icon className="w-3.5 h-3.5 text-emerald-300" />
                       <span>{branch.label}</span>
                     </div>
 
-                    {/* Short Connector from Pill down to Branch Bus */}
+                    {/* Connector Pendek ke Kartu Kelompok */}
                     <div className="w-0.5 h-3 bg-[#16533c]" />
 
-                    {/* Horizontal Bus Line inside Branch */}
-                    <div className="w-[78%] relative">
-                      <div className="h-0.5 bg-[#16533c] w-full" />
-                    </div>
-
-                    {/* Drop Lines into each member card */}
-                    <div className="w-[78%] grid grid-cols-3 gap-2">
-                      {branch.members.map((_, idx) => (
-                        <div key={idx} className="flex justify-center">
-                          <div className="w-0.5 h-6 bg-[#16533c]" />
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Member Cards */}
-                    <div className="w-[78%] grid grid-cols-3 gap-2">
+                    {/* Kartu Kelompok berisi anggota */}
+                    <div className="bg-white rounded-2xl border-2 border-[#16533c]/30 shadow-sm p-2.5 sm:p-3 w-full flex flex-col gap-2">
                       {branch.members.map(person => (
                         <div
                           key={person.id}
                           onClick={() => setSelectedOfficial(person)}
-                          className="relative group cursor-pointer bg-white rounded-2xl border-2 border-[#16533c]/30 p-2.5 sm:p-3 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                          className="relative group cursor-pointer flex items-center gap-2.5 bg-[#f6faf6] rounded-xl border border-[#a3cbb5]/60 p-2 hover:bg-[#eef5ef] hover:shadow-sm transition-all duration-300 overflow-hidden"
                         >
                           <BotanicalLeafWatermark position="top-left" />
-                          <BotanicalLeafWatermark position="bottom-right" />
 
                           {/* Circular Avatar */}
-                          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#16533c] shadow-xs mb-2 bg-emerald-50">
+                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border-2 border-[#16533c] shrink-0 bg-emerald-50">
                             <img 
                               src={person.fotoUrl} 
                               alt={person.nama}
@@ -445,15 +396,15 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                             />
                           </div>
 
-                          {/* Role / Sub-tag Badge */}
-                          <div className="bg-[#16533c] text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full shadow-2xs mb-1.5 whitespace-nowrap max-w-full truncate">
-                            {person.subTag || person.roleTag}
+                          {/* Nama & Role */}
+                          <div className="flex-1 min-w-0 text-left">
+                            <div className="text-[10px] font-semibold text-[#16533c] leading-tight truncate">
+                              {person.subTag || person.roleTag}
+                            </div>
+                            <h4 className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight truncate">
+                              {person.nama}
+                            </h4>
                           </div>
-
-                          {/* Official Name */}
-                          <h4 className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight line-clamp-2">
-                            {person.nama}
-                          </h4>
                         </div>
                       ))}
                     </div>
