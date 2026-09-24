@@ -236,8 +236,11 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
     {
       label: 'SEKRETARIAT',
       icon: ClipboardList,
-      members: ['staff-6', 'staff-1', 'staff-5']
-        .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!)
+      members: [
+        ...['staff-6', 'staff-1', 'staff-5']
+          .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!),
+        STRUKTUR_DATA.sekdes
+      ]
     },
     {
       label: 'Pelaksana Teknis',
@@ -369,44 +372,10 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                 <div className="flex-1" />
               </div>
 
-              {/* Connector: Kepala Desa turun ke Sekretaris Desa */}
+              {/* Connector: Kepala Desa turun ke baris Sekretariat */}
               <div className="w-0.5 h-8 sm:h-9 bg-[#16533c]" />
 
-              {/* ================= LEVEL 2: SEKRETARIS DESA ================= */}
-              <div className="flex justify-center w-full">
-                <div 
-                  onClick={() => setSelectedOfficial(STRUKTUR_DATA.sekdes)}
-                  className="relative group cursor-pointer bg-white w-80 sm:w-96 rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-4 overflow-hidden"
-                >
-                  <BotanicalLeafWatermark position="top-left" />
-                  <BotanicalLeafWatermark position="bottom-right" />
-
-                  {/* Circular Avatar */}
-                  <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-[3px] border-[#16533c] shadow-xs shrink-0 bg-emerald-50">
-                    <img 
-                      src={STRUKTUR_DATA.sekdes.fotoUrl} 
-                      alt={STRUKTUR_DATA.sekdes.nama}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="bg-[#16533c] text-white text-[11px] sm:text-xs font-semibold px-3.5 py-0.5 rounded-full inline-block shadow-2xs mb-1.5">
-                      {STRUKTUR_DATA.sekdes.roleTag}
-                    </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
-                      {STRUKTUR_DATA.sekdes.nama}
-                    </h3>
-                  </div>
-
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5 text-[#16533c]" />
-                  </div>
-                </div>
-              </div>
-
-              {/* ================= LEVEL 3+: 3 BIDANG (SEKRETARIAT, TEKNIS, KEWILAYAHAN) ================= */}
+              {/* ================= LEVEL 2+: 3 BIDANG (SEKRETARIAT, TEKNIS, KEWILAYAHAN) ================= */}
               {strukturCabang.map(branch => (
                 <div key={branch.label} className="w-full flex flex-col items-center">
 
@@ -419,14 +388,14 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                     <span>{branch.label}</span>
                   </div>
 
-                  {/* Connector pendek + bus horizontal ke 3 kartu anggota */}
+                  {/* Connector pendek + bus horizontal ke kartu anggota */}
                   <div className="w-0.5 h-4 bg-[#16533c]" />
-                  <div className="w-full max-w-[86%] relative">
+                  <div className="w-full max-w-[92%] relative">
                     <div className="h-0.5 bg-[#16533c] w-full" />
                   </div>
 
                   {/* Drop line ke setiap kartu */}
-                  <div className="w-full max-w-[86%] grid grid-cols-3 gap-4">
+                  <div className="w-full max-w-[92%] grid gap-4 pb-0" style={{ gridTemplateColumns: `repeat(${branch.members.length}, minmax(0, 1fr))` }}>
                     {branch.members.map((_, idx) => (
                       <div key={idx} className="flex justify-center">
                         <div className="w-0.5 h-5 bg-[#16533c]" />
@@ -434,8 +403,8 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                     ))}
                   </div>
 
-                  {/* Kartu anggota (grid 3 kolom) */}
-                  <div className="w-full max-w-[86%] grid grid-cols-3 gap-4">
+                  {/* Kartu anggota */}
+                  <div className="w-full max-w-[92%] grid gap-4" style={{ gridTemplateColumns: `repeat(${branch.members.length}, minmax(0, 1fr))` }}>
                     {branch.members.map(person => (
                       <div
                         key={person.id}
