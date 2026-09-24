@@ -41,7 +41,6 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'dashboard-main', label: 'Dashboard', icon: 'LayoutDashboard', route: 'admin-dashboard', roles: ['super_admin', 'admin_1'] },
-      { id: 'dashboard-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-beranda', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -51,14 +50,9 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'profil-tentang', label: 'Tentang Desa', icon: 'FileText', route: 'admin-profil-tentang', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-tentang-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-profil-tentang', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-sejarah', label: 'Sejarah Desa', icon: 'Landmark', route: 'admin-profil-sejarah', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-sejarah-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-profil-sejarah', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-pemerintahan', label: 'Pemerintahan', icon: 'Users', route: 'admin-profil-pemerintahan', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-pemerintahan-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-profil-pemerintahan', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-anggaran', label: 'Anggaran Desa', icon: 'DollarSign', route: 'admin-profil-anggaran', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-anggaran-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-profil-anggaran', roles: ['super_admin', 'admin_1'] },
-      { id: 'profil-sampul', label: 'Sampul Halaman (Umum)', icon: 'Image', route: 'admin-cover-profil', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -68,14 +62,9 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-akomodasi-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-umkm-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-potensi-umkm', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-budaya-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-potensi-budaya', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-budidaya', label: 'Budidaya Perikanan', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-budidaya-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-potensi-budidaya', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-sampul', label: 'Sampul Halaman (Umum)', icon: 'Image', route: 'admin-cover-potensi', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -92,7 +81,6 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'pelayanan-main', label: 'Pelayanan & Surat', icon: 'Mail', route: 'admin-pelayanan', roles: ['super_admin', 'admin_1'] },
-      { id: 'pelayanan-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-pelayanan', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -102,11 +90,8 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_1'] },
-      { id: 'humas-press-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-humas-press', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_1'] },
-      { id: 'humas-galeri-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-humas-galeri', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-kritik-saran', label: 'Kritik & Saran', icon: 'MessageSquare', route: 'admin-humas-kritik-saran', roles: ['super_admin', 'admin_1'] },
-      { id: 'humas-sampul', label: 'Sampul Halaman (Umum)', icon: 'Image', route: 'admin-cover-humas', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 
@@ -116,7 +101,6 @@ const allMenuItems: AdminMenuItem[] = [
     roles: ['super_admin', 'admin_1'],
     children: [
       { id: 'kontak-darurat-main', label: 'Kontak Darurat', icon: 'Phone', route: 'admin-kontak-darurat', roles: ['super_admin', 'admin_1'] },
-      { id: 'kontak-darurat-sampul', label: 'Sampul Halaman', icon: 'Image', route: 'admin-cover-darurat', roles: ['super_admin', 'admin_1'] },
     ]
   },
   { 

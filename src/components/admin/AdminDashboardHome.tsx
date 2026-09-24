@@ -35,6 +35,7 @@ import { AdminLayout } from './AdminLayout';
 import { DataTable } from './components';
 import { PageRoute, AdminRole } from '../../types';
 import { ImageUpload } from './components/ImageUpload';
+import { CoverEditor } from './components/CoverEditor';
 
 interface StatCardProps {
   title: string;
@@ -251,6 +252,9 @@ export const AdminDashboardHome: React.FC<AdminDashboardHomeProps> = ({ onNaviga
       onNavigate={onNavigate}
     >
       <div className="space-y-8">
+        {/* Sampul Halaman Beranda */}
+        <CoverEditor coverKey="beranda" onNavigate={onNavigate} />
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

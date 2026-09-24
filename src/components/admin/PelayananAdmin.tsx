@@ -25,6 +25,7 @@ import {
   getCurrentAdmin
 } from '../../utils/storage';
 import { PageRoute, PengajuanSurat } from '../../types';
+import { CoverEditor } from './components/CoverEditor';
 
 const statusOptions = [
   { value: 'Diajukan', label: 'Diajukan', color: 'bg-amber-100 text-amber-800' },
@@ -130,6 +131,9 @@ export const PelayananAdmin: React.FC<PelayananAdminProps> = ({ onNavigate, onLo
       onNavigate={onNavigate}
     >
       <div className="space-y-8">
+        {/* Sampul Halaman Pelayanan */}
+        <CoverEditor coverKey="pelayanan" onNavigate={onNavigate} />
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

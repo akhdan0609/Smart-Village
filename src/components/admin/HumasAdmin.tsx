@@ -21,6 +21,7 @@ import { ImageUpload } from './components/ImageUpload';
 import { DataTable, Column } from './components/DataTable';
 import { PageRoute, PengumumanItem, BeritaItem } from '../../types';
 import { getStoredBerita, saveBerita, updateBerita, deleteBerita, getStoredPengumuman, savePengumuman, updatePengumuman, deletePengumuman, getCurrentAdmin } from '../../utils/storage';
+import { CoverEditor } from './components/CoverEditor';
 
 const pressCategories = ['Pengumuman Resmi', 'Kebijakan Desa', 'Acara & Kegiatan', 'Penghargaan', 'Lainnya'];
 
@@ -216,6 +217,9 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
           </button>
         </div>
 
+        {/* Sampul Halaman Humas (Umum) */}
+        <CoverEditor coverKey="humas" onNavigate={onNavigate} />
+
         {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
           <button
@@ -241,6 +245,12 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
             <span>Galeri Foto ({galeriList.length})</span>
           </button>
         </div>
+
+        {/* Sampul Halaman per tab */}
+        <CoverEditor
+          coverKey={activeTab === 'press' ? 'humas-press' : 'humas-galeri'}
+          onNavigate={onNavigate}
+        />
 
         {/* Data Table */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm">

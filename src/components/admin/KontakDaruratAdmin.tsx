@@ -19,6 +19,7 @@ import { ImageUpload } from './components/ImageUpload';
 import { DataTable, Column } from './components/DataTable';
 import { PageRoute } from '../../types';
 import { getStoredKontakDarurat, saveKontakDarurat, deleteKontakDarurat, getCurrentAdmin } from '../../utils/storage';
+import { CoverEditor } from './components/CoverEditor';
 
 interface KontakDaruratItem {
   id: string;
@@ -217,6 +218,9 @@ export const KontakDaruratAdmin: React.FC<KontakDaruratAdminProps> = ({ onNaviga
       onNavigate={onNavigate}
     >
       <div className="space-y-8">
+        {/* Sampul Halaman Kontak Darurat */}
+        <CoverEditor coverKey="darurat" onNavigate={onNavigate} />
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

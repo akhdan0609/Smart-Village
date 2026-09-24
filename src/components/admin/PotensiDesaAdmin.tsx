@@ -21,6 +21,7 @@ import { ImageUpload } from './components/ImageUpload';
 import { DataTable, Column } from './components/DataTable';
 import { PageRoute, DestinasiItem, UMKMItem, BudayaItem, PerikananItem } from '../../types';
 import { getCurrentAdmin } from '../../utils/storage';
+import { CoverEditor } from './components/CoverEditor';
 
 const iconMap = {
   Building2,
@@ -341,6 +342,9 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
           </button>
         </div>
 
+{/* Sampul Halaman Potensi (Umum) */}
+        <CoverEditor coverKey="potensi" onNavigate={onNavigate} />
+
 {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
           {(Object.keys(tabConfigs) as TabType[]).map((tab) => {
@@ -361,6 +365,12 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
             );
           })}
         </div>
+
+        {/* Sampul Halaman per kategori */}
+        <CoverEditor
+          coverKey={activeTab === 'akomodasi' ? 'potensi-akomodasi' : activeTab === 'umkm' ? 'potensi-umkm' : activeTab === 'budaya' ? 'potensi-budaya' : 'potensi-budidaya'}
+          onNavigate={onNavigate}
+        />
 
         {/* Data Table */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm">

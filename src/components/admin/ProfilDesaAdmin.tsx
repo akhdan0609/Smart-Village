@@ -31,6 +31,7 @@ import { FormModal } from './components/FormModal';
 import { ImageUpload } from './components/ImageUpload';
 import { PageRoute, TentangDesaData } from '../../types';
 import { getCurrentAdmin } from '../../utils/storage';
+import { CoverEditor } from './components/CoverEditor';
 
 /* ========================================================================= */
 /* TIPE DATA                                                               */
@@ -1132,6 +1133,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
 
   const renderTentang = () => (
     <div className="space-y-6">
+      <CoverEditor coverKey="profil-tentang" onNavigate={onNavigate} />
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
@@ -1264,6 +1266,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
 
   const renderSejarah = () => (
     <div className="space-y-8">
+      <CoverEditor coverKey="profil-sejarah" onNavigate={onNavigate} />
       {/* Sub-section: Perjalanan Sejarah */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
@@ -1500,6 +1503,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
     const sekdes = pemerintahan.sekdes;
     return (
       <div className="space-y-8">
+        <CoverEditor coverKey="profil-pemerintahan" onNavigate={onNavigate} />
         <div className="flex items-center justify-between pb-2">
           <div>
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
@@ -1817,6 +1821,7 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
 
     return (
       <div className="space-y-6">
+        <CoverEditor coverKey="profil-anggaran" onNavigate={onNavigate} />
         {/* Year selector */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
           <div className="flex items-center justify-between pb-4 border-b border-slate-100">
@@ -1953,6 +1958,9 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
             </p>
           </div>
         </div>
+
+        {/* Sampul Halaman Profil (Umum) */}
+        <CoverEditor coverKey="profil" onNavigate={onNavigate} />
 
         {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
