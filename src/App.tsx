@@ -439,7 +439,13 @@ export default function App() {
         </div>
       </main>
 
-      {activePage !== 'login-admin' && activePage !== 'staff-portal' && <Footer activePage={activePage} onNavigate={handleNavigate} />}
+      {activePage !== 'login-admin' && activePage !== 'staff-portal' && (
+        <Footer
+          activePage={activePage}
+          onNavigate={handleNavigate}
+          isAdminPage={activePage.startsWith('admin-')}
+        />
+      )}
     </div>
   );
 }

@@ -189,9 +189,6 @@ const defaultTentang: TentangDesaData = {
     'Melestarikan lingkungan hidup & budaya lokal.',
     'Meningkatkan kesejahteraan masyarakat.',
   ],
-  luasWilayah: '228 ha',
-  ketinggian: '250 – 500 mdpl',
-  jumlahPenduduk: '8.997 Jiwa',
 };
 
 const defaultSejarah: SejarahDesaData = {

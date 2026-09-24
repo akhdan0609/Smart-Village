@@ -117,7 +117,7 @@ const COVER_META: Record<CoverKey, { label: string; desc: string; target: PageRo
   },
 };
 
-const DEFAULT_COVER_TEXTS: Record<CoverKey, Record<CoverTextKey, string>> = {
+const DEFAULT_COVER_TEXTS: Record<CoverKey, Partial<Record<CoverTextKey, string>>> = {
   beranda: {
     title: 'Desa Warung Menteng',
     subtitle: 'Desa asri di kaki Gunung Salak dengan kekayaan alam dan budaya yang terus tumbuh bersama masyarakat yang ramah.'
@@ -280,7 +280,7 @@ export const SampulHalamanAdmin: React.FC<SampulHalamanAdminProps> = ({ coverKey
   const savedTitle = savedTextKey === 'title';
   const savedSubtitle = savedTextKey === 'subtitle';
 
-  const getText = (textKey: CoverTextKey) => getCoverText(coverKey, textKey, defaultTexts[textKey]);
+  const getText = (textKey: CoverTextKey) => getCoverText(coverKey, textKey, defaultTexts[textKey] ?? '');
 
   return (
     <AdminLayout activePage={activePage} onLogout={onLogout} onNavigate={onNavigate}>

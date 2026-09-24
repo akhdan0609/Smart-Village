@@ -441,7 +441,7 @@ export type CoverKey =
 
 export type CoverSettings = Partial<Record<CoverKey, string>>;
 
-export type CoverTextKey = 'title' | 'subtitle' | 'jumlahPenduduk' | 'luasWilayah' | 'ketinggian';
+export type CoverTextKey = 'title' | 'subtitle' | 'jumlahPenduduk' | 'luasWilayah' | 'ketinggian' | 'jumlahRwRt';
 
 export type CoverTextSettings = Partial<Record<CoverKey, Partial<Record<CoverTextKey, string>>>>;
 
@@ -552,9 +552,6 @@ export const getTentang = (): TentangDesaData => {
         deskripsi: parsed.deskripsi || '',
         visi: parsed.visi || '',
         misi: parsed.misi || [],
-        luasWilayah: parsed.luasWilayah || '228 ha',
-        ketinggian: parsed.ketinggian || '250 – 500 mdpl',
-        jumlahPenduduk: parsed.jumlahPenduduk || '8.997 Jiwa',
       };
     }
   } catch {
@@ -567,8 +564,5 @@ export const getTentang = (): TentangDesaData => {
     deskripsi: '',
     visi: '',
     misi: [],
-    luasWilayah: '228 ha',
-    ketinggian: '250 – 500 mdpl',
-    jumlahPenduduk: '8.997 Jiwa',
   };
 };
