@@ -345,7 +345,7 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
 
           {/* Horizontal scroll wrapper for mobile comfort so diagram stays intact */}
           <div className="overflow-x-auto pb-6 -mx-2 px-2">
-            <div className="min-w-[1080px] max-w-[1220px] mx-auto flex flex-col items-center">
+            <div className="relative min-w-[1080px] max-w-[1220px] mx-auto flex flex-col items-center">
 
               {/* ================= ROW 1: BPD (KIRI) + KEPALA DESA (PUSAT/ATAS) ================= */}
               <div className="w-full flex items-center">
@@ -407,50 +407,54 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
               <div className="w-full h-0.5 bg-[#16533c]" />
 
               {/* ================= BAGIAN TENGAH: DUA KELOMPOK UTAMA ================= */}
-              <div className="w-full grid grid-cols-2 gap-6 sm:gap-10">
+              {/* Garis utama Kepala Desa menerus turun di tengah hingga rail Kepala Dusun */}
+              <div className="relative w-full">
 
-                {/* KIRI: Pelaksana Teknis — 3 Kasi tersusun sejajar horizontal */}
-                <div className="flex items-end justify-center gap-4 sm:gap-5">
-                  {strukturCabang[0].members.map(person => (
-                    <div key={person.id} className="flex flex-col items-center">
-                      <div className="w-0.5 h-5 bg-[#16533c]" />
-                      {renderMemberCard(person)}
-                    </div>
-                  ))}
-                </div>
+                {/* Trunk kontinu: dari bawah rail utama menembus celah dua kelompok ke rail Kadus */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-[#16533c]" />
 
-                {/* KANAN: Sekretariat — Sekdes di atas, 3 Kaur di bawahnya */}
-                <div className="flex flex-col items-center">
-                  <div className="w-0.5 h-5 bg-[#16533c]" />
-                  {renderMemberCard(STRUKTUR_DATA.sekdes)}
+                <div className="w-full grid grid-cols-2 gap-x-12 sm:gap-x-16">
 
-                  {/* Vertikal turun dari Sekdes */}
-                  <div className="w-0.5 h-5 sm:h-6 bg-[#16533c]" />
-
-                  {/* Rail Kaur */}
-                  <div className="w-full max-w-[88%] h-0.5 bg-[#16533c]" />
-
-                  {/* 3 Kaur tersusun sejajar dari kiri ke kanan */}
-                  <div className="flex items-end justify-center gap-4 sm:gap-5 w-full max-w-[88%]">
-                    {sekretariatMembers.slice(0, 3).map(person => (
+                  {/* KIRI: Pelaksana Teknis — 3 Kasi tersusun sejajar horizontal */}
+                  <div className="flex items-end justify-center gap-4 sm:gap-5">
+                    {strukturCabang[0].members.map(person => (
                       <div key={person.id} className="flex flex-col items-center">
                         <div className="w-0.5 h-5 bg-[#16533c]" />
                         {renderMemberCard(person)}
                       </div>
                     ))}
                   </div>
+
+                  {/* KANAN: Sekretariat — Sekdes di atas, 3 Kaur di bawahnya */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-0.5 h-5 bg-[#16533c]" />
+                    {renderMemberCard(STRUKTUR_DATA.sekdes)}
+
+                    {/* Vertikal turun dari Sekdes */}
+                    <div className="w-0.5 h-5 sm:h-6 bg-[#16533c]" />
+
+                    {/* Rail Kaur */}
+                    <div className="w-full max-w-[88%] h-0.5 bg-[#16533c]" />
+
+                    {/* 3 Kaur tersusun sejajar dari kiri ke kanan */}
+                    <div className="flex items-end justify-center gap-4 sm:gap-5 w-full max-w-[88%]">
+                      {sekretariatMembers.slice(0, 3).map(person => (
+                        <div key={person.id} className="flex flex-col items-center">
+                          <div className="w-0.5 h-5 bg-[#16533c]" />
+                          {renderMemberCard(person)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* ================= BAGIAN BAWAH: KEPALA DUSUN (DARI GARIS UTAMA) ================= */}
-              {/* Vertikal garis struktur utama lanjut ke bawah */}
-              <div className="w-0.5 h-6 sm:h-8 bg-[#16533c]" />
-
-              {/* Rail horizontal panjang Kepala Dusun */}
+              {/* ================= BAGIAN BAWAH: KEPALA DUSUN (GARIS UTAMA) ================= */}
+              {/* Rail horizontal panjang Kadus, tersambung ke garis utama Kepala Desa */}
               <div className="w-full h-0.5 bg-[#16533c]" />
 
               {/* 3 Kepala Dusun tersusun sejajar dari kiri ke kanan */}
-              <div className="flex items-end justify-center gap-5 sm:gap-8">
+              <div className="w-full flex items-end justify-center gap-5 sm:gap-8">
                 {strukturCabang[1].members.map(person => (
                   <div key={person.id} className="flex flex-col items-center">
                     <div className="w-0.5 h-5 bg-[#16533c]" />
