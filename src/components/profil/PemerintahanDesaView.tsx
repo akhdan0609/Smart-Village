@@ -416,10 +416,10 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                 <div className="w-full grid grid-cols-2 gap-x-12 sm:gap-x-16">
 
                   {/* KIRI: Pelaksana Teknis — 3 Kasi tersusun sejajar horizontal */}
-                  <div className="flex justify-center gap-4 sm:gap-5">
+                  <div className="flex items-start justify-center gap-4 sm:gap-5">
                     {strukturCabang[0].members.map(person => (
                       <div key={person.id} className="flex flex-col items-center">
-                        <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
+                        <div className="w-0.5 h-5 bg-[#16533c]" />
                         {renderMemberCard(person)}
                       </div>
                     ))}
