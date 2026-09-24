@@ -342,9 +342,6 @@ export const PotensiDesaAdmin: React.FC<PotensiDesaAdminProps> = ({ onNavigate, 
           </button>
         </div>
 
-{/* Sampul Halaman Potensi (Umum) */}
-        <CoverEditor coverKey="potensi" onNavigate={onNavigate} />
-
 {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
           {(Object.keys(tabConfigs) as TabType[]).map((tab) => {

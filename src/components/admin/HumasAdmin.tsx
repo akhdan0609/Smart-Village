@@ -217,9 +217,6 @@ export const HumasAdmin: React.FC<HumasAdminProps> = ({ onNavigate, onLogout }) 
           </button>
         </div>
 
-        {/* Sampul Halaman Humas (Umum) */}
-        <CoverEditor coverKey="humas" onNavigate={onNavigate} />
-
         {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
           <button

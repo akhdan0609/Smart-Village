@@ -49,6 +49,7 @@ const allMenuItems: AdminMenuItem[] = [
     icon: 'Building2', 
     roles: ['super_admin', 'admin_1'],
     children: [
+      { id: 'profil-umum', label: 'Kelola Profil Desa', icon: 'Building2', route: 'admin-cover-profil', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-tentang', label: 'Tentang Desa', icon: 'FileText', route: 'admin-profil-tentang', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-sejarah', label: 'Sejarah Desa', icon: 'Landmark', route: 'admin-profil-sejarah', roles: ['super_admin', 'admin_1'] },
       { id: 'profil-pemerintahan', label: 'Pemerintahan', icon: 'Users', route: 'admin-profil-pemerintahan', roles: ['super_admin', 'admin_1'] },
@@ -61,6 +62,7 @@ const allMenuItems: AdminMenuItem[] = [
     icon: 'TreePine', 
     roles: ['super_admin', 'admin_1'],
     children: [
+      { id: 'potensi-umum', label: 'Kelola Potensi Desa', icon: 'TreePine', route: 'admin-cover-potensi', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
@@ -80,6 +82,7 @@ const allMenuItems: AdminMenuItem[] = [
     icon: 'Mail', 
     roles: ['super_admin', 'admin_1'],
     children: [
+      { id: 'pelayanan-umum', label: 'Kelola Pelayanan', icon: 'Mail', route: 'admin-cover-pelayanan', roles: ['super_admin', 'admin_1'] },
       { id: 'pelayanan-main', label: 'Pelayanan & Surat', icon: 'Mail', route: 'admin-pelayanan', roles: ['super_admin', 'admin_1'] },
     ]
   },
@@ -89,6 +92,7 @@ const allMenuItems: AdminMenuItem[] = [
     icon: 'Newspaper', 
     roles: ['super_admin', 'admin_1'],
     children: [
+      { id: 'humas-umum', label: 'Kelola Humas', icon: 'Newspaper', route: 'admin-cover-humas', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-kritik-saran', label: 'Kritik & Saran', icon: 'MessageSquare', route: 'admin-humas-kritik-saran', roles: ['super_admin', 'admin_1'] },

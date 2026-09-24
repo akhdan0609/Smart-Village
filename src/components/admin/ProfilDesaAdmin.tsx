@@ -1959,9 +1959,6 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
           </div>
         </div>
 
-        {/* Sampul Halaman Profil (Umum) */}
-        <CoverEditor coverKey="profil" onNavigate={onNavigate} />
-
         {/* Tab Navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
           {tabs.map((tab) => (
