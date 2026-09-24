@@ -450,17 +450,19 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
               </div>
 
               {/* ================= BAGIAN BAWAH: KEPALA DUSUN (GARIS UTAMA) ================= */}
-              {/* Rail horizontal panjang Kadus, tersambung ke garis utama Kepala Desa */}
-              <div className="w-full h-0.5 bg-[#16533c]" />
+              {/* Rail Kadus mengikuti lebar kartu, tanpa sisa di kiri/kanan */}
+              <div className="flex flex-col items-center">
+                <div className="w-full h-0.5 bg-[#16533c]" />
 
-              {/* 3 Kepala Dusun tersusun sejajar dari kiri ke kanan */}
-              <div className="w-full flex justify-center gap-5 sm:gap-8">
-                {strukturCabang[1].members.map(person => (
-                  <div key={person.id} className="flex flex-col items-center">
-                    <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
-                    {renderMemberCard(person)}
-                  </div>
-                ))}
+                {/* 3 Kepala Dusun tersusun sejajar dari kiri ke kanan */}
+                <div className="flex justify-center gap-5 sm:gap-8">
+                  {strukturCabang[1].members.map(person => (
+                    <div key={person.id} className="flex flex-col items-center">
+                      <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
+                      {renderMemberCard(person)}
+                    </div>
+                  ))}
+                </div>
               </div>
 
             </div>
