@@ -23,9 +23,11 @@ import mediaBanner from '../../assets/images/MEDIA_KKN.jpeg';
 import avatarFajry from '../../assets/images/Fajry_KKN.jpeg';
 import avatarAyu from '../../assets/images/Ayu_KKN.jpeg';
 import avatarAkhdan from '../../assets/images/Akhdan_KKN.jpeg';
-import avatarSafitri from '../../assets/images/Safitr.jpg';
+import avatarSafitri from '../../assets/images/Safitri_KKN.jpeg';
 import avatarArjuna from '../../assets/images/Arjuna_KKN.jpeg';
 import avatarDifina from '../../assets/images/Difina_KKN.jpeg';
+import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
+import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
 
 export type DivisionType = 'BPH' | 'ACARA' | 'HUMAS' | 'MEDIA';
 
