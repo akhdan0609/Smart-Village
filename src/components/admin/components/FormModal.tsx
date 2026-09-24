@@ -33,6 +33,8 @@ export const FormModal: React.FC<FormModalProps> = ({
     md: 'max-w-lg',
     lg: 'max-w-xl',
     xl: 'max-w-2xl',
+    '3xl': 'max-w-4xl',
+    '4xl': 'max-w-5xl',
   };
 
   return (
