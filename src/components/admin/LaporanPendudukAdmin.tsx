@@ -22,13 +22,13 @@ import { FormModal } from './components/FormModal';
 import { DataTable, Column } from './components/DataTable';
 import { ImageUpload } from './components/ImageUpload';
 import { PageRoute } from '../../types';
-import { getCurrentAdmin } from '../../utils/storage';
 
 const STORAGE_KEY = 'desa_wm_laporan_penduduk_v1';
 
 interface DemographicData {
   id: string;
   kategori: 'umur' | 'pendidikan' | 'agama';
+  rw: string;
   label: string;
   lakiLaki: number;
   perempuan: number;
@@ -37,7 +37,15 @@ interface DemographicData {
   updatedAt: string;
 }
 
-const defaultData: DemographicData[] = [
+const RW_OPTIONS = ['RW 01', 'RW 02', 'RW 03', 'RW 04', 'RW 05', 'RW 06', 'RW 07', 'RW 08'];
+
+const RW_KESELURUHAN = 'Keseluruhan';
+
+type RwFilter = 'all' | typeof RW_KESELURUHAN | (typeof RW_OPTIONS)[number];
+
+type StoredDemodata = Omit<DemographicData, 'rw'> & { rw?: string };
+
+const defaultData: StoredDemodata[] = [
   // Umur
   { id: 'umur-1', kategori: 'umur', label: '0-4 Tahun', lakiLaki: 120, perempuan: 115, total: 235, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
   { id: 'umur-2', kategori: 'umur', label: '5-9 Tahun', lakiLaki: 135, perempuan: 128, total: 263, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
@@ -220,18 +228,23 @@ const DemografiChart: React.FC<{ data: DemographicData[]; title: string }> = ({ 
   );
 };
 
+const RwBadge: React.FC<{ rw: string }> = ({ rw }) => (
+  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap ${rw === RW_KESELURUHAN || rw === 'Semua RW' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-50 text-emerald-800'}`}>
+    {rw}
+  </span>
+);
+
 interface LaporanPendudukAdminProps {
   onNavigate: (page: PageRoute) => void;
   onLogout: () => void;
 }
 
 export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNavigate, onLogout }) => {
-  const currentAdmin = getCurrentAdmin();
-  const isContributor = currentAdmin?.role === 'admin_2';
-  const canEdit = !isContributor;
-  const canDelete = !isContributor;
+  const canEdit = true;
+  const canDelete = true;
 
   const [activeTab, setActiveTab] = useState<'umur' | 'pendidikan' | 'agama'>('umur');
+  const [selectedRw, setSelectedRw] = useState<RwFilter>('all');
   const [data, setData] = useState<DemographicData[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [editingItem, setEditingItem] = useState<DemographicData | null>(null);
@@ -239,30 +252,70 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
+    const normalize = (rows: StoredDemodata[]): DemographicData[] =>
+      (Array.isArray(rows) ? rows : []).map((item) => ({
+        ...item,
+        rw: item.rw && item.rw.trim() !== '' ? item.rw : RW_KESELURUHAN,
+      }));
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        setData(JSON.parse(stored));
+        const migrated = normalize(JSON.parse(stored));
+        setData(migrated);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
       } else {
-        setData(defaultData);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
+        const seeded = normalize(defaultData as StoredDemodata[]);
+        setData(seeded);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
       }
     } catch {
-      setData(defaultData);
+      setData(normalize(defaultData as StoredDemodata[]));
     }
     setShowModal(false);
     setEditingItem(null);
   }, []);
 
-  const filteredData = data.filter(d => d.kategori === activeTab);
+  const filteredData = (() => {
+    const base = data.filter(d => d.kategori === activeTab);
+    const scope = selectedRw === 'all'
+      ? base.filter(d => d.rw !== RW_KESELURUHAN)
+      : base.filter(d => d.rw === selectedRw);
+
+    const grouped = new Map<string, DemographicData>();
+    for (const item of scope) {
+      const prev = grouped.get(item.label);
+      if (prev) {
+        const lakiLaki = prev.lakiLaki + item.lakiLaki;
+        const perempuan = prev.perempuan + item.perempuan;
+        grouped.set(item.label, {
+          ...prev,
+          lakiLaki,
+          perempuan,
+          total: lakiLaki + perempuan,
+          rw: item.rw,
+          updatedAt: item.updatedAt,
+        });
+      } else {
+        grouped.set(item.label, { ...item });
+      }
+    }
+    return Array.from(grouped.values());
+  })();
 
   const openAddModal = () => {
     if (!canEdit) return;
     setEditingItem(null);
     const nextId = `${activeTab}-${Date.now()}`;
+    const defaultRw = RW_OPTIONS.includes(selectedRw as (typeof RW_OPTIONS)[number])
+      ? (selectedRw as (typeof RW_OPTIONS)[number])
+      : selectedRw === RW_KESELURUHAN
+        ? RW_KESELURUHAN
+        : RW_OPTIONS[0];
     setFormData({
       id: nextId,
       kategori: activeTab,
+      rw: defaultRw,
       label: '',
       lakiLaki: 0,
       perempuan: 0,
@@ -281,7 +334,7 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canEdit) return;
-    if (!formData.label || formData.lakiLaki === undefined || formData.perempuan === undefined) return;
+    if (!formData.label || !formData.rw || formData.lakiLaki === undefined || formData.perempuan === undefined) return;
     
     setIsSaving(true);
     await new Promise(r => setTimeout(r, 500));
@@ -324,10 +377,12 @@ export const LaporanPendudukAdmin: React.FC<LaporanPendudukAdminProps> = ({ onNa
   };
 
 const columns: Column<DemographicData>[] = activeTab === 'bangunan' ? [
+    { key: 'rw', header: 'RW', render: (item: any) => <RwBadge rw={selectedRw === 'all' ? 'Semua RW' : item.rw} />, className: 'p-2' },
     { key: 'label', header: 'Layak Huni', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
     { key: 'lakiLaki', header: 'Tidak Layak Huni', render: (item: any) => <div className="text-center font-semibold text-red-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2' },
     { key: 'perempuan', header: 'Bangunan Ruko', render: (item: any) => <div className="text-center font-semibold text-emerald-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2' },
   ] : [
+    { key: 'rw', header: 'RW', render: (item: any) => <RwBadge rw={selectedRw === 'all' ? 'Semua RW' : item.rw} />, className: 'p-2' },
     { key: 'label', header: 'Kategori', render: (item: any) => <div className="font-medium text-slate-900">{item.label}</div>, className: 'p-2' },
     { key: 'lakiLaki', header: 'Laki-laki', render: (item: any) => <div className="text-center font-semibold text-blue-600">{item.lakiLaki.toLocaleString()}</div>, className: 'text-center p-2' },
     { key: 'perempuan', header: 'Perempuan', render: (item: any) => <div className="text-center font-semibold text-pink-600">{item.perempuan.toLocaleString()}</div>, className: 'text-center p-2' },
@@ -335,6 +390,7 @@ const columns: Column<DemographicData>[] = activeTab === 'bangunan' ? [
   ];
 
   const formFields = [
+    { key: 'rw', label: 'RW', type: 'select', required: true, options: [...RW_OPTIONS.map(o => ({ value: o, label: o })), { value: RW_KESELURUHAN, label: RW_KESELURUHAN }] },
     { key: 'label', label: 'Kategori', type: 'select', required: true, options: getLabelOptions(activeTab).map(o => ({ value: o.value, label: o.label })) },
     { key: 'lakiLaki', label: 'Jumlah Laki-laki', type: 'number', required: true, placeholder: '0' },
     { key: 'perempuan', label: 'Jumlah Perempuan', type: 'number', required: true, placeholder: '0' },
@@ -362,7 +418,7 @@ const columns: Column<DemographicData>[] = activeTab === 'bangunan' ? [
               Laporan Penduduk Desa Warung Menteng
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">
-              Data kependudukan menurut umur, pendidikan, dan agama (disaggregasi gender)
+              Data kependudukan per RW menurut umur, pendidikan, dan agama (disaggregasi gender)
             </p>
           </div>
           <button
@@ -373,6 +429,26 @@ const columns: Column<DemographicData>[] = activeTab === 'bangunan' ? [
             <Plus className="w-4 h-4" />
             <span>Tambah Data</span>
           </button>
+        </div>
+
+        {/* Pilih RW (klasifikasi pengisi data) */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200">
+          {(['all', RW_KESELURUHAN, ...RW_OPTIONS] as RwFilter[]).map((rw) => {
+            const label = rw === 'all' ? 'Semua RW' : rw;
+            return (
+              <button
+                key={rw}
+                onClick={() => setSelectedRw(rw)}
+                className={`px-4 py-2 rounded-full text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 ${
+                  selectedRw === rw
+                    ? 'bg-emerald-700 text-white shadow-sm'
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Summary Cards */}
