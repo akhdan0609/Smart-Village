@@ -172,7 +172,7 @@ const tabConfigs: Record<TabType, TabConfig> = {
   },
   budidaya: {
     id: 'budidaya',
-    label: 'Budidaya Perikanan',
+    label: 'Budidaya',
     icon: Fish,
     storageKey: STORAGE_KEYS.budidaya,
     defaultData: defaultBudidaya,
