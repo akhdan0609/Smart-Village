@@ -416,10 +416,10 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                 <div className="w-full grid grid-cols-2 gap-x-12 sm:gap-x-16">
 
                   {/* KIRI: Pelaksana Teknis — 3 Kasi tersusun sejajar horizontal */}
-                  <div className="flex items-end justify-center gap-4 sm:gap-5">
+                  <div className="flex justify-center gap-4 sm:gap-5">
                     {strukturCabang[0].members.map(person => (
                       <div key={person.id} className="flex flex-col items-center">
-                        <div className="w-0.5 h-5 bg-[#16533c]" />
+                        <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
                         {renderMemberCard(person)}
                       </div>
                     ))}
@@ -437,10 +437,10 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                     <div className="w-full max-w-[88%] h-0.5 bg-[#16533c]" />
 
                     {/* 3 Kaur tersusun sejajar dari kiri ke kanan */}
-                    <div className="flex items-end justify-center gap-4 sm:gap-5 w-full max-w-[88%]">
+                    <div className="flex justify-center gap-4 sm:gap-5 w-full max-w-[88%]">
                       {sekretariatMembers.slice(0, 3).map(person => (
                         <div key={person.id} className="flex flex-col items-center">
-                          <div className="w-0.5 h-5 bg-[#16533c]" />
+                          <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
                           {renderMemberCard(person)}
                         </div>
                       ))}
@@ -454,10 +454,10 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
               <div className="w-full h-0.5 bg-[#16533c]" />
 
               {/* 3 Kepala Dusun tersusun sejajar dari kiri ke kanan */}
-              <div className="w-full flex items-end justify-center gap-5 sm:gap-8">
+              <div className="w-full flex justify-center gap-5 sm:gap-8">
                 {strukturCabang[1].members.map(person => (
                   <div key={person.id} className="flex flex-col items-center">
-                    <div className="w-0.5 h-5 bg-[#16533c]" />
+                    <div className="w-0.5 flex-1 min-h-5 bg-[#16533c]" />
                     {renderMemberCard(person)}
                   </div>
                 ))}
