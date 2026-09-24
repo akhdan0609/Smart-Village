@@ -20,10 +20,12 @@ import humasBanner from '../../assets/images/HUMAS_KKN.jpeg';
 import mediaBanner from '../../assets/images/MEDIA_KKN.jpeg';
 
 // Individual student portraits
-import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg';
-import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
-import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
-import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
+import avatarFajry from '../../assets/images/Fajry_KKN.jpeg';
+import avatarAyu from '../../assets/images/Ayu_KKN.jpeg';
+import avatarAkhdan from '../../assets/images/Akhdan_KKN.jpeg';
+import avatarSafitri from '../../assets/images/Safitr.jpg';
+import avatarArjuna from '../../assets/images/Arjuna_KKN.jpeg';
+import avatarDifina from '../../assets/images/Difina_KKN.jpeg';
 
 export type DivisionType = 'BPH' | 'ACARA' | 'HUMAS' | 'MEDIA';
 
@@ -90,7 +92,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Secretaries Umum',
         quote: 'Mencatat bukan sekadar tulisan, tapi setiap langkah menuju organisasi yang terarah dan teratur.',
         prodi: 'Teknik Informatika',
-        photo: avatarMale3,
+        photo: avatarAkhdan,
         gender: 'm'
       },
       {
@@ -100,7 +102,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Wakil Secretaries',
         quote: 'Terorganisir, terkomunikasi, terdokumentasi untuk mewujudkan tujuan bersama.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80',
+        photo: avatarSafitri,
         gender: 'f'
       },
       {
@@ -110,7 +112,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Bendahara Umum',
         quote: 'Mengelola bukan sekadar angka, tapi tentang amanah, kejujuran, dan tanggung jawab.',
         prodi: 'Sistem Informasi',
-        photo: avatarMale2,
+        photo: avatarArjuna,
         gender: 'm'
       },
       {
@@ -120,7 +122,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Wakil Bendahara',
         quote: 'Mendukung dengan teliti, membantu dengan hati, menjalankan amanah sepenuh arti.',
         prodi: 'Ilmu Hukum',
-        photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80',
+        photo: avatarDifina,
         gender: 'f'
       }
     ]
