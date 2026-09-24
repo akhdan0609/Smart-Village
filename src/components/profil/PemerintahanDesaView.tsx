@@ -234,15 +234,6 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
     members: OfficialProfile[];
   }[] = [
     {
-      label: 'SEKRETARIAT',
-      icon: ClipboardList,
-      members: [
-        ...['staff-6', 'staff-1', 'staff-5']
-          .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!),
-        STRUKTUR_DATA.sekdes
-      ]
-    },
-    {
       label: 'Pelaksana Teknis',
       icon: Landmark,
       members: ['staff-2', 'staff-3', 'staff-4']
@@ -254,6 +245,44 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
       members: STRUKTUR_DATA.kadus
     }
   ];
+
+  // Sekretariat: Sekdes kartu sendiri di kanan, 3 Kaur digantung di rail horizontal ke kiri
+  const sekretariatMembers: OfficialProfile[] = [
+    ...['staff-6', 'staff-1', 'staff-5']
+      .map(id => STRUKTUR_DATA.staff.find(s => s.id === id)!),
+    STRUKTUR_DATA.sekdes
+  ];
+
+  // Kartu anggota (dipakai kluster Sekretariat dan kelompok Teknis/Kewilayahan)
+  const renderMemberCard = (person: OfficialProfile) => (
+    <div
+      key={person.id}
+      onClick={() => setSelectedOfficial(person)}
+      className="relative group cursor-pointer bg-white rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+    >
+      <BotanicalLeafWatermark position="top-left" />
+      <BotanicalLeafWatermark position="bottom-right" />
+
+      {/* Circular Avatar */}
+      <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-[#16533c] shadow-xs mb-2.5 bg-emerald-50">
+        <img
+          src={person.fotoUrl}
+          alt={person.nama}
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+
+      {/* Role / Sub-tag Badge */}
+      <div className="bg-[#16533c] text-white text-[10px] sm:text-[11px] font-semibold px-3 py-0.5 rounded-full shadow-2xs mb-1.5 whitespace-nowrap max-w-full truncate">
+        {person.subTag || person.roleTag}
+      </div>
+
+      {/* Nama Pejabat */}
+      <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-tight line-clamp-2">
+        {person.nama}
+      </h4>
+    </div>
+  );
 
   return (
     <div className="bg-[#f0f4f1] min-h-screen pb-16 font-['Plus_Jakarta_Sans',sans-serif]">
@@ -372,10 +401,52 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                 <div className="flex-1" />
               </div>
 
-              {/* Connector: Kepala Desa turun ke baris Sekretariat */}
+              {/* Connector: Kepala Desa turun ke kluster Sekretariat */}
               <div className="w-0.5 h-8 sm:h-9 bg-[#16533c]" />
 
-              {/* ================= LEVEL 2+: 3 BIDANG (SEKRETARIAT, TEKNIS, KEWILAYAHAN) ================= */}
+              {/* ================= KLUSTER SEKRETARIAT: SEKDES (KANAN) + RAIL KE KIRI UNTUK 3 KAUR ================= */}
+              <div className="w-full flex flex-col items-center">
+
+                {/* Pill Sekretariat */}
+                <div className="bg-[#16533c] text-white text-xs sm:text-sm font-bold px-5 py-1.5 rounded-full flex items-center gap-2 shadow-xs whitespace-nowrap">
+                  <ClipboardList className="w-3.5 h-3.5 text-emerald-300" />
+                  <span>SEKRETARIAT</span>
+                </div>
+
+                {/* Connector pendek turun ke rail */}
+                <div className="w-0.5 h-4 bg-[#16533c]" />
+
+                {/* Rail horizontal: memanjang ke kiri dari Sekdes, sedikit lebih rendah */}
+                <div className="w-full max-w-[96%] relative">
+                  <div className="h-0.5 bg-[#16533c] w-full" />
+                </div>
+
+                {/* Baris isi: 3 Kaur tergantung di rail kiri, Sekdes duduk di kanan (sendiri) */}
+                <div className="w-full max-w-[96%] flex items-end justify-end gap-4 sm:gap-5">
+
+                  {/* 3 Kaur: drop line + kartu (kiri dari Sekdes) */}
+                  <div className="flex items-end justify-end gap-4 sm:gap-5">
+                    {sekretariatMembers.slice(0, 3).map(person => (
+                      <div key={person.id} className="flex flex-col items-center">
+                        <div className="w-0.5 h-5 bg-[#16533c]" />
+                        <div className="pt-1">
+                          {renderMemberCard(person)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Connector horizontal dari rail (kiri) ke kartu Sekdes (kanan) */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-6 h-0.5 bg-[#16533c] -mt-2.5" />
+                    <div className="pt-1">
+                      {renderMemberCard(sekretariatMembers[3])}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= KELOMPOK TEKNIS & KEWILAYAHAN (DI BAWAH SEKDEs) ================= */}
               {strukturCabang.map(branch => (
                 <div key={branch.label} className="w-full flex flex-col items-center">
 
@@ -406,32 +477,8 @@ export const PemerintahanDesaView: React.FC<PemerintahanDesaViewProps> = () => {
                   {/* Kartu anggota */}
                   <div className="w-full max-w-[92%] grid gap-4" style={{ gridTemplateColumns: `repeat(${branch.members.length}, minmax(0, 1fr))` }}>
                     {branch.members.map(person => (
-                      <div
-                        key={person.id}
-                        onClick={() => setSelectedOfficial(person)}
-                        className="relative group cursor-pointer bg-white rounded-2xl border-2 border-[#16533c]/30 p-3 sm:p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
-                      >
-                        <BotanicalLeafWatermark position="top-left" />
-                        <BotanicalLeafWatermark position="bottom-right" />
-
-                        {/* Circular Avatar */}
-                        <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-[#16533c] shadow-xs mb-2.5 bg-emerald-50">
-                          <img 
-                            src={person.fotoUrl} 
-                            alt={person.nama}
-                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-
-                        {/* Role / Sub-tag Badge */}
-                        <div className="bg-[#16533c] text-white text-[10px] sm:text-[11px] font-semibold px-3 py-0.5 rounded-full shadow-2xs mb-1.5 whitespace-nowrap max-w-full truncate">
-                          {person.subTag || person.roleTag}
-                        </div>
-
-                        {/* Nama Pejabat */}
-                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-tight line-clamp-2">
-                          {person.nama}
-                        </h4>
+                      <div key={person.id} className="flex justify-center pt-0">
+                        {renderMemberCard(person)}
                       </div>
                     ))}
                   </div>
