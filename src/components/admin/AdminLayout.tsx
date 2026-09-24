@@ -92,7 +92,6 @@ const allMenuItems: AdminMenuItem[] = [
     icon: 'Newspaper', 
     roles: ['super_admin', 'admin_1'],
     children: [
-      { id: 'humas-umum', label: 'Kelola Humas', icon: 'Newspaper', route: 'admin-cover-humas', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-press-release', label: 'Press Release', icon: 'Newspaper', route: 'admin-humas-press', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-galeri', label: 'Galeri Foto', icon: 'Image', route: 'admin-humas-galeri', roles: ['super_admin', 'admin_1'] },
       { id: 'humas-kritik-saran', label: 'Kritik & Saran', icon: 'MessageSquare', route: 'admin-humas-kritik-saran', roles: ['super_admin', 'admin_1'] },
