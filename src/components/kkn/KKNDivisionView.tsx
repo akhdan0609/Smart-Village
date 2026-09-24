@@ -26,6 +26,13 @@ import avatarAkhdan from '../../assets/images/Akhdan_KKN.jpeg';
 import avatarSafitri from '../../assets/images/Safitri_KKN.jpeg';
 import avatarArjuna from '../../assets/images/Arjuna_KKN.jpeg';
 import avatarDifina from '../../assets/images/Difina_KKN.jpeg';
+import avatarAmir from '../../assets/images/Amir_KKN.jpeg';
+import avatarAndika from '../../assets/images/Andika_KKN.jpeg';
+import avatarCeisar from '../../assets/images/Ceisar_KKN.jpeg';
+import avatarDefran from '../../assets/images/Defran_KKN.jpeg';
+import avatarIkmal from '../../assets/images/Ikmal_KKN.jpeg';
+import avatarPahlepi from '../../assets/images/Pahlepi_KKN.jpeg';
+import avatarRisna from '../../assets/images/Risna_KKN.jpeg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
 
@@ -147,7 +154,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Koordinator Acara',
         quote: 'Mengatur jalannya acara dengan rapi, tertib, dan penuh tanggung jawab.',
         prodi: 'Teknik Informatika',
-        photo: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&auto=format&fit=crop&q=80',
+        photo: avatarAmir,
         gender: 'm'
       },
       {
@@ -157,7 +164,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Kolaborasi yang solid menghasilkan acara yang luar biasa.',
         prodi: 'Teknik Informatika',
-        photo: avatarMale3,
+        photo: avatarDefran,
         gender: 'm'
       },
       {
@@ -167,7 +174,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Menyampaikan gagasan, beraksi bersama untuk kesuksesan setiap program.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: avatarFajry,
+        photo: avatarAndika,
         gender: 'm'
       },
       {
@@ -177,7 +184,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Setiap acara bermakna, setiap momen berharga, setiap kerja berbuah cerita.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&auto=format&fit=crop&q=80',
+        photo: avatarRisna,
         gender: 'f'
       },
       {
@@ -187,7 +194,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Perencanaan matang, pelaksanaan hebat, hasil penuh manfaat.',
         prodi: 'Ilmu Hukum',
-        photo: avatarMale2,
+        photo: avatarPahlepi,
         gender: 'm'
       },
       {
@@ -197,7 +204,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Detail kecil adalah kunci keberhasilan acara yang besar.',
         prodi: 'Teknik Informatika',
-        photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+        photo: avatarIkmal,
         gender: 'm'
       },
       {
@@ -207,7 +214,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&auto=format&fit=crop&q=80',
+        photo: avatarCeisar,
         gender: 'm'
       }
     ]
