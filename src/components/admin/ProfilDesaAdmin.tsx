@@ -1131,17 +1131,16 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
   /* RENDER TAB: TENTANG DESA                                              */
   /* ==================================================================== */
 
-  const renderTentang = () => (
+const renderTentang = () => (
     <div className="space-y-6">
       <CoverEditor coverKey="profil-tentang" onNavigate={onNavigate} />
+
+      {/* Visi & Misi */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-          <div>
-            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-emerald-700" />
-              Konten Tentang Desa
-            </h2>
-            <p className="text-xs text-slate-500 mt-0.5">Gambar sampul, teks deskripsi, visi & misi desa</p>
+          <div className="flex items-center gap-2">
+            <Target className="w-5 h-5 text-emerald-700" />
+            <h2 className="text-lg font-bold text-slate-900">Visi & Misi Desa</h2>
           </div>
           <button
             onClick={saveTentang}
@@ -1151,55 +1150,6 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
             {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>Simpan</span>
           </button>
-        </div>
-
-        <div className="space-y-5">
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-2">Gambar Sampul</label>
-            <ImageUpload
-              label=""
-              value={tentang.gambarSampul}
-              onChange={(v) => setTentang(prev => ({ ...prev, gambarSampul: v }))}
-              previewSize="lg"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Judul Halaman</label>
-              <input
-                type="text"
-                value={tentang.judul}
-                onChange={e => setTentang(prev => ({ ...prev, judul: e.target.value }))}
-                className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Sub Judul (Opsional)</label>
-              <input
-                type="text"
-                value={tentang.deskripsi}
-                onChange={e => setTentang(prev => ({ ...prev, deskripsi: e.target.value }))}
-                className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Deskripsi Singkat (Tampil di Halaman)</label>
-            <textarea
-              value={tentang.deskripsi}
-              onChange={e => setTentang(prev => ({ ...prev, deskripsi: e.target.value }))}
-              rows={3}
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:bg-white"
-            />
-            </div>
-        </div>
-      {/* Visi & Misi */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-        <div className="flex items-center gap-2">
-          <Target className="w-5 h-5 text-emerald-700" />
-          <h2 className="text-lg font-bold text-slate-900">Visi & Misi Desa</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1255,9 +1205,8 @@ export const ProfilDesaAdmin: React.FC<ProfilDesaAdminProps> = ({ onNavigate, on
             </div>
           </div>
         </div>
-</div>
+      </div>
     </div>
-  </div>
   );
 
   /* ==================================================================== */
