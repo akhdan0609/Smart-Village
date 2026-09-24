@@ -53,7 +53,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
   const executeCommand = (command: string, value?: string) => {
     if (readOnly) return;
-    document.execCommand(command, false, value);
+    (document as any).execCommand(command, false, value);
     editorRef.current?.focus();
     handleInput();
   };

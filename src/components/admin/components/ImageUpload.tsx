@@ -54,9 +54,11 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     // Convert to base64 for preview (in real app, upload to server)
     const reader = new FileReader();
     reader.onload = (e) => {
-      const result = e.target?.result as string;
-      setPreview(result);
-      onChange(result);
+      const result = e.target?.result;
+      if (typeof result === 'string') {
+        setPreview(result);
+        onChange(result);
+      }
       setIsUploading(false);
     };
     reader.readAsDataURL(file);
