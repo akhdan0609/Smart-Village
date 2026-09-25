@@ -40,7 +40,7 @@ import avatarNana from '../../assets/images/Nana_KKN.jpeg';
 import avatarQomar from '../../assets/images/Qomar_KKN.jpeg';
 import avatarYudha from '../../assets/images/Yudha_KKN.jpeg';
 import avatarAisyah from '../../assets/images/Aisyah_KKN.jpeg';
-import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
+import avatarMale2 from '../../assets/images/kkn_avatar_mle2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
 
 export type DivisionType = 'BPH' | 'ACARA' | 'HUMAS' | 'MEDIA';

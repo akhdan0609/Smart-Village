@@ -96,7 +96,7 @@ export const pembinaDPL = [
       divisi: 'ACARA',
       prodi: 'Teknik Informatika (UNUSIA)',
       tugas: 'Kolaborasi yang solid menghasilkan acara yang luar biasa.',
-      fotoUrl: 'avatarDevran'
+      fotoUrl: 'avatarDefran'
     },
     {
       nama: 'Andika Febriansyah',
@@ -136,7 +136,7 @@ export const pembinaDPL = [
       divisi: 'ACARA',
       prodi: 'Sejarah Peradaban Islam (UNUSIA)',
       tugas: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
-      fotoUrl: 'avatarCaisar'
+      fotoUrl: 'avatarCeisar'
     }
   ];
 
