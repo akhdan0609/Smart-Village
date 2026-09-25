@@ -27,12 +27,12 @@ import avatarSafitri from '../../assets/images/Safitri_KKN.jpeg';
 import avatarArjuna from '../../assets/images/Arjuna_KKN.jpeg'; 
 import avatarDifina from '../../assets/images/Difina_KKN.jpeg';
 import avatarAmir from '../../assets/images/Amir_KKN.jpeg';
-import avatarDevran from '../../assets/images/Devran_KKN.jpeg';
+import avatarDefran from '../../assets/images/Defran_KKN.jpeg';
 import avatarAndika from '../../assets/images/Andika_KKN.jpeg';
 import avatarRisna from '../../assets/images/Risna_KKN.jpeg';
 import avatarPahlepi from '../../assets/images/Pahlepi_KKN.jpeg';
 import avatarIkmal from '../../assets/images/Ikmal_KKN.jpeg';
-import avatarCaisar from '../../assets/images/Caisar_KKN.jpeg';
+import avatarCeisar from '../../assets/images/Ceisar_KKN.jpeg';
 import avatarArifin from '../../assets/images/Arifin_KKN.jpeg';
 import avatarGiry from '../../assets/images/Giry_KKN.jpeg';
 import avatarIyoh from '../../assets/images/Iyoh_KKN.jpeg';
@@ -171,7 +171,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Kolaborasi yang solid menghasilkan acara yang luar biasa.',
         prodi: 'Teknik Informatika',
-        photo: avatarDevran,
+        photo: avatarDefran,
         gender: 'm'
       },
       {
@@ -221,7 +221,7 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
         role: 'Anggota Acara',
         quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
         prodi: 'Sejarah Peradaban Islam',
-        photo: avatarCaisar,
+        photo: avatarCeisar,
         gender: 'm'
       }
     ]
