@@ -428,23 +428,7 @@ export const KKNView: React.FC<KKNViewProps> = ({ onNavigate, initialTab = 'SEMU
                   className="w-full h-[260px] sm:h-[340px] lg:h-[380px] object-cover object-center group-hover:scale-[1.01] transition duration-500"
                 />
 
-                {/* Wooden Sign Board: Desa Warung Menteng */}
-                <div className="absolute top-4 right-4 sm:top-5 sm:right-6 bg-gradient-to-b from-[#b57a48] to-[#875027] text-[#fff8ed] border-2 border-[#573014] rounded-xl px-3.5 sm:px-4 py-2 sm:py-2.5 shadow-2xl text-center transform rotate-1 hover:rotate-0 transition duration-300">
-                  <span className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-[#3d210b] border border-[#d6a575]" />
-                  <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-[#3d210b] border border-[#d6a575]" />
-                  <span className="absolute bottom-1 left-1 w-1.5 h-1.5 rounded-full bg-[#3d210b] border border-[#d6a575]" />
-                  <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-[#3d210b] border border-[#d6a575]" />
-                  <div className="text-[10px] sm:text-xs font-serif font-bold tracking-widest uppercase text-amber-200/90 leading-tight">
-                    Desa
-                  </div>
-                  <div className="text-xs sm:text-sm font-serif font-black tracking-wide uppercase leading-tight drop-shadow-xs">
-                    Warung
-                  </div>
-                  <div className="text-xs sm:text-sm font-serif font-black tracking-wide uppercase leading-tight drop-shadow-xs">
-                    Menteng
-                  </div>
                 </div>
-              </div>
             </div>
 
           </div>
