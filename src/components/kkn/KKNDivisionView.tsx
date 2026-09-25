@@ -238,23 +238,23 @@ const DIVISIONS_DATA: Record<DivisionType, DivisionConfig> = {
     gridColsClass: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto gap-4 sm:gap-5',
     members: [
       {
-        id: 'muhammad-arifin-fadhillah',
-        name: 'Muhammad Arifin Fadhillah',
-        fullName: 'Muhammad Arifin Fadhillah',
-        role: 'Koordinator HUMAS',
-        quote: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
-        prodi: 'Ilmu Hukum',
-        photo: avatarArifin,
-        gender: 'm'
-      },
-      {
         id: 'muhammad-ramadhan-giri-wardana',
         name: 'Muhammad Ramadhan Giri Wardana',
         fullName: 'Muhammad Ramadhan Giri Wardana',
+        role: 'Koordinator HUMAS',
+        quote: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
+        prodi: 'Ilmu Hukum',
+        photo: avatarGiry,
+        gender: 'm'
+      },
+      {
+        id: 'muhammad-arifin-fadhillah',
+        name: 'Muhammad Arifin Fadhillah',
+        fullName: 'Muhammad Arifin Fadhillah',
         role: 'Anggota HUMAS',
         quote: 'Komunikasi yang baik adalah kunci membangun hubungan yang kuat dan kepercayaan yang tulus.',
         prodi: 'Ilmu Hukum',
-        photo: avatarGiry,
+        photo: avatarArifin,
         gender: 'm'
       },
       {
