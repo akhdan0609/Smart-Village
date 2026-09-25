@@ -21,26 +21,8 @@ import kknProkerBudaya from '../../assets/images/Banggabudaya_KKN.jpeg';
 import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
 import kknKerjaBakti from '../../assets/images/kkn_kerja_bakti_1788606750207.jpg';
 import kknPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
-import avatarFajry from '../../assets/images/Fajry_KKN.jpeg';
-import avatarAyu from '../../assets/images/Ayu_KKN.jpeg';
-import avatarAkhdan from '../../assets/images/Akhdan_KKN.jpeg';
-import avatarSafitri from '../../assets/images/Safitri_KKN.jpeg';
-import avatarArjuna from '../../assets/images/Arjuna_KKN.jpeg';
-import avatarDifina from '../../assets/images/Difina_KKN.jpeg';
-import avatarAmir from '../../assets/images/Amir_KKN.jpeg';
-import avatarDefran from '../../assets/images/Defran_KKN.jpeg';
-import avatarAndika from '../../assets/images/Andika_KKN.jpeg';
-import avatarRisna from '../../assets/images/Risna_KKN.jpeg';
-import avatarPahlepi from '../../assets/images/Pahlepi_KKN.jpeg';
-import avatarIkmal from '../../assets/images/Ikmal_KKN.jpeg';
-import avatarCeisar from '../../assets/images/Ceisar_KKN.jpeg';
-import avatarArifin from '../../assets/images/Arifin_KKN.jpeg';
-import avatarGiry from '../../assets/images/Giry_KKN.jpeg';
-import avatarIyoh from '../../assets/images/Iyoh_KKN.jpeg';
-import avatarNana from '../../assets/images/Nana_KKN.jpeg';
-import avatarYudha from '../../assets/images/Yudha_KKN.jpeg';
-import avatarQomar from '../../assets/images/Qomar_KKN.jpeg';
-import avatarAisyah from '../../assets/images/Aisyah_KKN.jpeg';
+import avatarFajry from '../../assets/images/kkn_avatar_fajry_1788605245239.jpg';
+import avatarAyu from '../../assets/images/kkn_avatar_ayu_1788605263318.jpg';
 import avatarMale2 from '../../assets/images/kkn_avatar_male2_1788605278034.jpg';
 import avatarMale3 from '../../assets/images/kkn_avatar_male3_1788605294027.jpg';
 
@@ -98,7 +80,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Akhdan Fadhil Santoso',
     role: 'Secretaries Umum',
     division: 'BPH',
-    photo: avatarAkhdan,
+    photo: avatarMale3,
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Mencatat bukan sekadar tulisan, tapi setiap langkah menuju organisasi yang terarah dan teratur.',
     whatsapp: '6281234567806',
@@ -109,7 +91,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Safitri Naufal',
     role: 'Wakil Secretaries',
     division: 'BPH',
-    photo: avatarSafitri,
+    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80',
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Terorganisir, terkomunikasi, terdokumentasi untuk mewujudkan tujuan bersama.',
     whatsapp: '6281234567807',
@@ -120,7 +102,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Arjuna',
     role: 'Bendahara Umum',
     division: 'BPH',
-    photo: avatarArjuna,
+    photo: avatarMale2,
     prodi: 'Sistem Informasi (UNUSIA)',
     quote: 'Mengelola bukan sekadar angka, tapi tentang amanah, kejujuran, dan tanggung jawab.',
     whatsapp: '6281234567804',
@@ -131,7 +113,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Difina Agusti Rahmawati',
     role: 'Wakil Bendahara',
     division: 'BPH',
-    photo: avatarDifina,
+    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80',
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Mendukung dengan teliti, membantu dengan hati, menjalankan amanah sepenuh arti.',
     whatsapp: '6281234567805',
@@ -144,7 +126,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Munhamir Nadzir',
     role: 'Koordinator Acara',
     division: 'ACARA',
-    photo: avatarAmir,
+    photo: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&auto=format&fit=crop&q=80',
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Mengatur jalannya acara dengan rapi, tertib, dan penuh tanggung jawab.',
     whatsapp: '6281234567811',
@@ -155,7 +137,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Devran Azzahra',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarDefran,
+    photo: avatarMale3,
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Kolaborasi yang solid menghasilkan acara yang luar biasa.',
     whatsapp: '6281234567816',
@@ -166,7 +148,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Andika Febriansyah',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarAndika,
+    photo: avatarFajry,
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Menyampaikan gagasan, beraksi bersama untuk kesuksesan setiap program.',
     whatsapp: '6281234567819',
@@ -177,7 +159,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'RISNA',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarRisna,
+    photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&auto=format&fit=crop&q=80',
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Setiap acara bermakna, setiap momen berharga, setiap kerja berbuah cerita.',
     whatsapp: '6281234567813',
@@ -188,7 +170,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Achmad Pahlevi Ramadhan',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarPahlepi,
+    photo: avatarMale2,
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Perencanaan matang, pelaksanaan hebat, hasil penuh manfaat.',
     whatsapp: '6281234567815',
@@ -199,7 +181,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Ikmal Nur Awaludin',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarIkmal,
+    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Detail kecil adalah kunci keberhasilan acara yang besar.',
     whatsapp: '6281234567812',
@@ -210,7 +192,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Caisar Fayth Isyadirda',
     role: 'Anggota Acara',
     division: 'ACARA',
-    photo: avatarCeisar,
+    photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&auto=format&fit=crop&q=80',
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Saling bekerja sama dan penuh semangat untuk setiap acara yang berkesan.',
     whatsapp: '6281234567822',
@@ -223,7 +205,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Muhammad Arifin Fadhillah',
     role: 'Koordinator HUMAS',
     division: 'HUMAS',
-    photo: avatarArifin,
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&auto=format&fit=crop&q=80',
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
     whatsapp: '6281234567817',
@@ -234,7 +216,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Muhammad Ramadhan Giri Wardana',
     role: 'Anggota HUMAS',
     division: 'HUMAS',
-    photo: avatarGiry,
+    photo: avatarMale3,
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Komunikasi yang baik adalah kunci membangun hubungan yang kuat dan kepercayaan yang tulus.',
     whatsapp: '6281234567818',
@@ -245,7 +227,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Siti Khoiroh',
     role: 'Anggota HUMAS',
     division: 'HUMAS',
-    photo: avatarIyoh,
+    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80',
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Kreatif dalam ide, komunikatif dalam aksi, berdampak untuk negeri.',
     whatsapp: '6281234567820',
@@ -256,7 +238,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Try Mauna',
     role: 'Anggota HUMAS',
     division: 'HUMAS',
-    photo: avatarNana,
+    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80',
     prodi: 'Sejarah Peradaban Islam (UNUSIA)',
     quote: 'Membangun koneksi, mempererat sinergi, dan mengabdi dengan sepenuh hati.',
     whatsapp: '6281234567821',
@@ -269,7 +251,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Qomarudin Tokan',
     role: 'Koordinator MEDIA',
     division: 'MEDIA',
-    photo: avatarQomar,
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Dokumentasi hari ini, menjadi cerita berharga untuk masa depan.',
     whatsapp: '6281234567810',
@@ -280,7 +262,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Akhsan efriel wanda yuda pratama',
     role: 'Anggota MEDIA',
     division: 'MEDIA',
-    photo: avatarYudha,
+    photo: avatarMale2,
     prodi: 'Teknik Informatika (UNUSIA)',
     quote: 'Menyampaikan informasi dengan kreatif, mendokumentasikan momen dengan penuh makna.',
     whatsapp: '6281234567808',
@@ -291,7 +273,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Aisyah al atas',
     role: 'Anggota MEDIA',
     division: 'MEDIA',
-    photo: avatarAisyah,
+    photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Kreativitas dalam setiap karya, informasi dalam setiap langkah.',
     whatsapp: '6281234567809',

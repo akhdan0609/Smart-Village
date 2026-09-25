@@ -312,31 +312,13 @@ export const KKNLatarBelakangView: React.FC<KKNLatarBelakangViewProps> = ({ onNa
 
             </div>
 
-            {/* Right Hero Image with Authentic Wooden Signboard */}
+            {/* Right Hero Image - Clean Landscape Background */}
             <div className="lg:col-span-6 relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-slate-200/80 group">
               <img
                 src={kknHeroGroup}
-                alt="Seluruh Anggota KKN Wigata Dharma UNUSIA di Desa Warung Menteng"
+                alt="Pemandangan alam Desa Warung Menteng di kaki Gunung Salak"
                 className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
               />
-              
-              {/* Wooden Signpost on the top right ("Desa Warung Menteng") */}
-              <div className="absolute top-4 right-4 bg-[#c88d55] text-amber-950 font-black px-4 py-2 rounded-xl shadow-lg border-2 border-[#8f5e31] rotate-1 select-none backdrop-blur-xs flex flex-col items-center justify-center">
-                {/* Faux screw nails */}
-                <span className="absolute top-1 left-1.5 w-1.5 h-1.5 rounded-full bg-[#5c3719]" />
-                <span className="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-[#5c3719]" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-[#4a2609] leading-tight">
-                  Desa
-                </span>
-                <span className="text-base sm:text-lg font-black tracking-tight leading-none text-[#2f1604]">
-                  Warung
-                </span>
-                <span className="text-base sm:text-lg font-black tracking-tight leading-none text-[#2f1604]">
-                  Menteng
-                </span>
-                <span className="absolute bottom-1 left-1.5 w-1.5 h-1.5 rounded-full bg-[#5c3719]" />
-                <span className="absolute bottom-1 right-1.5 w-1.5 h-1.5 rounded-full bg-[#5c3719]" />
-              </div>
 
             </div>
 
