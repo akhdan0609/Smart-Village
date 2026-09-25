@@ -21,6 +21,7 @@ import kknProkerBudaya from '../../assets/images/Banggabudaya_KKN.jpeg';
 import kknMengajarBale from '../../assets/images/kkn_mengajar_bale_1788606733812.jpg';
 import kknKerjaBakti from '../../assets/images/kkn_kerja_bakti_1788606750207.jpg';
 import kknPanorama from '../../assets/images/kkn_galeri_hero_panorama_1788606671947.jpg';
+import avatarAfifi from '../../assets/images/Afifi_KKN.jpeg';
 import avatarFajry from '../../assets/images/Fajry_KKN.jpeg';
 import avatarAyu from '../../assets/images/Ayu_KKN.jpeg';
 import avatarAkhdan from '../../assets/images/Akhdan_KKN.jpeg';
@@ -64,7 +65,7 @@ export const KKN_MEMBERS: KKNMember[] = [
     name: 'Dr. Muhammad Afifi, M.H.',
     role: 'DPL',
     division: 'DPL',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    photo: avatarAfifi,
     prodi: 'Dosen Pembimbing Lapangan (UNUSIA)',
     quote: 'Membimbing generasi muda menjadi agen perubahan berakar nilai keislaman dan kebangsaan.',
     whatsapp: '6281234567801',
@@ -220,10 +221,10 @@ export const KKN_MEMBERS: KKNMember[] = [
   // HUMAS
   {
     id: 'humas-1',
-    name: 'Muhammad Arifin Fadhillah',
+    name: 'Muhammad Ramadhan Giri Wardana',
     role: 'Koordinator HUMAS',
     division: 'HUMAS',
-    photo: avatarArifin,
+    photo: avatarGiry,
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Humas bukan sekadar bicara, tapi tentang membangun citra dan kepercayaan bersama.',
     whatsapp: '6281234567817',
@@ -231,10 +232,10 @@ export const KKN_MEMBERS: KKNMember[] = [
   },
   {
     id: 'humas-2',
-    name: 'Muhammad Ramadhan Giri Wardana',
+    name: 'Muhammad Arifin Fadhillah',
     role: 'Anggota HUMAS',
     division: 'HUMAS',
-    photo: avatarGiry,
+    photo: avatarArifin,
     prodi: 'Ilmu Hukum (UNUSIA)',
     quote: 'Komunikasi yang baik adalah kunci membangun hubungan yang kuat dan kepercayaan yang tulus.',
     whatsapp: '6281234567818',
