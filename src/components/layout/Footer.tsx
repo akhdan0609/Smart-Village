@@ -237,7 +237,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLoginModal, ac
                   </button>
                 </li>
                 <li>
-                  <button onClick={() => handleNav('pelayanan-informasi')} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => handleNav('pelayanan-desa')} className="hover:text-white transition cursor-pointer">
                     Pelayanan Publik
                   </button>
                 </li>
