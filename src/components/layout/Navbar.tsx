@@ -170,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { title: 'Potensi Desa', desc: 'Akomodasi wisata alam, UMKM unggulan, seni budaya adat, dan budidaya peternakan perikanan', page: 'potensi-desa' as PageRoute, tag: 'Potensi' },
     { title: 'Akomodasi Desa', desc: 'Curug Cibaliung, Bukit Menteng, Persawahan Terasering, Camping Ground', page: 'potensi-akomodasi' as PageRoute, tag: 'Potensi' },
     { title: 'UMKM Desa', desc: 'Pemberdayaan unit usaha mikro kecil menengah warga desa', page: 'potensi-umkm' as PageRoute, tag: 'Potensi' },
-    { title: 'Budaya & Adat Istiadat', desc: 'Upacara Seren Taun Cijeruk, Silat Cimande, Seni Calung', page: 'potensi-budaya' as PageRoute, tag: 'Potensi' },
+    { title: 'Budaya & Tradisi', desc: 'Upacara Seren Taun Cijeruk, Silat Cimande, Seni Calung', page: 'potensi-budaya' as PageRoute, tag: 'Potensi' },
     { title: 'Budidaya', desc: 'Sentra budidaya kolam air deras nila, mas, dan gurame', page: 'potensi-perikanan' as PageRoute, tag: 'Potensi' },
     // Pelayanan Desa
     { title: 'Pelayanan Desa', desc: 'Pusat permohonan surat administrasi, kependudukan, nikah', page: 'pelayanan-desa' as PageRoute, tag: 'Pelayanan' },
@@ -200,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       tag: 'UMKM',
       params: { umkmId: item.id }
     })),
-    // Budaya & Adat individual
+    // Budaya & Tradisi individual
     ...BUDAYA_ADAT_LIST.map(item => ({
       title: item.nama,
       desc: (item.deskripsi || '').slice(0, 90),
@@ -419,7 +419,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
                     }`}
                   >
-                    <span>Budaya & Adat</span>
+                    <span>Budaya & Tradisi</span>
                     <ArrowRight className="w-3 h-3 text-slate-400" />
                   </button>
                   <button
@@ -1037,7 +1037,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleNavClick('potensi-budaya')}
                   className="w-full text-left px-3 py-2 text-xs rounded-lg text-slate-600 hover:bg-slate-50 font-medium"
                 >
-                  Budaya & Adat
+                  Budaya & Tradisi
                 </button>
                 <button
                   onClick={() => handleNavClick('potensi-perikanan')}

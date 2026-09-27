@@ -78,10 +78,10 @@ export const COVER_META: Record<CoverKey, { label: string; desc: string; target:
     targetLabel: 'UMKM',
   },
   'potensi-budaya': {
-    label: 'Sampul Halaman Budaya & Adat',
-    desc: 'Banner di bagian atas halaman Budaya & Adat.',
+    label: 'Sampul Halaman Budaya & Tradisi',
+    desc: 'Banner di bagian atas halaman Budaya & Tradisi.',
     target: 'potensi-budaya',
-    targetLabel: 'Budaya & Adat',
+    targetLabel: 'Budaya & Tradisi',
   },
   'potensi-budidaya': {
     label: 'Sampul Halaman Budidaya Perikanan',
@@ -163,7 +163,7 @@ const DEFAULT_COVER_TEXTS: Record<CoverKey, Partial<Record<CoverTextKey, string>
     subtitle: 'Produk unggulan masyarakat Desa Warung Menteng yang bernilai ekonomi dan budaya.'
   },
   'potensi-budaya': {
-    title: 'Budaya & Adat',
+    title: 'Budaya & Tradisi',
     subtitle: 'Warisan budaya, tradisi, dan kesenian yang dilestarikan masyarakat Desa Warung Menteng.'
   },
   'potensi-budidaya': {

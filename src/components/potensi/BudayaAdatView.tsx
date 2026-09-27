@@ -27,7 +27,7 @@ export const BudayaAdatView: React.FC<BudayaAdatViewProps> = ({ onNavigate }) =>
   return (
     <div className="py-8 bg-[#f8faf8] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
-        {/* Hero Banner: Budaya & Adat */}
+        {/* Hero Banner: Budaya & Tradisi */}
         <div className="relative rounded-3xl overflow-hidden shadow-sm min-h-[260px] sm:min-h-[290px] flex items-center bg-slate-900">
           {/* Background image: Traditional Dancers & Cultural Landscape */}
           <div className="absolute inset-0 z-0">
@@ -43,7 +43,7 @@ export const BudayaAdatView: React.FC<BudayaAdatViewProps> = ({ onNavigate }) =>
           {/* Banner Content */}
           <div className="relative z-10 max-w-2xl px-6 sm:px-12 py-10 text-white space-y-3">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
-              Budaya & Adat
+              Budaya & Tradisi
             </h1>
             <p className="text-emerald-100 text-xs sm:text-sm sm:leading-relaxed max-w-xl font-normal">
               Warung Menteng memiliki kekayaan budaya dan adat istiadat yang masih terjaga hingga kini. Tradisi, kesenian, dan nilai-nilai luhur masyarakatnya menjadi bagian penting dari identitas desa yang patut dilestarikan.

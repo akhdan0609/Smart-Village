@@ -65,7 +65,7 @@ const allMenuItems: AdminMenuItem[] = [
       { id: 'potensi-umum', label: 'Kelola Potensi Desa', icon: 'TreePine', route: 'admin-cover-potensi', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-akomodasi', label: 'Akomodasi', icon: 'Building2', route: 'admin-potensi-akomodasi', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-umkm', label: 'UMKM', icon: 'ShoppingBag', route: 'admin-potensi-umkm', roles: ['super_admin', 'admin_1'] },
-      { id: 'potensi-budaya', label: 'Budaya & Adat', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
+      { id: 'potensi-budaya', label: 'Budaya & Tradisi', icon: 'Music', route: 'admin-potensi-budaya', roles: ['super_admin', 'admin_1'] },
       { id: 'potensi-budidaya', label: 'Budidaya', icon: 'Fish', route: 'admin-potensi-budidaya', roles: ['super_admin', 'admin_1'] },
     ]
   },

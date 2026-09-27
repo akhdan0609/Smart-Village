@@ -145,7 +145,7 @@ const tabConfigs: Record<TabType, TabConfig> = {
   },
   budaya: {
     id: 'budaya',
-    label: 'Budaya & Adat',
+    label: 'Budaya & Tradisi',
     icon: Music,
     storageKey: STORAGE_KEYS.budaya,
     defaultData: defaultBudaya,

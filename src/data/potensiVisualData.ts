@@ -1,4 +1,4 @@
-// Data spesifik untuk tampilan visual Akomodasi, Budaya & Adat, Budidaya, dan UMKM
+// Data spesifik untuk tampilan visual Akomodasi, Budaya & Tradisi, Budidaya, dan UMKM
 // Sesuai dengan desain tata letak kartu dan hero banner pada referensi gambar resmi
 
 export interface PotensiCardItem {

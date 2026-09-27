@@ -76,7 +76,7 @@ const roleStatsConfig = {
   admin_2: [
     { key: 'akomodasi', label: 'Akomodasi', icon: Building2, color: 'text-emerald-600', bg: 'bg-emerald-100', sub: 'Wisata & Homestay' },
     { key: 'umkm', label: 'UMKM', icon: ShoppingBag, color: 'text-amber-600', bg: 'bg-amber-100', sub: 'Produk Warga' },
-    { key: 'budaya', label: 'Budaya & Adat', icon: TreePine, color: 'text-purple-600', bg: 'bg-purple-100', sub: 'Warisan Budaya' },
+    { key: 'budaya', label: 'Budaya & Tradisi', icon: TreePine, color: 'text-purple-600', bg: 'bg-purple-100', sub: 'Warisan Budaya' },
     { key: 'surat', label: 'Permohonan Surat', icon: Mail, color: 'text-blue-600', bg: 'bg-blue-100', sub: 'Kelola Surat' },
   ],
   admin_3: [
