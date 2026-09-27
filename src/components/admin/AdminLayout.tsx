@@ -204,7 +204,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     (sidebarOpen ? 'w-64 translate-x-0' : 'w-20 -translate-x-full');
 
   const mainClassName = 'flex-1 transition-all duration-300 relative z-10 overflow-x-hidden ' +
-    (sidebarOpen ? 'ml-64' : 'ml-20');
+    (sidebarOpen ? 'ml-64' : 'ml-0');
 
   return (
     <div className="min-h-screen bg-slate-100 flex">
