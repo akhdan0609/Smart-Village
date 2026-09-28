@@ -313,7 +313,7 @@ page: 'profil-desa' as PageRoute
           onClick={() => setMapModalOpen(false)}
         >
           <div 
-            className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-full my-auto animate-in zoom-in-95 duration-150"
+            className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[calc(100vh-120px)] my-auto animate-in zoom-in-95 duration-150"
             onClick={e => e.stopPropagation()}
           >
             {/* Modal Header */}
